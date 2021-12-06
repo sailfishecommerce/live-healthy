@@ -1,6 +1,5 @@
-import * as React from "react";
-import { PlasmicComponent } from "@plasmicapp/loader-nextjs";
 import { GetStaticPaths, GetStaticProps } from "next";
+import dynamic from "next/dynamic";
 
 import {
   ComponentRenderData,
@@ -8,6 +7,13 @@ import {
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
 import { PLASMIC } from "../plasmic-init";
+import PlasmicLayout from "@/layout/Plasmiclayout";
+
+const DyanmicPlasmicComponent: any = dynamic(() =>
+  import("@plasmicapp/loader-nextjs").then(
+    (response: any) => response.PlasmicComponent
+  )
+);
 
 export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;
@@ -17,32 +23,34 @@ export default function PlasmicLoaderPage(props: {
     return <Error statusCode={404} />;
   }
   return (
-    <PlasmicRootProvider
-      loader={PLASMIC}
-      prefetchedData={plasmicData}
-    >
-      <PlasmicComponent component={plasmicData.entryCompMetas[0].name} />
-    </PlasmicRootProvider>
+    <PlasmicLayout>
+      <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
+        <DyanmicPlasmicComponent
+          component={plasmicData.entryCompMetas[0].name}
+        />
+      </PlasmicRootProvider>
+    </PlasmicLayout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
-  const plasmicPath = typeof catchall === 'string' ? catchall : Array.isArray(catchall) ? `/${catchall.join('/')}` : '/';
+  const plasmicPath =
+    typeof catchall === "string"
+      ? catchall
+      : Array.isArray(catchall)
+      ? `/${catchall.join("/")}`
+      : "/";
   const plasmicData = await PLASMIC.maybeFetchComponentData(plasmicPath);
   if (plasmicData) {
     return {
       props: { plasmicData },
-
-      // Use revalidate if you want incremental static regeneration
-      revalidate: 60
     };
   }
   return {
-    // non-Plasmic catch-all
     props: {},
   };
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pageModules = await PLASMIC.fetchPages();
@@ -52,9 +60,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         catchall: mod.path.substring(1).split("/"),
       },
     })),
-
-    // Turn on "fallback: 'blocking'" if you would like new paths created
-    // in Plasmic to be automatically available
     fallback: false,
   };
-}
+};
