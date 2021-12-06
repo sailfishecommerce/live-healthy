@@ -41,6 +41,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
             })();
         `}
         </script>
+        <meta name="robots" content="noindex" />
       </Head>
       <div data-aos="fade-up" id="head" />
       {slideCart && <SlideCart toggle={toggleCart} />}
