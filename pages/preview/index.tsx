@@ -38,14 +38,14 @@ export default function Index() {
     }
   }, [cart]);
 
-  useEffect(() => {
-    axios
-      .get("/api/fetch-airtable-products")
-      .then((response) => {
-        console.log("response", response);
-      })
-      .catch((error) => console.log("error", error));
-  });
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/fetch-airtable-products")
+  //     .then((response) => {
+  //       console.log("response", response.data);
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">

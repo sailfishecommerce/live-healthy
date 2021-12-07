@@ -1,9 +1,13 @@
+import path from "path";
+import fs from "fs";
 import Airtable from "airtable";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const base = new Airtable({ apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY })
-  .base(`
-  process.env.NEXT_PUBLIC_AIRTABLE_BASE_KEY`);
+const base = new Airtable({
+  apiKey: "keyaF5bLqQ92wcNjk",
+}).base("appWYa04URh7qcq81");
+
+const filePath = path.join(__dirname, "../../public/airtable.json");
 
 export default async function fetchProductsFromAirtable(
   req: NextApiRequest,
@@ -11,31 +15,7 @@ export default async function fetchProductsFromAirtable(
 ) {
   switch (req.method) {
     case "GET": {
-      return await base("Gold Clean (Latest)")
-        .select({
-          view: "Grid view",
-        })
-        .eachPage(
-          function page(records, fetchNextPage) {
-            records.forEach(function (record) {
-              console.log(
-                "Retrived airtableProduct",
-                record.get("#productname"),
-                "airtable record",
-                record,
-                "airtable records",
-                records
-              );
-            });
-            fetchNextPage();
-          },
-          function done(err) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-          }
-        );
+      
     }
   }
 }
