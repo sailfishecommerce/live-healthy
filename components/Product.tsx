@@ -126,8 +126,8 @@ export default function Product({
         </div>
         <div className="card-body card-body-hidden">
           <form onSubmit={addToCartHandler}>
-            {product?.options.length > 0 ? (
-              product?.options.map((option) => {
+            {product?.options?.length > 0 ? (
+              product?.options?.map((option) => {
                 return option.name === "Color" ? (
                   <div key={option.id} className="text-center pb-2">
                     {option.values.map(
