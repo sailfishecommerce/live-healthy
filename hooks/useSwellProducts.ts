@@ -1,4 +1,6 @@
+import axios from "axios";
 import swellClientInit from "@/lib/config";
+import { useQuery } from "react-query";
 
 type filterType = {
   page: number;
@@ -40,4 +42,21 @@ export default function useSwellProducts() {
   }
 
   return { listProducts, allProducts, filterProducts, getAllAttributes };
+}
+
+export function useDocsuppliesProduct(): any {
+  function fetchDocsuppliesProducts() {
+    return axios.get("/api/get-docsupplies-product");
+  }
+  const {
+    data: docsuppliesProduct,
+    status: docsuppliesStatus,
+    error: docsuppliesError,
+  } = useQuery("fetchDocsuppliesProducts", fetchDocsuppliesProducts);
+
+  return {
+    docsuppliesProduct,
+    docsuppliesStatus,
+    docsuppliesError,
+  };
 }

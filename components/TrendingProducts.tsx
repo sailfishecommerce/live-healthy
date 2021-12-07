@@ -3,12 +3,16 @@ import Link from "next/link";
 import { useQuery } from "react-query";
 
 import LoadProducts from "@/components/ProductsLoader";
-import useSwellProducts from "@/hooks/useSwellProducts";
+import useSwellProducts, {
+  useDocsuppliesProduct,
+} from "@/hooks/useSwellProducts";
 import Product from "./Product";
 import { productType } from "@/types";
 
 export default function TrendingProducts() {
   const { listProducts } = useSwellProducts();
+  const { docsuppliesProduct, docsuppliesStatus } = useDocsuppliesProduct();
+
   const { data, status, error } = useQuery("listProducts", listProducts);
 
   return (
