@@ -6,12 +6,12 @@ import NextNProgress from "@/components/Nprogress";
 import SlideCart from "@/components/SlideCart";
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
-import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import QuickViewModal from "@/components/modal/QuickViewModal";
 import AuthModal from "@/components/modal/AuthModal";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import { SpinnerOverlay } from "@/components/spinnerLoader";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   const { toggleCart, slideCart } = useCart();
