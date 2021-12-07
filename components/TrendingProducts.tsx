@@ -24,7 +24,7 @@ export default function TrendingProducts() {
               <Product key={product.id} product={product} />
             ))
           ) : (
-            <h1>No product in this store.</h1>
+            <h2 className="text-center">No product in this store.</h2>
           )}
         </div>
       )}

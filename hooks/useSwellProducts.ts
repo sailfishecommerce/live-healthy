@@ -52,7 +52,7 @@ export function useLiveHealthyProduct(): any {
     data: liveHealthyProduct,
     status: liveHealthyProductStatus,
     error: liveHealthyProductError,
-  } = useQuery("fetchDocsuppliesProducts", fetchLiveHealthyProducts);
+  } = useQuery("fetchLiveHealthyProducts", fetchLiveHealthyProducts);
 
   return {
     liveHealthyProduct,

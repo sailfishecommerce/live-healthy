@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
+import axios from "axios";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
@@ -36,6 +37,16 @@ export default function Index() {
       createVboutCart(vboutContent);
     }
   }, [cart]);
+
+  useEffect(() => {
+    axios
+      .get("/api/fetch-airtable-products")
+      .then((response) => {
+        console.log("response", response);
+      })
+      .catch((error) => console.log("error", error));
+  });
+
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">
       <HomepageSlider
