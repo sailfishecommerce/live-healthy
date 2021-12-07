@@ -44,19 +44,19 @@ export default function useSwellProducts() {
   return { listProducts, allProducts, filterProducts, getAllAttributes };
 }
 
-export function useDocsuppliesProduct(): any {
-  function fetchDocsuppliesProducts() {
-    return axios.get("/api/get-docsupplies-product");
+export function useLiveHealthyProduct(): any {
+  function fetchLiveHealthyProducts() {
+    return axios.get("/api/get-livehealthy-product");
   }
   const {
-    data: docsuppliesProduct,
-    status: docsuppliesStatus,
-    error: docsuppliesError,
-  } = useQuery("fetchDocsuppliesProducts", fetchDocsuppliesProducts);
+    data: liveHealthyProduct,
+    status: liveHealthyProductStatus,
+    error: liveHealthyProductError,
+  } = useQuery("fetchDocsuppliesProducts", fetchLiveHealthyProducts);
 
   return {
-    docsuppliesProduct,
-    docsuppliesStatus,
-    docsuppliesError,
+    liveHealthyProduct,
+    liveHealthyProductStatus,
+    liveHealthyProductError,
   };
 }

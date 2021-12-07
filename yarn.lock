@@ -3866,6 +3866,11 @@ swell-js@^3.12.2:
     object-keys-normalizer "1.0.1"
     qs "6.7.0"
 
+swell-node@^4.0.9:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/swell-node/-/swell-node-4.0.9.tgz#4209079fc134c78f1c8f164b0a7187d1dc1f6279"
+  integrity sha512-NjAS5Z4XYcCNILZArU0r+BQWcM3nyZUyNobpjH8WerD9YqrxMvP4pYHhux9knYnv5novu3yMJELVCURmGLVhqA==
+
 swiper@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/swiper/-/swiper-7.3.1.tgz#697734231d43c67c0e03134c969ebbd5e5037b54"
