@@ -9,6 +9,8 @@ export type productType = {
       text: string;
     }[];
   };
+  product_image?: string;
+  image_alt_text?: any;
   images: {
     id: string;
     file: {

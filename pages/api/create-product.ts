@@ -33,7 +33,7 @@ export default async function createSwellProductHandler(
           rrp: product["cwh-rrp"],
           bestseller: product["cwh-bestseller"],
           discount: product["cwh-discount"],
-          exclude: product["exclude"],
+          exclude: product["Exclude"],
           percentage_chinese: product["percentage_chinese"],
           low_stock: product["cwh-low_stock"],
           link: product["cwh-link"],
@@ -46,6 +46,7 @@ export default async function createSwellProductHandler(
             product["Cat 3"],
             product["Cat 4"],
           ],
+          select_store: "livehealthy",
           date_created: record.createdTime,
           date_updated: product["Last Modified 2"]
             ? product["Last Modified 2"]
@@ -53,6 +54,13 @@ export default async function createSwellProductHandler(
           hkd_selling_price: product["HKD Selling Price"],
           hkd_compare_at_price: product["HKD Compare At Price"],
           product_image: product["cwh-pict-all"],
+          images: [
+            {
+              file: {
+                url: product["cwh-pict-all"],
+              },
+            },
+          ],
           weight: product["calculated-weight"],
           image_alt_text: [
             product["1st Image Alt Text"],
@@ -61,11 +69,9 @@ export default async function createSwellProductHandler(
             product["4th Image Alt Text"],
           ],
           product_type: product["#type"],
-          benefit: [
-            { html: product["cwh-html"] },
-            { htmlEng: product["cwh-html-ENG"] },
-            { htmlEngCH: product["cwh-html-EN+CH"] },
-          ],
+          information_html: product["cwh-html"],
+          information_html_eng: product["cwh-html-ENG"],
+          information_eng_ch: product["cwh-html-EN+CH"],
           product_images: [
             {
               link: product["cwh-pict_1"],
@@ -110,12 +116,14 @@ export default async function createSwellProductHandler(
           ],
           brand: product["cwh-brand"],
         })
-        .then((response: any) =>
-          console.log("response createSwellProductHandler", response)
-        )
-        .catch((error: any) =>
-          console.error("error createSwellProductHandler", error)
-        );
+        .then((response: any) => {
+          console.log("response createSwellProductHandler", response);
+          return res.status(200).json(response);
+        })
+        .catch((error: any) => {
+          console.error("error createSwellProductHandler", error);
+          return res.status(400).json(error);
+        });
     }
   }
 }

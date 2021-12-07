@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Head from "next/head";
-import Script from "next/script";
 
 import FormattedPrice from "@/lib/formatPrice";
 import { productType } from "@/types";
@@ -91,8 +90,8 @@ export default function Product({
             className="productLink card-img-top d-block overflow-hidden"
           >
             <img
-              src={product.images[0].file.url}
-              alt={product.name}
+              src={product.product_image}
+              alt={product.image_alt_text[0]}
               className="productImage"
             />
           </a>
@@ -127,8 +126,8 @@ export default function Product({
         </div>
         <div className="card-body card-body-hidden">
           <form onSubmit={addToCartHandler}>
-            {product.options.length > 0 ? (
-              product.options.map((option) => {
+            {product?.options.length > 0 ? (
+              product?.options.map((option) => {
                 return option.name === "Color" ? (
                   <div key={option.id} className="text-center pb-2">
                     {option.values.map(

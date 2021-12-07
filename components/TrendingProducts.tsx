@@ -10,6 +10,8 @@ export default function TrendingProducts() {
   const { liveHealthyProduct, liveHealthyProductStatus } =
     useLiveHealthyProduct();
 
+  console.log("liveHealthyProduct", liveHealthyProduct);
+
   return (
     <section className="container pt-md-3 pb-5 mb-md-3 w-100">
       <h2 className="h3 text-center">Trending products</h2>

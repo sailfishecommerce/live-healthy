@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import axios from "axios";
 
-import products from "@/json/product.json";
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
 import { ShopByBrandPreview } from "@/components/ShopByBrands";
@@ -38,19 +36,6 @@ export default function Index() {
       createVboutCart(vboutContent);
     }
   }, [cart]);
-
-  function createProduct(product: any) {
-    axios
-      .post("/api/create-product", { record: product })
-      .then((response) => {
-        console.log("response", response.data);
-      })
-      .catch((error) => console.log("error", error));
-  }
-
-  useEffect(() => {
-    products.map((product) => createProduct(product));
-  }, []);
 
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">
