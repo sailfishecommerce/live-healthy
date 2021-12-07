@@ -56,7 +56,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="Docsupplies -Shop for medical gloves,natural concepts hand-sanitizer,WeSail COVID-19 Rapid Antigen,docsupplies,drugs,free-shipping,covid-19-test-kit, test-kit,masks,respirators,nitrile glove,sterile glove,latex glove,vinyl glove,masks and respirator laboratory supplies,syringes and needles, industrial gloves, oxygen concentrators"
+          content="Live Healthy - Shop for medical gloves,natural concepts hand-sanitizer,WeSail COVID-19 Rapid Antigen,docsupplies,drugs,free-shipping,covid-19-test-kit, test-kit,masks,respirators,nitrile glove,sterile glove,latex glove,vinyl glove,masks and respirator laboratory supplies,syringes and needles, industrial gloves, oxygen concentrators"
         />
         <meta
           name="keywords"
