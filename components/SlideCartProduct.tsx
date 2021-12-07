@@ -42,8 +42,8 @@ export default function SlideCartProduct({
           <Link href={`/products/${item.product.slug}`} passHref>
             <a className="flex-shrink-0">
               <img
-                src={item.product.images[0].file.url}
-                alt={item.product.name}
+                src={item.product.product_image}
+                alt={item.product.image_alt_text[0]}
                 width="64"
               />
             </a>

@@ -10,6 +10,7 @@ export type productType = {
     }[];
   };
   product_image?: string;
+  product_images: { link: string; alt: string }[];
   image_alt_text?: any;
   images: {
     id: string;

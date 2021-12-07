@@ -32,7 +32,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
     dispatch(quickViewModal(product));
   }
   console.log("quickViewMM", product);
-  
+
   function submitFormHandler(e: any) {
     e.preventDefault;
   }
@@ -61,7 +61,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
       </Modal.Header>
       <Modal.Body>
         <div className="row">
-          {productToView.options.length > 0 ? (
+          {productToView?.options?.length > 0 ? (
             <ProductGallery product={productToView} />
           ) : (
             <ProductGallery product={productToView} quickView />
@@ -78,10 +78,10 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                 >
                   <i className="ci-heart"></i>
                 </button>
-              </div>             
+              </div>
               <ProductForm product={productToView} />
               <>
-                {productToView.content.productBenefits && (
+                {productToView?.content?.productBenefits && (
                   <div className="product-benefit">
                     <h5 className="h6 mb-3 pb-2 border-bottom">
                       <i className="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>
@@ -89,7 +89,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                     </h5>
                     <h6 className="fs-sm mb-2">Benefits</h6>
                     <ul className="fs-sm px-0">
-                      {productToView.content.productBenefits.map(
+                      {productToView?.content?.productBenefits.map(
                         (benefit: { icon: string; text: string }) => (
                           <li className="my-1 list-unstyled" key={benefit.icon}>
                             <Icon
@@ -106,7 +106,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                 )}
               </>
             </div>
-            {productToView.options.length === 0 && <PaymentNote />}
+            {productToView?.options?.length === 0 && <PaymentNote />}
           </div>
         </div>
       </Modal.Body>

@@ -62,10 +62,10 @@ export default function ProductForm({ product }: ProductFormType) {
 
   return (
     <div className="productform mb-3">
-      {product.options.length > 0 ? (
+      {product?.options?.length > 0 ? (
         <form onSubmit={onSubmitHandler}>
-          {product.options.map((option: productOptions) => {
-            return option.name === "Color" ? (
+          {product?.options?.map((option: productOptions) => {
+            return option?.name === "Color" ? (
               <div key={option.id}>
                 <div className="fs-sm mb-4 d-flex align-items-center">
                   <span className="text-heading fw-medium me-1">Color:</span>
@@ -73,7 +73,7 @@ export default function ProductForm({ product }: ProductFormType) {
                     className="text-muted d-flex align-items-center"
                     id="colorOptionText"
                   >
-                    {option.values.map((value, index) => {
+                    {option?.values?.map((value, index) => {
                       return option.values.length - 1 === index ? (
                         <div key={value.id}>{value.name}</div>
                       ) : (
@@ -85,8 +85,8 @@ export default function ProductForm({ product }: ProductFormType) {
                   </span>
                 </div>
                 <div className="position-relative me-n4 mb-3">
-                  {option.name === "Color" &&
-                    option.values.map((value, index) => (
+                  {option?.name === "Color" &&
+                    option?.values.map((value, index) => (
                       <div
                         key={value.id}
                         className="form-check form-option form-check-inline mb-2"
@@ -131,8 +131,8 @@ export default function ProductForm({ product }: ProductFormType) {
               )
             );
           })}
-          {product.attributes?.box && <ProductBoxTable />}
-          {product.attributes?.box && productQty && (
+          {product?.attributes?.box && <ProductBoxTable />}
+          {product?.attributes?.box && productQty && (
             <div className="alert bg-danger text-white">
               {productQty} cartons has a total of {Number(productQty) * 10}{" "}
               boxes with 100 pcs each

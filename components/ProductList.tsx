@@ -33,8 +33,8 @@ export default function ProductList({ product }: ProductProps) {
         <Link href={`/products/${product.slug}`} passHref>
           <a onClick={productViewEvent} className="product-list-thumb">
             <img
-              src={product.images[0].file.url}
-              alt={product.name}
+              src={product.product_image}
+              alt={product.image_alt_text[0]}
               className="productImage"
             />
           </a>
