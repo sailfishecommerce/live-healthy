@@ -31,7 +31,7 @@ export default function ProductPanel({ product }: Props) {
           <div className="accordion-body">
             <h6 className="fs-sm mb-2">Benefits</h6>
             <ul className="fs-sm px-0">
-              {product.content.productBenefits.map(
+              {product?.content?.productBenefits.map(
                 (benefit: { icon: string; text: string }) => (
                   <li className="my-1 list-unstyled" key={benefit.icon}>
                     <Icon

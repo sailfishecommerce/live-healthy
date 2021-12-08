@@ -18,7 +18,9 @@ export default function ProductGalleryDetails({ product }: Props) {
           <div className="col-lg-5 pt-4 pt-lg-0">
             <div className="product-details ms-auto pb-3">
               <ProductDetail product={product} />
-              <ProductPanel product={product} />
+              {product?.content?.productBenefits && (
+                <ProductPanel product={product} />
+              )}
               <ShareProductLink />
             </div>
           </div>

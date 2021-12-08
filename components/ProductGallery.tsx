@@ -18,9 +18,7 @@ export default function ProductGallery({ product, quickView }: Props) {
 
   console.log("product", product);
 
-  const thumbnailImages = product?.product_images?.filter(
-    (image) => image.link
-  );
+  const images = product?.product_images?.filter((image) => image.link);
 
   const onImgClick = (index: number) => {
     setActiveImage(index);
@@ -40,61 +38,59 @@ export default function ProductGallery({ product, quickView }: Props) {
     <div className="col-lg-7 pe-lg-0 pt-lg-4">
       <div className="product-gallery">
         <div className="product-gallery-preview order-sm-2">
-          {product?.product_images?.map(
-            (image: { link: string; alt: string }, index) => (
-              <div
-                key={image.link}
-                className="product-gallery-preview-item active"
-                id="first"
-              >
-                <a key={index} onClick={() => onImgClick(index)}>
-                  <Magnifier
-                    mgShowOverflow={false}
-                    mgWidth={2000}
-                    mgHeight={2000}
-                    className="img-fluid"
-                    src={image.link}
-                    zoomFactor={0.11}
-                  />
-                </a>
-                {lightBoxOpen && (
-                  <Lightbox
-                    mainSrc={product?.product_images[activeImage].link}
-                    nextSrc={
-                      product?.product_images[
-                        (activeImage + 1) % product?.product_images.length
-                      ].link
-                    }
-                    prevSrc={
-                      product?.product_images[
-                        (activeImage + product?.product_images.length - 1) %
-                          product?.product_images.length
-                      ].link
-                    }
-                    onCloseRequest={() => setLightBoxOpen(false)}
-                    imageCaption={product?.product_images[activeImage].alt}
-                    onMovePrevRequest={() =>
-                      setActiveImage(
-                        (activeImage + product?.product_images.length - 1) %
-                          product?.product_images.length
-                      )
-                    }
-                    onMoveNextRequest={() =>
-                      setActiveImage(
-                        (activeImage + 1) % product?.product_images.length
-                      )
-                    }
-                    enableZoom={false}
-                    reactModalStyle={customStyles}
-                  />
-                )}
-                <div className="image-zoom-pane"></div>
-              </div>
-            )
-          )}
+          {images.map((image: { link: string; alt: string }, index) => (
+            <div
+              key={image.link}
+              className="product-gallery-preview-item active"
+              id="first"
+            >
+              <a key={index} onClick={() => onImgClick(index)}>
+                <Magnifier
+                  mgShowOverflow={false}
+                  mgWidth={2000}
+                  mgHeight={2000}
+                  className="img-fluid"
+                  src={image.link}
+                  zoomFactor={0.11}
+                />
+              </a>
+              {lightBoxOpen && (
+                <Lightbox
+                  mainSrc={product?.product_images[activeImage].link}
+                  nextSrc={
+                    product?.product_images[
+                      (activeImage + 1) % product?.product_images.length
+                    ].link
+                  }
+                  prevSrc={
+                    product?.product_images[
+                      (activeImage + product?.product_images.length - 1) %
+                        product?.product_images.length
+                    ].link
+                  }
+                  onCloseRequest={() => setLightBoxOpen(false)}
+                  imageCaption={product?.product_images[activeImage].alt}
+                  onMovePrevRequest={() =>
+                    setActiveImage(
+                      (activeImage + product?.product_images.length - 1) %
+                        product?.product_images.length
+                    )
+                  }
+                  onMoveNextRequest={() =>
+                    setActiveImage(
+                      (activeImage + 1) % product?.product_images.length
+                    )
+                  }
+                  enableZoom={false}
+                  reactModalStyle={customStyles}
+                />
+              )}
+              <div className="image-zoom-pane"></div>
+            </div>
+          ))}
         </div>
         <div className="product-gallery-thumblist order-sm-1">
-          {thumbnailImages?.map((image: { link: string; alt: string }) => (
+          {images?.map((image: { link: string; alt: string }) => (
             <a
               className="product-gallery-thumblist-item active"
               href="#first"

@@ -19,10 +19,10 @@ export default function ProductOverview({
       <ProductGalleryDetails product={pageProduct} />
       <ProductDescription product={pageProduct} />
       <ProductReviews product={pageProduct} />
-      <SingleShopProductCarousel1
+      {/* <SingleShopProductCarousel1
         product={pageProduct}
         otherProducts={products}
-      />
+      /> */}
     </div>
   );
 }

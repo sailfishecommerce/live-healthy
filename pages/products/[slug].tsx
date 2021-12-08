@@ -2,7 +2,6 @@
 import swell from "swell-node";
 import Applayout from "@/layout/Applayout";
 import ProductOverview from "@/components/ProductOverview";
-import { getLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import swellNodeInit from "@/lib/swellNode";
 
 interface ProductPage {

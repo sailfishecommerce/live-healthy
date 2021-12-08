@@ -94,7 +94,7 @@ export default function Product({
             <img
               src={product.product_image}
               alt={
-                product?.image_alt_text[0]
+                product?.image_alt_text
                   ? product?.image_alt_text[0]
                   : product.name
               }

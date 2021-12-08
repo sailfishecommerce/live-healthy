@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { InstantSearch } from "react-instantsearch-dom";
 import Link from "next/link";
