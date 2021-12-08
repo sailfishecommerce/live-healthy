@@ -2,6 +2,7 @@ export type productType = {
   name: string;
   description?: string | any;
   attributes?: any;
+  meta_title?: string;
   content: {
     maxQuantity: number;
     productBenefits: {
@@ -9,6 +10,7 @@ export type productType = {
       text: string;
     }[];
   };
+  vendor?: string;
   product_image?: string;
   product_images: { link: string; alt: string }[];
   image_alt_text?: any;

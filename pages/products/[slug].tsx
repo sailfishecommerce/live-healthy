@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import useSwellProducts from "@/hooks/useSwellProducts";
+import swell from "swell-node";
 import Applayout from "@/layout/Applayout";
 import ProductOverview from "@/components/ProductOverview";
-import { useRouter } from "next/router";
+import { getLiveHealthyProduct } from "@/hooks/useSwellProducts";
+import swellNodeInit from "@/lib/swellNode";
 
 interface ProductPage {
   products: any;
@@ -17,30 +18,31 @@ export default function ProductPage({ products, pageProduct }: ProductPage) {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const { allProducts } = useSwellProducts();
-  const data: any = await allProducts();
-  const allProductsArray = data?.results;
-
-  const pageProduct = allProductsArray?.filter(
+  swellNodeInit();
+  const products = await swell.get("/products", {
+    where: { select_store: "livehealthy" },
+  });
+  const pageProduct = products.results.filter(
     (product: { slug: any }) => product?.slug === params.slug
   );
 
   return {
     props: {
       pageProduct: pageProduct[0],
-      products: data?.results,
+      products,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const { allProducts } = useSwellProducts();
-  const data: any = await allProducts();
-  const allProductsArray = data?.results;
+  swellNodeInit();
+  const products = await swell.get("/products", {
+    where: { select_store: "livehealthy" },
+  });
 
   return {
     paths:
-      allProductsArray?.map(
+      products.results.map(
         (product: { slug: any }) => `/products/${product.slug}`
       ) || [],
     fallback: false,

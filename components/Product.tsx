@@ -73,6 +73,8 @@ export default function Product({
           }
         `}
         </script>
+        <meta title={product.meta_title} />
+        <meta name="description" content={product.description} />
       </Head>
       <div className="card product-card p-2">
         <button
@@ -91,12 +93,17 @@ export default function Product({
           >
             <img
               src={product.product_image}
-              alt={product.image_alt_text[0]}
+              alt={
+                product?.image_alt_text[0]
+                  ? product?.image_alt_text[0]
+                  : product.name
+              }
               className="productImage"
             />
           </a>
         </Link>
         <div className="card-body py-3">
+          <a className="product-meta d-block fs-xs pb-1">{product.vendor}</a>
           <h3 className="product-title fs-sm">
             <Link href={`/products/${product.slug}`} passHref>
               <a onClick={productViewEvent}>{product.name}</a>

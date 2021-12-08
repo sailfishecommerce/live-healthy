@@ -60,3 +60,23 @@ export function useLiveHealthyProduct(): any {
     liveHealthyProductError,
   };
 }
+
+export async function getLiveHealthyProduct() {
+  const siteUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://www.livehealthy.hk";
+  const res = await fetch(`${siteUrl}/api/get-livehealthy-product`);
+  const data = await res.json();
+
+  return data;
+}
+
+// export async function getLiveHealthyProduct() {
+//   swell.init("sailfish-e-commerce-limited", "5qBYeK0FS6djOP7TzCWOQ5hWQZZzzvnr");
+//   const products = await swell.get("/products", {
+//     where: { select_store: "livehealthy" },
+//   });
+
+//   return products;
+// }

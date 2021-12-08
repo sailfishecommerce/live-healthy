@@ -16,7 +16,11 @@ export default function ProductGallery({ product, quickView }: Props) {
   const [lightBoxOpen, setLightBoxOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
-  const thumbnailImages = product.product_images.filter((image) => image.link);
+  console.log("product", product);
+
+  const thumbnailImages = product?.product_images?.filter(
+    (image) => image.link
+  );
 
   const onImgClick = (index: number) => {
     setActiveImage(index);
@@ -36,7 +40,7 @@ export default function ProductGallery({ product, quickView }: Props) {
     <div className="col-lg-7 pe-lg-0 pt-lg-4">
       <div className="product-gallery">
         <div className="product-gallery-preview order-sm-2">
-          {product.product_images.map(
+          {product?.product_images?.map(
             (image: { link: string; alt: string }, index) => (
               <div
                 key={image.link}
@@ -90,7 +94,7 @@ export default function ProductGallery({ product, quickView }: Props) {
           )}
         </div>
         <div className="product-gallery-thumblist order-sm-1">
-          {thumbnailImages.map((image: { link: string; alt: string }) => (
+          {thumbnailImages?.map((image: { link: string; alt: string }) => (
             <a
               className="product-gallery-thumblist-item active"
               href="#first"
