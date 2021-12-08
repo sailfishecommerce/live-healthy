@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Head from "next/head";
+import RenderSmoothImage from "render-smooth-image-react";
+import "render-smooth-image-react/build/style.css";
 
 import FormattedPrice from "@/lib/formatPrice";
 import { productType } from "@/types";
@@ -91,15 +93,17 @@ export default function Product({
             onClick={productViewEvent}
             className="productLink card-img-top d-block overflow-hidden"
           >
-            <img
-              src={product.product_image}
-              alt={
-                product?.image_alt_text
-                  ? product?.image_alt_text[0]
-                  : product.name
-              }
-              className="productImage"
-            />
+            <div className="productImage">
+              <RenderSmoothImage
+                src={product.product_image}
+                alt={
+                  product?.image_alt_text
+                    ? product?.image_alt_text[0]
+                    : product.name
+                }
+                className="productImage"
+              />
+            </div>
           </a>
         </Link>
         <div className="card-body py-3">
