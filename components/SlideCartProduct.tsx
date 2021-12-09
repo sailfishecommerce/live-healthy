@@ -27,6 +27,8 @@ export default function SlideCartProduct({
     });
   }
 
+  console.log("itemProduct", item);
+
   return (
     <div className="slide-cart border-bottom p-2 position-relative row">
       <div className="widget-cart-item py-1">
@@ -42,8 +44,8 @@ export default function SlideCartProduct({
           <Link href={`/products/${item.product.slug}`} passHref>
             <a className="flex-shrink-0">
               <img
-                src={item.product.product_image}
-                alt={item.product.image_alt_text[0]}
+                src={item.product?.product_image}
+                alt={item.product?.name}
                 width="64"
               />
             </a>
