@@ -1,14 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { Modal } from "react-bootstrap";
 
 import { quickViewModal } from "@/redux/ui-slice";
-import { PaymentNote } from "../ProductView";
 import Rating from "../Rating";
 import ProductForm from "../ProductForm";
 import { useAppDispatch } from "@/hooks/useRedux";
-import { CartCounter } from "@/components/CartCounter";
 import ProductGallery from "@/components/ProductGallery";
 
 interface QuickViewModalProps {

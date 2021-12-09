@@ -10,7 +10,11 @@ export default function AddProductToAlgoliaIndiceHandler(
     `${process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY}`
   );
   const index = client.initIndex(
+<<<<<<< HEAD
     `${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`
+=======
+    `${process.env.NEXT_PUBLIC_ALGOLIA_CATEGORIES_INDEX_NAME}`
+>>>>>>> 3be7c1742fada167c818be48a201f694d7a194e4
   );
 
   console.log("req.method", req.method, "req.body", req.body);
