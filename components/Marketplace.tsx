@@ -14,7 +14,10 @@ export default function Marketplace() {
   const { productView } = useAppSelector((state) => state.shop);
 
   return (
-    <InstantSearch indexName="docsupplies_products" searchClient={searchClient}>
+    <InstantSearch
+      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
+      searchClient={searchClient}
+    >
       <div className="page-title-overlap bg-dark pt-4">
         <div className="container d-lg-flex justify-content-between py-2 py-lg-3">
           <div className="order-lg-2 mb-3 mb-lg-0 pt-lg-2">

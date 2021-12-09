@@ -65,7 +65,7 @@ export default function SearchBar() {
 
   return (
     <InstantSearch
-      indexName="docsupplies_products"
+      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={algoliasearchClient}
     >
       <Configure clickAnalytics />
