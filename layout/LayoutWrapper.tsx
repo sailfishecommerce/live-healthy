@@ -46,10 +46,10 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
           name="google-site-verification"
           content="jzOTMxF7oUbLPiv-axyDSRh7yVdltNu-gP2gKfcBIpc"
         />
-        <meta
+        {/* <meta
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
-        />
+        /> */}
       </Head>
       <div data-aos="fade-up" id="head" />
       {slideCart && <SlideCart toggle={toggleCart} />}
