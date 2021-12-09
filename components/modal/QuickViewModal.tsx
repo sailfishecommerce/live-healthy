@@ -85,7 +85,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
         <style jsx>
           {`
             .description {
-              height: 400 px;
+              height: 400px;
               overflow: auto;
             }
           `}
