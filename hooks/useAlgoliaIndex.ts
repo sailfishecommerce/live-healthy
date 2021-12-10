@@ -11,7 +11,6 @@ export default function useAlgoliaIndex() {
   const { categoryData, categoryStatus } = useCategories();
 
   function addProductToAlgoliaIndex() {
-    console.log("allProduct data", data);
     axios
       .post("/api/add-products-to-algolia-index", data?.results)
       .then((response) => {

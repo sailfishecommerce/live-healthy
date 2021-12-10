@@ -5,8 +5,6 @@ import useAlgoliaInsight from "./useAlgoliaInsight";
 export default function useAlgoliaEvents() {
   const { userToken } = useAlgoliaInsight();
 
-  console.log("userToken", userToken);
-
   function clickedObjectIDsAfterSearch(
     insights: (
       arg0: string,
