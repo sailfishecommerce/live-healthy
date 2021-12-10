@@ -1,5 +1,6 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import swell from "swell-node";
 import dynamic from "next/dynamic";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
   ComponentRenderData,
@@ -35,6 +36,14 @@ export default function PlasmicLoaderPage(props: {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
+  const { data } = await swell.get("/products", {
+    where: { select_store: "livehealthy" },
+    limit: 30,
+    page: 1,
+  });
+
+  console.log("getStaticProps data", data);
+
   const plasmicPath =
     typeof catchall === "string"
       ? catchall
