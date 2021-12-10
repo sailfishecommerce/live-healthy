@@ -27,8 +27,6 @@ export default function Product({
     optionHandler,
   } = useProduct(product);
 
-  console.log("product", product);
-
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
   return (

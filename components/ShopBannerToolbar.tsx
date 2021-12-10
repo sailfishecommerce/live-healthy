@@ -24,7 +24,7 @@ export default function ShopBannerToolbar() {
           { value: "Livehealthy__products_price_des", label: "Price desc." },
         ]}
       />
-      <Pagination showLast={true} />
+      <Pagination className="d-flex" showLast={true} />
       <div className="d-none d-sm-flex pb-3">
         <span
           className={`btn btn-icon nav-link-style ${gridStyle} me-2 cursor-pointer`}

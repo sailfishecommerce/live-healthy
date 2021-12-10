@@ -4,6 +4,7 @@ import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
 import FormattedPrice from "@/lib/formatPrice";
+import RatingStar from "./RatingStar";
 import { productType } from "@/types";
 import useProduct from "@/hooks/useProduct";
 
@@ -35,7 +36,7 @@ export default function ProductList({ product }: ProductProps) {
         <Link href={`/products/${product.slug}`} passHref>
           <a onClick={productViewEvent} className="product-list-thumb">
             <RenderSmoothImage
-              src={product.product_image}
+              src={product.product_images[0].link}
               alt={
                 product?.image_alt_text
                   ? product?.image_alt_text[0]
@@ -46,9 +47,7 @@ export default function ProductList({ product }: ProductProps) {
           </a>
         </Link>
         <div className="card-body py-2">
-          {/* <a className="product-meta d-block fs-xs pb-1" href="#">
-            Women’s T-shirt
-          </a> */}
+          <a className="product-meta d-block fs-xs pb-1">{product.vendor}</a>
           <h3 className="product-title fs-base">
             <Link href={`/products/${product.slug}`} passHref>
               <a onClick={productViewEvent}>{product.name}</a>
@@ -67,21 +66,15 @@ export default function ProductList({ product }: ProductProps) {
                 </span>
               )}
             </div>
-            <div className="star-rating">
-              <i className="star-rating-icon ci-star-filled active"></i>
-              <i className="star-rating-icon ci-star-filled active"></i>
-              <i className="star-rating-icon ci-star-filled active"></i>
-              <i className="star-rating-icon ci-star"></i>
-              <i className="star-rating-icon ci-star"></i>
-            </div>
+            <RatingStar rate={product.rating} />
           </div>
           <div className="card-body card-body-hidden">
             <form onSubmit={addToCartHandler}>
-              {product.options.length > 0 ? (
-                product.options.map((option) => {
-                  return option.name === "Color" ? (
+              {product?.options && product?.options.length > 0 ? (
+                product?.options.map((option) => {
+                  return option?.name === "Color" ? (
                     <div key={option.id} className="pb-2">
-                      {option.values.map(
+                      {option?.values.map(
                         (value: { name: string; id: string }) => (
                           <div
                             key={value.id}
@@ -111,7 +104,7 @@ export default function ProductList({ product }: ProductProps) {
                         )
                       )}
                     </div>
-                  ) : option.name === "Size" ? (
+                  ) : option?.name === "Size" ? (
                     <div key={option.id} className="d-flex mb-2">
                       <select
                         className="form-select form-select-sm me-2"

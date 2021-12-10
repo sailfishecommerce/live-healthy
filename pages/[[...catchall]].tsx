@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import axios from "axios";
 import swell from "swell-node";
 import dynamic from "next/dynamic";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -9,6 +11,7 @@ import {
 import Error from "next/error";
 import { PLASMIC } from "../plasmic-init";
 import PlasmicLayout from "@/layout/Plasmiclayout";
+import useLiveHealthyProduct from "@/hooks/useLiveHealthyProducts";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -36,13 +39,9 @@ export default function PlasmicLoaderPage(props: {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
-  const { data } = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 30,
-    page: 1,
-  });
+  // const products = useLiveHealthyProduct();
 
-  console.log("getStaticProps data", data);
+  // console.log("data getStaticProps", products);
 
   const plasmicPath =
     typeof catchall === "string"
@@ -63,6 +62,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pageModules = await PLASMIC.fetchPages();
+  // const data = useLiveHealthyProduct();
+
   return {
     paths: pageModules.map((mod) => ({
       params: {
