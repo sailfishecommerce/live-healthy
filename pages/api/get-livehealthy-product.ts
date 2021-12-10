@@ -2,18 +2,21 @@ import swell from "swell-node";
 import algoliasearch from "algoliasearch";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-swell.init("sailfish-e-commerce-limited", "5qBYeK0FS6djOP7TzCWOQ5hWQZZzzvnr");
+swell.init(
+  "sailfish-e-commerce-limited",
+  `${process.env.NEXT_PUBLIC_SWELL_SECRET_KEY}`
+);
 
 export default async function fetchProductFromLiveHealthStore(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const client = algoliasearch(
-    "CZT5MA7JLJ",
-    "f830523f814bb70c45fb9bb784fbe400"
+    `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
+    `${process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY}`
   );
 
-  const index = client.initIndex("Livehealthy_products");
+  const index = client.initIndex("Livehealthy__products");
 
   switch (req.method) {
     case "GET": {
