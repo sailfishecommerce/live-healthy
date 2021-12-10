@@ -29,7 +29,7 @@ export default function useVbout() {
       domain: "VBT-88360-6048",
       cartcurrency: "$",
       customer: content.email,
-      storename: "docsupplies",
+      storename: "livehealthy",
       customerinfo: content.customerInfo,
     };
     return axios
@@ -48,7 +48,7 @@ export default function useVbout() {
       cartid: content.cartId,
       domain: "VBT-88360-6048",
       cartcurrency: "$",
-      storename: "docsupplies",
+      storename: "livehealthy",
       customerinfo: {
         firstname: content.firstName,
         lastname: content.lastName,
@@ -124,7 +124,7 @@ export default function useVbout() {
       subtotal: item.subtotal,
       currency: "USD",
       status: item.status,
-      storename: "Docsupplies",
+      storename: "livehealthy",
       customerinfo: item.customerInfo,
       billinginfo: item.billingInfo,
       shippinginfo: item.shippingInfo,

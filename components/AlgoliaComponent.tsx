@@ -2,14 +2,15 @@
 import Link from "next/link";
 import aa from "search-insights";
 import { connectHitInsights, Highlight } from "react-instantsearch-dom";
+import RenderSmoothImage from "render-smooth-image-react";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import "render-smooth-image-react/build/style.css";
 
 interface HitComponentProps {
   hit: {
-    images: {
-      file: {
-        url: string;
-      };
+    product_images: {
+      link: string;
+      alt: string;
     }[];
     price: string;
     name: string;
@@ -24,7 +25,6 @@ export function HitComponent({
   insights,
 }: HitComponentProps): JSX.Element {
   const { clickedObjectIDsAfterSearch } = useAlgoliaEvents();
-  console.log("hits", hit);
 
   function clickedProductAfterSearchHandler() {
     clickedObjectIDsAfterSearch(insights, hit.__queryID);
@@ -37,8 +37,8 @@ export function HitComponent({
         className="hit d-flex align-items-center my-0 border-bottom py-1"
       >
         <div className="hit-image">
-          <img
-            src={hit.images[0].file.url}
+          <RenderSmoothImage
+            src={hit.product_images[0].link}
             alt={hit.name}
             className="productImage"
             height="70px"
@@ -55,10 +55,14 @@ export function HitComponent({
           {`
             .hit-content.d-flex h6 {
               font-size: 13px;
-              padding: 0 px;
+              padding: 0px;
             }
             .price {
               font-size: 13px;
+            }
+            .hit-image {
+              height: 70px;
+              width: 100px;
             }
           `}
         </style>

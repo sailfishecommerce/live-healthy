@@ -68,7 +68,12 @@ export default function SearchBar() {
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={algoliasearchClient}
     >
-      <Configure clickAnalytics />
+      <Configure
+        clickAnalytics
+        hitsPerPage={10}
+        distinct
+        enablePersonalization={true}
+      />
       <div className={inputContainerClassName}>
         <SearchBox
           translations={{
@@ -97,6 +102,8 @@ export default function SearchBar() {
             left: 25px;
             padding: 10px;
             width: 100%;
+            height: 400px;
+            overflow: auto;
           }
           .search-box {
             position: relative;

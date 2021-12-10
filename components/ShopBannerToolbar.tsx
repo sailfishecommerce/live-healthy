@@ -17,11 +17,11 @@ export default function ShopBannerToolbar() {
   return (
     <div className="ShopBannerToolbar d-flex justify-content-center justify-content-sm-between align-items-center pt-2 pb-4 pb-sm-5">
       <AlgoliaSortby
-        defaultRefinement="docsupplies_products"
+        defaultRefinement="Livehealthy__products"
         items={[
-          { value: "docsupplies_products", label: "Featured" },
-          { value: "docsupplies_product_price_asc", label: "Price asc." },
-          { value: "docsupplies_product_price_des", label: "Price desc." },
+          { value: "Livehealthy__products", label: "Featured" },
+          { value: "Livehealthy__products_price_asc", label: "Price asc." },
+          { value: "Livehealthy__products_price_des", label: "Price desc." },
         ]}
       />
       <Pagination showLast={true} />
