@@ -1,13 +1,13 @@
-import React from "react";
-
 interface RatingStarProps {
   rate: number;
 }
 
 export default function RatingStar({ rate }: RatingStarProps) {
-  const activeRate = new Array(rate).fill(0);
-  const inactiveRateCount = 5 - Number(rate);
-  const inactiveRate = new Array(inactiveRateCount).fill(0);
+  const validRate = rate ? rate : 5;
+  const activeRate = new Array(validRate).fill(0);
+  const inactiveRateCount = 5 - Number(validRate);
+  const validInactiveRate = inactiveRateCount ? inactiveRateCount : 0;
+  const inactiveRate = new Array(validInactiveRate).fill(0);
 
   return (
     <div className="star-rating">
