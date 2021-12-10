@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { InstantSearch } from "react-instantsearch-dom";
+import { InstantSearch, Pagination } from "react-instantsearch-dom";
 import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
@@ -8,7 +8,6 @@ import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import { useAppSelector } from "@/hooks/useRedux";
 import { HitProduct, HitProductList } from "@/components/ProductHit";
-import { CustomPagination } from "./AlgoliaPaginationWidget";
 
 export default function Marketplace() {
   const { productView } = useAppSelector((state) => state.shop);
@@ -47,7 +46,9 @@ export default function Marketplace() {
                 {productView === "grid" ? <HitProduct /> : <HitProductList />}
               </div>
               <hr className="mb-5" />
-              <CustomPagination />
+              <div className="bottomPagination">
+                <Pagination showNext showLast />
+              </div>
             </div>
           </section>
         </div>

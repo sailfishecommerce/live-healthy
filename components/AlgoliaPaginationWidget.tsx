@@ -3,6 +3,7 @@ import { connectPagination } from "react-instantsearch-dom";
 export default function AlgoliaPaginationWidget({
   currentRefinement,
   nbPages,
+  
   refine,
   createURL,
 }: any) {

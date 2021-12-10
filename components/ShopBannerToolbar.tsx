@@ -22,6 +22,8 @@ export default function ShopBannerToolbar() {
           { value: "Livehealthy__products", label: "Featured" },
           { value: "Livehealthy__products_price_asc", label: "Price asc." },
           { value: "Livehealthy__products_price_des", label: "Price desc." },
+          { value: "Livehealthy__products_price_a-z", label: "Name A-Z" },
+          { value: "Livehealthy__products_price_des", label: "Name Z-A" },
         ]}
       />
       <Pagination className="d-flex" showLast={true} />
