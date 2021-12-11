@@ -82,12 +82,12 @@ const CustomCurrentRefinements = ({ items, refine, createURL }: any) => {
 
 function categoryName(label: string) {
   switch (label) {
-    case "category":
+    case "product_type":
       return "Category";
-    case "options.values.name":
-      return "Size & Color";
+    case "vendor":
+      return "Vendor";
     default: {
-      return "Hello";
+      return "";
     }
   }
 }

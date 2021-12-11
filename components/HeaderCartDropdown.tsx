@@ -41,7 +41,7 @@ function CartWidget({ cart, removeFromCart }: CartWidgetProps) {
         <Link href={`/products/${cart.product.slug}`} passHref>
           <a className="flex-shrink-0">
             <img
-              src={cart.product.images[0].file.url}
+              src={cart.product?.images[0].file.url.split(";")[0]}
               alt={cart.product.name}
               width="64"
             />

@@ -214,9 +214,9 @@ export default function Product({
             display: flex;
             margin: auto;
           }
-          img.productImage:hover {
-            transform: scale(1.03);
-            transition: transform 300ms ease-in 0s;
+          .productImage img.productImage:hover {
+            transform: scale(1.03) !important;
+            transition: transform 300ms ease-in 0s !important;
           }
           @media (max-width: 768px) {
             .productLink img {

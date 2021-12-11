@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { InstantSearch, Pagination } from "react-instantsearch-dom";
+import { InstantSearch, Pagination, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
@@ -17,6 +17,7 @@ export default function Marketplace() {
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={searchClient}
     >
+      <Configure hitsPerPage={24} />
       <div className="page-title-overlap bg-dark pt-4">
         <div className="container d-lg-flex justify-content-between py-2 py-lg-3">
           <div className="order-lg-2 mb-3 mb-lg-0 pt-lg-2">

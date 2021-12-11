@@ -3,9 +3,10 @@ interface RatingStarProps {
 }
 
 export default function RatingStar({ rate }: RatingStarProps) {
-  const validRate = rate ? rate : 5;
+  const givenRate = Number(rate)
+  const validRate = givenRate ? givenRate : 5;
   const activeRate = new Array(validRate).fill(0);
-  const inactiveRateCount = 5 - Number(validRate);
+  const inactiveRateCount = 5 - validRate;
   const validInactiveRate = inactiveRateCount ? inactiveRateCount : 0;
   const inactiveRate = new Array(validInactiveRate).fill(0);
 

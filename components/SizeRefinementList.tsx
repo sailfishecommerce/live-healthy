@@ -16,7 +16,7 @@ export function SizeList({
   }
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Size & Color</h3>
+      <h3 className="widget-title">Categories</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"

@@ -1,7 +1,8 @@
-import React from "react";
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { CategoriesRefinementList } from "./CategoryRefinementList";
 import { SizeRefinementList } from "./SizeRefinementList";
+import { RatingsList } from "./RatingsRefinementList";
+
 
 export default function Categories() {
   return (
@@ -21,9 +22,10 @@ export default function Categories() {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <CategoriesRefinementList attribute="category" />
-          <SizeRefinementList attribute="options.values.name" />
+          <SizeRefinementList attribute="product_type" />
+          <CategoriesRefinementList attribute="vendor" />
           <CustomRangeSlider attribute="price" />
+          <RatingsList attribute="rating" />
         </div>
       </div>
     </aside>

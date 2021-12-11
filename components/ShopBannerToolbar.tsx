@@ -16,14 +16,14 @@ export default function ShopBannerToolbar() {
   }
   return (
     <div className="ShopBannerToolbar d-flex justify-content-center justify-content-sm-between align-items-center pt-2 pb-4 pb-sm-5">
-      <AlgoliaSortby
+    <AlgoliaSortby
         defaultRefinement="Livehealthy__products"
         items={[
           { value: "Livehealthy__products", label: "Featured" },
           { value: "Livehealthy__products_price_asc", label: "Price asc." },
           { value: "Livehealthy__products_price_des", label: "Price desc." },
           { value: "Livehealthy__products_price_a-z", label: "Name A-Z" },
-          { value: "Livehealthy__products_price_des", label: "Name Z-A" },
+          { value: "Livehealthy__products_price_z-a", label: "Name Z-A" },
         ]}
       />
       <Pagination className="d-flex" showLast={true} />
