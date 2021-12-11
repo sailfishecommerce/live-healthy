@@ -25,7 +25,7 @@ export default function ProductGallery({ product, quickView }: Props) {
     setActiveImage(index);
   }
 
-  const images = product?.product_images?.filter((image) => image.link);
+  const images = product?.images;
 
   const onImgClick = () => {
     setLightBoxOpen(!lightBoxOpen);
@@ -53,20 +53,21 @@ export default function ProductGallery({ product, quickView }: Props) {
               mgWidth={2000}
               mgHeight={2000}
               className="img-fluid"
-              src={images[activeImage]?.link}
+              src={images[activeImage].file.url}
               zoomFactor={0.11}
             />
             <div className="image-zoom-pane"></div>
           </div>
           {lightBoxOpen && (
             <Lightbox
-              mainSrc={images[activeImage].link}
-              nextSrc={images[(activeImage + 1) % images.length].link}
+              mainSrc={images[activeImage].file.url}
+              nextSrc={images[(activeImage + 1) % images.length].file.url}
               prevSrc={
-                images[(activeImage + images.length - 1) % images.length].link
+                images[(activeImage + images.length - 1) % images.length].file
+                  .url
               }
               onCloseRequest={() => setLightBoxOpen(false)}
-              imageCaption={images[activeImage].alt}
+              imageCaption={product.image_alt_text[activeImage]}
               onMovePrevRequest={() =>
                 setActiveImage(
                   (activeImage + images.length - 1) % images.length
@@ -81,7 +82,7 @@ export default function ProductGallery({ product, quickView }: Props) {
           )}
         </div>
         <div className="product-gallery-thumblist order-sm-1">
-          {images?.map((image: { link: string; alt: string }, index) => (
+          {images?.map((image: any, index) => (
             <a
               className={`product-gallery-thumblist-item ${activethumbnailImg(
                 index
@@ -89,7 +90,7 @@ export default function ProductGallery({ product, quickView }: Props) {
               onClick={() => updateActiveImage(index)}
               key={index}
             >
-              <img src={image.link} alt={image.alt} />
+              <img src={image.file.url} alt={product.image_alt_text[index]} />
             </a>
           ))}
         </div>
