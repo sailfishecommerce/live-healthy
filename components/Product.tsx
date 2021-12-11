@@ -94,7 +94,7 @@ export default function Product({
           >
             <div className="productImage">
               <RenderSmoothImage
-                src={product.product_images[0].link}
+                src={product.images[0].file.url}
                 alt={product?.image_alt_text[0]}
                 className="productImage"
               />

@@ -86,6 +86,10 @@ function categoryName(label: string) {
       return "Category";
     case "vendor":
       return "Vendor";
+    case "price":
+      return "Price";
+    case "rating":
+      return "Rating";
     default: {
       return "";
     }
