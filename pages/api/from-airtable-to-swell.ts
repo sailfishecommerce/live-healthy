@@ -2,6 +2,7 @@ import swell from "swell-node";
 import Airtable from "airtable";
 import { NextApiRequest, NextApiResponse } from "next";
 import toShopifyProductModel from "../../lib/toShopifyProductModel";
+import formattedUrlArray from "../../lib/useFormatProductImage";
 
 const base = new Airtable({
   apiKey: `${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
@@ -22,25 +23,39 @@ export default async function createSwellProductHandler(
         .eachPage(
           function page(records, fetchNextPage) {
             try {
-              records.forEach(async function (record) {
+              records.forEach(async function (record: any) {
                 if (record.fields) {
-                  const productData = toShopifyProductModel(record.fields);
-                  await swell
-                    .post("/products", productData)
-                    .then((response: any) => {
-                      console.log(
-                        "response createSwellProductHandler",
-                        response
-                      );
-                      return res.status(200).json(response);
-                    })
-                    .catch((error: any) => {
-                      console.error("error createSwellProductHandler", error);
-                    });
+                  const formattedUrl = record.fields["Image Src"]?.split(";");
+                  if (formattedUrl) {
+                    formattedUrlArray(formattedUrl, record).then(
+                      async (response) => {
+                        const productData = toShopifyProductModel(
+                          record.fields,
+                          response
+                        );
+                        await swell
+                          .post("/products", productData)
+                          .then((response: any) => {
+                            console.log(
+                              "response createSwellProductHandler",
+                              response
+                            );
+                            return res.status(200).json(response);
+                          })
+                          .catch((error: any) => {
+                            console.error(
+                              "error createSwellProductHandler",
+                              error
+                            );
+                          });
+                      }
+                    );
+                  }
                 }
               });
             } catch (e) {
               console.log("error inside each page", e);
+              return res.status(400).json(e);
             }
             fetchNextPage();
           },

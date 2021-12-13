@@ -1,4 +1,7 @@
-export default function toShopifyProductModel(product: any) {
+export default function toShopifyProductModel(
+  product: any,
+  productImages: any[]
+) {
   const productData = {
     name: product["Title"],
     price: product["CWH Price"],
@@ -32,14 +35,8 @@ export default function toShopifyProductModel(product: any) {
     select_store: "livehealthy",
     hkd_selling_price: product["Variant Price"],
     hkd_compare_at_price: product["Variant Compare At Price"],
-    product_image: product["Image Src"],
-    images: [
-      {
-        file: {
-          url: product["Image Src"],
-        },
-      },
-    ],
+    product_image: productImages,
+    images: productImages,
     weight: product["calculated-weight"],
     image_alt_text: [
       product["Image 1 Alt Text"],
