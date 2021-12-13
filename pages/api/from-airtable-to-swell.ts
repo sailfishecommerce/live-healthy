@@ -1,6 +1,8 @@
 import swell from "swell-node";
 import Airtable from "airtable";
+import axiosRetry from "axios-retry";
 import { NextApiRequest, NextApiResponse } from "next";
+
 import toShopifyProductModel from "../../lib/toShopifyProductModel";
 import formattedUrlArray from "../../lib/useFormatProductImage";
 
@@ -12,6 +14,7 @@ export default async function createSwellProductHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  let count = 0;
   switch (req.method) {
     case "GET": {
       base("To Shopify")
@@ -36,7 +39,10 @@ export default async function createSwellProductHandler(
                         await swell
                           .post("/products", productData)
                           .then((response: any) => {
+                            count = count + 1;
                             console.log(
+                              "count",
+                              count,
                               "response createSwellProductHandler",
                               response
                             );
