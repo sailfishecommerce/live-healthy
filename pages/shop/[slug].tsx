@@ -5,6 +5,7 @@ import Applayout from "@/layout/Applayout";
 import useCategory from "@/hooks/useCategory";
 import { categoryType } from "@/types";
 import Marketplace from "@/components/Marketplace";
+import useLiveHealthyProduct from "@/hooks/useLiveHealthyProducts";
 
 interface CategoryProps {
   category: categoryType;
@@ -25,6 +26,9 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { listAllCategory } = useCategory();
   const data: any = await listAllCategory();
   const allShopCategoriesArray = data?.results;
+  const products = useLiveHealthyProduct();
+
+  console.log("products", products);
 
   const shopCategory = allShopCategoriesArray?.filter(
     (shop: { slug: any }) => shop?.slug === params.slug
@@ -42,6 +46,22 @@ export async function getStaticPaths() {
   const { listAllCategory } = useCategory();
   const data: any = await listAllCategory();
   const allCategoriesArray = data?.results;
+  const products = useLiveHealthyProduct();
+  let productsArray: any[] = [];
+  products
+    .then((response) => {
+      console.log("response product", response);
+      productsArray.push(response);
+    })
+    .catch((error) => console.error("error", error));
+
+  console.log("productsArray", productsArray);
+
+  const categoriesPath = allCategoriesArray?.map(
+    (shop: { slug: any }) => `/shop/${shop.slug}`
+  );
+
+  // const productPath = products.
 
   return {
     paths:
