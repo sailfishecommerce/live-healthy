@@ -38,7 +38,7 @@ export default function Product({
             "@type":"Product",
             "name":"${product.name}",
             "description":"${product.description}",      
-            "image":"${product.images[0].file.url}",
+            "image":"${product.images[0]?.file?.url}",
             "url":"https://just-medic.vercel.app/products/${product.slug}",        
             "aggregateRating": {
               "@type": "AggregateRating",
