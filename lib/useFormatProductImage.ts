@@ -17,7 +17,7 @@ async function formatProductImage(url: string, name: string, index: number) {
               $binary: data.toString("base64"),
               $type: "00",
             },
-            filename: `${name.replaceAll(" ", "").toLowerCase()}-${index}`,
+            filename: `${name.replace(/ /g, "").toLowerCase()}-${index}`,
             content_type: "image/png",
             width: info.width,
             height: info.height,

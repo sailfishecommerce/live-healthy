@@ -21,7 +21,6 @@ export default async function createSwellProductHandler(
         base("To Shopify")
           .select({
             maxRecords: 7794,
-            pageSize: 1,
             view: "Grid view",
             filterByFormula: "NOT({Product Type} = '')",
             sort: [{ field: "Title", direction: "desc" }],
