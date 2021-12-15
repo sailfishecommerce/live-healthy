@@ -128,12 +128,17 @@ em.ais-Highlight-highlighted {
   padding: 0px;
   display: grid;
   margin: 0px;
+  grid-gap: 10px;
   grid-template-columns: repeat(3, 1fr);
 }
 
 li.ais-Hits-item a {
   display: flex;
   flex-direction: column;
+}
+
+ul.ais-Hits-list li.ais-Hits-item:hover {
+  background-color: #f6f6f6;
 }
 
 li.ais-Hits-item:last-child .hit {

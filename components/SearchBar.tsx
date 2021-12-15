@@ -70,7 +70,6 @@ export default function SearchBar() {
     >
       <Configure
         clickAnalytics
-        hitsPerPage={10}
         distinct
         enablePersonalization={true}
       />

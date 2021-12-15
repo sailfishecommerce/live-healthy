@@ -34,7 +34,7 @@ export function HitComponent({
     <Link href={`/products/${hit.slug}?query-id=${hit.__queryID}`} passHref>
       <a
         onClick={clickedProductAfterSearchHandler}
-        className="hit d-flex align-items-center my-0 border-bottom py-1"
+        className="hit d-flex align-items-center my-0 py-1"
       >
         <div className="hit-image">
           <RenderSmoothImage
@@ -49,13 +49,17 @@ export function HitComponent({
           <h6 className="ms-2 me-1">
             <Highlight attribute="name" hit={hit} />
           </h6>
-          <div className="price"> ${hit.price}</div>
+          <div className="price fw-bold"> ${hit.price}</div>
         </div>
         <style jsx>
           {`
             .hit-content.d-flex h6 {
               font-size: 13px;
               padding: 0px;
+              white-space: nowrap;
+              width: 180px;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             .hit-content.d-flex {
               flex-direction: column;
