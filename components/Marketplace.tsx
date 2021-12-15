@@ -6,14 +6,10 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
-import { useAppSelector } from "@/hooks/useRedux";
 import { HitProduct, HitProductList } from "@/components/ProductHit";
-import ProductList from "./ProductList";
-import Product from "./Product";
-import { productType } from "@/types";
+import InfinteProductPage from "./InfinteProductPage";
 
 export default function Marketplace({ products }: any) {
-  const { productView } = useAppSelector((state) => state.shop);
 
   return (
     <InstantSearch
@@ -48,13 +44,7 @@ export default function Marketplace({ products }: any) {
             <div>
               <div className="row mx-n2 mb-5">
                 {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
-                {products.map((product: productType, index: number) => {
-                  return productView === "grid" ? (
-                    <Product key={index} product={product} />
-                  ) : (
-                    <ProductList key={index} product={product} />
-                  );
-                })}
+                <InfinteProductPage products={products} />
               </div>
               <hr className="mb-5" />
               <div className="bottomPagination">
