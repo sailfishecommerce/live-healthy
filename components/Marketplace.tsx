@@ -8,8 +8,11 @@ import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import { useAppSelector } from "@/hooks/useRedux";
 import { HitProduct, HitProductList } from "@/components/ProductHit";
+import ProductList from "./ProductList";
+import Product from "./Product";
+import { productType } from "@/types";
 
-export default function Marketplace() {
+export default function Marketplace({ products }: any) {
   const { productView } = useAppSelector((state) => state.shop);
 
   return (
@@ -44,7 +47,14 @@ export default function Marketplace() {
             <ShopBannerToolbar />
             <div>
               <div className="row mx-n2 mb-5">
-                {productView === "grid" ? <HitProduct /> : <HitProductList />}
+                {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
+                {products.map((product: productType, index: number) => {
+                  productView === "grid" ? (
+                    <Product key={index} product={product} />
+                  ) : (
+                    <ProductList key={index} product={product} />
+                  );
+                })}
               </div>
               <hr className="mb-5" />
               <div className="bottomPagination">

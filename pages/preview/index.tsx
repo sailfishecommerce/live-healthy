@@ -38,6 +38,13 @@ export default function Index() {
     }
   }, [cart]);
 
+  useEffect(() => {
+    axios
+      .get("/api/fetch-products")
+      .then((response) => console.log("response", response))
+      .catch((error) => console.log("error", error));
+  }, []);
+
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">
       <HomepageSlider

@@ -9,7 +9,7 @@ export default async function fetchProductsHandler(
 ) {
   swellNodeInit();
 
-  const pathName = "./allProducts4.json";
+  const pathName = "./products1.json";
 
   switch (req.method) {
     case "GET": {
@@ -17,7 +17,7 @@ export default async function fetchProductsHandler(
         .get("/products", {
           where: { select_store: "livehealthy" },
           limit: 1000,
-          page: 4,
+          page: 1,
         })
         .then((response: any) => {
           console.log("response", response);
