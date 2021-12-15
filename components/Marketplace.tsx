@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
+import { useQuery } from "react-query";
 import { InstantSearch, Pagination, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
@@ -10,6 +12,12 @@ import { HitProduct, HitProductList } from "@/components/ProductHit";
 import InfinteProductPage from "./InfinteProductPage";
 
 export default function Marketplace({ products }: any) {
+  function fetchProducts() {
+    return axios.get("/api/fetch-products");
+  }
+  const { data, status, error } = useQuery("fetchStoreProducts", fetchProducts);
+
+  console.log("data", data?.data);
 
   return (
     <InstantSearch
@@ -46,7 +54,7 @@ export default function Marketplace({ products }: any) {
                 {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
                 <InfinteProductPage products={products} />
               </div>
-              <hr className="mb-2" />              
+              <hr className="mb-2" />
             </div>
           </section>
         </div>
