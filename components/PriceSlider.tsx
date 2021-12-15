@@ -3,12 +3,6 @@ import Nouislider from "nouislider-react";
 import Router, { useRouter } from "next/router";
 // import "nouislider/dist/nouislider.css";
 
-type filterType = {
-  color: string | null;
-  size: string | null;
-  price: [] | never[];
-};
-
 interface PriceSliderProps {
   onChangeFilter: (e: any) => void;
 }

@@ -13,6 +13,7 @@ import store from "@/redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "simplebar/dist/simplebar.css";
 import "@/styles/globals.css";
+import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
