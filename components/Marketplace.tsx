@@ -12,13 +12,6 @@ import { HitProduct, HitProductList } from "@/components/ProductHit";
 import InfinteProductPage from "./InfinteProductPage";
 
 export default function Marketplace({ products }: any) {
-  function fetchProducts() {
-    return axios.get("/api/fetch-products");
-  }
-  const { data, status, error } = useQuery("fetchStoreProducts", fetchProducts);
-
-  console.log("data", data?.data);
-
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}

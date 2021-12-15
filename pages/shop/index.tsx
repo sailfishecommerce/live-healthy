@@ -1,14 +1,15 @@
 import swell from "swell-node";
 
-import swellNodeInit from "@/lib/swellNode";
 import Applayout from "@/layout/Applayout";
 import Marketplace from "@/components/Marketplace";
+import swellNodeInit from "@/lib/swellNode";
+import { productType } from "@/types";
 
-interface Shop {
-  products: any[];
+interface ShopProps {
+  products: productType;
 }
 
-export default function Shop({ products }: Shop) {
+export default function Shop({ products }: ShopProps) {
   return (
     <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
       <Marketplace products={products} />
@@ -20,7 +21,7 @@ export async function getServerSideProps() {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
-    limit: 600,
+    limit: 400,
   });
 
   return {
