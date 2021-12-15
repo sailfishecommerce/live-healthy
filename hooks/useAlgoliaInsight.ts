@@ -30,7 +30,7 @@ export default function useAlgoliaInsight() {
   });
 
   searchClient.search([
-    { indexName: "Livehealthy__products", params: { userToken } },
+    { indexName: "New_Livehealthy_products_index", params: { userToken } },
   ]);
 
   return {

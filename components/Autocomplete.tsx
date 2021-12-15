@@ -47,7 +47,7 @@ export default function CustomAutocomplete() {
               searchClient,
               queries: [
                 {
-                  indexName: "Livehealthy__products",
+                  indexName: "New_Livehealthy_products_index",
                   query,
                 },
               ],

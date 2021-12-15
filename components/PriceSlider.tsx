@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Nouislider from "nouislider-react";
 import Router, { useRouter } from "next/router";
 // import "nouislider/dist/nouislider.css";

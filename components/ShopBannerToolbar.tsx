@@ -17,7 +17,7 @@ export default function ShopBannerToolbar() {
   return (
     <div className="ShopBannerToolbar d-flex justify-content-center justify-content-sm-between align-items-center pt-2 pb-4 pb-sm-5">
       <AlgoliaSortby
-        defaultRefinement="Livehealthy__products"
+        defaultRefinement="New_Livehealthy_products_index"
         items={[
           { value: "New_Livehealthy_products_index", label: "Featured" },
           { value: "New_Livehealthy_products_index_a-z", label: "Name A-Z" },
