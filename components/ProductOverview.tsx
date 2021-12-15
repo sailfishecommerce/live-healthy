@@ -5,14 +5,10 @@ import ProductGalleryDetails from "./ProductGalleryDetails";
 import ProductReviews from "./ProductReviews";
 
 interface ProductOverviewProps {
-  products?: any;
   pageProduct?: any;
 }
 
-export default function ProductOverview({
-  products,
-  pageProduct,
-}: ProductOverviewProps) {
+export default function ProductOverview({ pageProduct }: ProductOverviewProps) {
   return (
     <div>
       <ProductBanner product={pageProduct} />

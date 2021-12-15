@@ -16,11 +16,11 @@ export default function Shop({ products }: Shop) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
-    limit: 1000,
+    limit: 600,
   });
 
   return {

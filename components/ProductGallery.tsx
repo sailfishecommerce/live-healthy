@@ -96,6 +96,15 @@ export default function ProductGallery({ product, quickView }: Props) {
         </div>
       </div>
       {!quickView && <PaymentNote />}
+      <style jsx>
+        {`
+          .product-gallery-thumblist.order-sm-1 {
+            height: 500px;
+            overflow-y: auto;
+            width: 150px;
+          }
+        `}
+      </style>
     </div>
   );
 }

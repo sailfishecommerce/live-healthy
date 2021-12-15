@@ -1,7 +1,8 @@
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ProductList from "./ProductList";
+
 import { useAppSelector } from "@/hooks/useRedux";
+import ProductList from "./ProductList";
 import Product from "./Product";
 import { productType } from "@/types";
 

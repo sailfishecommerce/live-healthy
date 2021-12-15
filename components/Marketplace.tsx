@@ -46,10 +46,7 @@ export default function Marketplace({ products }: any) {
                 {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
                 <InfinteProductPage products={products} />
               </div>
-              <hr className="mb-5" />
-              <div className="bottomPagination">
-                <Pagination showNext showLast />
-              </div>
+              <hr className="mb-2" />              
             </div>
           </section>
         </div>

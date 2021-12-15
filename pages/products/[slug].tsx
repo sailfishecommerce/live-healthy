@@ -5,18 +5,21 @@ import ProductOverview from "@/components/ProductOverview";
 import swellNodeInit from "@/lib/swellNode";
 
 interface ProductPage {
-  products: any;
   pageProduct: any;
 }
-export default function ProductPage({ products, pageProduct }: ProductPage) {
+export default function ProductPage({ pageProduct }: ProductPage) {
   return (
     <Applayout title={pageProduct.name}>
-      <ProductOverview products={products} pageProduct={pageProduct} />
+      <ProductOverview pageProduct={pageProduct} />
     </Applayout>
   );
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
+type propsType = {
+  params: { slug: string };
+};
+
+export async function getStaticProps({ params }: propsType) {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
@@ -30,7 +33,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   return {
     props: {
       pageProduct: pageProduct[0],
-      products: products.results,
     },
   };
 }
