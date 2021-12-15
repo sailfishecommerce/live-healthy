@@ -49,13 +49,16 @@ export function HitComponent({
           <h6 className="ms-2 me-1">
             <Highlight attribute="name" hit={hit} />
           </h6>
-          <div className="price"> - ${hit.price}</div>
+          <div className="price"> ${hit.price}</div>
         </div>
         <style jsx>
           {`
             .hit-content.d-flex h6 {
               font-size: 13px;
               padding: 0px;
+            }
+            .hit-content.d-flex {
+              flex-direction: column;
             }
             .price {
               font-size: 13px;

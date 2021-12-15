@@ -30,7 +30,7 @@ export default function SearchBar() {
     ? "input-group d-none d-lg-flex mx-4"
     : "mobileInput w-100 my-0";
 
-  const inputContainerClassName = !tabWidth ? "search-box w-50" : "my-3";
+  const inputContainerClassName = !tabWidth ? "search-box w-100" : "my-3";
 
   useEffect(() => {
     const searchInputRef: any = inputRef.current;
@@ -74,24 +74,37 @@ export default function SearchBar() {
         distinct
         enablePersonalization={true}
       />
-      <div className={inputContainerClassName}>
-        <SearchBox
-          translations={{
-            placeholder: "Search for products...",
-          }}
-          autoFocus
-          showLoadingIndicator
-          inputRef={inputRef}
-          className={inputClassName}
-        />
+      <div className="searchBox">
+        <div className={inputContainerClassName}>
+          <SearchBox
+            translations={{
+              placeholder: "Search for products...",
+            }}
+            autoFocus
+            showLoadingIndicator
+            inputRef={inputRef}
+            className={inputClassName}
+          />
+        </div>
         {querylength !== 0 && (
-          <div className="results shadow-lg">
-            <Hits hitComponent={HitComponentWithInsight} />
+          <div className="results row">
+            <div className="col-lg-4">
+              <h6>Popular Suggestions</h6>
+            </div>
+            <div className="col-lg-8">
+              <h6>Products</h6>
+              <Hits hitComponent={HitComponentWithInsight} />
+            </div>
           </div>
         )}
       </div>
       <style jsx>
         {`
+          .searchBox {
+            display: flex;
+            flex-direction: column;
+            width: 55%;
+          }
           .navbar-tool:hover .logout {
             color: red;
           }
@@ -99,11 +112,28 @@ export default function SearchBar() {
             position: absolute;
             z-index: 100;
             background-color: white;
-            left: 25px;
+            left: 10%;
             padding: 10px;
-            width: 100%;
+            width: 75%;
             height: 400px;
             overflow: auto;
+            margin-top: 5%;
+            border-radius: 0;
+            padding: 16px;
+            padding-top: 19px;
+            box-shadow: 0px 8px 16px 0px #33333329;
+          }
+          .results h6 {
+            line-height: 1;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+            letter-spacing: 0;
+            margin: 0 8px 0;
+            padding-bottom: 7px;
+            margin-bottom: 4px;
           }
           .search-box {
             position: relative;

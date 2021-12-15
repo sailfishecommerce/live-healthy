@@ -126,7 +126,14 @@ em.ais-Highlight-highlighted {
 .results ul.ais-Hits-list {
   list-style: none;
   padding: 0px;
+  display: grid;
   margin: 0px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+li.ais-Hits-item a {
+  display: flex;
+  flex-direction: column;
 }
 
 li.ais-Hits-item:last-child .hit {
