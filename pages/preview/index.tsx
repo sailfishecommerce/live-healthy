@@ -13,7 +13,6 @@ import useVbout from "@/hooks/useVbout";
 import { useCart } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
-import axios from "axios";
 
 export default function Index() {
   const { createVboutCart } = useVbout();
@@ -37,13 +36,6 @@ export default function Index() {
       createVboutCart(vboutContent);
     }
   }, [cart]);
-
-  useEffect(() => {
-    axios
-      .get("/api/fetch-products")
-      .then((response) => console.log("response", response))
-      .catch((error) => console.log("error", error));
-  }, []);
 
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">

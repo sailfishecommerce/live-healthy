@@ -49,7 +49,7 @@ export default function Marketplace({ products }: any) {
               <div className="row mx-n2 mb-5">
                 {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
                 {products.map((product: productType, index: number) => {
-                  productView === "grid" ? (
+                  return productView === "grid" ? (
                     <Product key={index} product={product} />
                   ) : (
                     <ProductList key={index} product={product} />
