@@ -8,7 +8,7 @@ import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfinteProductPage from "./InfinteProductPage";
 
-export default function Marketplace({ products }: any) {
+export default function Marketplace() {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
