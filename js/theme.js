@@ -70,69 +70,7 @@ function _typeof(e) {
             !1
           );
         })(e);
-    })(),
-    (function () {
-      for (
-        var t = document.querySelectorAll(".file-drop-area"), e = 0;
-        e < t.length;
-        e++
-      )
-        !(function (e) {
-          var a = t[e].querySelector(".file-drop-input"),
-            n = t[e].querySelector(".file-drop-message"),
-            o = t[e].querySelector(".file-drop-icon");
-          t[e]
-            .querySelector(".file-drop-btn")
-            .addEventListener("click", function () {
-              a.click();
-            }),
-            a.addEventListener("change", function () {
-              var e;
-              a.files &&
-                a.files[0] &&
-                (((e = new FileReader()).onload = function (e) {
-                  var t,
-                    e = e.target.result,
-                    r = a.files[0].name;
-                  (n.innerHTML = r),
-                    e.startsWith("data:image")
-                      ? (((t = new Image()).src = e),
-                        (t.onload = function () {
-                          (o.className =
-                            "file-drop-preview img-thumbnail rounded"),
-                            (o.innerHTML =
-                              '<img src="' + t.src + '" alt="' + r + '">');
-                        }))
-                      : e.startsWith("data:video")
-                      ? ((o.innerHTML = ""),
-                        (o.className = ""),
-                        (o.className = "file-drop-icon ci-video"))
-                      : ((o.innerHTML = ""),
-                        (o.className = ""),
-                        (o.className = "file-drop-icon ci-document"));
-                }),
-                e.readAsDataURL(a.files[0]));
-            });
-        })(e);
-    })(),
-    window.addEventListener(
-      "load",
-      function () {
-        var e = document.getElementsByClassName("needs-validation");
-        Array.prototype.filter.call(e, function (t) {
-          t.addEventListener(
-            "submit",
-            function (e) {
-              !1 === t.checkValidity() &&
-                (e.preventDefault(), e.stopPropagation()),
-                t.classList.add("was-validated");
-            },
-            !1
-          );
-        });
-      },
-      !1
-    ),
+    })(),      
     new SmoothScroll("[data-scroll]", {
       speed: 800,
       speedAsDuration: !0,
@@ -194,73 +132,6 @@ function _typeof(e) {
         tns(a);
       }
     ),
-    (function () {
-      var e = document.querySelectorAll(".gallery");
-      if (e.length)
-        for (var t = 0; t < e.length; t++)
-          lightGallery(e[t], {
-            selector: ".gallery-item",
-            download: !1,
-            videojs: !0,
-            youtubePlayerParams: {
-              modestbranding: 1,
-              showinfo: 0,
-              rel: 0,
-            },
-            vimeoPlayerParams: {
-              byline: 0,
-              portrait: 0,
-              color: "fe696a",
-            },
-          });
-    })(),
-    (function () {
-      var s = document.querySelectorAll(".product-gallery");
-      if (s.length)
-        for (var e = 0; e < s.length; e++)
-          !(function (r) {
-            for (
-              var a = s[r].querySelectorAll(
-                  ".product-gallery-thumblist-item:not(.video-item)"
-                ),
-                n = s[r].querySelectorAll(".product-gallery-preview-item"),
-                e = s[r].querySelectorAll(
-                  ".product-gallery-thumblist-item.video-item"
-                ),
-                t = 0;
-              t < a.length;
-              t++
-            )
-              a[t].addEventListener("click", o);
-            function o(e) {
-              e.preventDefault();
-              for (var t = 0; t < a.length; t++)
-                n[t].classList.remove("active"),
-                  a[t].classList.remove("active");
-              this.classList.add("active"),
-                s[r]
-                  .querySelector(this.getAttribute("href"))
-                  .classList.add("active");
-            }
-            for (var l = 0; l < e.length; l++)
-              lightGallery(e[l], {
-                selector: "this",
-                download: !1,
-                videojs: !0,
-                youtubePlayerParams: {
-                  modestbranding: 1,
-                  showinfo: 0,
-                  rel: 0,
-                  controls: 0,
-                },
-                vimeoPlayerParams: {
-                  byline: 0,
-                  portrait: 0,
-                  color: "fe696a",
-                },
-              });
-          })(e);
-    })(),
     (function () {
       function o(e, t) {
         return e + t;
@@ -354,56 +225,6 @@ function _typeof(e) {
               color: "fe696a",
             },
           });
-    })(),
-    (function () {
-      var l = document.querySelectorAll(".subscription-form");
-      if (null !== l) {
-        for (var e = 0; e < l.length; e++)
-          !(function (e) {
-            var t = l[e].querySelector('button[type="submit"]'),
-              r = t.innerHTML,
-              a = l[e].querySelector(".form-control"),
-              n = l[e].querySelector(".subscription-form-antispam"),
-              o = l[e].querySelector(".subscription-status");
-            l[e].addEventListener("submit", function (e) {
-              e && e.preventDefault(), "" === n.value && s(this, t, a, r, o);
-            });
-          })(e);
-        var s = function (e, t, r, a, n) {
-          t.innerHTML = "Sending...";
-          var o = e.action.replace("/post?", "/post-json?"),
-            e = "&" + r.name + "=" + encodeURIComponent(r.value),
-            l = document.createElement("script");
-          (l.src = o + "&c=callback" + e), document.body.appendChild(l);
-          var s = "callback";
-          window[s] = function (e) {
-            delete window[s],
-              document.body.removeChild(l),
-              (t.innerHTML = a),
-              "success" == e.result
-                ? (r.classList.remove("is-invalid"),
-                  r.classList.add("is-valid"),
-                  n.classList.remove("status-error"),
-                  n.classList.add("status-success"),
-                  (n.innerHTML = e.msg),
-                  setTimeout(function () {
-                    r.classList.remove("is-valid"),
-                      (n.innerHTML = ""),
-                      n.classList.remove("status-success");
-                  }, 6e3))
-                : (r.classList.remove("is-valid"),
-                  r.classList.add("is-invalid"),
-                  n.classList.remove("status-success"),
-                  n.classList.add("status-error"),
-                  (n.innerHTML = e.msg.substring(4)),
-                  setTimeout(function () {
-                    r.classList.remove("is-invalid"),
-                      (n.innerHTML = ""),
-                      n.classList.remove("status-error");
-                  }, 6e3));
-          };
-        };
-      }
     })(),
     (function () {
       for (
@@ -520,31 +341,5 @@ function _typeof(e) {
             }),
             document.querySelector(e).classList.add("active");
         });
-    })(),
-    null !== (e = document.querySelector(".credit-card-form")) &&
-      new Card({ form: e, container: ".credit-card-wrapper" }),
-    (function () {
-      var e = document.querySelectorAll("[data-master-checkbox-for]");
-      if (0 !== e.length)
-        for (var t = 0; t < e.length; t++)
-          e[t].addEventListener("change", function () {
-            var e = document
-              .querySelector(this.dataset.masterCheckboxFor)
-              .querySelectorAll('input[type="checkbox"]');
-            if (this.checked)
-              for (var t = 0; t < e.length; t++)
-                (e[t].checked = !0),
-                  e[t].dataset.checkboxToggleClass &&
-                    document
-                      .querySelector(e[t].dataset.target)
-                      .classList.add(e[t].dataset.checkboxToggleClass);
-            else
-              for (var r = 0; r < e.length; r++)
-                (e[r].checked = !1),
-                  e[r].dataset.checkboxToggleClass &&
-                    document
-                      .querySelector(e[r].dataset.target)
-                      .classList.remove(e[r].dataset.checkboxToggleClass);
-          });
     })();
 })();
