@@ -292,3 +292,15 @@ export type filterType = {
   size: string | null;
   price: [] | never[];
 };
+
+
+export type hitType = {
+  product_images: {
+    link: string;
+    alt: string;
+  }[];
+  price: string;
+  name: string;
+  slug: string;
+  __queryID: string;
+};

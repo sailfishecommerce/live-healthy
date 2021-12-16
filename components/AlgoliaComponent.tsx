@@ -5,24 +5,19 @@ import { connectHitInsights, Highlight } from "react-instantsearch-dom";
 import RenderSmoothImage from "render-smooth-image-react";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import "render-smooth-image-react/build/style.css";
+import { hitType } from "@/types";
+
 
 interface HitComponentProps {
-  hit: {
-    product_images: {
-      link: string;
-      alt: string;
-    }[];
-    price: string;
-    name: string;
-    slug: string;
-    __queryID: string;
-  };
+  hit: hitType;
   insights: any;
+  hits: hitType[];
 }
 
 export function HitComponent({
   hit,
   insights,
+  hits,
 }: HitComponentProps): JSX.Element {
   const { clickedObjectIDsAfterSearch } = useAlgoliaEvents();
 

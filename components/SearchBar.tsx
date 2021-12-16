@@ -7,7 +7,7 @@ import {
 import { useRef, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { HitComponentWithInsight } from "./AlgoliaComponent";
+import SearchbarHits from "@/components/Searchbarhits";
 import searchClient from "@/lib/algoliaConfig";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useVbout from "@/hooks/useVbout";
@@ -68,11 +68,7 @@ export default function SearchBar() {
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={algoliasearchClient}
     >
-      <Configure
-        clickAnalytics
-        distinct
-        enablePersonalization={true}
-      />
+      <Configure clickAnalytics distinct enablePersonalization={true} />
       <div className="searchBox">
         <div className={inputContainerClassName}>
           <SearchBox
@@ -85,17 +81,7 @@ export default function SearchBar() {
             className={inputClassName}
           />
         </div>
-        {querylength !== 0 && (
-          <div className="results row">
-            <div className="col-lg-4">
-              <h6>Popular Suggestions</h6>
-            </div>
-            <div className="col-lg-8">
-              <h6>Products</h6>
-              <Hits hitComponent={HitComponentWithInsight} />
-            </div>
-          </div>
-        )}
+        {querylength !== 0 && <SearchbarHits />}
       </div>
       <style jsx>
         {`
