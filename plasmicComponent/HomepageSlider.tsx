@@ -77,74 +77,46 @@ export default function HomepageSlider({
     autoplayButtonOutput: false,
   };
   return (
-    <div>
-      <section className="tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100">
-        <TinySlider settings={settings}>
-          {content.map((item, index) => (
-            <div
-              key={index}
-              className="px-lg-5"
-              style={{ backgroundColor: `${item.bgColor}` }}
-            >
-              <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
-                <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
-                  {item.sliderImg}
-                </div>
-                <div
-                  className="position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1"
-                  style={{ maxWidth: "42rem", zIndex: 10 }}
-                >
-                  <div className="pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
-                    <h3 className="h2 text-light fw-light pb-1 from-start">
-                      {item.sliderCaption}
-                    </h3>
-                    <h2 className="text-light display-5 from-start delay-1">
-                      {item.sliderTitle}
-                    </h2>
-                    <p className="fs-lg text-light pb-3 from-start delay-2">
-                      {item.sliderDescription}
-                    </p>
-                    <div className="d-table scale-up delay-4 mx-auto mx-lg-0">
-                      <Link href="/shop" passHref>
-                        <a className="btn btn-primary">
-                          Shop Now
-                          <i className="ci-arrow-right ms-2 me-n1"></i>
-                        </a>
-                      </Link>
-                    </div>
+    <section className="tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100">
+      <TinySlider settings={settings}>
+        {content.map((item, index) => (
+          <div
+            key={index}
+            className="px-lg-5"
+            style={{ backgroundColor: `${item.bgColor}` }}
+          >
+            <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
+              <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
+                {item.sliderImg}
+              </div>
+              <div
+                className="position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1"
+                style={{ maxWidth: "42rem", zIndex: 10 }}
+              >
+                <div className="pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
+                  <h3 className="h2 text-light fw-light pb-1 from-start">
+                    {item.sliderCaption}
+                  </h3>
+                  <h2 className="text-light display-5 from-start delay-1">
+                    {item.sliderTitle}
+                  </h2>
+                  <p className="fs-lg text-light pb-3 from-start delay-2">
+                    {item.sliderDescription}
+                  </p>
+                  <div className="d-table scale-up delay-4 mx-auto mx-lg-0">
+                    <Link href="/shop" passHref>
+                      <a className="btn btn-primary">
+                        Shop Now
+                        <i className="ci-arrow-right ms-2 me-n1"></i>
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </TinySlider>
-      </section>
-      <style jsx>
-        {`
-          @media (min-width: 768px) {
-            .section-carousel,
-            .tns-item {
-              height: 680px;
-            }
-          }
-          @media (max-width: 768px) {
-            .carouselImg {
-              height: 100%;
-              width: 100%;
-            }
-            .section-carousel,
-            .tsn-item {
-              height: 650px;
-            }
-          }
-          @media (max-width: 1000px) and (min-width: 768px) {
-            .carouselImg {
-              width: 55%;
-              margin: auto;
-            }
-          }
-        `}
-      </style>
-    </div>
+          </div>
+        ))}
+      </TinySlider>
+    </section>
   );
 }
