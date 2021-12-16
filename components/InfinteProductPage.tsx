@@ -20,8 +20,6 @@ function InfinteProductsList({ hits }: InfinteProductsListProps) {
   const productSlice = filterHits?.slice(0, 30);
   const [storeProducts, setStoreProducts] = useState(productSlice);
 
-  useEffect(() => {}, [hits]);
-
   function fetchData() {
     const newProductSlice = filterHits?.slice(
       productCounter,
