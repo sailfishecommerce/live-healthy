@@ -9,7 +9,7 @@ interface ShopProps {
   products: productType;
 }
 
-function Shop({ products }: ShopProps) {
+export default function Shop({ products }: ShopProps) {
   return (
     <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
       <Marketplace products={products} />
