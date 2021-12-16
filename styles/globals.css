@@ -260,6 +260,24 @@ li.ais-Hits-item:hover a h6 {
   border: 1px solid #fb696a;
 }
 
+/* style scrollbar */
+body::-webkit-scrollbar,
+.product-gallery-thumblist::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track,
+.product-gallery-thumblist::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb,
+.product-gallery-thumblist::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border: 0px !important;
+}
+
 /* media query */
 @media (max-width: 768px) {
   .brand-row .swiper-button-next,
