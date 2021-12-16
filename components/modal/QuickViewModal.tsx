@@ -88,6 +88,19 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
               height: 400px;
               overflow: auto;
             }
+            .description::-webkit-scrollbar {
+              width: 1em;
+            }
+
+            .description::-webkit-scrollbar-track {
+              box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .description::-webkit-scrollbar-thumb {
+              background-color: darkgrey;
+              outline: 1px solid slategrey;
+              border: 0px !important;
+            }
           `}
         </style>
       </Modal.Body>

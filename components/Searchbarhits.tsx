@@ -11,7 +11,6 @@ interface SearchHitsProps {
 
 function SearchHits({ hits }: SearchHitsProps) {
   const formattedHit = hits.slice(0, 6);
-  console.log("hits", hits);
   return (
     <div className="searchhits">
       <div className="results row">
