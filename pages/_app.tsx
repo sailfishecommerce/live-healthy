@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" />
       <Script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/lib/js/lightgallery.min.js" />
       <Script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js" />
-      {/* <Script type="module" src="/js/theme.js" strategy="lazyOnload" /> */}
+      <Script type="module" src="/js/theme.js" strategy="lazyOnload" />
 
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>

@@ -6,7 +6,6 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
-import { HitProduct, HitProductList } from "@/components/ProductHit";
 import InfinteProductPage from "./InfinteProductPage";
 
 export default function Marketplace({ products }: any) {
