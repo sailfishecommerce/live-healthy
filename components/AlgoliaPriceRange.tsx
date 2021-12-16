@@ -13,8 +13,6 @@ export default function RangeSlider({
   const [priceMin, setPriceMin] = useState(min);
   const [priceMax, setPriceMax] = useState(max);
 
-  console.log("min", min, "max", max);
-
   useEffect(() => {
     if (canRefine) {
       setPriceMin(currentRefinement.min);
@@ -39,7 +37,6 @@ export default function RangeSlider({
     un: any,
     percent: any
   ) => {
-    console.log("value", value);
     setPriceMin(value[0].toFixed(0));
     setPriceMax(value[1].toFixed(0));
   };

@@ -36,7 +36,7 @@ export default function ProductList({ product }: ProductProps) {
         <Link href={`/products/${product.slug}`} passHref>
           <a onClick={productViewEvent} className="product-list-thumb">
             <RenderSmoothImage
-              src={product.product_images[0].link}
+              src={product.images[0]?.file?.url}
               alt={
                 product?.image_alt_text
                   ? product?.image_alt_text[0]

@@ -1,6 +1,5 @@
 import {
   SearchBox,
-  Hits,
   InstantSearch,
   Configure,
 } from "react-instantsearch-dom";
