@@ -21,7 +21,7 @@ export async function getServerSideProps() {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
-    limit: 400,
+    limit: 1000,
   });
 
   return {

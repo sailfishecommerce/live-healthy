@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import swell from "swell-node";
+import swellNodeInit from "@/lib/swellNode";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
 import { ShopByBrandPreview } from "@/components/ShopByBrands";
 import PopularCategories from "@/components/PopularCategories";
-import TrendingProducts from "@/components/TrendingProducts";
 import Banners from "@/components/Banner";
 import Applayout from "@/layout/Applayout";
 import HomepageSlider from "@/previewComponents/HomepageSlider";
@@ -13,8 +14,14 @@ import useVbout from "@/hooks/useVbout";
 import { useCart } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
+import { productType } from "@/types";
+import TrendingProductsPreview from "@/components/TrendingProductPreview";
 
-export default function Index() {
+interface PropsType {
+  products: productType[];
+}
+
+export default function Index({ products }: PropsType) {
   const { createVboutCart } = useVbout();
   const dispatch = useAppDispatch();
   const vboutSlice = useAppSelector((state) => state.integrations);
@@ -57,7 +64,7 @@ export default function Index() {
         sliderImg3="/img/home/hero-slider/03.jpg"
       />
       <PopularCategories />
-      <TrendingProducts />
+      <TrendingProductsPreview products={products} />
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"
@@ -94,4 +101,18 @@ export default function Index() {
       </style>
     </Applayout>
   );
+}
+
+export async function getServerSideProps() {
+  swellNodeInit();
+  const products = await swell.get("/products", {
+    where: { select_store: "livehealthy" },
+    limit: 30,
+  });
+
+  return {
+    props: {
+      products: products.results,
+    },
+  };
 }
