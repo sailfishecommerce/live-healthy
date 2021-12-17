@@ -1,7 +1,6 @@
 import { connectCurrentRefinements } from "react-instantsearch-dom";
 
 const CustomCurrentRefinements = ({ items, refine, createURL }: any) => {
-  console.log("items CustomCurrentRefinements", items);
   return (
     <ul className="currentRefinement">
       {items.map((item: any) => (

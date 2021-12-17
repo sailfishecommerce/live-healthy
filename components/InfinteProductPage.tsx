@@ -13,6 +13,7 @@ interface InfinteProductsListProps {
 }
 
 function InfinteProductsList({ hits }: InfinteProductsListProps) {
+  console.log("hits", hits);
   const filterHits = hits.filter((fhits) => fhits.images.length !== 0);
   const { productView } = useAppSelector((state) => state.shop);
   const [productCounter, setProductCounter] = useState(30);
@@ -28,12 +29,12 @@ function InfinteProductsList({ hits }: InfinteProductsListProps) {
     setStoreProducts(newProductList);
     setProductCounter((productCount) => productCount + 30);
   }
-
+  console.log("storeProducts", storeProducts);
   return (
     <>
       {filterHits.length > 0 ? (
         <InfiniteScroll
-          dataLength={filterHits.length}
+          dataLength={storeProducts.length}
           next={fetchData}
           hasMore={true}
           style={{ overflow: "none" }}

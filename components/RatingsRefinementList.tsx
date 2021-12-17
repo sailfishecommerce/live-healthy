@@ -10,7 +10,6 @@ export default function RatingsRefinementList({
   function refineSearch(item: any) {
     refine(item.value);
   }
-  console.log("RatingsRefinementList items", items);
   return (
     <div className="widget widget-categories d-flex flex-column">
       <h3 className="widget-title">Ratings</h3>
