@@ -7,8 +7,13 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfinteProductPage from "./InfinteProductPage";
+import { productType } from "@/types";
 
-export default function Marketplace() {
+interface MarketplaceProps {
+  products: productType[];
+}
+
+export default function Marketplace({ products }: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -47,7 +52,7 @@ export default function Marketplace() {
             <div>
               <div className="row mx-n2 mb-5">
                 {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
-                <InfinteProductPage />
+                <InfinteProductPage products={products} />
               </div>
               <hr className="mb-2" />
             </div>

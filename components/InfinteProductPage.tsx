@@ -9,19 +9,22 @@ import Product from "./Product";
 import { productType } from "@/types";
 
 interface InfinteProductsListProps {
-  hits: productType[];
+  products: productType[];
 }
 
-function InfinteProductsList({ hits }: InfinteProductsListProps) {
-  console.log("hits", hits);
-  const filterHits = hits.filter((fhits) => fhits.images.length !== 0);
+export default function InfinteProductPage({
+  products,
+}: InfinteProductsListProps) {
+  const filterProducts = products.filter(
+    (fproducts) => fproducts.images.length !== 0
+  );
   const { productView } = useAppSelector((state) => state.shop);
   const [productCounter, setProductCounter] = useState(30);
-  const productSlice = filterHits?.slice(0, 30);
+  const productSlice = filterProducts?.slice(0, 30);
   const [storeProducts, setStoreProducts] = useState(productSlice);
 
   function fetchData() {
-    const newProductSlice = filterHits?.slice(
+    const newProductSlice = filterProducts?.slice(
       productCounter,
       Number(productCounter + 30)
     );
@@ -29,10 +32,9 @@ function InfinteProductsList({ hits }: InfinteProductsListProps) {
     setStoreProducts(newProductList);
     setProductCounter((productCount) => productCount + 30);
   }
-  console.log("storeProducts", storeProducts);
   return (
     <>
-      {filterHits.length > 0 ? (
+      {filterProducts.length > 0 ? (
         <InfiniteScroll
           dataLength={storeProducts.length}
           next={fetchData}
@@ -60,7 +62,3 @@ function InfinteProductsList({ hits }: InfinteProductsListProps) {
     </>
   );
 }
-
-const InfinteProductPage = connectHits(InfinteProductsList);
-
-export default InfinteProductPage;
