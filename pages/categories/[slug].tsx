@@ -1,42 +1,32 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
-import swell from "swell-node";
 
 import Applayout from "@/layout/Applayout";
 import useCategory from "@/hooks/useCategory";
 import { categoryType, productType } from "@/types";
 import Marketplace from "@/components/Marketplace";
-import swellNodeInit from "@/lib/swellNode";
 
 interface CategoryProps {
   category: categoryType;
   allCategoriesArray: [];
-  products: productType[];
 }
-export default function Category({
-  category,
-  products,
-}: CategoryProps): JSX.Element {
+export default function Category({ category }: CategoryProps): JSX.Element {
   console.log("category", category);
   return (
     <Applayout title={`${category.name} category`}>
       <Head>
         <meta name="description" content={category.metaDescription} />
       </Head>
-      <Marketplace products={products} />
+      <Marketplace />
     </Applayout>
   );
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  swellNodeInit();
   const { listAllCategory } = useCategory();
   const data: any = await listAllCategory();
   const allCategoriesArray = data?.results;
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 1000,
-  });
+
   const category = allCategoriesArray?.filter(
     (category: { slug: any }) => category?.slug === params.slug
   );
@@ -45,7 +35,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     props: {
       category: category[0],
       allCategoriesArray,
-      products: products.results,
     },
   };
 }

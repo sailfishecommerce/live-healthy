@@ -9,24 +9,10 @@ interface ShopProps {
   products: productType[];
 }
 
-export default function Shop({ products }: ShopProps) {
+export default function Shop() {
   return (
     <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
-      <Marketplace products={products} />
+      <Marketplace  />
     </Applayout>
   );
-}
-
-export async function getServerSideProps() {
-  swellNodeInit();
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 1000,
-  });
-
-  return {
-    props: {
-      products: products.results,
-    },
-  };
 }

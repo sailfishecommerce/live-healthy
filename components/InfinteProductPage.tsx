@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { connectHits } from "react-instantsearch-dom";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import ShopLoader from "@/components/ShopLoader";

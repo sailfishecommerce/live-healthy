@@ -2,25 +2,23 @@
 import { InstantSearch, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
-import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 
+import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
+import { useAppSelector } from "@/hooks/useRedux";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
-import InfinteProductPage from "./InfinteProductPage";
-import { productType } from "@/types";
+import InfiniteProductHits from "./InfiniteHits";
 
-interface MarketplaceProps {
-  products: productType[];
-}
+export default function Marketplace() {
+  const { productView } = useAppSelector((state) => state.shop);
 
-export default function Marketplace({ products }: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={searchClient}
     >
       <Configure
-        hitsPerPage={1000}
+        hitsPerPage={30}
         clickAnalytics
         distinct
         enablePersonalization={true}
@@ -51,8 +49,7 @@ export default function Marketplace({ products }: MarketplaceProps) {
             <ShopBannerToolbar />
             <div>
               <div className="row mx-n2 mb-5">
-                {/* {productView === "grid" ? <HitProduct /> : <HitProductList />} */}
-                <InfinteProductPage products={products} />
+                <InfiniteProductHits minHitsPerPage={30} />
               </div>
               <hr className="mb-2" />
             </div>

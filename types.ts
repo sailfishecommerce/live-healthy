@@ -293,14 +293,46 @@ export type filterType = {
   price: [] | never[];
 };
 
-
 export type hitType = {
-  product_images: {
-    link: string;
-    alt: string;
-  }[];
-  price: string;
   name: string;
-  slug: string;
   __queryID: string;
+  description?: string | any;
+  attributes?: any;
+  meta_title?: string;
+  content: {
+    maxQuantity: number;
+    productBenefits: {
+      icon: string;
+      text: string;
+    }[];
+  };
+  vendor?: string;
+  product_image?: string;
+  product_images: { link: string; alt: string }[];
+  image_alt_text?: any;
+  images: {
+    id: string;
+    file: {
+      url: string;
+    };
+  }[];
+  id: string;
+  options: any[];
+  quantity: string;
+  rating: number;
+  category: string;
+  oldPrice?: number;
+  origPrice?: number;
+  slug: string;
+  review_rating?: number;
+  price: number;
+  colorOption?: string[];
+  sizeOption?: string[];
+  purchaseOptions?: {
+    standard: {
+      salePrice: number | null;
+      price: number;
+      sale: boolean;
+    };
+  };
 };
