@@ -6,10 +6,12 @@ import HeaderCartDropdown from "./HeaderCartDropdown";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
 import CategoryDropdown from "./NavDropdown";
+import menuLink from "@/json/menu.json";
 import { useAuth } from "@/hooks";
 import SearchBar from "@/components/SearchBar";
 import useScroll from "@/hooks/useScroll";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useRouter } from "next/router";
 
 interface NavProps {
   logo: any;
@@ -21,6 +23,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
   const { cart, toggleCart }: any = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
+  const router = useRouter();
   const { scroll } = useScroll();
   const scrollUp = Number(scroll) > 400 ? true : false;
   const navStyle = scrollUp ? "navbar-sticky navbar-stuck" : "navbar-sticky";
@@ -167,21 +170,16 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
               </li>
             </ul>
             <ul className="navbar-nav">
-              <li className="nav-item dropdown active">
-                <Link href="/" passHref>
-                  <a className="nav-link dropdown-toggle">Home</a>
-                </Link>
-              </li>
-              <li className="nav-item dropdown">
-                <Link href="/shop" passHref>
-                  <a className="nav-link dropdown-toggle">Shop</a>
-                </Link>
-              </li>
-              <li className="nav-item dropdown">
-                <Link href="/blog" passHref>
-                  <a className="nav-link dropdown-toggle">Blog</a>
-                </Link>
-              </li>
+              {menuLink.map((menu) => {
+                const style = router.asPath.includes(menu.link) ? "active" : "";
+                return (
+                  <li key={menu.link} className={`nav-item dropdown ${style}`}>
+                    <Link href={menu.link} passHref>
+                      <a className="nav-link dropdown-toggle">{menu.name}</a>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
