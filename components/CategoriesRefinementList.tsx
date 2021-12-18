@@ -1,11 +1,12 @@
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 
-export function CategoryList({
+export function CategoriesList({
   items,
   isFromSearch,
   refine,
   searchForItems,
   createURL,
+  title,
 }: any) {
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
@@ -15,7 +16,7 @@ export function CategoryList({
   }
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Vendors</h3>
+      <h3 className="widget-title">Categories</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"
@@ -58,10 +59,27 @@ export function CategoryList({
             font-weight: normal;
             color: white;
           }
+          .accordion {
+            scrollbar-width: thin;
+            scrollbar-color: darkgrey slategrey;
+            height: 400px;
+            overflow-y: auto;
+          }
+          .accordion::-webkit-scrollbar {
+            width: 8px;
+          }
+          .accordion::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          }
+          .accordion::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            outline: 1px solid slategrey;
+            border: 0px;
+          }
         `}
       </style>
     </div>
   );
 }
 
-export const CategoriesRefinementList = connectRefinementList(CategoryList);
+export const CategoriesRefinementList = connectRefinementList(CategoriesList);

@@ -1,8 +1,7 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
-import { CategoriesRefinementList } from "./CategoryRefinementList";
-import { SizeRefinementList } from "./SizeRefinementList";
+import { VendorRefinementList } from "./VendorRefinementList";
+import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
-
 
 export default function Categories() {
   return (
@@ -22,8 +21,18 @@ export default function Categories() {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <SizeRefinementList attribute="product_type" />
-          <CategoriesRefinementList attribute="vendor" />
+          <CategoriesRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="product_type"
+          />
+          <VendorRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="vendor"
+          />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
         </div>

@@ -1,12 +1,15 @@
-import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import {
+  Highlight,
+  Configure,
+  connectRefinementList,
+} from "react-instantsearch-dom";
 
-export function SizeList({
+export function VendorList({
   items,
   isFromSearch,
   refine,
   searchForItems,
   createURL,
-  title,
 }: any) {
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
@@ -16,7 +19,7 @@ export function SizeList({
   }
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Categories</h3>
+      <h3 className="widget-title">Vendors</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"
@@ -26,6 +29,7 @@ export function SizeList({
         />
         <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
       </div>
+      <Configure />
       <div className="accordion mt-n1" id="shop-categories">
         {items.map((item: { label: string; count: number }) => (
           <div key={item.label} className="accordion-item">
@@ -59,10 +63,27 @@ export function SizeList({
             font-weight: normal;
             color: white;
           }
+          .accordion {
+            scrollbar-width: thin;
+            scrollbar-color: darkgrey slategrey;
+            height: 400px;
+            overflow-y: auto;
+          }
+          .accordion::-webkit-scrollbar {
+            width: 8px;
+          }
+          .accordion::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          }
+          .accordion::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            outline: 1px solid slategrey;
+            border: 0px;
+          }
         `}
       </style>
     </div>
   );
 }
 
-export const SizeRefinementList = connectRefinementList(SizeList);
+export const VendorRefinementList = connectRefinementList(VendorList);
