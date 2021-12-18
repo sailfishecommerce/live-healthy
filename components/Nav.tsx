@@ -171,7 +171,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
             </ul>
             <ul className="navbar-nav">
               {menuLink.map((menu) => {
-                const style = router.asPath.includes(menu.link) ? "active" : "";
+                const style = router.asPath === menu.link ? "active" : "";
                 return (
                   <li key={menu.link} className={`nav-item dropdown ${style}`}>
                     <Link href={menu.link} passHref>
