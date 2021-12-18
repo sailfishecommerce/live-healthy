@@ -114,14 +114,7 @@ export default function Footer({
             <div className="col-md-4">
               <div className="widget pb-2 mb-4">
                 <h3 className="widget-title text-light pb-1">Stay informed</h3>
-                <form
-                  className="subscription-form validate"
-                  action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126"
-                  method="post"
-                  name="mc-embedded-subscribe-form"
-                  target="_blank"
-                  noValidate
-                >
+                <div className="subscription-form validate">
                   <div className="input-group flex-nowrap">
                     <i className="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
                     <input
@@ -159,7 +152,7 @@ export default function Footer({
                     offers, updates and new products info.
                   </div>
                   <div className="subscription-status"></div>
-                </form>
+                </div>
               </div>
               <div className="widget pb-2 mb-4">
                 <h3 className="widget-title text-light pb-1">

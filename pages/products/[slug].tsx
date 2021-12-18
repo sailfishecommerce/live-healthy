@@ -1,8 +1,5 @@
-import swell from "swell-node";
-
 import Applayout from "@/layout/Applayout";
 import ProductOverview from "@/components/ProductOverview";
-import swellNodeInit from "@/lib/swellNode";
 import fetchAllSwellProducts from "@/lib/processPageproduct";
 
 interface ProductPage {
