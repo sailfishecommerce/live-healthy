@@ -22,11 +22,11 @@ export function CategorySidebarLoader(
 }
 
 export default function LoadCategorySidebar() {
-  const numberOfCategories = new Array(6).fill(0);
+  const numberOfCategories = new Array(10).fill(0);
 
   return (
     <div className="d-flex flex-column">
-      {numberOfCategories.map((cat, index) => (
+      {numberOfCategories.map((_, index) => (
         <CategorySidebarLoader key={index} />
       ))}
     </div>

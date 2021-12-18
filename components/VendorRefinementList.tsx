@@ -1,8 +1,5 @@
-import {
-  Highlight,
-  Configure,
-  connectRefinementList,
-} from "react-instantsearch-dom";
+import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function VendorList({
   items,
@@ -29,24 +26,27 @@ export function VendorList({
         />
         <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
       </div>
-      <Configure />
       <div className="accordion mt-n1" id="shop-categories">
-        {items.map((item: { label: string; count: number }) => (
-          <div key={item.label} className="accordion-item">
-            <h3 className="text-sm">
-              <a onClick={() => refineSearch(item)} className="cat-link">
-                {isFromSearch ? (
-                  <Highlight attribute="label" hit={item} />
-                ) : (
-                  <>
-                    {item.label}
-                    <span className="mx-2 badge bg-danger">{item.count}</span>
-                  </>
-                )}
-              </a>
-            </h3>
-          </div>
-        ))}
+        {items.length > 0 ? (
+          items.map((item: { label: string; count: number }) => (
+            <div key={item.label} className="accordion-item">
+              <h3 className="text-sm">
+                <a onClick={() => refineSearch(item)} className="cat-link">
+                  {isFromSearch ? (
+                    <Highlight attribute="label" hit={item} />
+                  ) : (
+                    <>
+                      {item.label}
+                      <span className="mx-2 badge bg-danger">{item.count}</span>
+                    </>
+                  )}
+                </a>
+              </h3>
+            </div>
+          ))
+        ) : (
+          <LoadCategorySidebar />
+        )}
       </div>
       <style jsx>
         {`

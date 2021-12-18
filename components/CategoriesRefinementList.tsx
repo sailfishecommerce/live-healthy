@@ -1,4 +1,5 @@
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function CategoriesList({
   items,
@@ -6,7 +7,6 @@ export function CategoriesList({
   refine,
   searchForItems,
   createURL,
-  title,
 }: any) {
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
@@ -15,7 +15,7 @@ export function CategoriesList({
     refine(item.value);
   }
   return (
-    <div className="widget widget-categories mb-4 pb-4 border-bottom">
+    <div className="widget widget-categories mb-4 pb-0 border-bottom">
       <h3 className="widget-title">Categories</h3>
       <div className="input-group input-group-sm mb-2">
         <input
@@ -27,22 +27,26 @@ export function CategoriesList({
         <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
       </div>
       <div className="accordion mt-n1" id="shop-categories">
-        {items.map((item: { label: string; count: number }) => (
-          <div key={item.label} className="accordion-item">
-            <h3 className="text-sm">
-              <a onClick={() => refineSearch(item)} className="cat-link">
-                {isFromSearch ? (
-                  <Highlight attribute="label" hit={item} />
-                ) : (
-                  <>
-                    {item.label}
-                    <span className="mx-2 badge bg-danger">{item.count}</span>
-                  </>
-                )}
-              </a>
-            </h3>
-          </div>
-        ))}
+        {items.length > 0 ? (
+          items.map((item: { label: string; count: number }) => (
+            <div key={item.label} className="accordion-item">
+              <h3 className="text-sm">
+                <a onClick={() => refineSearch(item)} className="cat-link">
+                  {isFromSearch ? (
+                    <Highlight attribute="label" hit={item} />
+                  ) : (
+                    <>
+                      {item.label}
+                      <span className="mx-2 badge bg-danger">{item.count}</span>
+                    </>
+                  )}
+                </a>
+              </h3>
+            </div>
+          ))
+        ) : (
+          <LoadCategorySidebar />
+        )}
       </div>
       <style jsx>
         {`
@@ -62,7 +66,7 @@ export function CategoriesList({
           .accordion {
             scrollbar-width: thin;
             scrollbar-color: darkgrey slategrey;
-            height: 400px;
+            height: 370px;
             overflow-y: auto;
           }
           .accordion::-webkit-scrollbar {
