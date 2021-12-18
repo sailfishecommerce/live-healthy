@@ -3,6 +3,7 @@ import swell from "swell-node";
 import Applayout from "@/layout/Applayout";
 import ProductOverview from "@/components/ProductOverview";
 import swellNodeInit from "@/lib/swellNode";
+import fetchAllSwellProducts from "@/lib/processPageproduct";
 
 interface ProductPage {
   pageProduct: any;
@@ -20,13 +21,10 @@ type propsType = {
 };
 
 export async function getStaticProps({ params }: propsType) {
-  swellNodeInit();
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 1000,
-  });
+  const productData: any = await fetchAllSwellProducts();
+  const results: any = await Promise.all(productData);
 
-  const pageProduct = products.results.filter(
+  const pageProduct = results[0].filter(
     (product: { slug: any }) => product?.slug === params.slug
   );
 
@@ -38,28 +36,14 @@ export async function getStaticProps({ params }: propsType) {
 }
 
 export async function getStaticPaths() {
-  swellNodeInit();
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 1000,
-  });
-  const loopProductCount = Math.ceil(products.count / 1000);
-  const productArray = new Array(loopProductCount).fill(0);
+  const productData: any = await fetchAllSwellProducts();
 
-  async function fetchSwellProducts(page: number) {
-    const products = await swell.get("/products", {
-      where: { select_store: "livehealthy" },
-      limit: 1000,
-      page,
-    });
-    return products;
-  }
+  const results: any = await Promise.all(productData);
 
   return {
     paths:
-      products.results.map(
-        (product: { slug: any }) => `/products/${product.slug}`
-      ) || [],
+      results[0].map((product: { slug: any }) => `/products/${product.slug}`) ||
+      [],
     fallback: false,
   };
 }
