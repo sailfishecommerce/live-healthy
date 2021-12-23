@@ -21,26 +21,13 @@ export const PLASMIC = initPlasmicLoader({
   projects: [
     {
       id: "66VbGm9b15WKJ87v7sQuGU",
-      token: "S5yanTB19i7QRbGa3hNUnewYQBOvMxrnyJEJNQEyKgG4YjtlEeaFJpkMzZuOxnl8uZk0jbN3IFlTdtZeA",
+      token:
+        "S5yanTB19i7QRbGa3hNUnewYQBOvMxrnyJEJNQEyKgG4YjtlEeaFJpkMzZuOxnl8uZk0jbN3IFlTdtZeA",
     },
   ],
 
-  // By default Plasmic will use the last published version of your project.
-  // For development, you can set preview to true, which will use the unpublished
-  // project, allowing you to see your designs without publishing.  Please
-  // only use this for development, as this is significantly slower.
   preview: false,
 });
-
-// You can register any code components that you want to use here; see
-// https://docs.plasmic.app/learn/code-components-ref/
-// And configure your Plasmic project to use the host url pointing at
-// the /plasmic-host page of your nextjs app (for example,
-// http://localhost:3000/plasmic-host).  See
-// https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
-
-// PLASMIC.registerComponent(...);
-
 
 PLASMIC.registerComponent(Header, {
   name: "Header",
@@ -175,13 +162,13 @@ PLASMIC.registerComponent(Footer, {
 });
 
 PLASMIC.registerComponent(TrendingProducts, {
-  name: "Trending-Products",
+  name: "Trending Products",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(PopularCategories, {
-  name: "Popular-Categories",
+  name: "Popular Categories",
   props: {
     children: "slot",
   },
@@ -189,7 +176,7 @@ PLASMIC.registerComponent(PopularCategories, {
 });
 
 PLASMIC.registerComponent(PopularCategory, {
-  name: "Popular-Category",
+  name: "Popular Category",
   props: {
     categoryImg: {
       displayName: "Category Image",
@@ -204,7 +191,7 @@ PLASMIC.registerComponent(PopularCategory, {
 });
 
 PLASMIC.registerComponent(Banners, {
-  name: "Ads-Banner",
+  name: "Ads Banner",
   props: {
     banner1Title: {
       displayName: "Banner-1 Title",
@@ -241,7 +228,7 @@ PLASMIC.registerComponent(Brand, {
 });
 
 PLASMIC.registerComponent(ShopByBrand, {
-  name: "Shop-by-brand",
+  name: "Shop by brand",
   props: {
     children: "slot",
   },
@@ -249,7 +236,7 @@ PLASMIC.registerComponent(ShopByBrand, {
 });
 
 PLASMIC.registerComponent(InfoCards, {
-  name: "Info-Card",
+  name: "Info Card",
   props: {
     section1Title: {
       displayName: "Section-1 Title",
@@ -286,7 +273,7 @@ PLASMIC.registerComponent(InfoCards, {
 });
 
 PLASMIC.registerComponent(FeaturedCategory, {
-  name: "Featured-Category",
+  name: "Featured Category",
   props: {
     categoryImg: {
       displayName: "Category Banner Image",
@@ -312,44 +299,43 @@ PLASMIC.registerComponent(FeaturedCategory, {
 });
 
 PLASMIC.registerComponent(Error404, {
-  name: "Error-404",
+  name: "Error404",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductBanner, {
-  name: "Product-Banner",
+  name: "Product Banner",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductDescription, {
-  name: "Product-Description",
+  name: "Product Description",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductGalleryDetails, {
-  name: "Product-Gallery-Details",
+  name: "Product Gallery Details",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductReviews, {
-  name: "Product-Review",
+  name: "Product Review",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductOverview, {
-  name: "Product-Overview",
+  name: "Product Overview",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(Checkout, {
-  name: "Checkout-component",
+  name: "Checkout component",
   props: {},
   isDefaultExport: true,
 });
-
