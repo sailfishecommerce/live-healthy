@@ -21,7 +21,9 @@ interface PropsType {
   products: productType[];
 }
 
-export default function Index({ products }: PropsType) {
+// export default function Index({ products }: PropsType) {
+export default function Index() {
+
   const { createVboutCart } = useVbout();
   const dispatch = useAppDispatch();
   const vboutSlice = useAppSelector((state) => state.integrations);
@@ -64,7 +66,7 @@ export default function Index({ products }: PropsType) {
         sliderImg3="/img/home/hero-slider/03.jpg"
       />
       <PopularCategories />
-      <TrendingProductsPreview products={products} />
+      {/* <TrendingProductsPreview products={products} /> */}
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"
@@ -101,18 +103,18 @@ export default function Index({ products }: PropsType) {
       </style>
     </Applayout>
   );
-}
+// }
 
-export async function getServerSideProps() {
-  swellNodeInit();
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 30,
-  });
+// export async function getServerSideProps() {
+//   swellNodeInit();
+//   const products = await swell.get("/products", {
+//     where: { select_store: "livehealthy" },
+//     limit: 30,
+//   });
 
-  return {
-    props: {
-      products: products.results,
-    },
-  };
-}
+//   return {
+//     props: {
+//       products: products.results,
+//     },
+//   };
+// }
