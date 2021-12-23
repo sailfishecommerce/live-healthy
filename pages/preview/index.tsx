@@ -103,7 +103,7 @@ export default function Index() {
       </style>
     </Applayout>
   );
-// }
+}
 
 // export async function getServerSideProps() {
 //   swellNodeInit();
