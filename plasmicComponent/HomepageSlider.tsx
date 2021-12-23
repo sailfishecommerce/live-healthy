@@ -73,6 +73,7 @@ export default function HomepageSlider({
     mouseDrag: true,
     speed: 500,
     loop: true,
+    autoplay: true,
     autoplayHoverPause: true,
     autoplayButtonOutput: false,
   };

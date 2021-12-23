@@ -63,6 +63,42 @@ export function Brand({ brand, local }: BrandProps) {
   );
 }
 
+export function SliderBrand({ brand }: any) {
+  return (
+    <SwiperSlide>
+      <div className="brand">
+        <a
+          className=" brand-link d-block bg-white shadow-sm rounded-3 py-3 py-sm-4"
+          href="#"
+        >
+          <div style={{ width: "150px" }} className="d-block mx-auto">
+            {brand}
+          </div>
+        </a>
+        <style jsx>
+          {`
+            .brand {
+              height: 220px;
+            }
+            .brand-link {
+              height: 200px;
+            }
+            @media (max-width: 768px) {
+              .brand {
+                height: 100px;
+                width: 130px;
+              }
+              .brand-link {
+                height: 80px;
+              }
+            }
+          `}
+        </style>
+      </div>
+    </SwiperSlide>
+  );
+}
+
 interface ShopByBrand {
   children: any;
 }
@@ -70,7 +106,28 @@ export default function ShopByBrand({ children }: ShopByBrand) {
   return (
     <section className="container py-lg-4 mb-4">
       <h2 className="h3 text-center pb-4">Shop by brand</h2>
-      <div className="row">{children}</div>
+      <div className="row brand-row">
+        <Swiper
+          spaceBetween={50}
+          loop={true}
+          autoplay={true}
+          slidesPerView={3}
+          modules={[
+            Autoplay,
+            Navigation,
+            Pagination,
+            Mousewheel,
+            Keyboard,
+            EffectFade,
+          ]}
+          pagination={true}
+          mousewheel={true}
+          keyboard={true}
+          navigation={true}
+        >
+          {children}
+        </Swiper>
+      </div>
     </section>
   );
 }
