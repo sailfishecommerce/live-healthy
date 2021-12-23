@@ -175,13 +175,13 @@ PLASMIC.registerComponent(Footer, {
 });
 
 PLASMIC.registerComponent(TrendingProducts, {
-  name: "Trending Products",
+  name: "Trending-Products",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(PopularCategories, {
-  name: "Popular Categories",
+  name: "Popular-Categories",
   props: {
     children: "slot",
   },
@@ -189,7 +189,7 @@ PLASMIC.registerComponent(PopularCategories, {
 });
 
 PLASMIC.registerComponent(PopularCategory, {
-  name: "Popular Category",
+  name: "Popular-Category",
   props: {
     categoryImg: {
       displayName: "Category Image",
@@ -204,7 +204,7 @@ PLASMIC.registerComponent(PopularCategory, {
 });
 
 PLASMIC.registerComponent(Banners, {
-  name: "Ads Banner",
+  name: "Ads-Banner",
   props: {
     banner1Title: {
       displayName: "Banner-1 Title",
@@ -241,7 +241,7 @@ PLASMIC.registerComponent(Brand, {
 });
 
 PLASMIC.registerComponent(ShopByBrand, {
-  name: "Shop by brand",
+  name: "Shop-by-brand",
   props: {
     children: "slot",
   },
@@ -249,7 +249,7 @@ PLASMIC.registerComponent(ShopByBrand, {
 });
 
 PLASMIC.registerComponent(InfoCards, {
-  name: "Info Card",
+  name: "Info-Card",
   props: {
     section1Title: {
       displayName: "Section-1 Title",
@@ -286,7 +286,7 @@ PLASMIC.registerComponent(InfoCards, {
 });
 
 PLASMIC.registerComponent(FeaturedCategory, {
-  name: "Featured Category",
+  name: "Featured-Category",
   props: {
     categoryImg: {
       displayName: "Category Banner Image",
@@ -312,43 +312,43 @@ PLASMIC.registerComponent(FeaturedCategory, {
 });
 
 PLASMIC.registerComponent(Error404, {
-  name: "Error404",
+  name: "Error-404",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductBanner, {
-  name: "Product Banner",
+  name: "Product-Banner",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductDescription, {
-  name: "Product Description",
+  name: "Product-Description",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductGalleryDetails, {
-  name: "Product Gallery Details",
+  name: "Product-Gallery-Details",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductReviews, {
-  name: "Product Review",
+  name: "Product-Review",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductOverview, {
-  name: "Product Overview",
+  name: "Product-Overview",
   props: {},
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(Checkout, {
-  name: "Checkout component",
+  name: "Checkout-component",
   props: {},
   isDefaultExport: true,
 });
