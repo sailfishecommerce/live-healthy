@@ -1,13 +1,12 @@
+import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
-import { GetStaticPaths, GetStaticProps } from "next";
-
 import {
   ComponentRenderData,
   PlasmicRootProvider,
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
-import { PLASMIC } from "../plasmic-init";
 import PlasmicLayout from "@/layout/Plasmiclayout";
+import { PLASMIC } from "../plasmic-init";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -15,7 +14,7 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
   )
 );
 
-export default function PlasmicLoaderPage(props: {
+export default function Indexpage(props: {
   plasmicData?: ComponentRenderData;
 }) {
   const { plasmicData } = props;
@@ -25,9 +24,14 @@ export default function PlasmicLoaderPage(props: {
   return (
     <PlasmicLayout>
       <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
-        <DyanmicPlasmicComponent
-          component={plasmicData.entryCompMetas[0].name}
-        />
+        <DyanmicPlasmicComponent component="header-section" />
+        <DyanmicPlasmicComponent component="HomepageSlider" />
+        <DyanmicPlasmicComponent component="popular-category-section" />
+        <DyanmicPlasmicComponent component="trending-product-section" />
+        <DyanmicPlasmicComponent component="ads-banner-section" />
+        <DyanmicPlasmicComponent component="featured-category-section" />
+        <DyanmicPlasmicComponent component="info-section" />
+        <DyanmicPlasmicComponent component="footer-section" />
       </PlasmicRootProvider>
     </PlasmicLayout>
   );
@@ -50,18 +54,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   return {
     props: {},
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const pageModules = await PLASMIC.fetchPages();
-
-  return {
-    paths: pageModules.map((mod) => ({
-      params: {
-        catchall: mod.path.substring(1).split("/"),
-      },
-    })),
-    fallback: false,
   };
 };

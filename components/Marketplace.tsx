@@ -4,21 +4,18 @@ import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
-import { useAppSelector } from "@/hooks/useRedux";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 
 export default function Marketplace() {
-  const { productView } = useAppSelector((state) => state.shop);
-
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
       searchClient={searchClient}
     >
       <Configure
-        hitsPerPage={30}
+        hitsPerPage={31}
         clickAnalytics
         distinct
         enablePersonalization={true}
