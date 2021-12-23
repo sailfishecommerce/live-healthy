@@ -111,6 +111,7 @@ export default function ShopByBrand({ children }: ShopByBrand) {
           spaceBetween={50}
           loop={true}
           autoplay={true}
+          className="d-flex"
           slidesPerView={3}
           modules={[
             Autoplay,
