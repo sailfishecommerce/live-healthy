@@ -7,6 +7,7 @@ import FooterBottomSection from "./FooterBottomSection";
 import footerContent from "@/json/footer.json";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import FooterCategoryList from "./FooterCategorylinks";
 
 interface FooterProps {
   topSectionBgColor: string;
@@ -59,7 +60,8 @@ export default function Footer({
       >
         <div className="container">
           <div className="row pb-2">
-            {footerContent.section1.map((content, index) => {
+            <>
+              {/* {footerContent.section1.map((content, index) => {
               return content.group ? (
                 <div key={index} className="col-md-4 col-sm-6">
                   {content.group.map((groupedContent, index) => (
@@ -110,7 +112,9 @@ export default function Footer({
                   </div>
                 </div>
               );
-            })}
+            })} */}
+            </>
+            <FooterCategoryList />
             <div className="col-md-4">
               <div className="widget pb-2 mb-4">
                 <h3 className="widget-title text-light pb-1">Stay informed</h3>
@@ -132,7 +136,6 @@ export default function Footer({
                       Subscribe*
                     </button>
                   </div>
-                  {/*<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->*/}
                   <div
                     style={{
                       position: "absolute",

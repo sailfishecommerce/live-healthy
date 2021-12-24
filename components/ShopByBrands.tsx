@@ -79,11 +79,11 @@ export function SliderBrand({ brand }: any) {
         <style jsx>
           {`
             .brand {
-              height: 220px;
-              width: 200px;
+              height: 170px;
+              width: 300px;
             }
             .brand-link {
-              height: 200px;
+              height: 150px;
               display: flex !important;
               margin: auto;
               justify-content: center;
@@ -147,6 +147,7 @@ export function ShopByBrandPreview() {
         <Swiper
           spaceBetween={50}
           loop={true}
+          className="d-flex"
           autoplay={true}
           slidesPerView={3}
           modules={[
