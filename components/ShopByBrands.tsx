@@ -8,6 +8,7 @@ import {
   Mousewheel,
   Keyboard,
 } from "swiper";
+import styles from "@/styles/ShopByBrand.module.css";
 import brands from "@/json/brand.json";
 
 import "swiper/css";
@@ -65,7 +66,7 @@ export function Brand({ brand, local }: BrandProps) {
 
 export function SliderBrand({ brand }: any) {
   return (
-    <SwiperSlide>
+    <SwiperSlide className={styles.swiperSlide}>
       <div className="brand">
         <a
           className=" brand-link d-block bg-white shadow-sm rounded-3 py-3 py-sm-4"
@@ -79,9 +80,14 @@ export function SliderBrand({ brand }: any) {
           {`
             .brand {
               height: 220px;
+              width: 200px;
             }
             .brand-link {
               height: 200px;
+              display: flex !important;
+              margin: auto;
+              justify-content: center;
+              align-items: center;
             }
             @media (max-width: 768px) {
               .brand {
