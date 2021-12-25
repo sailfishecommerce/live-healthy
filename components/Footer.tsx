@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import useRequest from "@/hooks/useRequest";
 import BottomTab from "./BottomTab";
 import FooterBottomSection from "./FooterBottomSection";
 import footerContent from "@/json/footer.json";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
-import FooterCategoryList from "./FooterCategorylinks";
+import useCategory from "@/hooks/useCategory";
+import { useQuery } from "react-query";
 
 interface FooterProps {
   topSectionBgColor: string;
@@ -17,13 +17,16 @@ export default function Footer({
   topSectionBgColor,
   bottomSectionBgColor,
 }: FooterProps) {
-  const { useCategories } = useRequest();
-  const { categoryData, categoryStatus } = useCategories();
+  const { listAllCategory } = useCategory();
+  const { data, status } = useQuery("listStoreCategories", listAllCategory);
+
+  const categories = data?.results.slice(12);
+
   const { addCategoryView } = useVbout();
   const { itemViewed } = useAlgoliaEvents();
 
-  if (categoryStatus === "success") {
-    footerContent.section1[0].links = categoryData.results;
+  if (status === "success") {
+    footerContent.section1[0].links = categories;
   }
 
   type contentLinkType = {
@@ -60,8 +63,7 @@ export default function Footer({
       >
         <div className="container">
           <div className="row pb-2">
-            <>
-              {/* {footerContent.section1.map((content, index) => {
+            {footerContent.section1.map((content, index) => {
               return content.group ? (
                 <div key={index} className="col-md-4 col-sm-6">
                   {content.group.map((groupedContent, index) => (
@@ -112,9 +114,7 @@ export default function Footer({
                   </div>
                 </div>
               );
-            })} */}
-            </>
-            <FooterCategoryList />
+            })}
             <div className="col-md-4">
               <div className="widget pb-2 mb-4">
                 <h3 className="widget-title text-light pb-1">Stay informed</h3>

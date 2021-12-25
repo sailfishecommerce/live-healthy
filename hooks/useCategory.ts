@@ -7,9 +7,7 @@ export default function useCategory() {
 
   async function listAllCategory() {
     return await swell.categories.list({
-      where: {
-        store_name: "livehealthy store",
-      },
+      limit: 25,
     });
   }
   async function getACategory(categoryIdOrSlug: string) {

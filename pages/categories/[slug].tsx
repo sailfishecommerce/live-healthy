@@ -2,7 +2,7 @@
 import Head from "next/head";
 
 import Applayout from "@/layout/Applayout";
-import { categoryType } from "@/types";
+import { categoryType, productType } from "@/types";
 import Marketplace from "@/components/Marketplace";
 import getStoreCategories from "@/lib/getStoreCategories";
 
@@ -15,7 +15,7 @@ export default function Category({
   storeCategories,
 }: CategoryProps): JSX.Element {
   console.log("category", category);
-  console.log("storeCategories", storeCategories);
+  storeCategories;
   return (
     <Applayout title={`${category.name} category`}>
       <Head>
