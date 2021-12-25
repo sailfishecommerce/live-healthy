@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import swell from "swell-node";
 import swellNodeInit from "@/lib/swellNode";
 
@@ -16,14 +16,13 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
 import { productType } from "@/types";
 import TrendingProductsPreview from "@/components/TrendingProductPreview";
+import axios from "axios";
 
 interface PropsType {
   products: productType[];
 }
 
-// export default function Index({ products }: PropsType) {
-export default function Index() {
-
+export default function Index({ products }: PropsType) {
   const { createVboutCart } = useVbout();
   const dispatch = useAppDispatch();
   const vboutSlice = useAppSelector((state) => state.integrations);
@@ -46,6 +45,13 @@ export default function Index() {
     }
   }, [cart]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/create-product-categories")
+  //     .then((response) => console.log("response products", response))
+  //     .catch((error) => console.log("error", error));
+  // }, []);
+
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">
       <HomepageSlider
@@ -66,7 +72,7 @@ export default function Index() {
         sliderImg3="/img/home/hero-slider/03.jpg"
       />
       <PopularCategories />
-      {/* <TrendingProductsPreview products={products} /> */}
+      <TrendingProductsPreview products={products} />
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"
@@ -105,16 +111,16 @@ export default function Index() {
   );
 }
 
-// export async function getServerSideProps() {
-//   swellNodeInit();
-//   const products = await swell.get("/products", {
-//     where: { select_store: "livehealthy" },
-//     limit: 30,
-//   });
+export async function getServerSideProps() {
+  swellNodeInit();
+  const products = await swell.get("/products", {
+    where: { select_store: "livehealthy" },
+    limit: 30,
+  });
 
-//   return {
-//     props: {
-//       products: products.results,
-//     },
-//   };
-// }
+  return {
+    props: {
+      products: products.results,
+    },
+  };
+}

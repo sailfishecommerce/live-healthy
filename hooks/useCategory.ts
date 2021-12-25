@@ -6,7 +6,11 @@ export default function useCategory() {
   initializeSwell();
 
   async function listAllCategory() {
-    return await swell.categories.list();
+    return await swell.categories.list({
+      where: {
+        store_name: "livehealthy store",
+      },
+    });
   }
   async function getACategory(categoryIdOrSlug: string) {
     console.log("categoryIdOrSlug", categoryIdOrSlug);
@@ -14,7 +18,7 @@ export default function useCategory() {
   }
   async function getProductsInACategory(slug: string) {
     return await swell.products.list({
-      category:slug,
+      category: slug,
       limit: 25,
       page: 1,
     });
@@ -28,6 +32,7 @@ export default function useCategory() {
       status,
     };
   }
+
   return {
     listAllCategory,
     getACategory,

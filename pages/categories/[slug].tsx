@@ -2,16 +2,20 @@
 import Head from "next/head";
 
 import Applayout from "@/layout/Applayout";
-import useCategory from "@/hooks/useCategory";
-import { categoryType, productType } from "@/types";
+import { categoryType } from "@/types";
 import Marketplace from "@/components/Marketplace";
+import getStoreCategories from "@/lib/getStoreCategories";
 
 interface CategoryProps {
   category: categoryType;
-  allCategoriesArray: [];
+  storeCategories: any[];
 }
-export default function Category({ category }: CategoryProps): JSX.Element {
+export default function Category({
+  category,
+  storeCategories,
+}: CategoryProps): JSX.Element {
   console.log("category", category);
+  console.log("storeCategories", storeCategories);
   return (
     <Applayout title={`${category.name} category`}>
       <Head>
@@ -23,30 +27,26 @@ export default function Category({ category }: CategoryProps): JSX.Element {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const { listAllCategory } = useCategory();
-  const data: any = await listAllCategory();
-  const allCategoriesArray = data?.results;
+  const storeCategories: any[] = await getStoreCategories();
 
-  const category = allCategoriesArray?.filter(
+  const category = storeCategories?.filter(
     (category: { slug: any }) => category?.slug === params.slug
   );
 
   return {
     props: {
       category: category[0],
-      allCategoriesArray,
+      storeCategories,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const { listAllCategory } = useCategory();
-  const data: any = await listAllCategory();
-  const allCategoriesArray = data?.results;
+  const storeCategories: any[] = await getStoreCategories();
 
   return {
     paths:
-      allCategoriesArray?.map(
+      storeCategories?.map(
         (category: { slug: any }) => `/categories/${category.slug}`
       ) || [],
     fallback: false,

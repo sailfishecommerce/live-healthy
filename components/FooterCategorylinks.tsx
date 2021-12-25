@@ -23,8 +23,6 @@ function Categorylinks({ items }: any) {
   const { itemViewed } = useAlgoliaEvents();
   const { addCategoryView } = useVbout();
 
-  console.log("items categories", items);
-
   footerContent.section1[0].links = items;
 
   function getCategorySlug(categoryName: string) {
@@ -63,7 +61,7 @@ function Categorylinks({ items }: any) {
                 <ul className="widget-list">
                   {groupedContent.links.map(
                     (contentLink: any, index: number) => (
-                      <li key={index} className="widget-list-item">
+                      <li key={`${contentLink.slug}-${index}`} className="widget-list-item">
                         <Link href={`/${contentLink.slug}`} passHref>
                           <a
                             onClick={() => categoryEvents(contentLink)}

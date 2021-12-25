@@ -13,8 +13,8 @@ export default async function fetchProductsHandler(
       return await swell
         .get("/products", {
           where: { select_store: "livehealthy" },
-          limit: 300,
-          page: 1,
+          limit: 1000,
+          page: 4,
         })
         .then((response: any) => {
           return res.status(200).send(response.results);
