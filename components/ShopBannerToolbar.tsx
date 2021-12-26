@@ -1,5 +1,3 @@
-import { Pagination } from "react-instantsearch-dom";
-
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateProductView } from "@/redux/shop-slice";
 import AlgoliaSortby from "./AlgoliaSortby";

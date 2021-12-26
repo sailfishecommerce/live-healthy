@@ -8,6 +8,11 @@ import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useCategory from "@/hooks/useCategory";
 import { useQuery } from "react-query";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import {
+  updateMarketplaceCategory,
+  resetMarketplaceCategory,
+} from "@/redux/marketplace-category-slice";
 
 interface FooterProps {
   topSectionBgColor: string;
@@ -19,6 +24,10 @@ export default function Footer({
 }: FooterProps) {
   const { listAllCategory } = useCategory();
   const { data, status } = useQuery("listStoreCategories", listAllCategory);
+  const { selectedCategory } = useAppSelector(
+    (state) => state.marketplaceCategory
+  );
+  const dispatch = useAppDispatch();
 
   const categories = data?.results.slice(12);
 
@@ -27,6 +36,11 @@ export default function Footer({
 
   if (status === "success") {
     footerContent.section1[0].links = categories;
+  }
+
+  function selectedFooterCategory(category: string) {
+    dispatch(resetMarketplaceCategory());
+    dispatch(updateMarketplaceCategory(category));
   }
 
   type contentLinkType = {
@@ -104,7 +118,12 @@ export default function Footer({
                             href={`/categories/${contentLink.slug}`}
                             passHref
                           >
-                            <a className="widget-list-link">
+                            <a
+                              onClick={() =>
+                                selectedFooterCategory(contentLink.name)
+                              }
+                              className="widget-list-link"
+                            >
                               {contentLink.name}
                             </a>
                           </Link>

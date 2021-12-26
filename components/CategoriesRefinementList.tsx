@@ -12,6 +12,7 @@ export function CategoriesList({
     searchForItems(e.currentTarget.value);
   }
   function refineSearch(item: any) {
+    console.log("item.value", item.value);
     refine(item.value);
   }
   return (

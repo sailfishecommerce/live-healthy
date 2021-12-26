@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 
-import  { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import  useMediaQuery  from "@/hooks/useMediaQuery";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import { useAppDispatch } from "@/hooks/useRedux";
 import useRequest from "@/hooks/useRequest";
 import { updateCategory } from "@/redux/category-slice";
 import CategoryBanner from "./CategoryBanner";
 import FeaturedCategoryCarousel from "./Carousel/FeaturedCategoryCarousel";
-
 
 interface FeaturedCategoryProps {
   categoryImg?: string;

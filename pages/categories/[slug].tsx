@@ -2,8 +2,8 @@
 import Head from "next/head";
 
 import Applayout from "@/layout/Applayout";
-import { categoryType, productType } from "@/types";
-import Marketplace from "@/components/Marketplace";
+import { categoryType } from "@/types";
+import CategoryMarketplace from "@/components/CategoryMarketplace";
 import getStoreCategories from "@/lib/getStoreCategories";
 
 interface CategoryProps {
@@ -21,7 +21,7 @@ export default function Category({
       <Head>
         <meta name="description" content={category.metaDescription} />
       </Head>
-      <Marketplace />
+      <CategoryMarketplace category={category} />
     </Applayout>
   );
 }

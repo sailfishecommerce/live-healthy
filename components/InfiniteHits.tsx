@@ -10,6 +10,7 @@ interface Props {
   hasMore: boolean;
   refineNext: () => void;
   minHitsPerPage: number;
+  animation?: boolean;
 }
 
 function InfiniteHits({ hits, hasMore, refineNext }: Props) {

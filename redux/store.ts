@@ -11,6 +11,7 @@ import {
 import storage from "@/lib/storage";
 import { useDispatch } from "react-redux";
 import rootReducer from "./rootReducer";
+import marketplaceReducer from "./marketplaceCategoryReducer";
 
 const persistConfig = {
   key: "root",
@@ -21,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer:persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

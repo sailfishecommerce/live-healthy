@@ -7,8 +7,16 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
+import CategoryHits from "./CategoryHits";
 
-export default function Marketplace() {
+interface MarketplaceProps {
+  category?: {
+    name: string;
+    slug: string;
+  };
+}
+
+export default function Marketplace({ category }: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -31,9 +39,15 @@ export default function Marketplace() {
                     <a className="text-nowrap">Home</a>
                   </Link>
                 </li>
-                <li className="breadcrumb-item text-nowrap">
-                  <a>Shop</a>
-                </li>
+                {category ? (
+                  <li className="breadcrumb-item text-nowrap active">
+                    {category?.name}
+                  </li>
+                ) : (
+                  <li className="breadcrumb-item text-nowrap active">
+                    <a>Shop</a>
+                  </li>
+                )}
               </ol>
             </nav>
           </div>
@@ -46,7 +60,7 @@ export default function Marketplace() {
             <ShopBannerToolbar />
             <div>
               <div className="row mx-n2 mb-5">
-                <InfiniteProductHits minHitsPerPage={30} />
+                <InfiniteProductHits minHitsPerPage={30} animation={true} />
               </div>
               <hr className="mb-2" />
             </div>

@@ -13,6 +13,8 @@ import checkoutReducer from "@/redux/checkout-slice";
 import airwallexReduxer from "@/redux/airwallex-slice";
 import integrationReducer from "@/redux/integration-slice";
 import shopReducer from "@/redux/shop-slice";
+import marketplaceCategoryReducer from "./marketplace-category-slice";
+
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -28,6 +30,7 @@ const rootReducer = combineReducers({
   airwallex: airwallexReduxer,
   integrations: integrationReducer,
   shop: shopReducer,
+  marketplaceCategory: marketplaceCategoryReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 
