@@ -23,8 +23,6 @@ export default function Category({ category }: CategoryProps): JSX.Element {
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const storeCategories: any[] = await getStoreCategories();
 
-  console.log("storeCategories", storeCategories);
-
   const category = storeCategories?.filter(
     (category: { slug: any }) => category?.slug === params.slug
   );

@@ -111,7 +111,7 @@ export default function Index({ products }: PropsType) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
@@ -122,5 +122,6 @@ export async function getServerSideProps() {
     props: {
       products: products.results,
     },
+    revalidate: 60,
   };
 }
