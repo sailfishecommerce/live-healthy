@@ -31,7 +31,7 @@ export default function CategoryBanner({
           <div>
             <h3 className="mb-1">{categoryTitle}</h3>
             <Link href="/shop" passHref>
-              <a className="fs-md">
+              <a className="fs-md text-white">
                 {categoryCaption}
                 <i className="ci-arrow-right fs-xs align-middle ms-1"></i>
               </a>

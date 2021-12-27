@@ -1,10 +1,6 @@
 import Applayout from "@/layout/Applayout";
 import Marketplace from "@/components/Marketplace";
-import { productType } from "@/types";
 
-interface ShopProps {
-  products: productType[];
-}
 
 export default function Shop() {
   return (

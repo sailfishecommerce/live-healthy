@@ -4,8 +4,11 @@ import { PLASMIC } from "../plasmic-init";
 
 export default function Error404() {
   return (
-    <PlasmicRootProvider loader={PLASMIC}>
+    <>
+      {/* <PlasmicRootProvider loader={PLASMIC}>
       <PlasmicComponent component="/error" />
-    </PlasmicRootProvider>
+    </PlasmicRootProvider> */}
+      <h1>Error page</h1>
+    </>
   );
 }

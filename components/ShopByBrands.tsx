@@ -25,11 +25,9 @@ interface BrandProps {
 export function Brand({ brand, local }: BrandProps) {
   return (
     <div
-      // className="col-md-3 col-sm-4 col-6"
       className="brand"
     >
       <a
-        // className="d-block bg-white shadow-sm rounded-3 py-3 py-sm-4 mb-grid-gutter"
         className=" brand-link d-block bg-white shadow-sm rounded-3 py-3 py-sm-4"
         href="#"
       >
