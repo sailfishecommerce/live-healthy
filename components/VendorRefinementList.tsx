@@ -66,7 +66,7 @@ export function VendorList({
           .accordion {
             scrollbar-width: thin;
             scrollbar-color: darkgrey slategrey;
-            height: 400px;
+            max-height: 400px;
             overflow-y: auto;
           }
           .accordion::-webkit-scrollbar {

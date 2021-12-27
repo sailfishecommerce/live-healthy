@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useQuery } from "react-query";
 
 import BottomTab from "./BottomTab";
 import FooterBottomSection from "./FooterBottomSection";
@@ -7,12 +8,7 @@ import footerContent from "@/json/footer.json";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useCategory from "@/hooks/useCategory";
-import { useQuery } from "react-query";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import {
-  updateMarketplaceCategory,
-  resetMarketplaceCategory,
-} from "@/redux/marketplace-category-slice";
+import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
 interface FooterProps {
   topSectionBgColor: string;
@@ -24,10 +20,8 @@ export default function Footer({
 }: FooterProps) {
   const { listAllCategory } = useCategory();
   const { data, status } = useQuery("listStoreCategories", listAllCategory);
-  const { selectedCategory } = useAppSelector(
-    (state) => state.marketplaceCategory
-  );
-  const dispatch = useAppDispatch();
+
+  const selectedFooterCategory = useMarketplaceCategory();
 
   const categories = data?.results.slice(12);
 
@@ -38,11 +32,7 @@ export default function Footer({
     footerContent.section1[0].links = categories;
   }
 
-  function selectedFooterCategory(category: string) {
-    dispatch(resetMarketplaceCategory());
-    dispatch(updateMarketplaceCategory(category));
-  }
-
+  
   type contentLinkType = {
     id: string;
     slug: string;
