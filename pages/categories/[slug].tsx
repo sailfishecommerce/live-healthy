@@ -8,13 +8,8 @@ import getStoreCategories from "@/lib/getStoreCategories";
 
 interface CategoryProps {
   category: categoryType;
-  storeCategories: any[];
 }
-export default function Category({
-  category,
-  storeCategories,
-}: CategoryProps): JSX.Element {
-  storeCategories;
+export default function Category({ category }: CategoryProps): JSX.Element {
   return (
     <Applayout title={`${category.name} category`}>
       <Head>
@@ -28,6 +23,8 @@ export default function Category({
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const storeCategories: any[] = await getStoreCategories();
 
+  console.log("storeCategories", storeCategories);
+
   const category = storeCategories?.filter(
     (category: { slug: any }) => category?.slug === params.slug
   );
@@ -35,7 +32,6 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   return {
     props: {
       category: category[0],
-      storeCategories,
     },
   };
 }
