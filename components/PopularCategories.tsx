@@ -11,7 +11,7 @@ export default function PopularCategories() {
     (category: { topId: string }) => !category.topId
   );
 
-  const getFirstThreeCategories = (category: any[]) => category.slice(0, 3);
+  const getFirstThreeCategories = (category: any[]) => category.slice(12, 15);
 
   return (
     <section

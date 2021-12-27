@@ -14,7 +14,6 @@ export function CategoriesList({
     (state) => state.marketplaceCategory
   );
 
-  console.log("selectedCategory", selectedCategory);
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }

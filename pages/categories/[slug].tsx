@@ -14,7 +14,6 @@ export default function Category({
   category,
   storeCategories,
 }: CategoryProps): JSX.Element {
-  console.log("category", category);
   storeCategories;
   return (
     <Applayout title={`${category.name} category`}>

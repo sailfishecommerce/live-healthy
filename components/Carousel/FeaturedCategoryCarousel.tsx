@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import { SwiperSlide } from "swiper/react";
-import  useMediaQuery  from "@/hooks/useMediaQuery";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import useRequest from "@/hooks/useRequest";
 import Category from "../Category";
 import LoadCategory from "../CategoryLoader";
@@ -20,13 +20,14 @@ export default function FeaturedCategoryCarousel({ controls }: Props) {
   const deviceWidth = useMediaQuery("(max-width:600px)");
   const { useCategories } = useRequest();
   const { categoryData, categoryStatus } = useCategories();
+  console.log("categoryData", categoryData);
   const arrayType = deviceWidth ? 4 : 6;
   const gridStyle = deviceWidth ? "col-2" : "col-4";
 
   let categoryArr: any[] = [];
 
   function batchCategories() {
-    let categoryDataArray = categoryData.results;
+    let categoryDataArray = categoryData.results.slice(12);
     for (let i = 0; i <= categoryDataArray.length; i = i + arrayType) {
       if (i <= categoryDataArray.length) {
         const catArr: any[] = categoryDataArray.slice(i, i + arrayType);

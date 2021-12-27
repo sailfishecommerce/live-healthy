@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 import Link from "next/link";
 
 interface PopularCategoryProps {
@@ -14,15 +15,19 @@ interface PopularCategoryProps {
 }
 
 export default function PopularCategory({ category }: PopularCategoryProps) {
+  const selectedFooterCategory = useMarketplaceCategory();
+
   return (
     <div className="popularCategory col-sm-4 px-2 mb-grid-gutter">
       <Link href={`/categories/${category.slug}`} passHref>
-        <a className="imgLink d-block text-center text-decoration-none me-1">
+        <a
+          onClick={() => selectedFooterCategory(category.name)}
+          className="imgLink d-block text-center text-decoration-none me-1"
+        >
           <img
             src={category.images[0].file.url}
             alt={category.name}
             className="d-block rounded mx-1 mb-3"
-            height="250px"
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>
         </a>
@@ -39,6 +44,10 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
             transform: scale(1.03);
             -webkit-transition: -webkit-transform 300ms ease-in 0s;
             transition: transform 300ms ease-in 0s;
+          }
+          .popularCategory img {
+            width: 300px;
+            height: 200px;
           }
           .popularCategory:hover h3 {
             color: #fb696a;

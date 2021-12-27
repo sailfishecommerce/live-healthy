@@ -5,6 +5,7 @@ import Link from "next/link";
 import useCategory from "@/hooks/useCategory";
 import { categoryType } from "@/types";
 import useVbout from "@/hooks/useVbout";
+import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
 interface Props {
   category: categoryType;
@@ -14,6 +15,18 @@ function CategoryDropdownList({ category, categories }: Props) {
   const subCategories = categories.filter((cats) => cats.topId === category.id);
   const displayThreeSubCat = subCategories.slice(0, 3);
   const { addCategoryView } = useVbout();
+  const selectedFooterCategory = useMarketplaceCategory();
+
+  function linkHandler(category: any) {
+    addCategoryView({
+      id: category.id,
+      categoryId: category.slug,
+      categoryName: category.name,
+      categoryLink: `categories/${category.slug}`,
+      categoryImage: category.images[0]?.file?.url,
+    });
+    selectedFooterCategory(category.name);
+  }
 
   return (
     <div>
@@ -21,21 +34,13 @@ function CategoryDropdownList({ category, categories }: Props) {
         <div className="widget widget-links">
           <Link href={`/categories/${category.slug}`} passHref>
             <a
-              onClick={() =>
-                addCategoryView({
-                  id: category.id,
-                  categoryId: category.slug,
-                  categoryName: category.name,
-                  categoryLink: `categories/${category.slug}`,
-                  categoryImage: category.images[0]?.file?.url,
-                })
-              }
-              className="categoryImg d-block overflow-hidden rounded-3 mb-3"
+              onClick={() => linkHandler(category)}
+              className="categoryImg d-flex flex-column overflow-hidden rounded-3 mb-3"
             >
               <img src={category.images[0].file.url} alt={category.name} />
+              <h6 className="fs-base my-2">{category.name}</h6>
             </a>
           </Link>
-          <h6 className="fs-base mb-2">{category.name}</h6>
           <ul className="widget-list">
             {displayThreeSubCat.map((cat) => (
               <li key={cat.id} className="widget-list-item mb-1">
@@ -53,6 +58,17 @@ function CategoryDropdownList({ category, categories }: Props) {
             height: 160px;
             width: 100%;
           }
+          .categoryImg img:hover {
+            -webkit-transform: scale(1.03);
+            -moz-transform: scale(1.03);
+            -ms-transform: scale(1.03);
+            transform: scale(1.03);
+            -webkit-transition: -webkit-transform 300ms ease-in 0s;
+            transition: transform 300ms ease-in 0s;
+          }
+          .widget:hover h6 {
+            color: #fb696a;
+          }
         `}
       </style>
     </div>
@@ -66,8 +82,8 @@ export default function CategoryDropdown() {
     (category: categoryType) => !category.topId
   );
 
-  const firstCategories = topCategories?.slice(0, 3);
-  const secondCategories = topCategories?.slice(4, 7);
+  const firstCategories = topCategories?.slice(9, 12);
+  const secondCategories = topCategories?.slice(13, 16);
 
   function displayCategories(categorySet: categoryType[]) {
     return (
