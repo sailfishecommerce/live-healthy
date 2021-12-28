@@ -60,9 +60,9 @@ export default function ShopByBrandCarousel({
           keyboard={true}
           navigation={true}
         >
-          <SwiperSlide>
-            {brandLogoImages.map((brand: any, index: number) => (
-              <div key={index} className={styles.brand}>
+          {brandLogoImages.map((brand: any, index: number) => (
+            <SwiperSlide key={index}>
+              <div className={styles.brand}>
                 <a
                   className={`${styles.brandLink} d-block bg-white shadow-sm rounded-3 py-3 py-sm-4`}
                   href="#"
@@ -72,8 +72,8 @@ export default function ShopByBrandCarousel({
                   </div>
                 </a>
               </div>
-            ))}
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>
