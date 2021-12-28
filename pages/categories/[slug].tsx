@@ -10,6 +10,8 @@ interface CategoryProps {
   category: categoryType;
 }
 export default function Category({ category }: CategoryProps): JSX.Element {
+  console.log("category", category);
+
   return (
     <Applayout title={`${category.name} category`}>
       <Head>

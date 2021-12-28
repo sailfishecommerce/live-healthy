@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Applayout from "@/layout/Applayout";
 import ProductOverview from "@/components/ProductOverview";
 import fetchAllSwellProducts from "@/lib/processPageproduct";
@@ -7,9 +8,40 @@ interface ProductPage {
 }
 export default function ProductPage({ pageProduct }: ProductPage) {
   return (
-    <Applayout title={pageProduct.name}>
-      <ProductOverview pageProduct={pageProduct} />
-    </Applayout>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>{pageProduct.meta_title}</title>
+        <meta name="keywords" content={pageProduct.tags[0]} />
+        <meta name="description" content={pageProduct.description}></meta>
+        <meta
+          property="og:title"
+          content={pageProduct.meta_title}
+          key="ogtitle"
+        />
+        <meta
+          property="og:url"
+          content={`https://www.livehealthy.hk/${pageProduct.slug}`}
+          key="ogurl"
+        />
+        <meta
+          property="og:image"
+          content={pageProduct.images[0].file.url}
+          key="ogimage"
+        />
+        <meta property="og:site_name" content="Live healthy" key="ogsitename" />
+        <meta
+          property="og:description"
+          content={pageProduct.description}
+          key="ogdesc"
+        />
+      </Head>
+
+      <Applayout title={pageProduct.name}>
+        <ProductOverview pageProduct={pageProduct} />
+      </Applayout>
+    </>
   );
 }
 

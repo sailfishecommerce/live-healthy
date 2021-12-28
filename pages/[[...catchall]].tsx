@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
@@ -23,13 +24,15 @@ export default function PlasmicLoaderPage(props: {
     return <Error statusCode={404} />;
   }
   return (
-    <PlasmicLayout>
-      <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
-        <DyanmicPlasmicComponent
-          component={plasmicData.entryCompMetas[0].name}
-        />
-      </PlasmicRootProvider>
-    </PlasmicLayout>
+    <>      
+      <PlasmicLayout>
+        <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
+          <DyanmicPlasmicComponent
+            component={plasmicData.entryCompMetas[0].name}
+          />
+        </PlasmicRootProvider>
+      </PlasmicLayout>
+    </>
   );
 }
 
