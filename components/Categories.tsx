@@ -3,6 +3,7 @@ import { VendorRefinementList } from "./VendorRefinementList";
 import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import { MarketplaceCategoriesRefinementList } from "./MarketplaceCategoryRefinementList";
+import { TagsRefinementList } from "./TagsRefinementList";
 
 interface CategoriesProps {
   categoryMarketplace?: boolean;
@@ -44,6 +45,12 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
             showMore={true}
             searchable={true}
             attribute="vendor"
+          />
+          <TagsRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="tags"
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
