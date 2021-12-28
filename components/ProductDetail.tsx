@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import ContactForMoreModal from "./ContactForMoreModal";
 
@@ -54,9 +55,19 @@ export default function ProductDetail({ product }: Props) {
       </div>
       <ProductForm product={product} />
       <div className="d-flex flex-column flex-start align-items-start">
-        <a className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0">
-          + All {product.vendor} products
-        </a>
+        <Link
+          href={{
+            pathname: "/collections/vendors",
+            query: {
+              q: `${product?.vendor?.toLowerCase()}`,
+            },
+          }}
+          passHref
+        >
+          <a className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0">
+            + All {product.vendor} products
+          </a>
+        </Link>
         <button
           onClick={toggleModal}
           className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0"

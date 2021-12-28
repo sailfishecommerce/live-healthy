@@ -15,7 +15,7 @@ interface MarketplaceProps {
   };
 }
 
-export default function Marketplace({ category }: MarketplaceProps) {
+export default function VendorView({ category }: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}

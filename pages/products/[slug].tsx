@@ -7,12 +7,15 @@ interface ProductPage {
   pageProduct: any;
 }
 export default function ProductPage({ pageProduct }: ProductPage) {
+  console.log("pageProduct", pageProduct);
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="keywords" content={pageProduct.tags[0]} />
+        {pageProduct.tags && (
+          <meta name="keywords" content={pageProduct.tags[0]} />
+        )}
         <meta name="description" content={pageProduct.description}></meta>
         <meta
           property="og:title"

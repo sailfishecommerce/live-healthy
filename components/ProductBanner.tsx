@@ -35,9 +35,16 @@ export default function ProductBanner({ product }: Props) {
           </nav>
         </div>
         <div className="order-lg-1 pe-lg-4 text-center text-lg-start">
-          <h1 className="h3 text-light mb-0">{product.name}</h1>
+          <h1 className="productName text-light mb-0">{product.name}</h1>
         </div>
       </div>
+      <style jsx>
+        {`
+          .productName {
+            font-size: 16px;
+          }
+        `}
+      </style>
     </div>
   );
 }
