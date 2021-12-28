@@ -27,7 +27,7 @@ export function CategoriesList({
 
   return (
     <div className="widget widget-categories mb-4 pb-0 border-bottom">
-      <h3 className="widget-title">Categories</h3>
+      <h3 className="widget-title">Product Type</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"
