@@ -53,12 +53,24 @@ export default function ProductDetail({ product }: Props) {
         </span>
       </div>
       <ProductForm product={product} />
-      <button
-        onClick={toggleModal}
-        className="btn btn-link link-accent text-decoration-underline px-0"
-      >
-        Not enough? Contact us for more
-      </button>
+      <div className="d-flex flex-column flex-start align-items-start">
+        <a className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0">
+          + All {product.vendor} products
+        </a>
+        <button
+          onClick={toggleModal}
+          className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0"
+        >
+          Not enough? Contact us for more
+        </button>
+      </div>
+      <style jsx>
+        {`
+          .notEnoughLink:hover {
+            color: red;
+          }
+        `}
+      </style>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function ProductOverview({ pageProduct }: ProductOverviewProps) {
       <ProductBanner product={pageProduct} />
       <ProductGalleryDetails product={pageProduct} />
       <ProductDescription product={pageProduct} />
-      <ProductReviews product={pageProduct} />
+      {/* <ProductReviews product={pageProduct} /> */}
       {/* <SingleShopProductCarousel1
         product={pageProduct}
         otherProducts={products}
