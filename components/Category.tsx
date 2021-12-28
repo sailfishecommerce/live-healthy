@@ -70,6 +70,12 @@ export default function Category({ category }: CategoryProps): JSX.Element {
             width: 100%;
             max-height: 250px;
           }
+          .card-img-top .categoryImg:hover {
+            transform: scale(1.03);
+            -webkit-transition: -webkit-transform 300ms ease-in 0s;
+            -webkit-transition: -webkit-transform 300ms ease-in 0s;
+            transition: transform 300ms ease-in 0s;
+          }
           @media (max-width: 768px) {
             .category {
               padding: 0px 5px !important;

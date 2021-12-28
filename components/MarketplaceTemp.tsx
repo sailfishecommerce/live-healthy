@@ -80,10 +80,10 @@ export default function MarketplaceTemp(
         <div className="row">
           <Categories />
           <section className="col-lg-9">
-            <ShopBannerToolbar />
+            {/* <ShopBannerToolbar /> */}
             <div>
               <div className="row mx-n2 mb-5">
-                <InfiniteProductHits minHitsPerPage={15} animation={true} />
+                {/* <InfiniteProductHits minHitsPerPage={15} animation={true} /> */}
               </div>
               <hr className="mb-2" />
             </div>

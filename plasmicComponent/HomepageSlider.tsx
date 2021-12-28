@@ -73,7 +73,7 @@ export default function HomepageSlider({
     mouseDrag: true,
     speed: 500,
     loop: true,
-    autoplay: true,
+    autoplay: false,
     autoplayHoverPause: true,
     autoplayButtonOutput: false,
   };
@@ -94,8 +94,8 @@ export default function HomepageSlider({
                 className="position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1"
                 style={{ maxWidth: "42rem", zIndex: 10 }}
               >
-                <div className="pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
-                  <h3 className="h2 text-light fw-light pb-1 from-start">
+                <div className="sliderText pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
+                  <h3 className="text-light fw-light pb-1 from-start">
                     {item.sliderCaption}
                   </h3>
                   <h2 className="text-light display-5 from-start delay-1">
@@ -118,6 +118,9 @@ export default function HomepageSlider({
           </div>
         ))}
       </TinySlider>
+      <style jsx>{`
+
+      `}</style>
     </section>
   );
 }
