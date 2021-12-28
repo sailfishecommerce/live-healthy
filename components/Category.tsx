@@ -26,7 +26,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
           type="button"
           data-bs-toggle="tooltip"
           data-bs-placement="left"
-          title="Add to wishlist"
+          title="Add to wishlist "
         >
           <i className="ci-heart"></i>
         </button>
