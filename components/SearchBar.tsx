@@ -1,8 +1,4 @@
-import {
-  SearchBox,
-  InstantSearch,
-  Configure,
-} from "react-instantsearch-dom";
+import { SearchBox, InstantSearch, Configure } from "react-instantsearch-dom";
 import { useRef, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -129,6 +125,9 @@ export default function SearchBar() {
               top: 24%;
               padding: 0px;
               width: 90%;
+            }
+            .searchBox {
+              width: 100%;
             }
           }
         `}

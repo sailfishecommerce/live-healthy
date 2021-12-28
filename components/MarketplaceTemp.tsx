@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { InstantSearch, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
-import searchClient from "@/lib/algoliaConfig";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
@@ -9,20 +8,45 @@ import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 
 interface MarketplaceProps {
+  searchState: any;
+  resultsState: any;
+  onSearchStateChange: () => void;
+  createURL: () => void;
+  indexName: string;
+  searchClient: any;
+  onSearchParameters: () => void;
   category?: {
     name: string;
     slug: string;
   };
 }
 
-export default function Marketplace({ category }: MarketplaceProps) {
+export default function MarketplaceTemp(
+  props: any,
+  {
+    category,
+    searchState,
+    resultsState,
+    onSearchStateChange,
+    createURL,
+    indexName,
+    onSearchParameters,
+    searchClient,
+  }: MarketplaceProps
+) {
   return (
     <InstantSearch
-      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
+      indexName={indexName}
       searchClient={searchClient}
+      resultsState={resultsState}
+      onSearchStateChange={onSearchStateChange}
+      searchState={searchState}
+      createURL={createURL}
+      onSearchParameters={onSearchParameters}
+      {...props}
     >
       <Configure
-        hitsPerPage={31}
+        hitsPerPage={15}
         clickAnalytics
         distinct
         enablePersonalization={true}
@@ -59,7 +83,7 @@ export default function Marketplace({ category }: MarketplaceProps) {
             <ShopBannerToolbar />
             <div>
               <div className="row mx-n2 mb-5">
-                <InfiniteProductHits minHitsPerPage={30} animation={true} />
+                <InfiniteProductHits minHitsPerPage={15} animation={true} />
               </div>
               <hr className="mb-2" />
             </div>

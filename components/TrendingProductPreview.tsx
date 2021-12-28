@@ -10,7 +10,7 @@ interface PropsType {
 export default function TrendingProductsPreview({ products }: PropsType) {
   return (
     <section className="container pt-md-3 pb-5 mb-md-3 w-100">
-      <h2 className="h3 text-center">Trending products</h2>
+      <h2 className="text-center trending">Trending products</h2>
       <div className="row pt-4 mx-n2">
         {products.map((product: productType) => (
           <Product key={product.id} product={product} />
@@ -23,6 +23,15 @@ export default function TrendingProductsPreview({ products }: PropsType) {
           </a>
         </Link>
       </div>
+      <style jsx>
+        {`
+          @media (max-width: 768px) {
+            h2.trending {
+              font-size: 20px;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
