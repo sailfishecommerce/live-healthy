@@ -20,7 +20,6 @@ export default function FeaturedCategoryCarousel({ controls }: Props) {
   const deviceWidth = useMediaQuery("(max-width:600px)");
   const { useCategories } = useRequest();
   const { categoryData, categoryStatus } = useCategories();
-  console.log("categoryData", categoryData);
   const arrayType = deviceWidth ? 4 : 6;
   const gridStyle = deviceWidth ? "col-2" : "col-4";
 

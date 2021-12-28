@@ -128,7 +128,10 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
                 <i className="navbar-tool-icon ci-cart"></i>
               </a>
               <a className="navbar-tool-text">
-                <small>My Cart</small>${cart?.grandTotal.toFixed(2)}
+                <small>My Cart</small>
+                {cart?.grandTotal
+                  ? `$ {cart?.grandTotal.toFixed(2)}`
+                  : "$ 0.00"}
               </a>
               {cart?.items.length > 0 && (
                 <HeaderCartDropdown toggleCart={toggleCart} cart={cart} />

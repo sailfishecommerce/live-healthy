@@ -1,8 +1,10 @@
 .brand {
-  height: 220px;
+  height: 180px;
+  width: 180px;
 }
 .brandLink {
-  height: 200px;
+  height: 150px;
+  align-items: center;
 }
 @media (max-width: 768px) {
   .brand {

@@ -14,6 +14,7 @@ export default function useAlgoliaInsight() {
     if (userToken.length === 0) {
       getUserDetails()
         .then((response) => {
+          console.log('response getUserDetails', response)
           if (response !== null) {
             setUserToken(response.id);
           } else {

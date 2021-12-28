@@ -46,7 +46,7 @@ export default function ShopByBrandCarousel({
           loop={true}
           className="d-flex"
           autoplay={true}
-          slidesPerView={3}
+          slidesPerView={5}
           modules={[
             Autoplay,
             Navigation,
@@ -64,10 +64,10 @@ export default function ShopByBrandCarousel({
             <SwiperSlide key={index}>
               <div className={styles.brand}>
                 <a
-                  className={`${styles.brandLink} d-block bg-white shadow-sm rounded-3 py-3 py-sm-4`}
+                  className={`${styles.brandLink} d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
                   href="#"
                 >
-                  <div style={{ width: "150px" }} className="d-block mx-auto">
+                  <div style={{ width: "150px" }} className="d-flex mx-auto">
                     {brand}
                   </div>
                 </a>
