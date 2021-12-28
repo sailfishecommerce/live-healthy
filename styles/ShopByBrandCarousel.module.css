@@ -1,0 +1,15 @@
+.brand {
+  height: 220px;
+}
+.brandLink {
+  height: 200px;
+}
+@media (max-width: 768px) {
+  .brand {
+    height: 100px;
+    width: 130px;
+  }
+  .brandLink {
+    height: 80px;
+  }
+}

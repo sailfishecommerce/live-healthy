@@ -16,6 +16,7 @@ import ProductReviews from "./components/ProductReviews";
 import PopularCategory from "./components/PopularCategory";
 import ProductOverview from "./components/ProductOverview";
 import Checkout from "./components/Checkout";
+import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -157,6 +158,21 @@ PLASMIC.registerComponent(Footer, {
       type: "string",
       defaultValue: "#2B3445",
     },
+  },
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(ShopByBrandCarousel, {
+  name: "ShopByBrand Carousel",
+  props: {
+    brandLogo1: "slot",
+    brandLogo2: "slot",
+    brandLogo3: "slot",
+    brandLogo4: "slot",
+    brandLogo5: "slot",
+    brandLogo6: "slot",
+    brandLogo7: "slot",
+    brandLogo8: "slot",
   },
   isDefaultExport: true,
 });

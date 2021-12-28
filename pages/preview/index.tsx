@@ -16,7 +16,6 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
 import { productType } from "@/types";
 import TrendingProductsPreview from "@/components/TrendingProductPreview";
-import axios from "axios";
 
 interface PropsType {
   products: productType[];
@@ -44,13 +43,6 @@ export default function Index({ products }: PropsType) {
       createVboutCart(vboutContent);
     }
   }, [cart]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/create-product-categories")
-  //     .then((response) => console.log("response products", response))
-  //     .catch((error) => console.log("error", error));
-  // }, []);
 
   return (
     <Applayout title="Shop for gloves, medic supplies, Masks and Respirators">
