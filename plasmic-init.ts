@@ -163,7 +163,7 @@ PLASMIC.registerComponent(Footer, {
 });
 
 PLASMIC.registerComponent(ShopByBrandCarousel, {
-  name: "ShopByBrand Carousel",
+  name: "Shop by brand carousel",
   props: {
     brandLogo1: "slot",
     brandLogo2: "slot",
