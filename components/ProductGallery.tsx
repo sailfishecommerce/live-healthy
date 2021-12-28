@@ -103,6 +103,15 @@ export default function ProductGallery({ product, quickView }: Props) {
             overflow-y: auto;
             width: 150px;
           }
+          @media (max-width: 768px) {
+            .product-gallery-thumblist.order-sm-1 {
+              display: flex;
+              flex-direction: row !important;
+              width: 100%;
+              height: unset;
+              overflow-y: unset;
+            }
+          }
         `}
       </style>
     </div>

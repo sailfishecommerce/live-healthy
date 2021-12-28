@@ -12,7 +12,6 @@ export default function ProductPage({ pageProduct }: ProductPage) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>{pageProduct.meta_title}</title>
         <meta name="keywords" content={pageProduct.tags[0]} />
         <meta name="description" content={pageProduct.description}></meta>
         <meta
@@ -37,8 +36,7 @@ export default function ProductPage({ pageProduct }: ProductPage) {
           key="ogdesc"
         />
       </Head>
-
-      <Applayout title={pageProduct.name}>
+      <Applayout title={pageProduct.meta_title}>
         <ProductOverview pageProduct={pageProduct} />
       </Applayout>
     </>
