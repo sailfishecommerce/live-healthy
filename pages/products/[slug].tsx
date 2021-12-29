@@ -7,28 +7,38 @@ interface ProductPage {
   pageProduct: any;
 }
 export default function ProductPage({ pageProduct }: ProductPage) {
+  const productDescription = pageProduct.description.replace(
+    /<\/?[^>]+(>|$)/g,
+    ""
+  );
   return (
     <>
       <Applayout title={pageProduct.meta_title}>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
           {pageProduct.tags && (
             <meta name="keywords" content={pageProduct.tags[0]} />
           )}
-          <meta name="description" content={pageProduct.description}></meta>
+          <meta name="description" content={productDescription} />
           <meta
             property="og:title"
             content={pageProduct.meta_title}
             key="ogtitle"
           />
+          <meta property="og:type" content="product" />
+          <meta property="og:price:amount" content={pageProduct.price} />
           <meta
             property="og:url"
-            content={`https://www.livehealthy.hk/${pageProduct.slug}`}
+            content={`https://www.livehealthy.hk/products/${pageProduct.slug}`}
             key="ogurl"
           />
+          <meta property="og:price:currency" content="USD" />
           <meta
             property="og:image"
+            content={pageProduct.images[0].file.url}
+            key="ogimage"
+          />
+          <meta
+            property="og:image:secure_url"
             content={pageProduct.images[0].file.url}
             key="ogimage"
           />
@@ -39,9 +49,16 @@ export default function ProductPage({ pageProduct }: ProductPage) {
           />
           <meta
             property="og:description"
-            content={pageProduct.description}
+            content={productDescription}
             key="ogdesc"
           />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content={pageProduct.meta_title}
+            key="ogtwtitle"
+          />
+          <meta name="twitter:description" content={productDescription} />
         </Head>
         <ProductOverview pageProduct={pageProduct} />
       </Applayout>

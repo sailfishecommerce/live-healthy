@@ -63,15 +63,9 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
       <Head>
         <meta charSet="utf-8" />
         <meta
-          name="description"
-          content="Live Healthy - Shop for medical gloves,natural concepts hand-sanitizer,WeSail COVID-19 Rapid Antigen,li,drugs,free-shipping,covid-19-test-kit, test-kit,masks,respirators,nitrile glove,sterile glove,latex glove,vinyl glove,masks and respirator laboratory supplies,syringes and needles, industrial gloves, oxygen concentrators"
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta
-          name="keywords"
-          content="medical gloves,vinyl gloves, latex gloves,intco medical, natural concepts,antigen test, sterile gloves,hand-sanitizer,e-commerce,docsupplies,drugs,free-shipping,covid-19-test-kit, test-kit,masks,respirators,nitrile glove,sterile gloves,latex gloves,vinyl gloves,masks and respirator laboratory supplies,syringes and needles, industrial gloves, oxygen concentrators"
-        />
-        <meta name="author" content="Bandicoot Studio" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

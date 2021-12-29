@@ -102,8 +102,9 @@ export type categoryType = {
       url: string;
     };
   }[];
-  metaDescription?: string;
+  meta_description?: string;
   topId?: string;
+  meta_title?: string;
 };
 
 export type formType = {
