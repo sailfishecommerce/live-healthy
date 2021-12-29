@@ -47,7 +47,11 @@ export async function getStaticPaths() {
   let vendors = [...new Set(vendorArray)];
 
   return {
-    paths: vendors?.map((vendor) => `/collections/vendors/${vendor}`) || [],
+    paths:
+      vendors?.map(
+        (vendor) =>
+          `/collections/vendors/${vendor.toLowerCase().replaceAll(" ", "-")}`
+      ) || [],
     fallback: false,
   };
 }
