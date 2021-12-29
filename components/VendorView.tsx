@@ -4,18 +4,22 @@ import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
-import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
+import VendorCategories from "./VendorCategories";
 
 interface MarketplaceProps {
   category?: {
     name: string;
     slug: string;
   };
+  vendorQuery: any;
 }
 
-export default function VendorView({ category }: MarketplaceProps) {
+export default function VendorView({
+  category,
+  vendorQuery,
+}: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -54,7 +58,7 @@ export default function VendorView({ category }: MarketplaceProps) {
       </div>
       <div className="container pb-5 mb-2 mb-md-4">
         <div className="row">
-          <Categories />
+          {/* <VendorCategories query={vendorQuery} /> */}
           <section className="col-lg-9">
             <ShopBannerToolbar />
             <div>

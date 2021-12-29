@@ -14,6 +14,11 @@ export function VendorList({
   function refineSearch(item: any) {
     refine(item.value);
   }
+
+  // useEffect(() => {
+  //   refine(selectedCategory);
+  // }, [refine, selectedCategory]);
+
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
       <h3 className="widget-title">Brands</h3>

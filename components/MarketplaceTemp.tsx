@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useEffect, useState } from "react";
 import { InstantSearch, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
 
@@ -6,6 +7,7 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
+import { useRouter } from "next/router";
 
 interface MarketplaceProps {
   searchState: any;
@@ -34,6 +36,14 @@ export default function MarketplaceTemp(
     searchClient,
   }: MarketplaceProps
 ) {
+  const [loadPageStatus, setLoadPageStatus] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router?.isReady) {
+      setLoadPageStatus(true);
+    }
+  }, [router?.isReady]);
   return (
     <InstantSearch
       indexName={indexName}
@@ -80,10 +90,12 @@ export default function MarketplaceTemp(
         <div className="row">
           <Categories />
           <section className="col-lg-9">
-            {/* <ShopBannerToolbar /> */}
+            {loadPageStatus && <ShopBannerToolbar />}
             <div>
               <div className="row mx-n2 mb-5">
-                {/* <InfiniteProductHits minHitsPerPage={15} animation={true} /> */}
+                {loadPageStatus && (
+                  <InfiniteProductHits minHitsPerPage={15} animation={true} />
+                )}
               </div>
               <hr className="mb-2" />
             </div>
