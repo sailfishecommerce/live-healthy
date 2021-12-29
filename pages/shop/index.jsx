@@ -29,7 +29,7 @@ const createURL = (state) => {
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList?.brand.length === 0 &&
+    state.refinementList?.vendor.length === 0 &&
     state?.menu &&
     !state?.menu?.product_type;
 
@@ -38,7 +38,7 @@ const createURL = (state) => {
   }
 
   const categoryPath = state?.menu?.product_type
-    ? `${getCategorySlug(state?.menu?.product_type)}/`
+    ? `/${getCategorySlug(state?.menu?.product_type)}/`
     : "";
   const queryParameters = {};
 
@@ -48,9 +48,12 @@ const createURL = (state) => {
   if (state.page !== 1) {
     queryParameters.page = state.page;
   }
-  if (state.refinementList?.brand) {
-    queryParameters.brands =
-      state.refinementList?.brand.map(encodeURIComponent);
+  if (state.refinementList?.vendor) {
+    queryParameters.vendor =
+      state.refinementList?.vendor.map(encodeURIComponent);
+  }
+  if (state.refinementList?.tags) {
+    queryParameters.tags = state.refinementList?.tags.map(encodeURIComponent);
   }
 
   const queryString = qs.stringify(queryParameters, {
@@ -58,34 +61,37 @@ const createURL = (state) => {
     arrayFormat: "repeat",
   });
 
-  return `/search/${categoryPath}${queryString}`;
+  return `/shop/${categoryPath}${queryString}`;
 };
 
 const searchStateToURL = (searchState) =>
   searchState ? createURL(searchState) : "";
 
 function getCategorySlug(name) {
-  return name.split(" ").map(encodeURIComponent).join("+");
+  return name.split(" ").map(encodeURIComponent).join("-");
 }
 
 function getCategoryName(slug) {
-  return slug.split("+").map(decodeURIComponent).join(" ");
+  return slug.split("-").map(decodeURIComponent).join(" ");
 }
 
 const urlToSearchState = (location) => {
   console.log("location", location);
-  const pathnameMatches = location.pathname?.match(/search\/(.*?)\/?$/);
+  const pathnameMatches = location.pathname?.match(/shop\/(.*?)\/?$/);
   const category = getCategoryName(
     (pathnameMatches && pathnameMatches[1]) || ""
   );
   const {
     query = "",
     page = 1,
-    brands = [],
+    vendors = [],
+    tags = [],
   } = qs.parse(location?.search?.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
-
+  const allVendors = Array.isArray(vendors)
+    ? vendors
+    : [vendors].filter(Boolean);
+  const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
   return {
     query: decodeURIComponent(query),
     page,
@@ -93,7 +99,8 @@ const urlToSearchState = (location) => {
       product_type: decodeURIComponent(category),
     },
     refinementList: {
-      brand: allBrands.map(decodeURIComponent),
+      vendor: allVendors.map(decodeURIComponent),
+      tags: allTags.map(decodeURIComponent),
     },
   };
 };

@@ -13,6 +13,7 @@ export function TagsList({
   }
   function refineSearch(item: any) {
     refine(item.value);
+    createURL(item.value);
   }
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">

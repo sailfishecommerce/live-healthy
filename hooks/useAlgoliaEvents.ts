@@ -1,4 +1,4 @@
- useCookie: true,import aa from "search-insights";
+import aa from "search-insights";
 
 import useAlgoliaInsight from "./useAlgoliaInsight";
 

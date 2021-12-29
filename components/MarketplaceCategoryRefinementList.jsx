@@ -1,13 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
-import { useAppSelector } from "@/hooks/useRedux";
+import { useRouter } from "next/router";
 
-type itemType = {
-  label: string;
-  count: number;
-  value: string;
-  isRefined: boolean;
+const categories = {
+  "personal-care": "Personal Care",
+  medicines: "Medicines",
+  beauty: "Beauty",
+  "medical-aids": "Medical Aids",
+  "hair-colours": "Hair Colours",
+  "veterinary-and-pet-care": "Veterinary and Pet Care",
+  confectionery: "Confectionery",
+  health: "Health",
 };
 
 export function CategoriesList({
@@ -15,25 +20,20 @@ export function CategoriesList({
   isFromSearch,
   refine,
   searchForItems,
-  createURL,
-}: any) {
-  const { selectedCategory } = useAppSelector(
-    (state) => state.marketplaceCategory
-  );
-  const filteredItem = items.filter(
-    (item: itemType) => item.label === selectedCategory[0]
-  );
+}) {
+  const { query } = useRouter();
+  const queryString = query.slug;
+  const selectedCategory = categories[queryString];
 
-  function searchItems(e: any) {
+  const filteredItem = items.filter((item) => item.label === selectedCategory);
+
+  function searchItems(e) {
     searchForItems(e.currentTarget.value);
-  }
-  function refineSearch(item: any) {
-    refine(item.value);
   }
 
   useEffect(() => {
-    refine(selectedCategory);
-  }, [refine, selectedCategory]);
+    refine([selectedCategory]);
+  }, []);
 
   return (
     <div className="widget widget-categories mb-4 pb-0 border-bottom">
@@ -49,15 +49,10 @@ export function CategoriesList({
       </div>
       <div className="accordion mt-n1" id="shop-categories">
         {items.length > 0 ? (
-          filteredItem.map((item: itemType) => (
+          filteredItem.map((item) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a
-                  href={createURL(item.value)}
-                  onClick={() => refineSearch(item)}
-                  style={{ fontWeight: item.isRefined ? "bold" : "" }}
-                  className="cat-link"
-                >
+                <a style={{ fontWeight: "bold" }} className="cat-link">
                   {isFromSearch ? (
                     <Highlight attribute="label" hit={item} />
                   ) : (

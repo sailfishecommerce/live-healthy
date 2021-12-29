@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Highlight, connectMenu } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
@@ -39,21 +40,25 @@ export function CategoriesList({
           items.map((item: itemType) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a
-                  href={createURL(item.value)}
-                  onClick={() => refineSearch(item)}
-                  style={{ fontWeight: item.isRefined ? "bold" : "" }}
-                  className="cat-link"
+                <Link
+                  href={`/collections/${item.value
+                    .toLowerCase()
+                    .replaceAll(" ", "-")}`}
+                  passHref
                 >
-                  {isFromSearch ? (
-                    <Highlight attribute="label" hit={item} />
-                  ) : (
-                    <>
-                      {item.label}
-                      <span className="mx-2 badge bg-danger">{item.count}</span>
-                    </>
-                  )}
-                </a>
+                  <a className="cat-link">
+                    {isFromSearch ? (
+                      <Highlight attribute="label" hit={item} />
+                    ) : (
+                      <>
+                        {item.label}
+                        <span className="mx-2 badge bg-danger">
+                          {item.count}
+                        </span>
+                      </>
+                    )}
+                  </a>
+                </Link>
               </h3>
             </div>
           ))

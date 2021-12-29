@@ -13,15 +13,12 @@ export function VendorList({
   }
   function refineSearch(item: any) {
     refine(item.value);
+    createURL(item.value);
   }
-
-  // useEffect(() => {
-  //   refine(selectedCategory);
-  // }, [refine, selectedCategory]);
 
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Brands</h3>
+      <h3 className="widget-title">Vendors</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"

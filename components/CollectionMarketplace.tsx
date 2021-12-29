@@ -3,10 +3,10 @@ import { InstantSearch, Configure } from "react-instantsearch-dom";
 import Link from "next/link";
 import searchClient from "@/lib/algoliaConfig";
 
-import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
+import CollectionCurrentRefinements from "./CollectionCurrentRefinement";
 
 interface MarketplaceProps {
   collection?: {
@@ -15,7 +15,9 @@ interface MarketplaceProps {
   };
 }
 
-export default function CollectionMarketplace({ collection }: MarketplaceProps) {
+export default function CollectionMarketplace({
+  collection,
+}: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -31,7 +33,7 @@ export default function CollectionMarketplace({ collection }: MarketplaceProps) 
         <div className="container d-lg-flex justify-content-between py-2 py-lg-3">
           <div className="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
             <nav aria-label="breadcrumb">
-              <AlgoliaCurrentRefinement />
+              <CollectionCurrentRefinements />
               <ol className="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
                 <li className="breadcrumb-item">
                   <Link href="/" passHref>
