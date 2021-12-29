@@ -20,6 +20,7 @@ export default function Product({
   product,
   forCategory,
 }: ProductProps): JSX.Element {
+  console.log("product", product);
   const {
     productViewEvent,
     addToCartHandler,
@@ -42,19 +43,21 @@ export default function Product({
             "url":"https://just-medic.vercel.app/products/${product.slug}",        
             "aggregateRating": {
               "@type": "AggregateRating",
-              "ratingValue": "5.0",
-              "reviewCount": "1"
+              "ratingValue": "${product.rating}",
+              "reviewCount": "${product.review_rating}"
             },
             "review": {
               "@type": "Review",
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue":"5",
-                "bestRating":"5"
+                "ratingValue":"${product.rating}",
+                "bestRating":"${product.review_rating}"
                 },
               "author":{
-                "@type":"Person",
-                "name":"Dave Olubisi"
+                "@type":"Organization",
+                "name":"Live healthy",
+                "url":"https://livehealthy.hk/",
+                "logo": "//cdn.shopify.com/s/files/1/0040/1699/6481/files/Sailfish-logo.png?v=1626620681"
               }
             },
             "brand":{
@@ -66,7 +69,7 @@ export default function Product({
             "offers": {
               "@type": "Offer",
               "url":"https://just-medic.vercel.app/products/${product.slug}",        
-              "priceValidUntil": "2021-12-31",
+              "priceValidUntil": "2022-12-31",
               "availability": "https://schema.org/InStock",
               "price":"${product.price}",
               "priceCurrency": "USD"
