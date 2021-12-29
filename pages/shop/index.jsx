@@ -6,7 +6,7 @@ import { findResultsState } from "react-instantsearch-dom/server";
 
 import searchClient from "@/lib/algoliaConfig";
 import Applayout from "@/layout/Applayout";
-import MarketplaceTemp from "../components/MarketplaceTemp";
+import MarketplaceTemp from "../../components/MarketplaceTemp";
 
 const updateAfter = 700;
 
