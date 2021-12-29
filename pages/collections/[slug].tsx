@@ -10,7 +10,6 @@ interface collectionProps {
   collection: categoryType;
 }
 export default function Category({ collection }: collectionProps): JSX.Element {
-  console.log("collection", collection);
   return (
     <Applayout
       title={`${collection.name} | Free Delivery to HK | Live healthy Online Store`}

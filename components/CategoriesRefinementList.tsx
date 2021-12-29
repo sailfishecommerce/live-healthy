@@ -1,5 +1,12 @@
-import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import { Highlight, connectMenu } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
+
+type itemType = {
+  label: string;
+  count: number;
+  value: string;
+  isRefined: boolean;
+};
 
 export function CategoriesList({
   items,
@@ -29,10 +36,15 @@ export function CategoriesList({
       </div>
       <div className="accordion mt-n1" id="shop-categories">
         {items.length > 0 ? (
-          items.map((item: { label: string; count: number }) => (
+          items.map((item: itemType) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a onClick={() => refineSearch(item)} className="cat-link">
+                <a
+                  href={createURL(item.value)}
+                  onClick={() => refineSearch(item)}
+                  style={{ fontWeight: item.isRefined ? "bold" : "" }}
+                  className="cat-link"
+                >
                   {isFromSearch ? (
                     <Highlight attribute="label" hit={item} />
                   ) : (
@@ -87,4 +99,4 @@ export function CategoriesList({
   );
 }
 
-export const CategoriesRefinementList = connectRefinementList(CategoriesList);
+export const CategoriesRefinementList = connectMenu(CategoriesList);

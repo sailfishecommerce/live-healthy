@@ -20,7 +20,6 @@ export default function Product({
   product,
   forCategory,
 }: ProductProps): JSX.Element {
-  console.log("product", product);
   const {
     productViewEvent,
     addToCartHandler,

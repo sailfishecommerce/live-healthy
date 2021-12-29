@@ -54,7 +54,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
 //   return {
 //     paths:
 //       allCategoriesArray?.map(
-//         (category: { slug: any }) => `/collection/${category.slug}`
+//         (category: { slug: any }) => `/collections/${category.slug}`
 //       ) || [],
 //     fallback: false,
 //   };

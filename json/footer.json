@@ -3,17 +3,17 @@
     {
       "name": "Collections",
       "links": [
-        { "name": "Personal Care", "slug": "/collections/personal-care" },
-        { "name": "Medicines", "slug": "/collections/medicines" },
-        { "name": "Beauty", "slug": "/collections/beauty" },
-        { "name": "Medical Aids", "slug": "/collections/medical-aids" },
-        { "name": "Hair Colours", "slug": "/collections/hair-colours" },
+        { "name": "Personal Care", "slug": "personal-care" },
+        { "name": "Medicines", "slug": "medicines" },
+        { "name": "Beauty", "slug": "beauty" },
+        { "name": "Medical Aids", "slug": "medical-aids" },
+        { "name": "Hair Colours", "slug": "hair-colours" },
         {
           "name": "Veterinary and Pet Care",
-          "slug": "/collections/veterinary-and-pet-care"
+          "slug": "veterinary-and-pet-care"
         },
-        { "name": "Confectionery", "slug": "/collections/confectionery" },
-        { "name": "Health", "slug": "collections/health" }
+        { "name": "Confectionery", "slug": "confectionery" },
+        { "name": "Health", "slug": "health" }
       ]
     },
     {

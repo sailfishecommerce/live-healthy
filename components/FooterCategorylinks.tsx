@@ -88,7 +88,7 @@ function Categorylinks({ items }: any) {
                 {content.links.map((contentLink: any) => (
                   <li key={contentLink.name} className="widget-list-item">
                     <Link
-                      href={`/collection/${getCategorySlug(contentLink.label)}`}
+                      href={`/collections/${getCategorySlug(contentLink.label)}`}
                       passHref
                     >
                       <a className="widget-list-link">{contentLink.label}</a>

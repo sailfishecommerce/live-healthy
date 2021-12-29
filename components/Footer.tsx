@@ -105,7 +105,7 @@ export default function Footer({
                       {content.links.map((contentLink) => (
                         <li key={contentLink.name} className="widget-list-item">
                           <Link
-                            href={`/collection/${contentLink.slug}`}
+                            href={`/collections/${contentLink.slug}`}
                             passHref
                           >
                             <a

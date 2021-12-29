@@ -31,7 +31,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
           <i className="ci-heart"></i>
         </button>
         {category?.images && (
-          <Link href={`/collection/${category.slug}`} passHref>
+          <Link href={`/collections/${category.slug}`} passHref>
             <a
               onClick={() => selectedFooterCategory(category.name)}
               className="card-img-top d-block overflow-hidden"
@@ -46,7 +46,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
         )}
         <div className="card-body py-2">
           <h3 className="product-title fs-sm">
-            <Link href={`/collection/${category.slug}`} passHref>
+            <Link href={`/collections/${category.slug}`} passHref>
               <a onClick={() => selectedFooterCategory(category.name)}>
                 {category.name}
               </a>

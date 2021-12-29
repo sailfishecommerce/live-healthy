@@ -10,27 +10,101 @@ import MarketplaceTemp from "../../components/MarketplaceTemp";
 
 const updateAfter = 700;
 
-const createURL = (state) => `?${qs.stringify(state)}`;
+// const createURL = (state) => `?${qs.stringify(state)}`;
 
 const pathToSearchState = (path) =>
   path.includes("?") ? qs.parse(path.substring(path.indexOf("?") + 1)) : {};
 
-const searchStateToURL = (searchState) =>
-  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
+// const searchStateToURL = (searchState) =>
+//   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 
 const DEFAULT_PROPS = {
   searchClient,
   indexName: "New_Livehealthy_products_index",
 };
 
+const createURL = (state) => {
+  console.log("state", state);
+  const isDefaultRoute =
+    !state.query &&
+    state.page === 1 &&
+    state.refinementList &&
+    state.refinementList?.brand.length === 0 &&
+    state?.menu &&
+    !state?.menu?.product_type;
+
+  if (isDefaultRoute) {
+    return "";
+  }
+
+  const categoryPath = state?.menu?.product_type
+    ? `${getCategorySlug(state?.menu?.product_type)}/`
+    : "";
+  const queryParameters = {};
+
+  if (state.query) {
+    queryParameters.query = encodeURIComponent(state.query);
+  }
+  if (state.page !== 1) {
+    queryParameters.page = state.page;
+  }
+  if (state.refinementList?.brand) {
+    queryParameters.brands =
+      state.refinementList?.brand.map(encodeURIComponent);
+  }
+
+  const queryString = qs.stringify(queryParameters, {
+    addQueryPrefix: true,
+    arrayFormat: "repeat",
+  });
+
+  return `/search/${categoryPath}${queryString}`;
+};
+
+const searchStateToURL = (searchState) =>
+  searchState ? createURL(searchState) : "";
+
+function getCategorySlug(name) {
+  return name.split(" ").map(encodeURIComponent).join("+");
+}
+
+function getCategoryName(slug) {
+  return slug.split("+").map(decodeURIComponent).join(" ");
+}
+
+const urlToSearchState = (location) => {
+  console.log("location", location);
+  const pathnameMatches = location.pathname?.match(/search\/(.*?)\/?$/);
+  const category = getCategoryName(
+    (pathnameMatches && pathnameMatches[1]) || ""
+  );
+  const {
+    query = "",
+    page = 1,
+    brands = [],
+  } = qs.parse(location?.search?.slice(1));
+  // `qs` does not return an array when there's a single value.
+  const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
+
+  return {
+    query: decodeURIComponent(query),
+    page,
+    menu: {
+      product_type: decodeURIComponent(category),
+    },
+    refinementList: {
+      brand: allBrands.map(decodeURIComponent),
+    },
+  };
+};
+
 class Shop extends Component {
   state = {
-    searchState: this.props.searchState,
+    searchState: urlToSearchState(this.props.searchState),
     lastRouter: this.props.router,
   };
 
   static async getInitialProps({ asPath }) {
-    console.log("asPath getInitialProps", asPath);
     const searchState = pathToSearchState(asPath);
     const resultsState = await findResultsState(MarketplaceTemp, {
       ...DEFAULT_PROPS,

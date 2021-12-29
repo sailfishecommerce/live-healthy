@@ -22,7 +22,7 @@ export default function CollectionMarketplace({ collection }: MarketplaceProps) 
       searchClient={searchClient}
     >
       <Configure
-        hitsPerPage={31}
+        hitsPerPage={16}
         clickAnalytics
         distinct
         enablePersonalization={true}
