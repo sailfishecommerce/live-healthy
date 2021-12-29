@@ -32,7 +32,6 @@ export default function Footer({
     footerContent.section1[0].links = categories;
   }
 
-  
   type contentLinkType = {
     id: string;
     slug: string;
@@ -105,7 +104,7 @@ export default function Footer({
                       {content.links.map((contentLink) => (
                         <li key={contentLink.name} className="widget-list-item">
                           <Link
-                            href={`/collections/${contentLink.slug}`}
+                            href={`/collections/product-type/${contentLink.slug}`}
                             passHref
                           >
                             <a

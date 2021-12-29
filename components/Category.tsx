@@ -31,7 +31,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
           <i className="ci-heart"></i>
         </button>
         {category?.images && (
-          <Link href={`/collections/${category.slug}`} passHref>
+          <Link href={`/collections/product-type/${category.slug}`} passHref>
             <a
               onClick={() => selectedFooterCategory(category.name)}
               className="card-img-top d-block overflow-hidden"

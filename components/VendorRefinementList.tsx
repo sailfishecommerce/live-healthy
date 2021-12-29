@@ -12,8 +12,8 @@ export function VendorList({
     searchForItems(e.currentTarget.value);
   }
   function refineSearch(item: any) {
-    refine(item.value);
     createURL(item.value);
+    refine(item.value);
   }
 
   return (

@@ -92,6 +92,7 @@ const urlToSearchState = (location) => {
     ? vendors
     : [vendors].filter(Boolean);
   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
+  console.log("allVendors", allVendors, "allTags", allTags);
   return {
     query: decodeURIComponent(query),
     page,
@@ -151,7 +152,7 @@ class Shop extends Component {
 
   render() {
     return (
-      <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
+      <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
         <MarketplaceTemp
           {...DEFAULT_PROPS}
           searchState={this.state.searchState}
