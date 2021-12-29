@@ -25,6 +25,16 @@ export default function ProductBanner({ product }: Props) {
                   <a>Shop</a>
                 </Link>
               </li>
+              <li className="breadcrumb-item text-nowrap">
+                <Link
+                  href={`/collections/vendors/${product.vendor
+                    .toLowerCase()
+                    .replaceAll(" ", "-")}`}
+                  passHref
+                >
+                  <a>{product.vendor}</a>
+                </Link>
+              </li>
               <li
                 className="breadcrumb-item text-nowrap active"
                 aria-current="page"

@@ -55,7 +55,12 @@ export default function ProductDetail({ product }: Props) {
       </div>
       <ProductForm product={product} />
       <div className="d-flex flex-column flex-start align-items-start">
-        <Link href={`/collections/vendors?q=${product?.vendor}`} passHref>
+        <Link
+          href={`/collections/vendors/${product.vendor
+            .toLowerCase()
+            .replaceAll(" ", "-")}`}
+          passHref
+        >
           <a className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0">
             + All {product.vendor} products
           </a>

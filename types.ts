@@ -10,7 +10,7 @@ export type productType = {
       text: string;
     }[];
   };
-  vendor?: string;
+  vendor: string;
   product_image?: string;
   product_images: { link: string; alt: string }[];
   image_alt_text?: any;
