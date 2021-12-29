@@ -10,8 +10,6 @@ interface CategoryProps {
   category: categoryType;
 }
 export default function Category({ category }: CategoryProps): JSX.Element {
-  console.log("category", category);
-
   return (
     <Applayout title={`${category.name} category`}>
       <Head>
@@ -23,7 +21,6 @@ export default function Category({ category }: CategoryProps): JSX.Element {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  console.log("params", params);
   const storeCategories: any[] = await getStoreCategories();
 
   const category = storeCategories?.filter(

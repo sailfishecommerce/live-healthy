@@ -130,7 +130,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
               <a className="navbar-tool-text">
                 <small>My Cart</small>
                 {cart?.grandTotal
-                  ? `$ {cart?.grandTotal.toFixed(2)}`
+                  ? `${cart?.grandTotal.toFixed(2)}`
                   : "$ 0.00"}
               </a>
               {cart?.items.length > 0 && (

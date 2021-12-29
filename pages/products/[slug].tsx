@@ -7,7 +7,6 @@ interface ProductPage {
   pageProduct: any;
 }
 export default function ProductPage({ pageProduct }: ProductPage) {
-  console.log("pageProduct", pageProduct);
   return (
     <>
       <Head>
@@ -51,7 +50,6 @@ type propsType = {
 };
 
 export async function getStaticProps({ params }: propsType) {
-  console.log("params", params);
 
   const productData: any = await fetchAllSwellProducts();
   const results: any = await Promise.all(productData);
