@@ -9,36 +9,40 @@ interface ProductPage {
 export default function ProductPage({ pageProduct }: ProductPage) {
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        {pageProduct.tags && (
-          <meta name="keywords" content={pageProduct.tags[0]} />
-        )}
-        <meta name="description" content={pageProduct.description}></meta>
-        <meta
-          property="og:title"
-          content={pageProduct.meta_title}
-          key="ogtitle"
-        />
-        <meta
-          property="og:url"
-          content={`https://www.livehealthy.hk/${pageProduct.slug}`}
-          key="ogurl"
-        />
-        <meta
-          property="og:image"
-          content={pageProduct.images[0].file.url}
-          key="ogimage"
-        />
-        <meta property="og:site_name" content="Live healthy" key="ogsitename" />
-        <meta
-          property="og:description"
-          content={pageProduct.description}
-          key="ogdesc"
-        />
-      </Head>
       <Applayout title={pageProduct.meta_title}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta charSet="utf-8" />
+          {pageProduct.tags && (
+            <meta name="keywords" content={pageProduct.tags[0]} />
+          )}
+          <meta name="description" content={pageProduct.description}></meta>
+          <meta
+            property="og:title"
+            content={pageProduct.meta_title}
+            key="ogtitle"
+          />
+          <meta
+            property="og:url"
+            content={`https://www.livehealthy.hk/${pageProduct.slug}`}
+            key="ogurl"
+          />
+          <meta
+            property="og:image"
+            content={pageProduct.images[0].file.url}
+            key="ogimage"
+          />
+          <meta
+            property="og:site_name"
+            content="Live healthy"
+            key="ogsitename"
+          />
+          <meta
+            property="og:description"
+            content={pageProduct.description}
+            key="ogdesc"
+          />
+        </Head>
         <ProductOverview pageProduct={pageProduct} />
       </Applayout>
     </>
@@ -50,7 +54,6 @@ type propsType = {
 };
 
 export async function getStaticProps({ params }: propsType) {
-
   const productData: any = await fetchAllSwellProducts();
   const results: any = await Promise.all(productData);
 
