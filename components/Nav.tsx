@@ -129,9 +129,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
               </a>
               <a className="navbar-tool-text">
                 <small>My Cart</small>
-                {cart?.grandTotal
-                  ? `${cart?.grandTotal.toFixed(2)}`
-                  : "$ 0.00"}
+                {cart?.grandTotal ? `${cart?.grandTotal.toFixed(2)}` : "$ 0.00"}
               </a>
               {cart?.items.length > 0 && (
                 <HeaderCartDropdown toggleCart={toggleCart} cart={cart} />
@@ -167,7 +165,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
                   data-bs-toggle="dropdown"
                 >
                   <i className="ci-view-grid me-2"></i>
-                  Categories
+                  Collections
                 </a>
                 <CategoryDropdown />
               </li>

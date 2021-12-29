@@ -22,7 +22,7 @@ function CategoryDropdownList({ category, categories }: Props) {
       id: category.id,
       categoryId: category.slug,
       categoryName: category.name,
-      categoryLink: `categories/${category.slug}`,
+      categoryLink: `collections/${category.slug}`,
       categoryImage: category.images[0]?.file?.url,
     });
     selectedFooterCategory(category.name);
@@ -32,7 +32,7 @@ function CategoryDropdownList({ category, categories }: Props) {
     <div>
       <div className="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
         <div className="widget widget-links">
-          <Link href={`/categories/${category.slug}`} passHref>
+          <Link href={`/collections/${category.slug}`} passHref>
             <a
               onClick={() => linkHandler(category)}
               className="categoryImg d-flex flex-column overflow-hidden rounded-3 mb-3"
@@ -44,7 +44,7 @@ function CategoryDropdownList({ category, categories }: Props) {
           <ul className="widget-list">
             {displayThreeSubCat.map((cat) => (
               <li key={cat.id} className="widget-list-item mb-1">
-                <Link href={`/categories/${cat.slug}`} passHref>
+                <Link href={`/collections/${cat.slug}`} passHref>
                   <a className="widget-list-link">{cat.name}</a>
                 </Link>
               </li>

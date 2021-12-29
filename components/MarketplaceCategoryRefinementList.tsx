@@ -77,7 +77,7 @@ export function CategoriesList({
           .accordion {
             scrollbar-width: thin;
             scrollbar-color: darkgrey slategrey;
-            height: 370px;
+            max-height: 370px;
             overflow-y: auto;
           }
           .accordion::-webkit-scrollbar {

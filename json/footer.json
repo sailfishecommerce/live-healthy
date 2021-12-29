@@ -1,21 +1,19 @@
 {
   "section1": [
     {
-      "name": "Categories",
+      "name": "Collections",
       "links": [
-        { "name": "Sneakers & Athletic", "slug": "#" },
-        { "name": "Athletic Apparel", "slug": "#" },
-        { "name": "Sandals", "slug": "#" },
-        { "name": "Jeans", "slug": "#" },
-        { "name": "Shirts & Tops", "slug": "#" },
-        { "name": "Shorts", "slug": "#" },
-        { "name": "T-Shirts", "slug": "#" },
-        { "name": "Swimwear", "slug": "#" },
-        { "name": "Clogs & Mules", "slug": "#" },
-        { "name": "Bags & Wallets", "slug": "#" },
-        { "name": "Accessories", "slug": "#" },
-        { "name": "Sunglasses & Eyewear", "slug": "#" },
-        { "name": "Watches", "slug": "#" }
+        { "name": "Personal Care", "slug": "/collections/personal-care" },
+        { "name": "Medicines", "slug": "/collections/medicines" },
+        { "name": "Beauty", "slug": "/collections/beauty" },
+        { "name": "Medical Aids", "slug": "/collections/medical-aids" },
+        { "name": "Hair Colours", "slug": "/collections/hair-colours" },
+        {
+          "name": "Veterinary and Pet Care",
+          "slug": "/collections/veterinary-and-pet-care"
+        },
+        { "name": "Confectionery", "slug": "/collections/confectionery" },
+        { "name": "Health", "slug": "collections/health" }
       ]
     },
     {

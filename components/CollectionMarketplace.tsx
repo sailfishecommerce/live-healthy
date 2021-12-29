@@ -9,13 +9,13 @@ import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 
 interface MarketplaceProps {
-  category?: {
+  collection?: {
     name: string;
     slug: string;
   };
 }
 
-export default function CategoryMarketplace({ category }: MarketplaceProps) {
+export default function CollectionMarketplace({ collection }: MarketplaceProps) {
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -38,9 +38,9 @@ export default function CategoryMarketplace({ category }: MarketplaceProps) {
                     <a className="text-nowrap">Home</a>
                   </Link>
                 </li>
-                {category ? (
+                {collection ? (
                   <li className="breadcrumb-item text-nowrap active">
-                    {category?.name}
+                    {collection?.name}
                   </li>
                 ) : (
                   <li className="breadcrumb-item text-nowrap active">
@@ -54,7 +54,7 @@ export default function CategoryMarketplace({ category }: MarketplaceProps) {
       </div>
       <div className="container pb-5 mb-2 mb-md-4">
         <div className="row">
-          <Categories  categoryMarketplace/>
+          <Categories categoryMarketplace />
           <section className="col-lg-9">
             <ShopBannerToolbar />
             <div>

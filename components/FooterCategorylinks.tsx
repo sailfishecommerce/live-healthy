@@ -61,7 +61,10 @@ function Categorylinks({ items }: any) {
                 <ul className="widget-list">
                   {groupedContent.links.map(
                     (contentLink: any, index: number) => (
-                      <li key={`${contentLink.slug}-${index}`} className="widget-list-item">
+                      <li
+                        key={`${contentLink.slug}-${index}`}
+                        className="widget-list-item"
+                      >
                         <Link href={`/${contentLink.slug}`} passHref>
                           <a
                             onClick={() => categoryEvents(contentLink)}
@@ -85,7 +88,7 @@ function Categorylinks({ items }: any) {
                 {content.links.map((contentLink: any) => (
                   <li key={contentLink.name} className="widget-list-item">
                     <Link
-                      href={`/categories/${getCategorySlug(contentLink.label)}`}
+                      href={`/collection/${getCategorySlug(contentLink.label)}`}
                       passHref
                     >
                       <a className="widget-list-link">{contentLink.label}</a>
