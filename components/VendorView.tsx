@@ -41,18 +41,19 @@ export default function VendorView({ category, vendor }: MarketplaceProps) {
                   </Link>
                 </li>
                 {category ? (
-                  <li className="breadcrumb-item link text-nowrap">
-                    {category?.name}
-                  </li>
+                  <li className="breadcrumb-item link">{category?.name}</li>
                 ) : (
-                  <li className="breadcrumb-item link text-nowrap">
+                  <li className="breadcrumb-item link">
                     <Link href="/shop" passHref>
                       <a>Shop</a>
                     </Link>
                   </li>
                 )}
-                <li className="breadcrumb-item text-nowrap active">
-                  <a>{vendor}</a>
+                <li
+                  className="breadcrumb-item text-nowrap active"
+                  aria-current="page"
+                >
+                  {vendor}
                 </li>
               </ol>
             </nav>
