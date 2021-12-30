@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function VendorList({
@@ -8,10 +12,23 @@ export function VendorList({
   searchForItems,
   createURL,
 }: any) {
+  const router = useRouter();
+  const vendorQuery = router?.query["vendor"];
+
+  console.log("router", router);
+
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
+
+  useEffect(() => {
+    if (vendorQuery) {
+      refine(vendorQuery);
+    }
+  }, [router?.query, refine, vendorQuery]);
+
   function refineSearch(item: any) {
+    console.log("item.value", item.value);
     createURL(item.value);
     refine(item.value);
   }
@@ -30,19 +47,29 @@ export function VendorList({
       </div>
       <div className="accordion mt-n1" id="shop-categories">
         {items.length > 0 ? (
-          items.map((item: { label: string; count: number }) => (
+          items.map((item: { label: string; count: number; slug: string }) => (
             <div key={item.label} className="accordion-item">
+              {console.log("item.slug", item)}
               <h3 className="text-sm">
-                <a onClick={() => refineSearch(item)} className="cat-link">
-                  {isFromSearch ? (
-                    <Highlight attribute="label" hit={item} />
-                  ) : (
-                    <>
-                      {item.label}
-                      <span className="mx-2 badge bg-danger">{item.count}</span>
-                    </>
-                  )}
-                </a>
+                <Link
+                  href={`/collections/vendors/${replaceSpaceWithHypen(
+                    item.label
+                  )}`}
+                  passHref
+                >
+                  <a className="cat-link">
+                    {isFromSearch ? (
+                      <Highlight attribute="label" hit={item} />
+                    ) : (
+                      <>
+                        {item.label}
+                        <span className="mx-2 badge bg-danger">
+                          {item.count}
+                        </span>
+                      </>
+                    )}
+                  </a>
+                </Link>
               </h3>
             </div>
           ))

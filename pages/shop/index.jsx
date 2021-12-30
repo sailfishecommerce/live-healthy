@@ -29,7 +29,7 @@ const createURL = (state) => {
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList?.vendor.length === 0 &&
+    state.refinementList?.vendor?.length === 0 &&
     state?.menu &&
     !state?.menu?.product_type;
 
@@ -50,7 +50,7 @@ const createURL = (state) => {
   }
   if (state.refinementList?.vendor) {
     queryParameters.vendor =
-      state.refinementList?.vendor.map(encodeURIComponent);
+      state.refinementList?.vendor?.map(encodeURIComponent);
   }
   if (state.refinementList?.tags) {
     queryParameters.tags = state.refinementList?.tags.map(encodeURIComponent);
