@@ -40,8 +40,8 @@ export async function getStaticPaths() {
         (vendor) =>
           `/collections/vendors/${vendor
             .toString()
-            .toLowerCase()
-            .replaceAll(" ", "-")}`
+            .replace(/\s+/g, "-")
+            .toLowerCase()}`
       ) || [],
     fallback: false,
   };
