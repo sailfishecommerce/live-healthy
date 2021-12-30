@@ -36,13 +36,13 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      vendors?.map(
-        (vendor) =>
-          `/collections/vendors/${vendor
-            .toString()
-            .toLowerCase()
-            .replaceAll(" ", "-")}`
-      ) || [],
+      vendors?.map((vendor) => {
+        console.log("vendor");
+        const formattedVendor = `/collections/vendors/${vendor
+          .toString()
+          .replaceAll(" ", "-")}`.toLowerCase();
+        return formattedVendor;
+      }) || [],
     fallback: false,
   };
 }
