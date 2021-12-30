@@ -3,7 +3,10 @@ import Metatag from "@/components/Metatag";
 
 import Applayout from "@/layout/Applayout";
 import VendorView from "@/components/VendorView";
-import toTitleCase, { replaceSpaceWithHypen } from "@/lib/formatString";
+import toTitleCase, {
+  replaceHypenWithSpace,
+  replaceSpaceWithHypen,
+} from "@/lib/formatString";
 
 export default function Vendors({ vendor }) {
   return (
