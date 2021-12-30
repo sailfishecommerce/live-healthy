@@ -1,13 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
+import { useRouter } from "next/router";
+import toTitleCase from "@/lib/formatString";
 
-export function VendorList({
+export function SingleVendorList({
   items,
   isFromSearch,
   refine,
   searchForItems,
   createURL,
 }: any) {
+  const { query }: any = useRouter();
+
+  console.log("query", query);
+  const formattedVendor: any = query.slug.replaceAll("-", " ");
+  const vendor = toTitleCase(formattedVendor);
+
+  console.log("vendor", vendor);
+
+  useEffect(() => {
+    refine([vendor]);
+  }, []);
+
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
@@ -19,36 +35,14 @@ export function VendorList({
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
       <h3 className="widget-title">Vendors</h3>
-      <div className="input-group input-group-sm mb-2">
-        <input
-          className="widget-filter-search form-control rounded-end"
-          type="text"
-          onChange={searchItems}
-          placeholder="Search"
-        />
-        <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
-      </div>
       <div className="accordion mt-n1" id="shop-categories">
-        {items.length > 0 ? (
-          items.map((item: { label: string; count: number }) => (
-            <div key={item.label} className="accordion-item">
-              <h3 className="text-sm">
-                <a onClick={() => refineSearch(item)} className="cat-link">
-                  {isFromSearch ? (
-                    <Highlight attribute="label" hit={item} />
-                  ) : (
-                    <>
-                      {item.label}
-                      <span className="mx-2 badge bg-danger">{item.count}</span>
-                    </>
-                  )}
-                </a>
-              </h3>
-            </div>
-          ))
-        ) : (
-          <LoadCategorySidebar />
-        )}
+        <div className="accordion-item">
+          <h3 className="text-sm">
+            <a style={{ fontWeight: "bold" }} className="cat-link">
+              {vendor}
+            </a>
+          </h3>
+        </div>
       </div>
       <style jsx>
         {`
@@ -88,4 +82,5 @@ export function VendorList({
   );
 }
 
-export const VendorRefinementList = connectRefinementList(VendorList);
+export const SingleVendorRefinementList =
+  connectRefinementList(SingleVendorList);
