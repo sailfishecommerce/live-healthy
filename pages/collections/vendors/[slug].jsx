@@ -38,7 +38,10 @@ export async function getStaticPaths() {
     paths:
       vendors?.map(
         (vendor) =>
-          `/collections/vendors/${vendor.toLowerCase().replaceAll(" ", "-")}`
+          `/collections/vendors/${vendor
+            .toString()
+            .toLowerCase()
+            .replaceAll(" ", "-")}`
       ) || [],
     fallback: false,
   };
