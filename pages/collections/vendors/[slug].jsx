@@ -1,13 +1,14 @@
 import fetchAllSwellProducts from "@/lib/processPageproduct";
+import Metatag from "@/components/Metatag";
 
 import Applayout from "@/layout/Applayout";
 import VendorView from "@/components/VendorView";
 import toTitleCase from "@/lib/formatString";
 
 export default function Vendors({ vendor }) {
-  console.log("vendor", vendor);
   return (
-    <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
+    <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
+      <Metatag />
       <VendorView vendor={vendor} />
     </Applayout>
   );
