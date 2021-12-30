@@ -1,5 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
+import { useRouter } from "next/router";
+import toTitleCase from "@/lib/formatString";
 
 export function VendorList({
   items,
@@ -8,6 +12,18 @@ export function VendorList({
   searchForItems,
   createURL,
 }: any) {
+  const { query }: any = useRouter();
+
+  console.log("query", query);
+  const formattedVendor: any = query.slug.replaceAll("-", " ");
+  const vendor = toTitleCase(formattedVendor);
+
+  console.log("vendor", vendor);
+
+  useEffect(() => {
+    refine([vendor]);
+  }, []);
+
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }

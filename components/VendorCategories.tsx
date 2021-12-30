@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { VendorRefinementList } from "./VendorRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import { TagsRefinementList } from "./TagsRefinementList";
+
 
 export default function VendorCategories() {
   return (
