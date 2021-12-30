@@ -13,13 +13,11 @@ interface MarketplaceProps {
     name: string;
     slug: string;
   };
-  vendorQuery: any;
+  vendor: any;
 }
 
-export default function VendorView({
-  category,
-  vendorQuery,
-}: MarketplaceProps) {
+export default function VendorView({ category, vendor }: MarketplaceProps) {
+  console.log("vendor", vendor);
   return (
     <InstantSearch
       indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
@@ -37,20 +35,25 @@ export default function VendorView({
             <nav aria-label="breadcrumb">
               <AlgoliaCurrentRefinement />
               <ol className="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                <li className="breadcrumb-item">
+                <li className="breadcrumb-item link">
                   <Link href="/" passHref>
                     <a className="text-nowrap">Home</a>
                   </Link>
                 </li>
                 {category ? (
-                  <li className="breadcrumb-item text-nowrap active">
+                  <li className="breadcrumb-item link text-nowrap">
                     {category?.name}
                   </li>
                 ) : (
-                  <li className="breadcrumb-item text-nowrap active">
-                    <a>Shop</a>
+                  <li className="breadcrumb-item link text-nowrap">
+                    <Link href="/shop" passHref>
+                      <a>Shop</a>
+                    </Link>
                   </li>
                 )}
+                <li className="breadcrumb-item text-nowrap active">
+                  <a>{vendor}</a>
+                </li>
               </ol>
             </nav>
           </div>
@@ -58,7 +61,7 @@ export default function VendorView({
       </div>
       <div className="container pb-5 mb-2 mb-md-4">
         <div className="row">
-          {/* <VendorCategories query={vendorQuery} /> */}
+          <VendorCategories />
           <section className="col-lg-9">
             <ShopBannerToolbar />
             <div>
@@ -70,6 +73,13 @@ export default function VendorView({
           </section>
         </div>
       </div>
+      <style jsx>
+        {`
+          .breadcrumb-item.link a:hover {
+            color: red;
+          }
+        `}
+      </style>
     </InstantSearch>
   );
 }

@@ -1,38 +1,25 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import fetchAllSwellProducts from "@/lib/processPageproduct";
 
 import Applayout from "@/layout/Applayout";
 import VendorView from "@/components/VendorView";
+import toTitleCase from "@/lib/formatString";
 
-export default function Vendors() {
-  const router = useRouter();
-  const { query } = router;
-
-  useEffect(() => {
-    router.isReady;
-  }, [router.isReady]);
-
-  console.log("query", query);
+export default function Vendors({ vendor }) {
+  console.log("vendor", vendor);
   return (
     <Applayout title="Shop for gloves, medic supplies, mask and respirators ...">
-      <VendorView vendorQuery={query} />
+      <VendorView vendor={vendor} />
     </Applayout>
   );
 }
 
 export async function getStaticProps({ params }) {
-  const productData = await fetchAllSwellProducts();
-  const results = await Promise.all(productData);
-
-  let vendorArray = [];
-  results[0].map((result) => vendorArray.push(result.vendor));
-
-  let vendors = [...new Set(vendorArray)];
+  const formatVendor = params.slug.replaceAll("-", " ");
+  const vendor = toTitleCase(formatVendor);
 
   return {
     props: {
-      vendors,
+      vendor,
     },
   };
 }
