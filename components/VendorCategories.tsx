@@ -2,9 +2,13 @@ import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { VendorRefinementList } from "./VendorRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import { TagsRefinementList } from "./TagsRefinementList";
+import { SingleVendorRefinementList } from "./SingleVendorRefinementList";
 
+interface props {
+  vendorView: boolean;
+}
 
-export default function VendorCategories() {
+export default function VendorCategories({ vendorView }: props) {
   return (
     <aside className="col-lg-3">
       <div
@@ -22,12 +26,21 @@ export default function VendorCategories() {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <VendorRefinementList
-            showMoreLimit={100}
-            showMore={true}
-            searchable={true}
-            attribute="vendor"
-          />
+          {vendorView ? (
+            <SingleVendorRefinementList
+              showMoreLimit={100}
+              showMore={true}
+              searchable={true}
+              attribute="vendor"
+            />
+          ) : (
+            <VendorRefinementList
+              showMoreLimit={100}
+              showMore={true}
+              searchable={true}
+              attribute="vendor"
+            />
+          )}
           <TagsRefinementList
             showMoreLimit={100}
             showMore={true}
