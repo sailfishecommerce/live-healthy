@@ -6,6 +6,7 @@ import { productType } from "@/types";
 import FormattedPrice from "@/lib/formatPrice";
 import Rating from "./Rating";
 import ProductForm from "./ProductForm";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 
 interface Props {
   product: productType;
@@ -56,9 +57,7 @@ export default function ProductDetail({ product }: Props) {
       <ProductForm product={product} />
       <div className="d-flex flex-column flex-start align-items-start">
         <Link
-          href={`/collections/vendors/${product.vendor
-            .toLowerCase()
-            .replaceAll(" ", "-")}`}
+          href={`/collections/vendors/${replaceSpaceWithHypen(product.vendor)}`}
           passHref
         >
           <a className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0">

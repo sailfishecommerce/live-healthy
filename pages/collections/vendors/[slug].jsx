@@ -3,7 +3,7 @@ import Metatag from "@/components/Metatag";
 
 import Applayout from "@/layout/Applayout";
 import VendorView from "@/components/VendorView";
-import toTitleCase from "@/lib/formatString";
+import toTitleCase, { replaceSpaceWithHypen } from "@/lib/formatString";
 
 export default function Vendors({ vendor }) {
   return (
@@ -15,7 +15,7 @@ export default function Vendors({ vendor }) {
 }
 
 export async function getStaticProps({ params }) {
-  const formatVendor = params.slug.replaceAll("-", " ");
+  const formatVendor = replaceHypenWithSpace(params.slug);
   const vendor = toTitleCase(formatVendor);
 
   return {
@@ -37,11 +37,7 @@ export async function getStaticPaths() {
   return {
     paths:
       vendors?.map(
-        (vendor) =>
-          `/collections/vendors/${vendor
-            .toString()
-            .replace(/\s+/g, "-")
-            .toLowerCase()}`
+        (vendor) => `/collections/vendors/${replaceSpaceWithHypen(vendor)}`
       ) || [],
     fallback: false,
   };

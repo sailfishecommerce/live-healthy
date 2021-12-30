@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 import { productType } from "../types";
 
 interface Props {
@@ -27,9 +29,9 @@ export default function ProductBanner({ product }: Props) {
               </li>
               <li className="breadcrumb-item text-nowrap">
                 <Link
-                  href={`/collections/vendors/${product.vendor
-                    .toLowerCase()
-                    .replaceAll(" ", "-")}`}
+                  href={`/collections/vendors/${replaceSpaceWithHypen(
+                    product.vendor
+                  )}`}
                   passHref
                 >
                   <a>{product.vendor}</a>

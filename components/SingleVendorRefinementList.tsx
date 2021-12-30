@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 import { useRouter } from "next/router";
-import toTitleCase from "@/lib/formatString";
+import toTitleCase, { replaceHypenWithSpace } from "@/lib/formatString";
 
 export function SingleVendorList({
   items,
@@ -15,7 +15,7 @@ export function SingleVendorList({
   const { query }: any = useRouter();
 
   console.log("query", query);
-  const formattedVendor: any = query.slug.replaceAll("-", " ");
+  const formattedVendor: any = replaceHypenWithSpace(query.slug);
   const vendor = toTitleCase(formattedVendor);
 
   console.log("vendor", vendor);

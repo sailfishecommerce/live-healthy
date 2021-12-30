@@ -6,6 +6,7 @@ import searchClient from "@/lib/algoliaConfig";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import footerContent from "@/json/footer.json";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 
 type contentLinkType = {
   id: string;
@@ -26,7 +27,8 @@ function Categorylinks({ items }: any) {
   footerContent.section1[0].links = items;
 
   function getCategorySlug(categoryName: string) {
-    const slug = categoryName?.toLowerCase().replaceAll(" ", "-");
+    const slug = replaceSpaceWithHypen(categoryName);
+
     return slug;
   }
 
@@ -88,7 +90,9 @@ function Categorylinks({ items }: any) {
                 {content.links.map((contentLink: any) => (
                   <li key={contentLink.name} className="widget-list-item">
                     <Link
-                      href={`/collections/${getCategorySlug(contentLink.label)}`}
+                      href={`/collections/${getCategorySlug(
+                        contentLink.label
+                      )}`}
                       passHref
                     >
                       <a className="widget-list-link">{contentLink.label}</a>

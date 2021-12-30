@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Highlight, connectMenu } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 
 type itemType = {
   label: string;
@@ -19,10 +20,7 @@ export function CategoriesList({
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
-  function refineSearch(item: any) {
-    console.log("item.value", item.value);
-    refine(item.value);
-  }
+ 
   return (
     <div className="widget widget-categories mb-4 pb-0 border-bottom">
       <h3 className="widget-title">Product Type</h3>
@@ -41,9 +39,7 @@ export function CategoriesList({
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
                 <Link
-                  href={`/collections/${item.value
-                    .toLowerCase()
-                    .replaceAll(" ", "-")}`}
+                  href={`/collections/${replaceSpaceWithHypen(item.value)}`}
                   passHref
                 >
                   <a className="cat-link">
