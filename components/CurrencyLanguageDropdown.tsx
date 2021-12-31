@@ -11,6 +11,19 @@ export default function CurrencyLanguageDropdown() {
   );
   console.log("currency, language ", currency, language);
 
+  function displayFlag() {
+    switch (language) {
+      case "EN":
+        return "/img/flags/en.png";
+      case "FR":
+        return "/img/flags/fr.png";
+      case "DE":
+        return "/img/flags/de.png";
+      case "ITL":
+        return "/img/flags/itl.png";
+    }
+  }
+
   function updateSiteCurrencyOrLanguage(e: any, stateType: string) {
     if (stateType === "currency") e.preventDefault();
     const stateValue = stateType === "currency" ? e.target.value : e;
@@ -26,12 +39,7 @@ export default function CurrencyLanguageDropdown() {
   return (
     <Dropdown className="topbar-text dropdown disable-autohide">
       <Dropdown.Toggle className="topbar-link dropdown-toggle">
-        <img
-          className="me-2"
-          src="/img/flags/en.png"
-          width="20"
-          alt="English"
-        />
+        <img className="me-2" src={displayFlag()} width="20" alt={language} />
         {`${language} / ${currency}`}
       </Dropdown.Toggle>
       <Dropdown.Menu>

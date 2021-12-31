@@ -81,7 +81,7 @@ export default function FooterBottomSection({
         <hr className="hr-light mb-5" />
         <div className="row pb-2">
           <div className="col-md-6 text-center text-md-start mb-4">
-            <div className="text-nowrap mb-4">
+            <div className="text-nowrap mb-4 d-flex align-items-center">
               <a className="d-inline-block align-middle mt-n1 me-3" href="#">
                 <img
                   className="d-block"

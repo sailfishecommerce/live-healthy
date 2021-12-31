@@ -3,44 +3,44 @@
     {
       "img": "/img/flags/en.png",
       "alt": "English",
-      "label": "En"
+      "label": "EN"
     },
     {
       "img": "/img/flags/fr.png",
       "alt": "Français",
-      "label": "Fr"
+      "label": "FR"
     },
     {
       "img": "/img/flags/de.png",
       "alt": "Deutsch",
-      "label": "De"
+      "label": "DE"
     },
     {
-      "img": "/img/flags/it.png",
+      "img": "/img/flags/itl.png",
       "alt": "Italiano",
-      "label": "Itl"
+      "label": "ITL"
     }
   ],
   "currency": [
     {
       "label": "$ USD",
-      "value": "usd"
+      "value": "USD"
     },
     {
       "label": "$ HKD",
-      "value": "hkd"
+      "value": "HKD"
     },
     {
       "label": "€ EUR",
-      "value": "eur"
+      "value": "EUR"
     },
     {
       "label": "£ UKP",
-      "value": "ukp"
+      "value": "UKP"
     },
     {
       "label": "¥ JPY",
-      "value": "jpy"
+      "value": "JPY"
     }
   ]
 }
