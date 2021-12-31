@@ -1,0 +1,46 @@
+{
+  "language": [
+    {
+      "img": "/img/flags/en.png",
+      "alt": "English",
+      "label": "En"
+    },
+    {
+      "img": "/img/flags/fr.png",
+      "alt": "Français",
+      "label": "Fr"
+    },
+    {
+      "img": "/img/flags/de.png",
+      "alt": "Deutsch",
+      "label": "De"
+    },
+    {
+      "img": "/img/flags/it.png",
+      "alt": "Italiano",
+      "label": "Itl"
+    }
+  ],
+  "currency": [
+    {
+      "label": "$ USD",
+      "value": "usd"
+    },
+    {
+      "label": "$ HKD",
+      "value": "hkd"
+    },
+    {
+      "label": "€ EUR",
+      "value": "eur"
+    },
+    {
+      "label": "£ UKP",
+      "value": "ukp"
+    },
+    {
+      "label": "¥ JPY",
+      "value": "jpy"
+    }
+  ]
+}

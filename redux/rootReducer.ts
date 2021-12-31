@@ -13,8 +13,8 @@ import checkoutReducer from "@/redux/checkout-slice";
 import airwallexReduxer from "@/redux/airwallex-slice";
 import integrationReducer from "@/redux/integration-slice";
 import shopReducer from "@/redux/shop-slice";
-import marketplaceCategoryReducer from "./marketplace-category-slice";
-
+import marketplaceCategoryReducer from "@/redux/marketplace-category-slice";
+import currencyLanguageSlice from "@/redux/currency-language-slice";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   integrations: integrationReducer,
   shop: shopReducer,
   marketplaceCategory: marketplaceCategoryReducer,
+  currencyLanguage: currencyLanguageSlice,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 
