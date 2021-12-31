@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
+
 interface FooterBottomSectionProps {
   bottomSectionBgColor: string;
 }
@@ -88,64 +90,7 @@ export default function FooterBottomSection({
                   alt="Bandicoot"
                 />
               </a>
-              <div className="btn-group dropdown disable-autohide">
-                <button
-                  className="btn btn-outline-light border-light btn-sm dropdown-toggle px-2"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                >
-                  <img
-                    className="me-2"
-                    src="/img/flags/en.png"
-                    width="20"
-                    alt="English"
-                  />
-                  Eng / $
-                </button>
-                <ul className="dropdown-menu my-1">
-                  <li className="dropdown-item">
-                    <select className="form-select form-select-sm">
-                      <option value="usd">$ USD</option>
-                      <option value="eur">€ EUR</option>
-                      <option value="ukp">£ UKP</option>
-                      <option value="jpy">¥ JPY</option>
-                    </select>
-                  </li>
-                  <li>
-                    <a className="dropdown-item pb-1" href="#">
-                      <img
-                        className="me-2"
-                        src="/img/flags/fr.png"
-                        width="20"
-                        alt="Français"
-                      />
-                      Français
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item pb-1" href="#">
-                      <img
-                        className="me-2"
-                        src="/img/flags/de.png"
-                        width="20"
-                        alt="Deutsch"
-                      />
-                      Deutsch
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <img
-                        className="me-2"
-                        src="/img/flags/it.png"
-                        width="20"
-                        alt="Italiano"
-                      />
-                      Italiano
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <CurrencyLanguageDropdown />
             </div>
             <div className="widget widget-links widget-light">
               <ul className="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">

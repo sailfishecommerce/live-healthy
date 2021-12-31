@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import { useRouter } from "next/router";
@@ -17,11 +18,13 @@ export function VendorList({
     searchForItems(e.currentTarget.value);
   }
 
+  console.log("vendorQuery");
+
   useEffect(() => {
     if (vendorQuery) {
       refine(vendorQuery);
     }
-  }, [router?.query, refine, vendorQuery]);
+  }, [vendorQuery]);
 
   function refineSearch(e: any, item: any) {
     e.preventDefault();

@@ -32,8 +32,6 @@ function getCategoryName(slug) {
 }
 
 const createURL = (state) => {
-  console.log("state", state);
-
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
@@ -177,7 +175,7 @@ class Shop extends Component {
     });
   };
   render() {
-    console.log("appState", this.state);
+    console.log("this.state", this.state);
 
     return (
       <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
