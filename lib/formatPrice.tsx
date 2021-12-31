@@ -1,3 +1,5 @@
+import useCurrency from "@/hooks/useCurrency";
+
 export function formatPrice(price: number) {
   const productPrice = price?.toFixed(2);
   const splitPrice = productPrice?.split(".");
@@ -13,9 +15,11 @@ interface formattedPriceProps {
 export default function FormattedPrice({
   price,
 }: formattedPriceProps): JSX.Element {
+  const { currencySymbol } = useCurrency();
   return (
     <div className="d-flex align-items-baseline">
-      ${formatPrice(price).mainPrice}.
+      {currencySymbol}
+      {formatPrice(price).mainPrice}.
       <small>{formatPrice(price).centPrice}</small>
     </div>
   );
