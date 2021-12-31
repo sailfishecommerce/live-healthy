@@ -73,13 +73,11 @@ export default function MarketplaceTemp(
                   </Link>
                 </li>
                 {category ? (
-                  <li className="breadcrumb-item text-nowrap active">
+                  <li className="breadcrumb-item text-nowrap">
                     {category?.name}
                   </li>
                 ) : (
-                  <li className="breadcrumb-item text-nowrap active">
-                    <a>Shop</a>
-                  </li>
+                  <li className="breadcrumb-item text-nowrap active">Shop</li>
                 )}
               </ol>
             </nav>

@@ -13,13 +13,13 @@ const SortBy = ({ items, refine, createURL }: any) => {
       <Dropdown.Menu className="dropdown-menu">
         {items.map((item: any) => (
           <Dropdown.Item
-            href={createURL(item.value)}
             key={item.value}
             style={{ fontWeight: item.isRefined ? "bold" : "normal" }}
             className="dropdown-item"
             onClick={(event) => {
               event.preventDefault();
               refine(item.value);
+              createURL(item.value);
             }}
           >
             {item.label}

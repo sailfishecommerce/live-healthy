@@ -23,50 +23,6 @@ const DEFAULT_PROPS = {
   indexName: "New_Livehealthy_products_index",
 };
 
-const createURL = (state) => {
-  console.log("state", state);
-  const isDefaultRoute =
-    !state.query &&
-    state.page === 1 &&
-    state.refinementList &&
-    state.refinementList?.vendor?.length === 0 &&
-    state?.menu &&
-    !state?.menu?.product_type;
-
-  if (isDefaultRoute) {
-    return "";
-  }
-
-  const categoryPath = state?.menu?.product_type
-    ? `/${getCategorySlug(state?.menu?.product_type)}/`
-    : "";
-  const queryParameters = {};
-
-  if (state.query) {
-    queryParameters.query = encodeURIComponent(state.query);
-  }
-  if (state.page !== 1) {
-    queryParameters.page = state.page;
-  }
-  if (state.refinementList?.vendor) {
-    queryParameters.vendor =
-      state.refinementList?.vendor?.map(encodeURIComponent);
-  }
-  if (state.refinementList?.tags) {
-    queryParameters.tags = state.refinementList?.tags.map(encodeURIComponent);
-  }
-
-  const queryString = qs.stringify(queryParameters, {
-    addQueryPrefix: true,
-    arrayFormat: "repeat",
-  });
-
-  return `/shop/${categoryPath}${queryString}`;
-};
-
-const searchStateToURL = (searchState) =>
-  searchState ? createURL(searchState) : "";
-
 function getCategorySlug(name) {
   return name.split(" ").map(encodeURIComponent).join("-");
 }
@@ -74,6 +30,60 @@ function getCategorySlug(name) {
 function getCategoryName(slug) {
   return slug.split("-").map(decodeURIComponent).join(" ");
 }
+
+const createURL = (state) => {
+  console.log("state", state);
+
+  const isDefaultRoute =
+    !state.query &&
+    state.page === 1 &&
+    state.refinementList &&
+    state.refinementList?.vendor.length === 0 &&
+    state.refinementList?.tags.length === 0 &&
+    state?.menu &&
+    !state.menu?.product_type;
+
+  const categoryPath = state.menu?.product_type
+    ? `${getCategorySlug(state.menu.product_type)}/`
+    : "";
+
+  const queryParameters = {};
+
+  if (state.query) {
+    queryParameters.query = encodeURIComponent(state.query);
+  }
+
+  if (state.page !== 1) {
+    queryParameters.page = state.page;
+  }
+
+  if (state.refinementList.vendor) {
+    queryParameters.vendor = [state.refinementList.vendor].map(
+      encodeURIComponent
+    );
+  }
+
+  if (state.refinementList.tags) {
+    queryParameters.tags = [state.refinementList.tags].map(encodeURIComponent);
+  }
+
+  const queryString = qs.stringify(queryParameters, {
+    addQueryPrefix: true,
+    arrayFormat: "repeat",
+  });
+
+  if (isDefaultRoute) {
+    return "";
+  }
+
+  return `shop${categoryPath}${queryString}`;
+};
+
+const searchStateToURL = (searchState) => {
+  console.log("searchState", searchState);
+  const searchValue = searchState ? createURL(searchState) : "";
+  return searchValue;
+};
 
 const urlToSearchState = (location) => {
   console.log("location", location);
@@ -114,6 +124,7 @@ class Shop extends Component {
 
   static async getInitialProps({ asPath }) {
     const searchState = pathToSearchState(asPath);
+    console.log("asPath", asPath, "searchState", searchState);
     const resultsState = await findResultsState(MarketplaceTemp, {
       ...DEFAULT_PROPS,
       searchState,
@@ -124,7 +135,6 @@ class Shop extends Component {
       searchState,
     };
   }
-
   static getDerivedStateFromProps(props, state) {
     if (!isEqual(state.lastRouter, props.router)) {
       return {
@@ -137,7 +147,18 @@ class Shop extends Component {
   }
 
   onSearchStateChange = (searchState) => {
+    console.log("searchState", searchState);
+    console.log("this?.state?.searchState", this.state);
     clearTimeout(this.debouncedSetState);
+
+    const searchStateValue = {
+      searchState: {
+        ...searchState,
+        ...this.state.searchState,
+      },
+    };
+
+    console.log("searchStateValuesearchStateValue", searchStateValue);
 
     this.debouncedSetState = setTimeout(() => {
       const href = searchStateToURL(searchState);
@@ -147,15 +168,22 @@ class Shop extends Component {
       });
     }, updateAfter);
 
-    this.setState({ searchState });
+    this.setState((prevState) => {
+      console.log("prevState", prevState);
+      return {
+        ...this.state,
+        searchState,
+      };
+    });
   };
-
   render() {
+    console.log("appState", this.state);
+
     return (
       <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
         <MarketplaceTemp
           {...DEFAULT_PROPS}
-          searchState={this.state.searchState}
+          searchState={this.props.searchState}
           resultsState={this.props.resultsState}
           onSearchStateChange={this.onSearchStateChange}
           createURL={createURL}
