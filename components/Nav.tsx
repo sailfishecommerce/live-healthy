@@ -128,14 +128,16 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
                 )}
                 <i className="navbar-tool-icon ci-cart"></i>
               </a>
-              <a className="navbar-tool-text">
+              <div className="d-flex price-overview flex-column">
                 <small>My Cart</small>
-                {cart?.grandTotal ? (
-                  <FormattedPrice price={cart?.grandTotal} />
-                ) : (
-                  <FormattedPrice price={0} />
-                )}
-              </a>
+                <a className="navbar-tool-text">
+                  {cart?.grandTotal ? (
+                    <FormattedPrice price={cart?.grandTotal} />
+                  ) : (
+                    <FormattedPrice price={0} />
+                  )}
+                </a>
+              </div>
               {cart?.items.length > 0 && (
                 <HeaderCartDropdown toggleCart={toggleCart} cart={cart} />
               )}
@@ -195,6 +197,15 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
           .navbar-brand.d-sm-none.flex-shrink-0.me-2 img {
             height: 50px;
             width: 100%;
+          }
+          .price-overview {
+            width: 80px;
+            margin-left: 10px;
+          }
+          .navbar-tool-text {
+            display: flex;
+            align-items: center;
+            padding-left: 0px;
           }
         `}
       </style>

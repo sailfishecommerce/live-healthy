@@ -6,6 +6,7 @@ export default function useCurrency() {
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const { data: currencies } = useQuery("currencies", listEnabledCurrencies);
 
+  console.log("currencies", currencies);
   async function listEnabledCurrencies() {
     return await swell.currency.list();
   }
@@ -18,7 +19,6 @@ export default function useCurrency() {
     return await swell.currency.selected();
   }
   return {
-    currencySymbol: currencySymbolFormatter(currency),
     listEnabledCurrencies,
     currencies,
     selectCurrencies,
@@ -26,17 +26,14 @@ export default function useCurrency() {
   };
 }
 
-function currencySymbolFormatter(currency: string) {
-  switch (currency) {
-    case "USD":
-      return "$";
-    case "HKD":
-      return "HKD $";
-    case "EUR":
-      return "€";
-    case "UKP":
-      return "£";
-    case "JPY":
-      return "¥";
+export function currencySymbolFormatter(currency: {
+  symbol: string;
+  code: string;
+}) {
+  console.log("currency.symbol === $", currency.symbol === "$");
+  if (currency.symbol === "$" && currency.code !== "USD") {
+    return `${currency.code} ${currency.symbol} `;
+  } else {
+    return currency.symbol;
   }
 }

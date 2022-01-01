@@ -7,6 +7,7 @@ import Rating from "../Rating";
 import ProductForm from "../ProductForm";
 import { useAppDispatch } from "@/hooks/useRedux";
 import ProductGallery from "@/components/ProductGallery";
+import FormattedPrice from "@/lib/formatPrice";
 
 interface QuickViewModalProps {
   product: {
@@ -42,7 +43,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          <h4 className="modal-title product-title">
+          <h6 className="modal-title product-title">
             <Link href={`/products/${productToView.slug}`} passHref>
               <a
                 data-bs-toggle="tooltip"
@@ -53,7 +54,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                 <i className="ci-arrow-right fs-lg ms-2"></i>
               </a>
             </Link>
-          </h4>
+          </h6>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -72,6 +73,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                   <i className="ci-heart"></i>
                 </button>
               </div>
+              <FormattedPrice price={productToView.price} />
               <ProductForm product={productToView} />
               <div
                 className="description"

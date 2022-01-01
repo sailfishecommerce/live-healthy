@@ -1,4 +1,4 @@
-import useCurrency from "@/hooks/useCurrency";
+import useCurrency, { currencySymbolFormatter } from "@/hooks/useCurrency";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export function formatPrice(price: number) {
@@ -29,7 +29,7 @@ export default function FormattedPrice({
 
   return (
     <div className="d-flex align-items-baseline">
-      {selectedCurrency[0].symbol}
+      {currencySymbolFormatter(selectedCurrency[0])}
       {formatPrice(priceRate).mainPrice}.
       <small>{formatPrice(priceRate).centPrice}</small>
     </div>
