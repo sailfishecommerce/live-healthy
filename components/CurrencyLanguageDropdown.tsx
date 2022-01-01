@@ -9,14 +9,21 @@ import {
 } from "@/redux/currency-language-slice";
 import useCurrency from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
+import styles from "@/styles/Dropdown.module.css";
 
-export default function CurrencyLanguageDropdown() {
+interface Props {
+  position?: string;
+}
+
+export default function CurrencyLanguageDropdown({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
   const { currencies, selectCurrencies } = useCurrency();
   const { language, currency } = useAppSelector(
     (state) => state.currencyLanguage
   );
+
+  const footerStyle = position === "bottom" ? styles.bottom : "";
 
   function displayFlag() {
     switch (language) {
@@ -38,7 +45,6 @@ export default function CurrencyLanguageDropdown() {
 
   function selectCurrency(e: any): any {
     const loading = isLoading();
-    console.log("e.target.value", e.target.value);
     return selectCurrencies(e.target.value)
       .then((response) => {
         console.log("response", response);
@@ -53,7 +59,9 @@ export default function CurrencyLanguageDropdown() {
   }
 
   return (
-    <Dropdown className="topbar-text dropdown disable-autohide">
+    <Dropdown
+      className={`${styles.dropdown}${footerStyle} topbar-text dropdown disable-autohide`}
+    >
       <Dropdown.Toggle className="topbar-link dropdown-toggle">
         <img className="me-2" src={displayFlag()} width="20" alt={language} />
         {`${language} / ${currency}`}

@@ -1,9 +1,7 @@
 import swell from "swell-js";
-import { useAppSelector } from "@/hooks/useRedux";
 import { useQuery } from "react-query";
 
 export default function useCurrency() {
-  const { currency } = useAppSelector((state) => state.currencyLanguage);
   const { data: currencies } = useQuery("currencies", listEnabledCurrencies);
 
   console.log("currencies", currencies);
@@ -30,9 +28,9 @@ export function currencySymbolFormatter(currency: {
   symbol: string;
   code: string;
 }) {
-  console.log("currency.symbol === $", currency.symbol === "$");
+  const currencyCode = currency ? currency.code : "";
   if (currency.symbol === "$" && currency.code !== "USD") {
-    return `${currency.code} ${currency.symbol} `;
+    return `${currencyCode} ${currency.symbol} `;
   } else {
     return currency.symbol;
   }

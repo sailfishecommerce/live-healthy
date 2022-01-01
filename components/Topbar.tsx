@@ -14,6 +14,7 @@ export default function Topbar({
   sliderContent,
   topbarBgColor,
 }: TopbarProps) {
+  
   return (
     <div
       style={{ backgroundColor: topbarBgColor, width: "100%" }}

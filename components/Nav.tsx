@@ -96,7 +96,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
                 <div className="navbar-tool-icon-box">
                   <i className="navbar-tool-icon ci-user"></i>
                 </div>
-                <div className="navbar-tool-text ms-n3">
+                <div className="navbar-tool-text d-flex flex-column me-2 align-items-start">
                   <small>Hello, Sign in</small>My Account
                 </div>
               </a>

@@ -1,0 +1,11 @@
+.dropdown button:hover {
+  background-color: #fb696a !important;
+}
+
+.dropdown button {
+  background-color: rgb(55, 63, 80) !important;
+}
+
+.dropdown.bottom button {
+  background-color: #2b3445 !important;
+}

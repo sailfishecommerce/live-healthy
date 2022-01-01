@@ -90,7 +90,7 @@ export default function FooterBottomSection({
                   alt="Bandicoot"
                 />
               </a>
-              <CurrencyLanguageDropdown />
+              <CurrencyLanguageDropdown position="bottom" />
             </div>
             <div className="widget widget-links widget-light">
               <ul className="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
