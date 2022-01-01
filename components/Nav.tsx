@@ -72,23 +72,15 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <a className="navbar-tool navbar-stuck-toggler" href="#">
+            <a className="navbar-tool navbar-stuck-toggler me-5" href="#">
               <span className="navbar-tool-tooltip">Expand menu</span>
               <div className="navbar-tool-icon-box">
                 <i className="navbar-tool-icon ci-menu"></i>
               </div>
             </a>
-            <Link href="/account-wishlist" passHref>
-              <a className="navbar-tool d-none d-lg-flex">
-                <span className="navbar-tool-tooltip">Wishlist</span>
-                <div className="navbar-tool-icon-box">
-                  <i className="navbar-tool-icon ci-heart"></i>
-                </div>
-              </a>
-            </Link>
             {!authorized ? (
               <a
-                className="navbar-tool cursor-pointer ms-1 ms-lg-0 me-n1 me-lg-2"
+                className="navbar-tool cursor-pointer ms-1 ms-lg-4 me-lg-2"
                 href="#"
                 onClick={toggleAuthModalHandler}
               >

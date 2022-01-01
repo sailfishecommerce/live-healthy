@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+// import { useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 
 import currencylanguage from "@/json/CurrencyLanguage.json";
@@ -10,6 +11,7 @@ import {
 import useCurrency from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
 import styles from "@/styles/Dropdown.module.css";
+import useLanguage from "@/hooks/useLanguage";
 
 interface Props {
   position?: string;
@@ -19,11 +21,18 @@ export default function CurrencyLanguageDropdown({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
   const { currencies, selectCurrencies } = useCurrency();
+  const { getLanguageList } = useLanguage();
   const { language, currency } = useAppSelector(
     (state) => state.currencyLanguage
   );
 
   const footerStyle = position === "bottom" ? styles.bottom : "";
+
+  // useEffect(() => {
+  //   getLanguageList()
+  //     .then((response) => console.log("response language", response))
+  //     .catch((error) => console.error("error", error));
+  // }, []);
 
   function displayFlag() {
     switch (language) {

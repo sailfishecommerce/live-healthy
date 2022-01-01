@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 export default function useCurrency() {
   const { data: currencies } = useQuery("currencies", listEnabledCurrencies);
 
-  console.log("currencies", currencies);
   async function listEnabledCurrencies() {
     return await swell.currency.list();
   }
