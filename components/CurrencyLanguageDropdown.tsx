@@ -1,15 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
+import { useQuery } from "react-query";
+
 import currencylanguage from "@/json/CurrencyLanguage.json";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { updateState } from "@/redux/currency-language-slice";
+import {
+  updateLanguage,
+  updateCurrency,
+} from "@/redux/currency-language-slice";
+import useCurrency from "@/hooks/useCurrency";
+import { useToast } from "@/hooks";
 
 export default function CurrencyLanguageDropdown() {
   const dispatch = useAppDispatch();
-  const { currency, language } = useAppSelector(
+  const { isLoading, isSuccessful, hasError } = useToast();
+  const { listEnabledCurrencies, selectCurrencies } = useCurrency();
+  const { data: currencyData } = useQuery("currencies", listEnabledCurrencies);
+  const { language, currency } = useAppSelector(
     (state) => state.currencyLanguage
   );
-  console.log("currency, language ", currency, language);
+
+  console.log("currency", currency);
 
   function displayFlag() {
     switch (language) {
@@ -24,16 +36,25 @@ export default function CurrencyLanguageDropdown() {
     }
   }
 
-  function updateSiteCurrencyOrLanguage(e: any, stateType: string) {
-    if (stateType === "currency") e.preventDefault();
-    const stateValue = stateType === "currency" ? e.target.value : e;
+  function updateSiteLanguage(e: any) {
+    e.preventDefault();
+    return dispatch(updateLanguage(e.target.value));
+  }
 
-    return dispatch(
-      updateState({
-        stateType,
-        stateValue,
+  function selectCurrency(e: any): any {
+    const loading = isLoading();
+    console.log("e.target.value", e.target.value);
+    return selectCurrencies(e.target.value)
+      .then((response) => {
+        console.log("response", response);
+        isSuccessful(loading, `${response.currency} selected`);
+        dispatch(updateCurrency(response.currency));
       })
-    );
+      .catch((error) => {
+        hasError(loading, "an error occured, please try again");
+        dispatch(updateCurrency("USD"));
+        console.error("error", error);
+      });
   }
 
   return (
@@ -45,21 +66,20 @@ export default function CurrencyLanguageDropdown() {
       <Dropdown.Menu>
         <Dropdown.Item>
           <select
-            onChange={(e) => updateSiteCurrencyOrLanguage(e, "currency")}
+            onChange={selectCurrency}
             className="form-select form-select-sm"
           >
-            {currencylanguage.currency.map((currency) => (
-              <option key={currency.value} value={currency.value}>
-                {currency.label}
-              </option>
-            ))}
+            {currencyData &&
+              currencyData.map((currency: any) => (
+                <option key={currency.code} value={currency.code}>
+                  {currency.symbol} {currency.code}
+                </option>
+              ))}
           </select>
         </Dropdown.Item>
         {currencylanguage.language.map((language) => (
           <Dropdown.Item
-            onClick={(e) =>
-              updateSiteCurrencyOrLanguage(language.label, "language")
-            }
+            onClick={updateSiteLanguage}
             key={language.label}
             className="pb-1"
           >

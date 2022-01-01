@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 
+import LoadingBar from "@/components/loadingBar";
 import NextNProgress from "@/components/Nprogress";
 import SlideCart from "@/components/SlideCart";
 import useCart from "@/hooks/useCart";
@@ -11,6 +12,7 @@ import QuickViewModal from "@/components/modal/QuickViewModal";
 import AuthModal from "@/components/modal/AuthModal";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import { SpinnerOverlay } from "@/components/spinnerLoader";
+import useLoading from "@/hooks/useLoading";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
@@ -19,6 +21,9 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   const UI = useAppSelector((state) => state.UI);
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.checkout);
+  const loadingData = useLoading();
+
+  const loadingState = loadingData.loading;
 
   const showPointer = scroll > 450 ? true : false;
 
@@ -60,6 +65,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
         <AuthModal onHide={toggleAuthModalHandler} show={UI.displayAuthModal} />
       )}
       {loading && <SpinnerOverlay />}
+      {loadingState && <LoadingBar />}
       <Head>
         <meta charSet="utf-8" />
         <meta

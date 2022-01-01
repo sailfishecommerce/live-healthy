@@ -4,21 +4,18 @@ const currencyLanguageSlice = createSlice({
   name: "currency-Language",
   initialState: {
     language: "En",
-    currency: "usd",
+    currency: "USD",
   },
-  reducers: {
-    updateState(
-      state: any,
-      action: PayloadAction<{
-        stateType: string;
-        stateValue: string;
-      }>
-    ) {
-      state[action.payload.stateType] = action.payload.stateValue;
+  reducers: {    
+    updateCurrency(state, action) {
+      state.currency = action.payload;
+    },
+    updateLanguage(state, action) {
+      state.language = action.payload;
     },
   },
 });
 
-export const { updateState } = currencyLanguageSlice.actions;
+export const { updateLanguage, updateCurrency } = currencyLanguageSlice.actions;
 
 export default currencyLanguageSlice.reducer;
