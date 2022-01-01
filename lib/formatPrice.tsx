@@ -23,7 +23,7 @@ export default function FormattedPrice({
     ? currencies.filter(
         (currencyP: { code: string }) => currencyP.code === currency
       )
-    : { symbol: "$", rate: 1 };
+    : [{ symbol: "$", rate: 1 }];
 
   const priceRate = price * selectedCurrency[0].rate;
 
