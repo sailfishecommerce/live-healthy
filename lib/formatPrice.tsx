@@ -1,4 +1,5 @@
 import useCurrency from "@/hooks/useCurrency";
+import { useAppSelector } from "@/hooks/useRedux";
 
 export function formatPrice(price: number) {
   const productPrice = price?.toFixed(2);
@@ -15,12 +16,22 @@ interface formattedPriceProps {
 export default function FormattedPrice({
   price,
 }: formattedPriceProps): JSX.Element {
-  const { currencySymbol } = useCurrency();
+  const { currencies } = useCurrency();
+  const { currency } = useAppSelector((state) => state.currencyLanguage);
+
+  const selectedCurrency = currencies
+    ? currencies.filter(
+        (currencyP: { code: string }) => currencyP.code === currency
+      )
+    : { symbol: "$", rate: 1 };
+
+  const priceRate = price * selectedCurrency[0].rate;
+
   return (
     <div className="d-flex align-items-baseline">
-      {currencySymbol}
-      {formatPrice(price).mainPrice}.
-      <small>{formatPrice(price).centPrice}</small>
+      {selectedCurrency[0].symbol}
+      {formatPrice(priceRate).mainPrice}.
+      <small>{formatPrice(priceRate).centPrice}</small>
     </div>
   );
 }

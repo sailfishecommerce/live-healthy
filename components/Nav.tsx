@@ -12,6 +12,7 @@ import SearchBar from "@/components/SearchBar";
 import useScroll from "@/hooks/useScroll";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useRouter } from "next/router";
+import FormattedPrice from "@/lib/formatPrice";
 
 interface NavProps {
   logo: any;
@@ -129,7 +130,11 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
               </a>
               <a className="navbar-tool-text">
                 <small>My Cart</small>
-                {cart?.grandTotal ? `${cart?.grandTotal.toFixed(2)}` : "$ 0.00"}
+                {cart?.grandTotal ? (
+                  <FormattedPrice price={cart?.grandTotal} />
+                ) : (
+                  <FormattedPrice price={0} />
+                )}
               </a>
               {cart?.items.length > 0 && (
                 <HeaderCartDropdown toggleCart={toggleCart} cart={cart} />

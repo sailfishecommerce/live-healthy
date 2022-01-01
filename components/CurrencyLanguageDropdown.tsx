@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { useQuery } from "react-query";
 
 import currencylanguage from "@/json/CurrencyLanguage.json";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
@@ -15,13 +13,10 @@ import { useToast } from "@/hooks";
 export default function CurrencyLanguageDropdown() {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
-  const { listEnabledCurrencies, selectCurrencies } = useCurrency();
-  const { data: currencyData } = useQuery("currencies", listEnabledCurrencies);
+  const { currencies, selectCurrencies } = useCurrency();
   const { language, currency } = useAppSelector(
     (state) => state.currencyLanguage
   );
-
-  console.log("currency", currency);
 
   function displayFlag() {
     switch (language) {
@@ -69,8 +64,8 @@ export default function CurrencyLanguageDropdown() {
             onChange={selectCurrency}
             className="form-select form-select-sm"
           >
-            {currencyData &&
-              currencyData.map((currency: any) => (
+            {currencies &&
+              currencies.map((currency: any) => (
                 <option key={currency.code} value={currency.code}>
                   {currency.symbol} {currency.code}
                 </option>

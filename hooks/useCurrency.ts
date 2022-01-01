@@ -1,8 +1,10 @@
 import swell from "swell-js";
 import { useAppSelector } from "@/hooks/useRedux";
+import { useQuery } from "react-query";
 
 export default function useCurrency() {
   const { currency } = useAppSelector((state) => state.currencyLanguage);
+  const { data: currencies } = useQuery("currencies", listEnabledCurrencies);
 
   async function listEnabledCurrencies() {
     return await swell.currency.list();
@@ -18,6 +20,7 @@ export default function useCurrency() {
   return {
     currencySymbol: currencySymbolFormatter(currency),
     listEnabledCurrencies,
+    currencies,
     selectCurrencies,
     getSelectedCurrencies,
   };
