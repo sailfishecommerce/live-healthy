@@ -88,7 +88,9 @@ export default function Index({ products }: PropsType) {
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"
-        bannerBgColor="#e2e9ef"
+        bannerBgColor="#F3C2CC"
+        local
+        categoryImg="/img/shop/featured_category_image.webp"
       />
       <Banners
         banner1Title="Hurry up! Limited time offer"

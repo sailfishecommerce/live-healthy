@@ -14,6 +14,7 @@ interface FeaturedCategoryProps {
   categoryTitle: string;
   categoryCaption: string;
   bannerBgColor: string;
+  local?: boolean;
 }
 
 export default function FeaturedCategory({
@@ -21,6 +22,7 @@ export default function FeaturedCategory({
   categoryTitle,
   categoryCaption,
   bannerBgColor,
+  local,
 }: FeaturedCategoryProps) {
   const deviceWidth = useMediaQuery("(max-width:600px)");
   const dispatch = useAppDispatch();
@@ -63,6 +65,7 @@ export default function FeaturedCategory({
           categoryImg={categoryImg}
           categoryCaption={categoryCaption}
           bannerBgColor={bannerBgColor}
+          local={local}
         />
         {/*<!-- Product grid (carousel)-->*/}
         <FeaturedCategoryCarousel controls={controlRef} />

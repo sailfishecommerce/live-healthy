@@ -11,6 +11,7 @@ interface CategoryBannerProps {
     navigationNextRef: any;
     navigationPrevRef: any;
   };
+  local?: boolean;
 }
 
 export default function CategoryBanner({
@@ -19,6 +20,7 @@ export default function CategoryBanner({
   categoryCaption,
   bannerBgColor,
   controls,
+  local,
 }: CategoryBannerProps) {
   const { navigationNextRef, navigationPrevRef } = controls;
   return (
@@ -47,13 +49,29 @@ export default function CategoryBanner({
           </div>
         </div>
         <Link href="/shop" passHref>
-          <a className="d-none d-md-block mt-auto">
-            <div className="d-block w-100">{categoryImg}</div>
-          </a>
+          {local ? (
+            <a className="d-none d-md-block mt-auto">
+              <div className="d-block w-100">
+                <img
+                  className="categoryBanner"
+                  src={categoryImg}
+                  alt="category banner"
+                />
+              </div>
+            </a>
+          ) : (
+            <a className="d-none d-md-block mt-auto">
+              <div className="d-block w-100">{categoryImg}</div>
+            </a>
+          )}
         </Link>
       </div>
       <style jsx>
         {`
+          .categoryBanner {
+            height: 100%;
+            width: 100%;
+          }
           button.control {
             height: 40px;
             width: 40px;
