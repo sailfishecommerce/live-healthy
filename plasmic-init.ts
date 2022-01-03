@@ -169,6 +169,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Medicines",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
@@ -184,6 +185,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Hair Care",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
@@ -199,6 +201,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Personal Care",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
@@ -214,6 +217,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Beauty",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
@@ -229,6 +233,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Veterinary and Pet Care",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
@@ -244,6 +249,7 @@ PLASMIC.registerComponent(CategoriesProducts, {
     title: {
       defaultValue: "Confectionery",
       type: "string",
+      displayName: "Category Name",
     },
     category: {
       displayName: "category slug",
