@@ -1,28 +1,42 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 import LoadProducts from "@/components/ProductsLoader";
 import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import Product from "./Product";
 import { productType } from "@/types";
 
-export default function TrendingProducts() {
-  const { liveHealthyProduct, liveHealthyProductStatus } =
-    useLiveHealthyProduct();
+interface CategoriesProductProps {
+  category: string;
+  title: string;
+}
 
-  console.log("liveHealthyProduct.data", liveHealthyProduct?.data);
+export default function CategoriesProducts({
+  category,
+  title,
+}: CategoriesProductProps) {
+  async function getCategoryProduct() {
+    return await axios.post("/api/fetch-category-products", { category });
+  }
+
+  const { data: categoryProduct }: any = useQuery(
+    `${title}Product`,
+    getCategoryProduct
+  );
 
   return (
     <section className="container pt-md-3 pb-5 mb-md-3 w-100">
-      <h2 className="h3 text-center">Trending products</h2>
-      {liveHealthyProductStatus === "error" ? (
+      <h2 className="h3 text-start">{title} products</h2>
+      {categoryProduct === "error" ? (
         "unable to fetch products"
-      ) : liveHealthyProductStatus === "loading" ? (
+      ) : categoryProduct === "loading" ? (
         <LoadProducts />
       ) : (
         <div className="row pt-4 mx-n2">
-          {liveHealthyProduct.data.length > 0 ? (
-            liveHealthyProduct.data.map((product: productType) => (
+          {categoryProduct && categoryProduct.data.length > 0 ? (
+            categoryProduct.data.map((product: productType) => (
               <Product key={product.id} product={product} />
             ))
           ) : (

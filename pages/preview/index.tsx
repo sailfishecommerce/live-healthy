@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import swell from "swell-node";
 import swellNodeInit from "@/lib/swellNode";
+import axios from "axios";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
@@ -17,6 +18,7 @@ import { createCartVbout } from "@/redux/integration-slice";
 import { productType } from "@/types";
 import TrendingProductsPreview from "@/components/TrendingProductPreview";
 import Metatag from "@/components/Metatag";
+import CategoriesProducts from "@/components/CategoriesProduct";
 
 interface PropsType {
   products: productType[];
@@ -67,6 +69,9 @@ export default function Index({ products }: PropsType) {
       />
       <PopularCategories />
       <TrendingProductsPreview products={products} />
+      <CategoriesProducts category="medicines" title="Medicines" />
+      <CategoriesProducts category="hair-colors" title="Hair Care" />
+      <CategoriesProducts category="personal-care" title="Personal Care" />
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"

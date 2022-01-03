@@ -92,6 +92,14 @@ export default function FooterBottomSection({
               </a>
               <CurrencyLanguageDropdown position="bottom" />
             </div>
+            <div className="site-description">
+              <p className="text-light">
+                Sailfish eCommerce Limited is a Hong Kong registered company.
+                Launched in 2016, we have fulfilled thousands of orders and
+                remain the preferred choice of Hong Kongers for importing
+                high-quality Australian goods.
+              </p>
+            </div>
             <div className="widget widget-links widget-light">
               <ul className="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
                 <li className="widget-list-item me-4">
@@ -171,6 +179,9 @@ export default function FooterBottomSection({
           .icon-text:hover i {
             transition: 0.9s;
             transform: rotateY(180deg);
+          }
+          .site-description {
+            font-size: 13px;
           }
         `}
       </style>

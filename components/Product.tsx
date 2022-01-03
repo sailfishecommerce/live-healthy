@@ -5,7 +5,6 @@ import { useState } from "react";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
-import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
 import { productType } from "@/types";
 import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
@@ -13,6 +12,7 @@ import { replaceSpaceWithHypen } from "@/lib/formatString";
 import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
 import useProductPrice from "@/hooks/useProductPrice";
+import SpinnerRipple from "./spinnerLoader";
 
 interface ProductProps {
   product: productType;
@@ -37,13 +37,20 @@ export default function Product({
 
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
-  console.log("product.images", product.images);
-
   const productImage =
     inHover && product.images.length > 1
       ? product.images[1]?.file?.url
       : product.images[0]?.file?.url;
 
+  function displaySecondProductImgOnHover() {
+    if (inHover && product.images.length > 1) {
+      return (
+        <>
+          <SpinnerRipple />
+        </>
+      );
+    }
+  }
   return (
     <div className="col-md-4 col-sm-6 mb-4">
       <Head>
@@ -111,6 +118,7 @@ export default function Product({
             <i className="ci-heart"></i>
           </button>
         </div>
+        {/* {<SpinnerRipple />} */}
         <Link href={`/products/${product.slug}`} passHref>
           <a
             onClick={productViewEvent}

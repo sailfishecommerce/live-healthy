@@ -17,6 +17,7 @@ import PopularCategory from "./components/PopularCategory";
 import ProductOverview from "./components/ProductOverview";
 import Checkout from "./components/Checkout";
 import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
+import CategoriesProducts from "./components/CategoriesProduct";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -161,6 +162,19 @@ PLASMIC.registerComponent(Footer, {
   },
   isDefaultExport: true,
 });
+
+// PLASMIC.registerComponent(CategoriesProducts, {
+//   name: "MedicineProducts",
+//   props: {
+//     title: "Medicines",
+//     category: {
+//       displayName: "category slug",
+//       type: "string",
+//       defaultValue: "medicines",
+//     },
+//   },
+//   isDefaultExport: true,
+// });
 
 PLASMIC.registerComponent(ShopByBrandCarousel, {
   name: "Shop by brand carousel",
