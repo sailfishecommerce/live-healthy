@@ -208,6 +208,51 @@ PLASMIC.registerComponent(CategoriesProducts, {
   },
 });
 
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Beauty Products",
+  props: {
+    title: {
+      defaultValue: "Beauty",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "beauty",
+    },
+  },
+});
+
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Veterinary and Pet Care Products",
+  props: {
+    title: {
+      defaultValue: "Veterinary and Pet Care",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "veterinary-and-pet-care",
+    },
+  },
+});
+
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Confectionery Products",
+  props: {
+    title: {
+      defaultValue: "Confectionery",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "confectionery",
+    },
+  },
+});
+
 PLASMIC.registerComponent(ShopByBrandCarousel, {
   name: "Shop by brand carousel",
   props: {
