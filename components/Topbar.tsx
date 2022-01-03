@@ -14,7 +14,6 @@ export default function Topbar({
   sliderContent,
   topbarBgColor,
 }: TopbarProps) {
-  
   return (
     <div
       style={{ backgroundColor: topbarBgColor, width: "100%" }}
@@ -64,6 +63,9 @@ export default function Topbar({
           @media (max-width: 768px) {
             .topbar a.topbar-link.dropdown-toggle {
               font-size: 12px;
+            }
+            .topbar-text.dropdown {
+              display: none;
             }
             .topbar-text {
               display: none;
