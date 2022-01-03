@@ -28,6 +28,8 @@ export default function Product({
   } = useProduct(product);
 
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
+  
+  console.log("product", product);
 
   return (
     <div className="col-md-4 col-sm-6 mb-4">

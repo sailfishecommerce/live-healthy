@@ -26,6 +26,10 @@ export default function ShopByBrandCarousel({
   brandLogo6,
   brandLogo7,
   brandLogo8,
+  brandLogo9,
+  brandLogo10,
+  brandLogo11,
+  brandLogo12,
 }: any) {
   const brandLogoImages = [
     brandLogo1,
@@ -36,6 +40,10 @@ export default function ShopByBrandCarousel({
     brandLogo6,
     brandLogo7,
     brandLogo8,
+    brandLogo9,
+    brandLogo10,
+    brandLogo11,
+    brandLogo12,
   ];
   return (
     <section className="container py-lg-4 mb-4">

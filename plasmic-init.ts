@@ -173,6 +173,10 @@ PLASMIC.registerComponent(ShopByBrandCarousel, {
     brandLogo6: "slot",
     brandLogo7: "slot",
     brandLogo8: "slot",
+    brandLogo9: "slot",
+    brandLogo10: "slot",
+    brandLogo11: "slot",
+    brandLogo12: "slot",
   },
   isDefaultExport: true,
 });
