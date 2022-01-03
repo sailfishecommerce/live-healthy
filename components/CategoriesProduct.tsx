@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
 import { useQuery } from "react-query";
 import axios from "axios";
 
 import LoadProducts from "@/components/ProductsLoader";
-import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import Product from "./Product";
 import { productType } from "@/types";
 
@@ -27,7 +25,7 @@ export default function CategoriesProducts({
   );
 
   return (
-    <section className="container pt-md-3 pb-5 mb-md-3 w-100">
+    <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="h3 text-start">{title} products</h2>
       {categoryProduct === "error" ? (
         "unable to fetch products"
@@ -44,13 +42,6 @@ export default function CategoriesProducts({
           )}
         </div>
       )}
-      <div className="text-center pt-5 mt-5">
-        <Link href="/shop" passHref>
-          <a className="btn btn-outline-accent">
-            More products<i className="ci-arrow-right ms-1"></i>
-          </a>
-        </Link>
-      </div>
     </section>
   );
 }

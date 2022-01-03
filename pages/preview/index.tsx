@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import swell from "swell-node";
 import swellNodeInit from "@/lib/swellNode";
 import axios from "axios";
+import Link from "next/link";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
@@ -72,6 +73,18 @@ export default function Index({ products }: PropsType) {
       <CategoriesProducts category="medicines" title="Medicines" />
       <CategoriesProducts category="hair-colours" title="Hair Care" />
       <CategoriesProducts category="personal-care" title="Personal Care" />
+      <CategoriesProducts category="beauty" title="Beauty Care" />
+      <CategoriesProducts
+        category="veterinary-and-pet-care"
+        title="Veterinary and Pet Care"
+      />
+      <div className="text-center pt-5 mt-5">
+        <Link href="/shop" passHref>
+          <a className="btn btn-outline-accent">
+            More products<i className="ci-arrow-right ms-1"></i>
+          </a>
+        </Link>
+      </div>
       <FeaturedCategory
         categoryTitle="Shop for medicine"
         categoryCaption="Get started now"
@@ -114,7 +127,7 @@ export async function getStaticProps() {
   swellNodeInit();
   const products = await swell.get("/products", {
     where: { select_store: "livehealthy" },
-    limit: 30,
+    limit: 9,
   });
 
   return {
