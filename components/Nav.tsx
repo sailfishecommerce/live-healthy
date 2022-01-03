@@ -72,7 +72,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <a className="navbar-tool navbar-stuck-toggler me-5" href="#">
+            <a className="navbar-tool navbar-stuck-toggler ms-5" href="#">
               <span className="navbar-tool-tooltip">Expand menu</span>
               <div className="navbar-tool-icon-box">
                 <i className="navbar-tool-icon ci-menu"></i>
