@@ -15,7 +15,7 @@ export default async function fetchProductFromLiveHealthStore(
       return await swell
         .get("/products", {
           where: { select_store: "livehealthy" },
-          limit: 30,
+          limit: 15,
           page: 1,
         })
         .then((response: { results: any }) => {

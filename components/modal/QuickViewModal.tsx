@@ -7,7 +7,8 @@ import Rating from "../Rating";
 import ProductForm from "../ProductForm";
 import { useAppDispatch } from "@/hooks/useRedux";
 import ProductGallery from "@/components/ProductGallery";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
+import useCurrency from "@/hooks/useCurrency";
 
 interface QuickViewModalProps {
   product: {
@@ -29,11 +30,8 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
   }
-  console.log("quickViewMM", product);
+  const { currency } = useCurrency();
 
-  function submitFormHandler(e: any) {
-    e.preventDefault;
-  }
   return (
     <Modal
       show={product.active}
@@ -73,7 +71,11 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                   <i className="ci-heart"></i>
                 </button>
               </div>
-              <FormattedPrice price={productToView.price} />
+              {currency === "HKD" ? (
+                <HkdPrice price={productToView.hkd_selling_price} />
+              ) : (
+                <FormattedPrice price={productToView.price} />
+              )}
               <ProductForm product={productToView} />
               <div
                 className="description"

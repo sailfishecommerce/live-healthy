@@ -5,11 +5,13 @@ import { useState } from "react";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
 import { productType } from "@/types";
 import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
+import useCurrency from "@/hooks/useCurrency";
+import discountPrice from "@/lib/discountPrice";
 
 interface ProductProps {
   product: productType;
@@ -29,13 +31,11 @@ export default function Product({
     optionHandler,
   } = useProduct(product);
   const [inHover, setHover] = useState(false);
+  const { currency } = useCurrency();
 
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
-  // console.log("product", product);
   console.log("product.images", product.images);
-
-  console.log("inHover", inHover);
 
   const productImage =
     inHover && product.images.length > 1
@@ -93,15 +93,22 @@ export default function Product({
         <meta name="description" content={product.description} />
       </Head>
       <div className="card product-card p-2">
-        <button
-          className="btn-wishlist btn-sm"
-          type="button"
-          data-bs-toggle="tooltip"
-          data-bs-placement="left"
-          title="Add to wishlist"
-        >
-          <i className="ci-heart"></i>
-        </button>
+        <div className="d-flex justify-content-between">
+          {product.hkd_compare_at_price > 0 && (
+            <div className="discount-price mt-2">
+              {discountPrice(product)} %
+            </div>
+          )}
+          <button
+            className="btn-wishlist btn-sm"
+            type="button"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            title="Add to wishlist"
+          >
+            <i className="ci-heart"></i>
+          </button>
+        </div>
         <Link href={`/products/${product.slug}`} passHref>
           <a
             onClick={productViewEvent}
@@ -137,17 +144,28 @@ export default function Product({
           <div className="d-flex justify-content-between">
             <div className="product-price d-flex align-items-baseline">
               <span className="text-accent">
-                <FormattedPrice price={product.price} />
+                {currency === "HKD" && product.hkd_selling_price ? (
+                  <HkdPrice price={product.hkd_selling_price} />
+                ) : (
+                  <FormattedPrice price={product.price} />
+                )}
               </span>
-              {product.origPrice && (
+              {currency === "HKD" && product.hkd_compare_at_price > 0 && (
                 <span className="small text-accent mx-2">
                   <del>
-                    <FormattedPrice price={product.origPrice} />
+                    <HkdPrice price={product.hkd_compare_at_price} />
                   </del>
                 </span>
               )}
             </div>
-            <RatingStar rate={product.rating} />
+            <div className="reviewRating d-flex flex-column">
+              <RatingStar rate={product.rating} />
+              {product.review_rating && (
+                <p className="widget-product-meta">
+                  ({product.review_rating} reviews)
+                </p>
+              )}
+            </div>
           </div>
         </div>
         <div className="card-body card-body-hidden">
@@ -246,6 +264,19 @@ export default function Product({
           }
           .product-meta:hover {
             color: red;
+          }
+          .discount-price {
+            height: 35px;
+            width: 50px;
+            color: white;
+            background-color: #fb696a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+          }
+          .reviewRating p {
+            font-size: 12px;
           }
           @media (max-width: 768px) {
             .productLink img {

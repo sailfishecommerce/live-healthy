@@ -35,3 +35,22 @@ export default function FormattedPrice({
     </div>
   );
 }
+
+export function HkdPrice({ price }: formattedPriceProps): JSX.Element {
+  const { currencies } = useCurrency();
+  const { currency } = useAppSelector((state) => state.currencyLanguage);
+
+  const selectedCurrency = currencies
+    ? currencies.filter(
+        (currencyP: { code: string }) => currencyP.code === currency
+      )
+    : [{ symbol: "$", rate: 1 }];
+
+  return (
+    <div className="d-flex align-items-baseline">
+      {currencySymbolFormatter(selectedCurrency[0])}
+      {formatPrice(price).mainPrice}.
+      <small>{formatPrice(price).centPrice}</small>
+    </div>
+  );
+}

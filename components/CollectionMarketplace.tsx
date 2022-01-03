@@ -24,7 +24,7 @@ export default function CollectionMarketplace({
       searchClient={searchClient}
     >
       <Configure
-        hitsPerPage={16}
+        hitsPerPage={15}
         clickAnalytics
         distinct
         enablePersonalization={true}
