@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import ProductGallery from "@/components/ProductGallery";
 import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
 import useCurrency from "@/hooks/useCurrency";
+import useProductPrice from "@/hooks/useProductPrice";
 
 interface QuickViewModalProps {
   product: {
@@ -17,20 +18,16 @@ interface QuickViewModalProps {
   };
 }
 
-type productOptions = {
-  name: string;
-  id: string;
-  values: { id: string; name: string }[];
-};
-
 export default function QuickViewModal({ product }: QuickViewModalProps) {
   const dispatch = useAppDispatch();
+  console.log("product", product);
   const { productToView } = product;
+  const { price, oldPrice } = useProductPrice(productToView);
+  const { currency } = useCurrency();
 
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
   }
-  const { currency } = useCurrency();
 
   return (
     <Modal
@@ -71,11 +68,11 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                   <i className="ci-heart"></i>
                 </button>
               </div>
-              {currency === "HKD" ? (
-                <HkdPrice price={productToView.hkd_selling_price} />
-              ) : (
-                <FormattedPrice price={productToView.price} />
-              )}
+              <div className="d-flex price">
+                <div className="text-accent me-2">{price()}</div>
+                <div className="text-accent">{oldPrice()}</div>
+              </div>
+
               <ProductForm product={productToView} />
               <div
                 className="description"
