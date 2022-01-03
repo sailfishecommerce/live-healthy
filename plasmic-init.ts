@@ -163,18 +163,50 @@ PLASMIC.registerComponent(Footer, {
   isDefaultExport: true,
 });
 
-// PLASMIC.registerComponent(CategoriesProducts, {
-//   name: "MedicineProducts",
-//   props: {
-//     title: "Medicines",
-//     category: {
-//       displayName: "category slug",
-//       type: "string",
-//       defaultValue: "medicines",
-//     },
-//   },
-//   isDefaultExport: true,
-// });
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Medicine Products",
+  props: {
+    title: {
+      defaultValue: "Medicines",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "medicines",
+    },
+  },
+});
+
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Hair Care Products",
+  props: {
+    title: {
+      defaultValue: "Hair Care",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "hair-colours",
+    },
+  },
+});
+
+PLASMIC.registerComponent(CategoriesProducts, {
+  name: "Personal Care Products",
+  props: {
+    title: {
+      defaultValue: "Personal Care",
+      type: "string",
+    },
+    category: {
+      displayName: "category slug",
+      type: "string",
+      defaultValue: "personal-care",
+    },
+  },
+});
 
 PLASMIC.registerComponent(ShopByBrandCarousel, {
   name: "Shop by brand carousel",

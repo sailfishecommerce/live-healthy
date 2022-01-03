@@ -70,7 +70,7 @@ export default function Index({ products }: PropsType) {
       <PopularCategories />
       <TrendingProductsPreview products={products} />
       <CategoriesProducts category="medicines" title="Medicines" />
-      <CategoriesProducts category="hair-colors" title="Hair Care" />
+      <CategoriesProducts category="hair-colours" title="Hair Care" />
       <CategoriesProducts category="personal-care" title="Personal Care" />
       <FeaturedCategory
         categoryTitle="Shop for medicine"
