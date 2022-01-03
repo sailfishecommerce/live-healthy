@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Head from "next/head";
+import { useState } from "react";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
@@ -8,6 +9,7 @@ import FormattedPrice from "@/lib/formatPrice";
 import { productType } from "@/types";
 import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 
 interface ProductProps {
   product: productType;
@@ -26,10 +28,19 @@ export default function Product({
     quickViewHandler,
     optionHandler,
   } = useProduct(product);
+  const [inHover, setHover] = useState(false);
 
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
-  
-  console.log("product", product);
+
+  // console.log("product", product);
+  console.log("product.images", product.images);
+
+  console.log("inHover", inHover);
+
+  const productImage =
+    inHover && product.images.length > 1
+      ? product.images[1]?.file?.url
+      : product.images[0]?.file?.url;
 
   return (
     <div className="col-md-4 col-sm-6 mb-4">
@@ -96,9 +107,13 @@ export default function Product({
             onClick={productViewEvent}
             className="productLink card-img-top d-block overflow-hidden"
           >
-            <div className="productImage">
+            <div
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+              className="productImage"
+            >
               <RenderSmoothImage
-                src={product.images[0]?.file?.url}
+                src={productImage}
                 alt={product?.image_alt_text[0]}
                 className="productImage"
               />
@@ -106,7 +121,14 @@ export default function Product({
           </a>
         </Link>
         <div className="card-body py-3">
-          <a className="product-meta d-block fs-xs pb-1">{product.vendor}</a>
+          <Link
+            href={`/collections/vendors/${replaceSpaceWithHypen(
+              product.vendor
+            )}`}
+            passHref
+          >
+            <a className="product-meta d-block fs-xs pb-1">{product.vendor}</a>
+          </Link>
           <h3 className="product-title fs-sm">
             <Link href={`/products/${product.slug}`} passHref>
               <a onClick={productViewEvent}>{product.name}</a>
@@ -221,6 +243,9 @@ export default function Product({
           .productImage img.productImage:hover {
             transform: scale(1.03) !important;
             transition: transform 300ms ease-in 0s !important;
+          }
+          .product-meta:hover {
+            color: red;
           }
           @media (max-width: 768px) {
             .productLink img {
