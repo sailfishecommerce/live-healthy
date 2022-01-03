@@ -4,21 +4,6 @@
       "img": "/img/flags/en.png",
       "alt": "English",
       "label": "EN"
-    },
-    {
-      "img": "/img/flags/fr.png",
-      "alt": "Français",
-      "label": "FR"
-    },
-    {
-      "img": "/img/flags/de.png",
-      "alt": "Deutsch",
-      "label": "DE"
-    },
-    {
-      "img": "/img/flags/itl.png",
-      "alt": "Italiano",
-      "label": "ITL"
     }
   ],
   "currency": [

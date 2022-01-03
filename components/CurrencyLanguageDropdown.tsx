@@ -25,6 +25,7 @@ export default function CurrencyLanguageDropdown({ position }: Props) {
   const { language, currency } = useAppSelector(
     (state) => state.currencyLanguage
   );
+  console.log("language", language);
 
   const footerStyle = position === "bottom" ? styles.bottom : "";
 
@@ -44,6 +45,8 @@ export default function CurrencyLanguageDropdown({ position }: Props) {
         return "/img/flags/de.png";
       case "ITL":
         return "/img/flags/itl.png";
+      default:
+        return "/img/flags/en.png";
     }
   }
 
@@ -72,8 +75,8 @@ export default function CurrencyLanguageDropdown({ position }: Props) {
       className={`${styles.dropdown}${footerStyle} topbar-text dropdown disable-autohide`}
     >
       <Dropdown.Toggle className="topbar-link dropdown-toggle">
-        <img className="me-2" src={displayFlag()} width="20" alt={language} />
-        {`${language} / ${currency}`}
+        <img className="me-2" src="/img/flags/en.png" width="20" alt="en" />
+        {`En / ${currency}`}
       </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item>
@@ -90,11 +93,7 @@ export default function CurrencyLanguageDropdown({ position }: Props) {
           </select>
         </Dropdown.Item>
         {currencylanguage.language.map((language) => (
-          <Dropdown.Item
-            onClick={updateSiteLanguage}
-            key={language.label}
-            className="pb-1"
-          >
+          <Dropdown.Item key={language.label} className="pb-1">
             <img
               className="me-2"
               src={language.img}
