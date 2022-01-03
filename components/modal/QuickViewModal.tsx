@@ -7,9 +7,8 @@ import Rating from "../Rating";
 import ProductForm from "../ProductForm";
 import { useAppDispatch } from "@/hooks/useRedux";
 import ProductGallery from "@/components/ProductGallery";
-import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
-import useCurrency from "@/hooks/useCurrency";
 import useProductPrice from "@/hooks/useProductPrice";
+import discountPrice from "@/lib/discountPrice";
 
 interface QuickViewModalProps {
   product: {
@@ -20,10 +19,8 @@ interface QuickViewModalProps {
 
 export default function QuickViewModal({ product }: QuickViewModalProps) {
   const dispatch = useAppDispatch();
-  console.log("product", product);
   const { productToView } = product;
   const { price, oldPrice } = useProductPrice(productToView);
-  const { currency } = useCurrency();
 
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
@@ -68,11 +65,15 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                   <i className="ci-heart"></i>
                 </button>
               </div>
-              <div className="d-flex price">
-                <div className="text-accent me-2">{price()}</div>
-                <div className="text-accent">{oldPrice()}</div>
+              <div className="price-group mb-2 d-flex justify-content-between align-items-center">
+                <div className="d-flex price">
+                  <div className="text-accent me-2">{price()}</div>
+                  <div className="text-accent">{oldPrice()}</div>
+                </div>
+                <div className="percentage">{`${discountPrice(
+                  productToView
+                )} %`}</div>
               </div>
-
               <ProductForm product={productToView} />
               <div
                 className="description"
@@ -95,6 +96,21 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
 
             .description::-webkit-scrollbar-track {
               box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .percentage {
+              height: 35px;
+              width: 50px;
+              color: white;
+              background-color: #fb696a;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 12px;
+            }
+
+            .percentage:hover {
+              background-color: #fe3638;
             }
 
             .description::-webkit-scrollbar-thumb {

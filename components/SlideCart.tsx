@@ -7,6 +7,7 @@ import { displayCheckoutModalAction } from "@/redux/ui-slice";
 import { CartDiscount } from "./CartElements";
 import SlideCartNote from "./SlideCartNote";
 import SlideCartProduct from "./SlideCartProduct";
+import useProductPrice from "@/hooks/useProductPrice";
 
 interface slideCartProps {
   toggle: () => void;

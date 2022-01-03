@@ -19,6 +19,8 @@ export default function SlideCartProduct({
   const { removeVboutCartItem } = useVbout();
   const { cart }: any = useAppSelector((state) => state.cart);
 
+  // const { price, oldPrice } = useProductPrice();
+
   function removeItemFromCart() {
     removeFromCart(item);
     removeVboutCartItem({
