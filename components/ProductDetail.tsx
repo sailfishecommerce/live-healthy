@@ -7,6 +7,7 @@ import FormattedPrice from "@/lib/formatPrice";
 import Rating from "./Rating";
 import ProductForm from "./ProductForm";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
+import useCurrency from "@/hooks/useCurrency";
 
 interface Props {
   product: productType;
@@ -18,6 +19,8 @@ export default function ProductDetail({ product }: Props) {
   function toggleModal() {
     setModal(!modal);
   }
+
+  const { currency } = useCurrency();
 
   return (
     <div>
@@ -42,10 +45,10 @@ export default function ProductDetail({ product }: Props) {
           <span className="h3 fw-normal text-accent me-1">
             <FormattedPrice price={product.price} />
           </span>
-          {product.origPrice && (
+          {currency === "HKD" && product.hkd_compare_at_price > 0 && (
             <span className="h5 fw-normal text-accent mx-2">
               <del>
-                <FormattedPrice price={product.origPrice} />
+                <FormattedPrice price={product.hkd_compare_at_price} />
               </del>
             </span>
           )}

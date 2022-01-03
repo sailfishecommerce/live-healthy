@@ -25,7 +25,8 @@ export default function FormattedPrice({
       )
     : [{ symbol: "$", rate: 1 }];
 
-  const priceRate = price * selectedCurrency[0].rate;
+  const priceRate =
+    currency === "HKD" ? price : price * selectedCurrency[0].rate;
 
   return (
     <div className="d-flex align-items-baseline">

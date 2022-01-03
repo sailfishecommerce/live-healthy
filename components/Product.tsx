@@ -12,6 +12,7 @@ import RatingStar from "./RatingStar";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
 import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
+import useProductPrice from "@/hooks/useProductPrice";
 
 interface ProductProps {
   product: productType;
@@ -32,6 +33,7 @@ export default function Product({
   } = useProduct(product);
   const [inHover, setHover] = useState(false);
   const { currency } = useCurrency();
+  const { price, oldPrice } = useProductPrice(product);
 
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
@@ -143,19 +145,9 @@ export default function Product({
           </h3>
           <div className="d-flex justify-content-between">
             <div className="product-price d-flex align-items-baseline">
-              <span className="text-accent">
-                {currency === "HKD" && product.hkd_selling_price ? (
-                  <HkdPrice price={product.hkd_selling_price} />
-                ) : (
-                  <FormattedPrice price={product.price} />
-                )}
-              </span>
+              <div className="text-accent">{price()}</div>
               {currency === "HKD" && product.hkd_compare_at_price > 0 && (
-                <span className="small text-accent mx-2">
-                  <del>
-                    <HkdPrice price={product.hkd_compare_at_price} />
-                  </del>
-                </span>
+                <span className="small text-accent mx-2">{oldPrice()}</span>
               )}
             </div>
             <div className="reviewRating d-flex flex-column">
