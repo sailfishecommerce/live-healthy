@@ -9,3 +9,16 @@
 .dropdown.bottom button {
   background-color: #2b3445 !important;
 }
+
+@media (max-width: 768px) {
+  .dropdown button {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 30px;
+  }
+  .dropdownToggle {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 30px;
+  }
+}

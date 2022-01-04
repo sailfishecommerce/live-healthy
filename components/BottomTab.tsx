@@ -39,7 +39,7 @@ export default function BottomTab() {
               )}
             </span>
             {cart ? (
-              <span className="handheld-toolbar-label">
+              <span className="handheld-toolbar-label d-flex align-items-center m-auto justify-content-center">
                 <FormattedPrice price={cart?.subTotal} />
               </span>
             ) : (
