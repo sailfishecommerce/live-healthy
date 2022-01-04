@@ -152,12 +152,12 @@ export default function Product({
             </Link>
           </h3>
           <div className="d-flex justify-content-between">
-            <div className="product-price d-flex align-items-baseline">
-              <div className="text-accent">{price()}</div>
+            <ul className="product-price d-flex align-items-baseline">
+              <li className="text-accent">{price()}</li>
               {currency === "HKD" && product.hkd_compare_at_price > 0 && (
-                <span className="small text-accent mx-2">{oldPrice()}</span>
+                <li className="small text-accent mx-2">{oldPrice()}</li>
               )}
-            </div>
+            </ul>
             <div className="reviewRating d-flex flex-column">
               <RatingStar rate={product.rating} />
               {product.review_rating && (
@@ -264,6 +264,13 @@ export default function Product({
           }
           .product-meta:hover {
             color: red;
+          }
+          .product-price {
+            padding: 0px;
+          }
+          .product-price li {
+            list-style: none;
+            padding: 0px;
           }
           .discount-price {
             height: 35px;

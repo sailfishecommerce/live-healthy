@@ -18,6 +18,7 @@ import ProductOverview from "./components/ProductOverview";
 import Checkout from "./components/Checkout";
 import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 import CategoriesProducts from "./components/CategoriesProduct";
+import Loadmore from "./components/Loadmore";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -144,6 +145,12 @@ PLASMIC.registerComponent(HomepageSlider, {
       defaultValue: "#eba170",
     },
   },
+});
+
+PLASMIC.registerComponent(Loadmore, {
+  name: "Load more",
+  props: {},
+  isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(Footer, {

@@ -4,7 +4,7 @@ const currencyLanguageSlice = createSlice({
   name: "currency-Language",
   initialState: {
     language: "En",
-    currency: "USD",
+    currency: "HKD",
   },
   reducers: {    
     updateCurrency(state, action) {

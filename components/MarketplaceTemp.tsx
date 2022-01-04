@@ -56,7 +56,7 @@ export default function MarketplaceTemp(
       {...props}
     >
       <Configure
-        hitsPerPage={15}
+        hitsPerPage={9}
         clickAnalytics
         distinct
         enablePersonalization={true}
@@ -92,7 +92,7 @@ export default function MarketplaceTemp(
             <div>
               <div className="row mx-n2 mb-5">
                 {loadPageStatus && (
-                  <InfiniteProductHits minHitsPerPage={15} animation={true} />
+                  <InfiniteProductHits minHitsPerPage={9} animation={true} />
                 )}
               </div>
               <hr className="mb-2" />
