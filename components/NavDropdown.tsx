@@ -119,8 +119,10 @@ export default function CategoryDropdown() {
         )}
         <style jsx>
           {`
-            .categorySet {
-              flex-direction: column;
+            @media (max-width: 768px) {
+              .categorySet {
+                flex-direction: column;
+              }
             }
           `}
         </style>

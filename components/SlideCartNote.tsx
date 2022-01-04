@@ -36,7 +36,7 @@ export default function SlideCartNote() {
               line-height: 18px;
             }
             .learnMore {
-              font-size: 13px;
+              font-size: 12px;
               padding: 5px 10px;
             }
           }

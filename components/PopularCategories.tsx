@@ -49,8 +49,8 @@ export default function PopularCategories() {
       <style jsx>
         {`
           @media (max-width: 768px) {
-            .popularCategory {
-              margin-top: -100px;
+            section.popularCategory {
+              margin-top: -70px;
             }
           }
         `}

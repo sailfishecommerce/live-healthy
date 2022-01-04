@@ -76,7 +76,7 @@ export function CartDiscount({ cartItem }: any) {
       <h6>{cartItem?.shipping}</h6>
       <div className="justify-content-end d-flex my-2">
         <input
-          className="mx-2 border px-4"
+          className="discountInput mx-2 border px-4"
           onChange={couponInputHandler}
           placeholder="Enter discount code"
           required
@@ -89,6 +89,14 @@ export function CartDiscount({ cartItem }: any) {
           type="submit"
         />
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          input.discountInput {
+            padding: 10px !important;
+            font-size: 12px;
+          }
+        }
+      `}</style>
     </form>
   );
 }

@@ -7,7 +7,7 @@ import { displayCheckoutModalAction } from "@/redux/ui-slice";
 import { CartDiscount } from "./CartElements";
 import SlideCartNote from "./SlideCartNote";
 import SlideCartProduct from "./SlideCartProduct";
-import useProductPrice from "@/hooks/useProductPrice";
+import styles from "@/styles/ui.module.css";
 
 interface slideCartProps {
   toggle: () => void;
@@ -44,7 +44,9 @@ export default function SlideCart(props: slideCartProps) {
             <div>
               <div className="cart-body">
                 <SlideCartNote />
-                <div className="sidebar-cart-product-wrapper custom-scrollbar">
+                <div
+                  className={`${styles.slideCart} sidebar-cart-product-wrapper custom-scrollbar`}
+                >
                   {cart?.items.map((item: any, index: number) => (
                     <SlideCartProduct key={`item.id-${index}`} item={item} />
                   ))}
@@ -64,7 +66,7 @@ export default function SlideCart(props: slideCartProps) {
                 <Link href="/preview/single-checkout" passHref>
                   <button
                     onClick={toggleCheckoutModal}
-                    className="btn btn-outline-primary d-block w-100"
+                    className="btn btn-outline-primary d-block w-100 proceedBtn"
                     type="button"
                   >
                     <img alt="checkout icon" src="/icons/checkoutIcon.svg" />{" "}
@@ -87,6 +89,10 @@ export default function SlideCart(props: slideCartProps) {
             height: 400px;
             overflow-y: auto;
             overflow-x: hidden;
+          }
+          button.proceedBtn {
+            background-color: #373f50;
+            font-size: 12px;
           }
           .emptyCart {
             height: 180px;

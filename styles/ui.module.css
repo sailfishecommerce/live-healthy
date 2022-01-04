@@ -22,8 +22,9 @@
   justify-content: center;
 }
 .cartDiscount button:hover {
-  background-color: red;
+  background-color: #fe696a;
   color: white !important;
+  border-color: #fe696a;
 }
 
 .cartDiscount button:hover p {
@@ -35,6 +36,12 @@
 .cartDiscount input:hover {
   background-color: white;
 }
+
+/* slidecart */
+.slideCart ul ul li {
+  font-size: 12px;
+}
+
 @media (max-width: 768px) {
   .cartDiscount button.btn {
     font-size: 14px;
