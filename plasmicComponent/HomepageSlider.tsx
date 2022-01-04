@@ -119,7 +119,17 @@ export default function HomepageSlider({
         ))}
       </TinySlider>
       <style jsx>{`
-
+        @media (max-width: 768px) {
+          .sliderText h3 {
+            font-size: 20px;
+          }
+          .sliderText h2 {
+            font-size: 24px;
+          }
+          .sliderText p {
+            font-size: 16px;
+          }
+        }
       `}</style>
     </section>
   );

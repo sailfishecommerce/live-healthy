@@ -39,7 +39,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
   function toggleSlideCartMobile() {
     tabWidth && dispatch(toggleSlideCart());
   }
-  const homeLink = local ? "/preview" : "/";
+  const homeLink = local ? "/" : "/";
 
   return (
     <div
@@ -57,7 +57,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
               )}
             </a>
           </Link>
-          <Link href="/preview" passHref>
+          <Link href="/" passHref>
             <a className="navbar-brand d-sm-none flex-shrink-0 me-2">
               <img src="/logo.png" width="74" alt="Bandicoot" />
             </a>

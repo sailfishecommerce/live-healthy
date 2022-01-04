@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import swell from "swell-node";
 import swellNodeInit from "@/lib/swellNode";
-import axios from "axios";
 import Link from "next/link";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
