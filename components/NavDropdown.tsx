@@ -29,7 +29,7 @@ function CategoryDropdownList({ category, categories }: Props) {
   }
 
   return (
-    <div>
+    <div className="categoryDropdownList">
       <div className="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
         <div className="widget widget-links">
           <Link href={`/collections/product-type/${category.slug}`} passHref>
@@ -69,6 +69,20 @@ function CategoryDropdownList({ category, categories }: Props) {
           .widget:hover h6 {
             color: #fb696a;
           }
+          @media (max-width: 768px) {
+            .categoryDropdownList {
+              margin: 0px !important;
+            }
+            .categoryDropdownList img {
+              display: none;
+            }
+            .mega-dropdown-column {
+              padding: 0px !important;
+            }
+            .categoryImg {
+              margin: 0px !important;
+            }
+          }
         `}
       </style>
     </div>
@@ -93,7 +107,7 @@ export default function CategoryDropdown() {
         ) : status === "loading" ? (
           "loading categories"
         ) : (
-          <div className="d-flex flex-wrap flex-sm-nowrap">
+          <div className="d-flex flex-wrap flex-sm-nowrap categorySet">
             {categorySet.map((category: categoryType) => (
               <CategoryDropdownList
                 key={category.id}
@@ -103,6 +117,13 @@ export default function CategoryDropdown() {
             ))}
           </div>
         )}
+        <style jsx>
+          {`
+            .categorySet {
+              flex-direction: column;
+            }
+          `}
+        </style>
       </div>
     );
   }

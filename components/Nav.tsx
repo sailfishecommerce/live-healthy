@@ -175,7 +175,7 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
                 return (
                   <li key={menu.link} className={`nav-item dropdown ${style}`}>
                     <Link href={menu.link} passHref>
-                      <a className="nav-link dropdown-toggle">{menu.name}</a>
+                      <a className="nav-link">{menu.name}</a>
                     </Link>
                   </li>
                 );
