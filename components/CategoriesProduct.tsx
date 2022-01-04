@@ -38,10 +38,17 @@ export default function CategoriesProducts({
               <Product key={product.id} product={product} />
             ))
           ) : (
-            <h2 className="text-center">No product in this store.</h2>
+            <h2 className="text-center">No product in this category.</h2>
           )}
         </div>
       )}
+      <style jsx>
+        {`
+          section.container h2 {
+            font-size: 20px;
+          }
+        `}
+      </style>
     </section>
   );
 }
