@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
-import TopbarAdsSlider from "./TopbarAdsSlider";
+import TopbarAdsSlider from "@/components/TopbarAdsSlider";
 import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
+import styles from "@/styles/Topbar.module.css";
 
 interface TopbarProps {
   support: string;
@@ -20,7 +21,9 @@ export default function Topbar({
       className="topbar topbar-dark"
     >
       <div className="container">
-        <Dropdown className="topbar-text dropdown d-md-none">
+        <Dropdown
+          className={`${styles.dropdown} topbar-text dropdown d-md-none`}
+        >
           <Dropdown.Toggle className="topbar-link dropdown-toggle">
             Useful links
           </Dropdown.Toggle>
