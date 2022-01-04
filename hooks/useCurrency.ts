@@ -31,7 +31,7 @@ export function currencySymbolFormatter(currency: {
 }) {
   const currencyCode = currency ? currency.code : "";
   if (currency.symbol === "$" && currency.code !== "USD") {
-    return `${currencyCode} ${currency.symbol} `;
+    return `${currencyCode} ${currency.symbol}`;
   } else {
     return currency.symbol;
   }

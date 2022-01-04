@@ -272,6 +272,9 @@ export default function Product({
             list-style: none;
             padding: 0px;
           }
+          ul.product-price {
+            font-size: 13px;
+          }
           .discount-price {
             height: 35px;
             width: 50px;

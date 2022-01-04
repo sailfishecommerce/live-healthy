@@ -199,6 +199,13 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
             align-items: center;
             padding-left: 0px;
           }
+          @media (max-width: 768px) {
+            .navbar-toolbar {
+              justify-content: space-between;
+              width: 100%;
+              margin-left: -15px;
+            }
+          }
         `}
       </style>
     </div>

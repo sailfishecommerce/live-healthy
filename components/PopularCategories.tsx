@@ -15,7 +15,7 @@ export default function PopularCategories() {
 
   return (
     <section
-      className="container position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10"
+      className="container position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10 popularCategory"
       style={{ zIndex: 10 }}
     >
       <div className="row">
@@ -46,6 +46,15 @@ export default function PopularCategories() {
           </div>
         </div>
       </div>
+      <style jsx>
+        {`
+          @media (max-width: 768px) {
+            .popularCategory {
+              margin-top: -100px;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
