@@ -1,6 +1,7 @@
+import { useEffect } from "react";
+import axios from "axios";
 import dynamic from "next/dynamic";
 import { GetStaticPaths, GetStaticProps } from "next";
-
 import {
   ComponentRenderData,
   PlasmicRootProvider,
@@ -20,9 +21,19 @@ export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
   const { plasmicData } = props;
+
+  useEffect(() => {
+    axios
+      .get("/api/from-airtable-to-swell")
+      .then((response) => console.log("response airtable", response))
+      .catch((error) => console.error("error", error));
+  }, []);
+
+
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
   }
+
   return (
     <>
       <Metatag />

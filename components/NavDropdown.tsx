@@ -96,8 +96,8 @@ export default function CategoryDropdown() {
     (category: categoryType) => !category.topId
   );
 
-  const firstCategories = topCategories?.slice(9, 12);
-  const secondCategories = topCategories?.slice(13, 16);
+  const firstCategories = topCategories?.slice(9, 13);
+  const secondCategories = topCategories?.slice(13, 17);
 
   function displayCategories(categorySet: categoryType[]) {
     return (

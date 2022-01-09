@@ -1,38 +1,42 @@
 import axios from "axios";
 import sharp from "sharp";
 import imagemin from "imagemin";
-import imageminWebp from "imagemin-webp";
+import imageminJpegtran from "imagemin-jpegtran";
+import imageminPngquant from "imagemin-pngquant";
 
 async function formatProductImage(url: string, name: string, index: number) {
-  const formattedName = `${name.replace(/ /g, "-").toLowerCase()}-${index}`;
   return await axios
     .get(url, {
       responseType: "arraybuffer",
     })
     .then((response) =>
       sharp(response.data)
-        .webp()
+        .png()
         .toBuffer({ resolveWithObject: true })
         .then((response: any) => {
-          return imagemin.buffer(response.data, {
+          console.log("sharpImageResponse", response);
+          return imagemin(["images/*.{"], {
+            destination: "build/images",
             plugins: [
-              imageminWebp({
-                quality: 40,
+              imageminJpegtran(),
+              imageminPngquant({
+                quality: [0.6, 0.8],
               }),
             ],
           });
         })
-        .then((response: any) => {
+        .then(({ data, info }: any) => {
+          console.log("data image", data);
           let imageData: any = {};
           imageData.file = {
             data: {
-              $binary: response.toString("base64"),
+              $binary: data.toString("base64"),
               $type: "00",
             },
-            filename: formattedName,
-            content_type: "image/webp",
-            width: 800,
-            height: 800,
+            filename: `${name.replace(/ /g, "").toLowerCase()}-${index}`,
+            content_type: "image/png",
+            width: info.width,
+            height: info.height,
           };
           return imageData;
         })

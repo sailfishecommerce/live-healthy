@@ -25,6 +25,7 @@ export type productType = {
   quantity: string;
   hkd_selling_price?: number;
   rating: number;
+  product_type?:string;
   hkd_compare_at_price: number;
   category: string;
   oldPrice?: number;

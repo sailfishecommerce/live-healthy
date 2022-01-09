@@ -20,11 +20,11 @@ export default function FeaturedCategoryCarousel({ controls }: Props) {
   const deviceWidth = useMediaQuery("(max-width:600px)");
   const { useCategories } = useRequest();
   const { categoryData, categoryStatus } = useCategories();
-  const arrayType = deviceWidth ? 4 : 6;
-  const gridStyle = deviceWidth ? "col-2" : "col-4";
+  const arrayType = deviceWidth ? 4 : 4;
+  const gridStyle = deviceWidth ? "col-2" : "col-lg-6";
 
   let categoryArr: any[] = [];
-
+  console.log("categoryArray", categoryArray);
   function batchCategories() {
     let categoryDataArray = categoryData.results.slice(12);
     for (let i = 0; i <= categoryDataArray.length; i = i + arrayType) {

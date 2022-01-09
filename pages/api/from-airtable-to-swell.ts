@@ -1,7 +1,6 @@
 import swell from "swell-node";
 import Airtable from "airtable";
 import { NextApiRequest, NextApiResponse } from "next";
-import "longjohn";
 
 import toShopifyProductModel from "../../lib/toShopifyProductModel";
 import formattedUrlArray from "../../lib/useFormatProductImage";
@@ -22,7 +21,7 @@ export default async function createSwellProductHandler(
           .select({
             maxRecords: 7794,
             view: "Grid view",
-            filterByFormula: "NOT({Product Type} = '')",
+            filterByFormula: "NOT({Product Type} = ' ')",
             sort: [{ field: "Title", direction: "desc" }],
           })
           .eachPage(

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useState } from "react";
+import Image from "@cloudinary/react";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
@@ -134,6 +135,11 @@ export default function Product({
                 alt={product?.image_alt_text[0]}
                 className="productImage"
               />
+              {/* <Image
+                publicId={`https://res.cloudinary.com/verrb-inc/image/fetch/${productImage}`}
+                alt={product?.image_alt_text[0]}
+                className="productImage"
+              /> */}
             </div>
           </a>
         </Link>

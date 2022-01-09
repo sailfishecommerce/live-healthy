@@ -98,6 +98,23 @@ export default function toShopifyProductModel(
     ],
     weight_unit: product["Variant Weight Unit"],
     brand: product["cwh-brand"],
+    usd_price: product["cwh-price"],
+    chinese_percentage: product["percentage_chinese"],
+    product_information: product["cwh-Information"],
+    general_information: product["cwh-General_Information"],
+    miscellaneous_information: product["cwh-Miscellaneous"],
+    drug_interactions: product["cwh-Drug_Interactions"],
+    warnings: product["cwh-Warnings"],
+    common_uses: product["cwh-Common_Uses"],
+    ingredients: product["cwh-Ingredients"],
+    directions: product["cwh-Directions"],
+    indications: product["cwh-Indications"],
+    selling_price: product["HKD Selling Price"],
+    path_tags: product["cwh-path-tags"],
+    bogo: product["BOGO"],
+    sailfish_seo_title: product["Sailfish SEO Title"],
+    product_seo_title: product["Product SEO Title"],
+    hkdCompareAtPrice: product["HKD Compare At Price"],
   };
 
   return productData;

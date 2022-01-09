@@ -5,11 +5,11 @@ export default function toTitleCase(str: string) {
 }
 
 export function replaceSpaceWithHypen(text: any) {
-  const formattedText = text.toString().replace(/\s+/g, "-").toLowerCase();
+  const formattedText = text?.toString().replace(/\s+/g, "-").toLowerCase();
   return formattedText;
 }
 
 export function replaceHypenWithSpace(text: string) {
-  const formattedText = text.toString().replace(/-/g, " ");
+  const formattedText = text?.toString().replace(/-/g, " ");
   return formattedText;
 }

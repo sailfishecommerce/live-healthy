@@ -19,7 +19,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
   const selectedFooterCategory = useMarketplaceCategory();
 
   return (
-    <div className="category col-lg-4 col-6 px-0 px-sm-2 my-2 mb-sm-4">
+    <div className="category col-lg-6 col-6 px-0 px-sm-2 my-2 mb-sm-4">
       <div className="card product-card card-static">
         <button
           className="btn-wishlist btn-sm"
