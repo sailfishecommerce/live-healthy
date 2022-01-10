@@ -19,6 +19,7 @@ import Checkout from "./components/Checkout";
 import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 import CategoriesProducts from "./components/CategoriesProduct";
 import Loadmore from "./components/Loadmore";
+import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -147,6 +148,11 @@ PLASMIC.registerComponent(HomepageSlider, {
   },
 });
 
+PLASMIC.registerComponent(HomepageHits, {
+  name: "Homepage Hits",
+  props: {},
+  isDefaultExport: true,
+});
 PLASMIC.registerComponent(Loadmore, {
   name: "Load more",
   props: {},
