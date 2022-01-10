@@ -18,7 +18,7 @@ export default function useAlgoliaInsight() {
   }, []);
 
   aa("init", {
-    appId: `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
+    appId: "CZT5MA7JLJ",
     apiKey: `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`,
     useCookie: true,
   });

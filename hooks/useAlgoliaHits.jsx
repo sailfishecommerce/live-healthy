@@ -2,7 +2,7 @@ import instantsearch from "instantsearch.js";
 import searchClient from "@/lib/algoliaConfig";
 
 var liveHealthyIndex = instantsearch({
-  indexName: `${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`,
+  indexName: "New_Livehealthy_products_index",
   searchClient: searchClient,
 });
 

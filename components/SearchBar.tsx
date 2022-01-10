@@ -60,7 +60,7 @@ export default function SearchBar() {
 
   return (
     <InstantSearch
-      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
+      indexName="New_Livehealthy_products_index"
       searchClient={algoliasearchClient}
     >
       <Configure clickAnalytics distinct enablePersonalization={true} />

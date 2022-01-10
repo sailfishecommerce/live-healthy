@@ -16,7 +16,7 @@ export default function HomepageHits() {
         enablePersonalization={true}
       />
       <section className="container pt-md-3 pb-0 mb-md-3 w-100">
-        <div className="text-center mb-2">Trending Products</div>
+        <h3 className="text-center mb-2">Trending Products</h3>
         <HitProduct />
       </section>
     </InstantSearch>

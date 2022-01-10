@@ -6,12 +6,10 @@ export default function AddProductToAlgoliaIndiceHandler(
   res: NextApiResponse
 ) {
   const client = algoliasearch(
-    `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
+    "CZT5MA7JLJ",
     `${process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY}`
   );
-  const index = client.initIndex(
-    `${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`
-  );
+  const index = client.initIndex("New_Livehealthy_products_index");
 
   console.log("req.method", req.method, "req.body", req.body);
 

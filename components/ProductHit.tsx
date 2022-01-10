@@ -5,8 +5,6 @@ import ProductList from "./ProductList";
 import LoadProducts from "@/components/ProductsLoader";
 
 export function ProductHit({ hits }: any) {
-  console.log("hits", hits);
-
   return (
     <div className="row pt-4 mx-n2">
       {hits.length > 0 ? (

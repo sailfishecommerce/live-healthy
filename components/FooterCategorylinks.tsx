@@ -113,7 +113,7 @@ export const FooterCategoryLinks = connectRefinementList(Categorylinks);
 export default function FooterCategoryList() {
   return (
     <InstantSearch
-      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
+      indexName="New_Livehealthy_products_index"
       searchClient={searchClient}
     >
       <FooterCategoryLinks attribute="product_type" />

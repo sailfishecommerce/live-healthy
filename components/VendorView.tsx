@@ -19,7 +19,7 @@ interface MarketplaceProps {
 export default function VendorView({ category, vendor }: MarketplaceProps) {  
   return (
     <InstantSearch
-      indexName={`${process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}`}
+      indexName="New_Livehealthy_products_index"
       searchClient={searchClient}
     >
       <Configure
@@ -61,7 +61,7 @@ export default function VendorView({ category, vendor }: MarketplaceProps) {
       </div>
       <div className="container pb-5 mb-2 mb-md-4">
         <div className="row">
-          <VendorCategories  vendorView/>
+          <VendorCategories vendorView />
           <section className="col-lg-9">
             <ShopBannerToolbar />
             <div>
