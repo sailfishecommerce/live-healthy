@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import swell from "swell-node";
-import swellNodeInit from "@/lib/swellNode";
 import Link from "next/link";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
@@ -15,16 +13,11 @@ import useVbout from "@/hooks/useVbout";
 import { useCart } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
-import { productType } from "@/types";
-import TrendingProductsPreview from "@/components/TrendingProductPreview";
 import Metatag from "@/components/Metatag";
 import CategoriesProducts from "@/components/CategoriesProduct";
+import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
 
-interface PropsType {
-  products: productType[];
-}
-
-export default function Index({ products }: PropsType) {
+export default function Index() {
   const { createVboutCart } = useVbout();
   const dispatch = useAppDispatch();
   const vboutSlice = useAppSelector((state) => state.integrations);
@@ -68,15 +61,15 @@ export default function Index({ products }: PropsType) {
         sliderImg3="/img/home/hero-slider/03.jpg"
       />
       <PopularCategories />
-      <TrendingProductsPreview products={products} />
-      <CategoriesProducts category="medicines" title="Medicines" />
-      <CategoriesProducts category="hair-colours" title="Hair Care" />
-      <CategoriesProducts category="personal-care" title="Personal Care" />
-      <CategoriesProducts category="beauty" title="Beauty Care" />
-      <CategoriesProducts
-        category="veterinary-and-pet-care"
-        title="Veterinary and Pet Care"
-      />
+      <HomepageHits />
+      <CategoriesProducts category="Health" />
+      <CategoriesProducts category="Beauty" />
+      <CategoriesProducts category="Personal Care" />
+      <CategoriesProducts category="Medicines" />
+      <CategoriesProducts category="Hair Colours" />
+      <CategoriesProducts category="Medical Aids" />
+      <CategoriesProducts category="Confectionery" />
+
       <div className="text-center pt-5 mt-5">
         <Link href="/shop" passHref>
           <a className="btn btn-outline-accent">
@@ -122,19 +115,4 @@ export default function Index({ products }: PropsType) {
       </style>
     </Applayout>
   );
-}
-
-export async function getStaticProps() {
-  swellNodeInit();
-  const products = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-    limit: 9,
-  });
-
-  return {
-    props: {
-      products: products.results,
-    },
-    revalidate: 60,
-  };
 }

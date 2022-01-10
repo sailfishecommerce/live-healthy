@@ -24,7 +24,7 @@ export default function FeaturedCategoryCarousel({ controls }: Props) {
   const gridStyle = deviceWidth ? "col-2" : "col-lg-6";
 
   let categoryArr: any[] = [];
-  console.log("categoryArray", categoryArray);
+
   function batchCategories() {
     let categoryDataArray = categoryData.results.slice(12);
     for (let i = 0; i <= categoryDataArray.length; i = i + arrayType) {

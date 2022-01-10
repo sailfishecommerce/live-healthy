@@ -173,15 +173,10 @@ PLASMIC.registerComponent(Footer, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Medicine Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Medicines",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "medicines",
     },
   },
 });
@@ -189,15 +184,10 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Hair Care Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Hair Care",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "hair-colours",
     },
   },
 });
@@ -205,15 +195,10 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Personal Care Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Personal Care",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "personal-care",
     },
   },
 });
@@ -221,15 +206,10 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Beauty Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Beauty",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "beauty",
     },
   },
 });
@@ -237,15 +217,10 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Veterinary and Pet Care Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Veterinary and Pet Care",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "veterinary-and-pet-care",
     },
   },
 });
@@ -253,15 +228,10 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Confectionery Products",
   props: {
-    title: {
+    category: {
       defaultValue: "Confectionery",
       type: "string",
       displayName: "Category Name",
-    },
-    category: {
-      displayName: "category slug",
-      type: "string",
-      defaultValue: "confectionery",
     },
   },
 });
