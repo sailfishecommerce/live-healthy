@@ -24,6 +24,8 @@ export default function CategoriesProducts({
     getCategoryProduct
   );
 
+  console.log("categoryProduct", categoryProduct);
+
   return (
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="h3 text-start">{title} products</h2>

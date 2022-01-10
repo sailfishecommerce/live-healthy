@@ -12,9 +12,8 @@ export default async function fetchProductsHandler(
     case "POST": {
       return await swell
         .get("/products", {
-          where: { select_store: "livehealthy" },
-          limit: 3,
-          category,
+          where: { select_store: "livehealthy", category },
+          // category,
         })
         .then((response: any) => {
           return res.status(200).send(response.results);

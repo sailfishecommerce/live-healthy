@@ -30,7 +30,7 @@ export default function FormattedPrice({
 
   return (
     <div className="d-flex align-items-baseline">
-      {currencySymbolFormatter(selectedCurrency[0])}
+      {currencies ? currencySymbolFormatter(selectedCurrency[0]) : ""}
       {formatPrice(priceRate).mainPrice}.
       <small>{formatPrice(priceRate).centPrice}</small>
     </div>
@@ -49,7 +49,7 @@ export function HkdPrice({ price }: formattedPriceProps): JSX.Element {
 
   return (
     <div className="d-flex align-items-baseline">
-      {currencySymbolFormatter(selectedCurrency[0])}
+      {currencies ? currencySymbolFormatter(selectedCurrency[0]) : ""}
       {formatPrice(price).mainPrice}.
       <small>{formatPrice(price).centPrice}</small>
     </div>
