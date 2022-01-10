@@ -10,13 +10,13 @@ export default function HomepageHits() {
       searchClient={searchClient}
     >
       <Configure
-        hitsPerPage={9}
+        hitsPerPage={6}
         clickAnalytics
         distinct
         enablePersonalization={true}
       />
       <section className="container pt-md-3 pb-0 mb-md-3 w-100">
-        <div className="text-center">Trending Products</div>
+        <div className="text-center mb-2">Trending Products</div>
         <HitProduct />
       </section>
     </InstantSearch>
