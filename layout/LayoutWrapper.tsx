@@ -1,10 +1,10 @@
 import { PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 import LoadingBar from "@/components/loadingBar";
 import NextNProgress from "@/components/Nprogress";
-import SlideCart from "@/components/SlideCart";
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
@@ -14,6 +14,8 @@ import { toggleAuthModal } from "@/redux/ui-slice";
 import { SpinnerOverlay } from "@/components/spinnerLoader";
 import useLoading from "@/hooks/useLoading";
 import "react-toastify/dist/ReactToastify.css";
+
+const SlideCart = dynamic(() => import("../components/SlideCart"));
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   const { toggleCart, slideCart } = useCart();
@@ -51,10 +53,6 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
           name="google-site-verification"
           content="jzOTMxF7oUbLPiv-axyDSRh7yVdltNu-gP2gKfcBIpc"
         />
-        {/* <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        /> */}
       </Head>
       <div data-aos="fade-up" id="head" />
       {slideCart && <SlideCart toggle={toggleCart} />}

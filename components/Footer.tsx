@@ -19,7 +19,7 @@ export default function Footer({
   bottomSectionBgColor,
 }: FooterProps) {
   const { listAllCategory } = useCategory();
-  const { data, status } = useQuery("listStoreCategories", listAllCategory);
+  const { data, status } = useQuery("listAllCategory", listAllCategory);
 
   const selectedFooterCategory = useMarketplaceCategory();
 

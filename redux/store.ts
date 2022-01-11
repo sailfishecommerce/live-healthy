@@ -11,7 +11,6 @@ import {
 import storage from "@/lib/storage";
 import { useDispatch } from "react-redux";
 import rootReducer from "./rootReducer";
-import marketplaceReducer from "./marketplaceCategoryReducer";
 
 const persistConfig = {
   key: "root",
