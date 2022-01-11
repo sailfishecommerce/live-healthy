@@ -14,6 +14,7 @@ export default function AccountPasswordRecovery() {
   const [recoveryStatus, setRecoveryStatus] = useState<null | stateType>(null);
   const { updateLoadingState } = useLoading();
   console.log("recoveryStatus", recoveryStatus);
+
   return (
     <Applayout title="Recover your password with ease">
       <div className="container py-4 py-lg-5 my-4">
