@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-
+import dynamic from "next/dynamic";
 import useCart from "@/hooks/useCart";
-import HeaderCartDropdown from "./HeaderCartDropdown";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
-import CategoryDropdown from "./NavDropdown";
 import menuLink from "@/json/menu.json";
 import { useAuth } from "@/hooks";
 import SearchBar from "@/components/SearchBar";
@@ -13,6 +12,9 @@ import useScroll from "@/hooks/useScroll";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useRouter } from "next/router";
 import FormattedPrice from "@/lib/formatPrice";
+
+const HeaderCartDropdown = dynamic(() => import("./HeaderCartDropdown"));
+const CategoryDropdown = dynamic(() => import("./NavDropdown"));
 
 interface NavProps {
   logo: any;

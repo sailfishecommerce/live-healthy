@@ -1,8 +1,6 @@
-import SingleShopProductCarousel1 from "./Carousel/SingleShopProductCarousel1";
 import ProductBanner from "./ProductBanner";
 import ProductDescription from "./ProductDescription";
 import ProductGalleryDetails from "./ProductGalleryDetails";
-import ProductReviews from "./ProductReviews";
 
 interface ProductOverviewProps {
   pageProduct?: any;

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { FormikProps } from "formik";
+import dynamic from "next/dynamic";
 
-import SelectCountries from "./SelectCountries";
-import SearchLocationInput from "@/components/SearchLocationInput";
+const SelectCountries = dynamic(() => import("./SelectCountries"));
+const SearchLocationInput = dynamic(
+  () => import("../components/SearchLocationInput")
+);
 
 type inputContentType = {
   name: string;
@@ -172,21 +175,6 @@ export function displayFormElement(
     }
     case "textarea": {
       return <TextArea content={content} formik={_formik} />;
-    }
-  }
-}
-
-function inputIcon(icon: string) {
-  switch (icon) {
-    case "email": {
-      return (
-        <i className="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-      );
-    }
-    case "password": {
-      return (
-        <i className="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-      );
     }
   }
 }
