@@ -3,19 +3,21 @@ import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-import LoadingBar from "@/components/loadingBar";
-import NextNProgress from "@/components/Nprogress";
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import QuickViewModal from "@/components/modal/QuickViewModal";
-import AuthModal from "@/components/modal/AuthModal";
 import { toggleAuthModal } from "@/redux/ui-slice";
-import { SpinnerOverlay } from "@/components/spinnerLoader";
 import useLoading from "@/hooks/useLoading";
 import "react-toastify/dist/ReactToastify.css";
 
 const SlideCart = dynamic(() => import("../components/SlideCart"));
+const NextNProgress = dynamic(() => import("../components/Nprogress"));
+const LoadingBar = dynamic(() => import("../components/loadingBar"));
+const SpinnerOverlay = dynamic(() => import("../components/SpinnerOverlay"));
+const AuthModal = dynamic(() => import("../components/modal/AuthModal"));
+const QuickViewModal = dynamic(
+  () => import("../components/modal/QuickViewModal")
+);
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   const { toggleCart, slideCart } = useCart();

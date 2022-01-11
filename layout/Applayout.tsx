@@ -1,12 +1,14 @@
 import { PropsWithChildren } from "react";
 import Head from "next/head";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 
-import Header from "@/plasmicComponent/Header";
-import Footer from "@/components/Footer";
 import LayoutWrapper from "./LayoutWrapper";
-import LoadingBar from "@/components/loadingBar";
 import useLoading from "@/hooks/useLoading";
+
+const Header = dynamic(() => import("../plasmicComponent/Header"));
+const Footer = dynamic(() => import("../components/Footer"));
+const LoadingBar = dynamic(() => import("../components/loadingBar"));
 
 interface Applayout {
   title: string;

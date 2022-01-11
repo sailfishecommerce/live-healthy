@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -8,6 +8,7 @@ import Head from "next/head";
 import Script from "next/script";
 import type { AppProps } from "next/app";
 import "simplebar";
+import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 import store from "@/redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,6 +16,10 @@ import "simplebar/dist/simplebar.css";
 import "@/styles/globals.css";
 import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
+
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
+  whyDidYouRender(React);
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
