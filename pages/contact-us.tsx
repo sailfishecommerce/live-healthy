@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Applayout from "@/layout/Applayout";
-import ContactMap from "@/components/ContactMap";
-import ContactForm from "@/components/ContactForm";
+
+const DynamicContactMap = dynamic(() => import("../components/ContactMap"));
+const DynamicContactForm = dynamic(() => import("../components/ContactForm"));
 
 export default function ContactUs() {
   return (
@@ -262,8 +264,8 @@ export default function ContactUs() {
       {/*<!-- Split section: Map + Contact form-->*/}
       <div className="container-fluid px-0" id="map">
         <div className="row g-0">
-          <ContactMap />
-          <ContactForm />
+          <DynamicContactMap />
+          <DynamicContactForm />
         </div>
       </div>
     </Applayout>
