@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Applayout from "@/layout/Applayout";
+import ContactMap from "@/components/ContactMap";
+import ContactForm from "@/components/ContactForm";
 
 export default function ContactUs() {
   return (
@@ -260,99 +262,8 @@ export default function ContactUs() {
       {/*<!-- Split section: Map + Contact form-->*/}
       <div className="container-fluid px-0" id="map">
         <div className="row g-0">
-          <div className="col-lg-6 iframe-full-height-wrap">
-            <iframe
-              className="iframe-full-height"
-              width="600"
-              height="250"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53357.14257194912!2d-73.07268695801845!3d40.78017062807504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e8483b8bffed93%3A0x53467ceb834b7397!2s396+Lillian+Blvd%2C+Holbrook%2C+NY+11741%2C+USA!5e0!3m2!1sen!2sua!4v1558703206875!5m2!1sen!2sua"
-            ></iframe>
-          </div>
-          <div className="col-lg-6 px-4 px-xl-5 py-5 border-top">
-            <h2 className="h4 mb-4">Drop us a line</h2>
-            <form className="needs-validation mb-3" noValidate>
-              <div className="row g-3">
-                <div className="col-sm-6">
-                  <label className="form-label" htmlFor="cf-name">
-                    Your name:&nbsp;
-                    <span className="text-danger">*</span>
-                  </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="cf-name"
-                    placeholder="John Doe"
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please fill in you name!
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <label className="form-label" htmlFor="cf-email">
-                    Email address:&nbsp;
-                    <span className="text-danger">*</span>
-                  </label>
-                  <input
-                    className="form-control"
-                    type="email"
-                    id="cf-email"
-                    placeholder="johndoe@email.com"
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please provide valid email address!
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <label className="form-label" htmlFor="cf-phone">
-                    Your phone:&nbsp;
-                    <span className="text-danger">*</span>
-                  </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="cf-phone"
-                    placeholder="+1 (212) 00 000 000"
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please provide valid phone number!
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <label className="form-label" htmlFor="cf-subject">
-                    Subject:
-                  </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="cf-subject"
-                    placeholder="Provide short title of your request"
-                  />
-                </div>
-                <div className="col-12">
-                  <label className="form-label" htmlFor="cf-message">
-                    Message:&nbsp;
-                    <span className="text-danger">*</span>
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="cf-message"
-                    rows={6}
-                    placeholder="Please describe in detail your request"
-                    required
-                  ></textarea>
-                  <div className="invalid-feedback">
-                    Please write a message!
-                  </div>
-                  <button className="btn btn-primary mt-4" type="submit">
-                    Send message
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+          <ContactMap />
+          <ContactForm />
         </div>
       </div>
     </Applayout>
