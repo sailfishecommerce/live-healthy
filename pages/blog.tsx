@@ -3,6 +3,69 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import Applayout from "@/layout/Applayout";
+import blogContent from "@/json/blog.json";
+
+interface blogExcerpt {
+  content: {
+    title: string;
+    text: string;
+    tags: string[];
+    author: string;
+    authorImage: string;
+    date: string;
+    image?: string;
+    comment: number;
+  };
+}
+
+function BlogArticleExcerpt({ content }: blogExcerpt) {
+  return (
+    <article key={content.title} className="masonry-grid-item">
+      <div className="card">
+        {content.image && (
+          <Link href="/blog-single" passHref>
+            <a className="blog-entry-thumb">
+              <img className="card-img-top" src={content.image} alt="Post" />
+            </a>
+          </Link>
+        )}
+        <div className="card-body">
+          <h2 className="h6 blog-entry-title">
+            <Link href="/blog-single" passHref>
+              <a>{content.title}</a>
+            </Link>
+          </h2>
+          <p className="fs-sm">{content.text}</p>
+          {content.tags.map((tag) => (
+            <a key={tag} className="btn-tag me-2 mb-2" href="#">
+              {tag}
+            </a>
+          ))}
+        </div>
+        <div className="card-footer d-flex align-items-center fs-xs">
+          <a className="blog-entry-meta-link" href="#">
+            <div className="blog-entry-author-ava">
+              <img src={content.author} alt={content.author} />
+            </div>
+            {content.author}
+          </a>
+          <div className="ms-auto text-nowrap">
+            <a className="blog-entry-meta-link text-nowrap" href="#">
+              {content.date}
+            </a>
+            <span className="blog-entry-meta-divider mx-2"></span>
+            <Link href="/blog-single#comments" passHref>
+              <a className="blog-entry-meta-link text-nowrap">
+                <i className="ci-message"></i>
+                {content.comment}
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 const BlogSlider = dynamic(
   () => import("../components/Carousel/BlogGridCarousel"),
@@ -11,7 +74,7 @@ const BlogSlider = dynamic(
   }
 );
 
-export default function blog() {
+export default function Blog() {
   return (
     <Applayout title="Blog Gist">
       <div className="bg-secondary py-4">
@@ -51,379 +114,9 @@ export default function blog() {
           {/*<!-- Entries grid-->*/}
           <div className="masonry-grid" data-columns="3">
             {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>Global Travel and Vacations on a Tight Budget</a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua enim ad minim...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Travel
-                  </a>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Personal finance
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/01.jpg" alt="Emma Gallaher" />
-                    </div>
-                    Emma Gallaher
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Aug 15
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>8
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <Link href="/blog-single" passHref>
-                  <a className="blog-entry-thumb">
-                    <img
-                      className="card-img-top"
-                      src="/img/blog/01.jpg"
-                      alt="Post"
-                    />
-                  </a>
-                </Link>
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>Top New Trends in Suburban High Fashion</a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Shopping
-                  </a>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Fashion
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/02.jpg" alt="Cynthia Gomez" />
-                    </div>
-                    Cynthia Gomez
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Jul 23
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>
-                        19
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>Google Pay is Now Available in All Outlets</a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua enim ad minim...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Bandicoot news
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/04.jpg" alt="Olivia Reyes" />
-                    </div>
-                    Olivia Reyes
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Jul 6
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>7
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card gallery">
-                <a className="blog-entry-thumb gallery-item video-item">
-                  <span className="blog-entry-meta-label fs-sm">
-                    <i className="ci-video"></i>
-                    <span className="fs-ms">Watch video</span>
-                  </span>
-                  <img
-                    className="card-img-top"
-                    src="/img/blog/03.jpg"
-                    alt="Post"
-                  />
-                </a>
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>
-                        We Launched Regular Drone Delivery in California. Watch
-                        Demo Video
-                      </a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Bandicoot news
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/05.jpg" alt="Rafael Marquez" />
-                    </div>
-                    Rafael Marquez
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Jun 12
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>
-                        31
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <Link href="/blog-single" passHref>
-                  <a className="blog-entry-thumb">
-                    <img
-                      className="card-img-top"
-                      src="/img/blog/02.jpg"
-                      alt="Post"
-                    />
-                  </a>
-                </Link>
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>Shopping Tips. Places Where to Buy Cheap</a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Shopping
-                  </a>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Personal finance
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/03.jpg" alt="Paul Woodred" />
-                    </div>
-                    Paul Woodred
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      May 29
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>
-                        15
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <Link href="/blog-single" passHref>
-                  <a className="blog-entry-thumb">
-                    <img
-                      className="card-img-top"
-                      src="/img/blog/04.jpg"
-                      alt="Post"
-                    />
-                  </a>
-                </Link>
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>
-                        Payments Made Easy. How New Technology will Affect
-                        E-Commerce Industry Wo rldwide?
-                      </a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua enim ad minim...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Shopping
-                  </a>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Technology
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/01.jpg" alt="Emma Gallaher" />
-                    </div>
-                    Emma Gallaher
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      May 13
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>
-                        28
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>
-                        Different Ways E-commerce Companies Can Capitalize on
-                        Apps
-                      </a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    E-commerce
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/03.jpg" alt="Paul Woodred" />
-                    </div>
-                    Paul Woodred
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Apr 15
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>
-                        22
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-            {/*<!-- Entry-->*/}
-            <article className="masonry-grid-item">
-              <div className="card">
-                <div className="card-body">
-                  <h2 className="h6 blog-entry-title">
-                    <Link href="/blog-single" passHref>
-                      <a>Must Have Clothing On Your Next Trip</a>
-                    </Link>
-                  </h2>
-                  <p className="fs-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt...
-                  </p>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Travel
-                  </a>
-                  <a className="btn-tag me-2 mb-2" href="#">
-                    Fashion
-                  </a>
-                </div>
-                <div className="card-footer d-flex align-items-center fs-xs">
-                  <a className="blog-entry-meta-link" href="#">
-                    <div className="blog-entry-author-ava">
-                      <img src="/img/blog/meta/04.jpg" alt="Olivia Reyes" />
-                    </div>
-                    Olivia Reyes
-                  </a>
-                  <div className="ms-auto text-nowrap">
-                    <a className="blog-entry-meta-link text-nowrap" href="#">
-                      Apr 10
-                    </a>
-                    <span className="blog-entry-meta-divider mx-2"></span>
-                    <Link href="/blog-single#comments" passHref>
-                      <a className="blog-entry-meta-link text-nowrap">
-                        <i className="ci-message"></i>7
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
+            {blogContent.post.map((content) => (
+              <BlogArticleExcerpt key={content.title} content={content} />
+            ))}
           </div>
           <hr className="mb-4" />
           {/*<!-- Pagination-->*/}
@@ -443,34 +136,29 @@ export default function blog() {
               <li className="page-item d-sm-none">
                 <span className="page-link page-link-static">1 / 5</span>
               </li>
-              <li
-                className="page-item active d-none d-sm-block"
-                aria-current="page"
-              >
-                <span className="page-link">
-                  1<span className="visually-hidden">(current)</span>
-                </span>
-              </li>
-              <li className="page-item d-none d-sm-block">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item d-none d-sm-block">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item d-none d-sm-block">
-                <a className="page-link" href="#">
-                  4
-                </a>
-              </li>
-              <li className="page-item d-none d-sm-block">
-                <a className="page-link" href="#">
-                  5
-                </a>
-              </li>
+              {blogContent.pagination.map((pagination) => {
+                return pagination.active ? (
+                  <li
+                    key={pagination.number}
+                    className="page-item active d-none d-sm-block"
+                    aria-current="page"
+                  >
+                    <span className="page-link">
+                      {pagination.number}
+                      <span className="visually-hidden">(current)</span>
+                    </span>
+                  </li>
+                ) : (
+                  <li
+                    key={pagination.number}
+                    className="page-item d-none d-sm-block"
+                  >
+                    <a className="page-link" href="#">
+                      {pagination.number}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
             <ul className="pagination">
               <li className="page-item">
