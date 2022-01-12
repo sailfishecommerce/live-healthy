@@ -4,13 +4,16 @@ import Link from "next/link";
 import Applayout from "@/layout/Applayout";
 import blogContent from "@/json/blog.json";
 import BlogArticleExcerpt from "@/components/BlogArticleExcerpt";
-import BlogPagination from "@/components/BlogPagination";
 
 const BlogSlider = dynamic(
   () => import("../components/Carousel/BlogGridCarousel"),
   {
     ssr: false,
   }
+);
+
+const DynamicBlogPagination = dynamic(
+  () => import("../components/BlogPagination")
 );
 
 export default function Blog() {
@@ -76,7 +79,7 @@ export default function Blog() {
                 <span className="page-link page-link-static">1 / 5</span>
               </li>
               {blogContent.pagination.map((pagination) => (
-                <BlogPagination
+                <DynamicBlogPagination
                   key={pagination.number}
                   pagination={pagination}
                 />
