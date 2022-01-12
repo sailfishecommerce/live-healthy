@@ -45,7 +45,7 @@ function BlogArticleExcerpt({ content }: blogExcerpt) {
         <div className="card-footer d-flex align-items-center fs-xs">
           <a className="blog-entry-meta-link" href="#">
             <div className="blog-entry-author-ava">
-              <img src={content.author} alt={content.author} />
+              <img src={content.authorImage} alt={content.author} />
             </div>
             {content.author}
           </a>
