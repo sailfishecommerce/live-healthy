@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
-import { ShopByBrandPreview } from "@/components/ShopByBrands";
+import ShopByBrandPreview from "@/components/ShopByBrandPreview";
 import PopularCategories from "@/components/PopularCategories";
 import Banners from "@/components/Banner";
 import Applayout from "@/layout/Applayout";
@@ -69,7 +69,6 @@ export default function Index() {
       <CategoriesProducts category="Hair Colours" />
       <CategoriesProducts category="Medical Aids" />
       <CategoriesProducts category="Confectionery" />
-
       <div className="text-center pt-5 mt-5">
         <Link href="/shop" passHref>
           <a className="btn btn-outline-accent">
