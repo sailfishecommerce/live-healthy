@@ -25,7 +25,7 @@ export type productType = {
   quantity: string;
   hkd_selling_price?: number;
   rating: number;
-  product_type?:string;
+  product_type?: string;
   hkd_compare_at_price: number;
   category: string;
   oldPrice?: number;
@@ -340,3 +340,10 @@ export type hitType = {
     };
   };
 };
+
+export interface PaginationProps {
+  pagination: {
+    count: number;
+    active: boolean;
+  }[];
+}

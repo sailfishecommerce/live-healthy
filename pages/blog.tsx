@@ -13,7 +13,7 @@ const BlogSlider = dynamic(
 );
 
 const DynamicBlogPagination = dynamic(
-  () => import("../components/BlogPagination")
+  () => import("../components/BlogListPagination")
 );
 
 export default function Blog() {
@@ -62,38 +62,7 @@ export default function Blog() {
           </div>
           <hr className="mb-4" />
           {/*<!-- Pagination-->*/}
-          <nav
-            className="d-flex justify-content-between pt-2"
-            aria-label="Page navigation"
-          >
-            <ul className="pagination">
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  <i className="ci-arrow-left me-2"></i>
-                  Prev
-                </a>
-              </li>
-            </ul>
-            <ul className="pagination">
-              <li className="page-item d-sm-none">
-                <span className="page-link page-link-static">1 / 5</span>
-              </li>
-              {blogContent.pagination.map((pagination) => (
-                <DynamicBlogPagination
-                  key={pagination.number}
-                  pagination={pagination}
-                />
-              ))}
-            </ul>
-            <ul className="pagination">
-              <li className="page-item">
-                <a className="page-link" href="#" aria-label="Next">
-                  Next
-                  <i className="ci-arrow-right ms-2"></i>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <DynamicBlogPagination pagination={blogContent.pagination} />
         </div>
       </div>
     </Applayout>
