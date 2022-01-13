@@ -166,10 +166,12 @@ export default function Product({
             </ul>
             <div className="reviewRating d-flex flex-column">
               <RatingStar rate={product.rating} />
-              {product.review_rating && (
+              {product.review_rating ? (
                 <p className="widget-product-meta">
                   ({product.review_rating} reviews)
                 </p>
+              ) : (
+                ""
               )}
             </div>
           </div>
