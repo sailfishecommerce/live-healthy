@@ -5,7 +5,6 @@ import PopularCategories from "./components/PopularCategories";
 import Footer from "./components/Footer";
 import TrendingProducts from "./components/TrendingProducts";
 import Banners from "./components/Banner";
-import ShopByBrand, { Brand, SliderBrand } from "./components/ShopByBrands";
 import InfoCards from "./components/InfoCards";
 import FeaturedCategory from "./components/FeaturedCategory";
 import Error404 from "./components/404Error";
@@ -312,42 +311,6 @@ PLASMIC.registerComponent(Banners, {
       type: "string",
       defaultValue: "Hurry up to reserve your spot",
     },
-  },
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(Brand, {
-  name: "Brand",
-  props: {
-    brand: {
-      displayName: "brand image",
-      type: "slot",
-    },
-  },
-});
-
-PLASMIC.registerComponent(SliderBrand, {
-  name: "SliderBrand",
-  props: {
-    brand: {
-      displayName: "slider-brand image",
-      type: "slot",
-    },
-  },
-});
-
-PLASMIC.registerComponent(ShopByBrand, {
-  name: "Shop by brand",
-  props: {
-    children: "slot",
-  },
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(ShopByBrand, {
-  name: "Shop by brand",
-  props: {
-    children: "slot",
   },
   isDefaultExport: true,
 });

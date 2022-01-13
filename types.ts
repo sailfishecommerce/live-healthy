@@ -358,3 +358,8 @@ export type contentLinkType = {
     };
   }[];
 };
+
+export interface CartItemProps {
+  item: cartType;
+  removeFromCart: (item: cartType) => void;
+}
