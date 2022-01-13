@@ -11,7 +11,7 @@ interface Props {
 export default function ProductReviews({ product }: Props) {
   console.log("product", product);
   return (
-    <div className="border-top border-bottom my-lg-3 py-5 w-100">
+    <div className="border-top my-lg-3 py-5 w-100">
       <Head>
         <script
           src={`https://en.trustmate.io/api/widget/95d50730-e6a5-4465-b950-3fab710cf306/script?product=/products/${product.slug}`}
@@ -24,7 +24,6 @@ export default function ProductReviews({ product }: Props) {
       </Head>
       <div className="container pt-md-2" id="reviews">
         <div className="row pt-4">
-          {/*<!-- Reviews list-->*/}
           <div className="col-md-7">
             <div className="d-flex justify-content-between pb-4">
               <h2 className="h3 mb-4"> Reviews</h2>
@@ -45,7 +44,6 @@ export default function ProductReviews({ product }: Props) {
                 </select>
               </div>
             </div>
-            {/*<!-- Review-->*/}
             {productReview.reviews.map((review) => (
               <div
                 key={review.name}
@@ -90,17 +88,12 @@ export default function ProductReviews({ product }: Props) {
                 </div>
               </div>
             ))}
-
-            <div id="95d50730-e6a5-4465-b950-3fab710cf306"></div>
-            <div id="5c6b265a-9520-4676-9d01-2ecfca53d95c"></div>
-            {/* <div className="text-center">
-              <button className="btn btn-outline-accent" type="button">
-                <i className="ci-reload me-2"></i>Load more reviews
-              </button>
-            </div> */}
           </div>
-          {/*<!-- Leave review form-->*/}
           <ProductReviewForm />
+        </div>
+        <div className="row-pb-2">
+          <div id="95d50730-e6a5-4465-b950-3fab710cf306"></div>
+          <div id="5c6b265a-9520-4676-9d01-2ecfca53d95c"></div>
         </div>
       </div>
     </div>

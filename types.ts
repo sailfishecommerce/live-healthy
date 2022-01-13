@@ -347,3 +347,14 @@ export interface PaginationProps {
     active: boolean;
   }[];
 }
+
+export type contentLinkType = {
+  id: string;
+  slug: string;
+  name: string;
+  images: {
+    file: {
+      url: string;
+    };
+  }[];
+};
