@@ -63,7 +63,7 @@ export default function SlideCart(props: slideCartProps) {
                   </h5>
                   <hr />
                 </div>
-                <Link href="/preview/single-checkout" passHref>
+                <Link href="/checkout" passHref>
                   <button
                     onClick={toggleCheckoutModal}
                     className="btn btn-outline-primary d-block w-100 proceedBtn"

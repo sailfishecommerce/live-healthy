@@ -12,7 +12,7 @@ import CheckoutPaymentMethod from "./CheckoutPaymentMethod";
 import { clientSecretValidity } from "@/lib/airwallex-payment";
 import { updateClientSecretStatus } from "@/redux/airwallex-slice";
 
-export default function SingleCheckout() {
+export default function Checkout() {
   const { userDetail } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { airwallex, airwallexPaymentIntent } = useAirwallex();
@@ -39,7 +39,6 @@ export default function SingleCheckout() {
       <div className="container">
         <div className="row mb-5">
           <section className="col-lg-8 d-flex flex-column">
-            {/*<!-- Autor info-->*/}
             <div className="d-sm-flex justify-content-between align-items-center bg-secondary p-4 rounded-3 mb-grid-gutter">
               <div className="d-flex align-items-center">
                 <div className="img-thumbnail rounded-circle position-relative flex-shrink-0">

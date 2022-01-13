@@ -92,7 +92,7 @@ export default function HeaderCartDropdown({ cart, toggleCart }: Props) {
             <i className="ci-arrow-right ms-1 me-n1"></i>
           </a>
         </div>
-        <Link href="/preview/single-checkout" passHref>
+        <Link href="/checkout" passHref>
           <a className="btn btn-primary btn-sm d-block w-100">
             <i className="ci-card me-2 fs-base align-middle"></i>
             Checkout
