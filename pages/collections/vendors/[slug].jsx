@@ -7,12 +7,15 @@ import toTitleCase, {
   replaceHypenWithSpace,
   replaceSpaceWithHypen,
 } from "@/lib/formatString";
+import styles from "@/styles/shop.module.css";
 
 export default function Vendors({ vendor }) {
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
-      <VendorView vendor={vendor} />
+      <div className={styles.shop}>
+        <VendorView vendor={vendor} />
+      </div>
     </Applayout>
   );
 }

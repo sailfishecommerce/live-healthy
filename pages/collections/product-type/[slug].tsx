@@ -5,6 +5,7 @@ import Applayout from "@/layout/Applayout";
 import { categoryType } from "@/types";
 import CollectionMarketplace from "@/components/CollectionMarketplace";
 import getStoreCategories from "@/lib/getStoreCategories";
+import styles from "@/styles/shop.module.css";
 
 interface collectionProps {
   collection: categoryType;
@@ -56,7 +57,9 @@ export default function Category({ collection }: collectionProps): JSX.Element {
           content={collection.meta_description}
         />
       </Head>
-      <CollectionMarketplace collection={collection} />
+      <div className={styles.shop}>
+        <CollectionMarketplace collection={collection} />
+      </div>
     </Applayout>
   );
 }
