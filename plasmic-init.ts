@@ -15,7 +15,6 @@ import ProductGalleryDetails from "./components/ProductGalleryDetails";
 import ProductReviews from "./components/ProductReviews";
 import PopularCategory from "./components/PopularCategory";
 import ProductOverview from "./components/ProductOverview";
-import Checkout from "./components/Checkout";
 import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 import CategoriesProducts from "./components/CategoriesProduct";
 import Loadmore from "./components/Loadmore";
@@ -448,12 +447,6 @@ PLASMIC.registerComponent(ProductReviews, {
 
 PLASMIC.registerComponent(ProductOverview, {
   name: "Product Overview",
-  props: {},
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(Checkout, {
-  name: "Checkout component",
   props: {},
   isDefaultExport: true,
 });
