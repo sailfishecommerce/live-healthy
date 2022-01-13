@@ -363,3 +363,8 @@ export interface CartItemProps {
   item: cartType;
   removeFromCart: (item: cartType) => void;
 }
+
+export interface ProductProps {
+  product: productType;
+  forCategory?: boolean;
+}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import ContactForMoreModal from "./ContactForMoreModal";
+import dynamic from "next/dynamic";
 
 import { productType } from "@/types";
 import FormattedPrice from "@/lib/formatPrice";
@@ -13,6 +13,10 @@ interface Props {
   product: productType;
 }
 
+const DynamicContactModal = dynamic(
+  () => import("../components/ContactForMoreModal")
+);
+
 export default function ProductDetail({ product }: Props) {
   const [modal, setModal] = useState(false);
 
@@ -24,7 +28,7 @@ export default function ProductDetail({ product }: Props) {
 
   return (
     <div>
-      <ContactForMoreModal
+      <DynamicContactModal
         show={modal}
         onHide={toggleModal}
         productName={product.name}

@@ -36,7 +36,6 @@ export function SelectInput({ options }: SelectInputProps) {
 
 export function CartCounter({ counterType }: any) {
   const [itemQty, setItemQty] = useState(1);
-  const { addToCartModal } = useSwellCart();
   const [selectedQty, setSelectedQty] = useState(null);
 
   function selectedQuantityHandler(e: any) {
