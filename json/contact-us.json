@@ -1,15 +1,15 @@
 {
   "info": [
     {
-      "icon": "",
+      "icon": "ci-location",
       "title": "Main store address",
+      "anchor": "#map",
       "group": {
-        "anchor": "",
-        "text1": ""
+        "text1": "396 Lillian Blvd, Holbrook, NY 11741, USA"
       }
     },
     {
-      "icon": "",
+      "icon": "ci-time",
       "title": "Working hours",
       "group": {
         "text1": "Mon - Fri: 10AM - 7PM",
@@ -17,7 +17,7 @@
       }
     },
     {
-      "icon": "",
+      "icon": "ci-phone",
       "title": "Phone numbers",
       "group": {
         "text1": "For customers",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "icon": "",
+      "icon": "ci-mail",
       "title": "Email addresses",
       "group": {
         "text1": "For customers",
