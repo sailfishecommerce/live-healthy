@@ -31,7 +31,6 @@ export const PLASMIC = initPlasmicLoader({
         "S5yanTB19i7QRbGa3hNUnewYQBOvMxrnyJEJNQEyKgG4YjtlEeaFJpkMzZuOxnl8uZk0jbN3IFlTdtZeA",
     },
   ],
-
   preview: false,
 });
 
@@ -101,26 +100,7 @@ PLASMIC.registerComponent(ShopByBrandCarousel, {
 
 PLASMIC.registerComponent(TopHeaderSlider, {
   name: "Header Slider",
-  props: {
-    icon1: "slot",
-    icon2: "slot",
-    icon3: "slot",
-    sliderText1: {
-      displayName: "Topbar Content - Text 1",
-      type: "string",
-      defaultValue: "Free shipping for order over $200",
-    },
-    sliderText2: {
-      displayName: "Topbar Content - Text 2",
-      type: "string",
-      defaultValue: "We return money within 30 days",
-    },
-    sliderText3: {
-      displayName: "Topbar Content - Text 2",
-      type: "string",
-      defaultValue: "Delivery to your doorstep",
-    },
-  },
+  props: plasmicJsonContent.headerSlider,
   isDefaultExport: true,
 });
 
@@ -140,106 +120,25 @@ PLASMIC.registerComponent(PopularCategories, {
 
 PLASMIC.registerComponent(PopularCategory, {
   name: "Popular Category",
-  props: {
-    categoryImg: {
-      displayName: "Category Image",
-      type: "slot",
-    },
-    categoryName: {
-      displayName: "Category Name",
-      type: "string",
-    },
-  },
+  props: plasmicJsonContent.popularCategory,
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(Banners, {
   name: "Ads Banner",
-  props: {
-    banner1Title: {
-      displayName: "Banner-1 Title",
-      type: "string",
-      defaultValue: "Hurry up! Limited time offer",
-    },
-    banner1Caption: {
-      displayName: "Banner-1 Caption",
-      type: "string",
-      defaultValue: "Converse All Star on Sale",
-    },
-    banner2Title: {
-      displayName: "Banner-2 Title",
-      type: "string",
-      defaultValue: "Your Add Banner Here",
-    },
-    banner2Caption: {
-      displayName: "Banner-2 Caption",
-      type: "string",
-      defaultValue: "Hurry up to reserve your spot",
-    },
-  },
+  props: plasmicJsonContent.adsBanner,
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(InfoCards, {
   name: "Info Card",
-  props: {
-    section1Title: {
-      displayName: "Section-1 Title",
-      type: "string",
-      defaultValue: "Read the blog",
-    },
-    section1Description: {
-      displayName: "Section-1 Description",
-      type: "string",
-      defaultValue: "Latest store, fashion news and trends",
-    },
-    section2Title: {
-      displayName: "Section-2 Title",
-      type: "string",
-      defaultValue: "Follow on Instagram",
-    },
-    section2Description: {
-      displayName: "Section-1 Description",
-      type: "string",
-      defaultValue: "Latest store, fashion news and trends",
-    },
-    section1BgColor: {
-      displayName: "Section-1 background color",
-      type: "string",
-      defaultValue: "#FEF1F1",
-    },
-    section2BgColor: {
-      displayName: "Section-2 background color",
-      type: "string",
-      defaultValue: "#EFEFFB",
-    },
-  },
+  props: plasmicJsonContent.infoCard,
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(FeaturedCategory, {
   name: "Featured Category",
-  props: {
-    categoryImg: {
-      displayName: "Category Banner Image",
-      type: "slot",
-    },
-    categoryTitle: {
-      displayName: "Category Title",
-      type: "string",
-      defaultValue: "Shop for medicine",
-    },
-    categoryCaption: {
-      displayName: "Category Caption",
-      type: "string",
-      defaultValue: "Get started now",
-    },
-    bannerBgColor: {
-      displayName: "Category banner background color",
-      type: "string",
-      defaultValue: "#e2e9ef",
-    },
-  },
+  props: plasmicJsonContent.featuredCategory,
   isDefaultExport: true,
 });
 

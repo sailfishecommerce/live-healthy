@@ -54,7 +54,7 @@ export default function TopHeaderSlider({
         ))}
       </OwlCarousel>
       <style jsx>{`
-        . icon-container {
+        .icon-container {
           height: 50px;
           width: 60px;
           margin: 0px 10px;
