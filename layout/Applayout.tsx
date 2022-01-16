@@ -48,16 +48,9 @@ export default function Applayout({
       </Head>
       {loading && <LoadingBar />}
       <Header
-        headerSliderText1="Free shipping Worldwide"
-        headerSliderText2="Trusted by Doctors & Medical Professionals"
-        headerSliderText3="Delivery to your doorstep"
-        icon1="globe.png"
-        icon2="checkIcon.png"
-        icon3="delivery.png"
         support="00123-456-789"
         topbarBgColor="#373F50"
         navBgColor="white"
-        local={true}
       />
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>

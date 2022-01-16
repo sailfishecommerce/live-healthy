@@ -19,10 +19,9 @@ const CategoryDropdown = dynamic(() => import("./NavDropdown"));
 interface NavProps {
   logo: any;
   navBgColor: string;
-  local?: boolean;
 }
 
-export default function Nav({ local, logo, navBgColor }: NavProps) {
+export default function Nav({ logo, navBgColor }: NavProps) {
   const { cart, toggleCart }: any = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
@@ -41,7 +40,6 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
   function toggleSlideCartMobile() {
     tabWidth && dispatch(toggleSlideCart());
   }
-  const homeLink = local ? "/" : "/";
 
   return (
     <div
@@ -50,13 +48,9 @@ export default function Nav({ local, logo, navBgColor }: NavProps) {
     >
       <div className="navbar navbar-expand-lg navbar-light">
         <div className="container position-relative">
-          <Link href={homeLink} passHref>
+          <Link href="/" passHref>
             <a className="navbar-brand d-none d-sm-block flex-shrink-0">
-              {local ? (
-                <img src="/logo.png" width="142" alt="Bandicoot" />
-              ) : (
-                logo
-              )}
+              {logo}
             </a>
           </Link>
           <Link href="/" passHref>

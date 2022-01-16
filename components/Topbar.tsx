@@ -1,19 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
-import TopbarAdsSlider from "@/components/TopbarAdsSlider";
 import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
 import styles from "@/styles/Topbar.module.css";
 
+
 interface TopbarProps {
   support: string;
-  sliderContent: { text: string; icon: string }[];
   topbarBgColor: string;
+  children: any;
 }
 export default function Topbar({
   support,
-  sliderContent,
   topbarBgColor,
+  children,
 }: TopbarProps) {
   return (
     <div
@@ -51,7 +51,7 @@ export default function Topbar({
             {support}
           </a>
         </div>
-        <TopbarAdsSlider sliderContent={sliderContent} />
+        {children}
         <div className="ms-3 text-nowrap">
           <Link href="/order-tracking" passHref>
             <a className="topbar-link me-4 d-none d-md-inline-block">

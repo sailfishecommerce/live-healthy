@@ -18,6 +18,10 @@ import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 import CategoriesProducts from "./components/CategoriesProduct";
 import Loadmore from "./components/Loadmore";
 import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
+import TopHeaderSlider from "./components/Carousel/TopHeaderSlider";
+import plasmicJson from "@/json/plasmic-init.json";
+
+const plasmicJsonContent: any = plasmicJson;
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -33,117 +37,13 @@ export const PLASMIC = initPlasmicLoader({
 
 PLASMIC.registerComponent(Header, {
   name: "Header",
-  props: {
-    logo: "slot",
-    headerSliderText1: {
-      displayName: "Topbar Content - Text 1",
-      type: "string",
-      defaultValue: "Free shipping for order over $200",
-    },
-    headerSliderText2: {
-      displayName: "Topbar Content - Text 2",
-      type: "string",
-      defaultValue: "We return money within 30 days",
-    },
-    headerSliderText3: {
-      displayName: "Topbar Content - Text 2",
-      type: "string",
-      defaultValue: "Delivery to your doorstep",
-    },
-    support: "string",
-    topbarBgColor: {
-      displayName: "Topbar Background Color",
-      type: "string",
-      defaultValue: "#373F50",
-    },
-    navBgColor: {
-      displayName: "Nav Background Color",
-      defaultValue: "white",
-      type: "string",
-    },
-  },
+  props: plasmicJsonContent.header,
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(HomepageSlider, {
   name: "HomepageSlider",
-  props: {
-    sliderTitle1: {
-      type: "string",
-      displayName: "Slider-1 title",
-      defaultValue: "Huge Summer Collection",
-    },
-    sliderCaption1: {
-      type: "string",
-      displayName: "Slider-1 Caption",
-      defaultValue: "Has just arrived!",
-    },
-    sliderDescription1: {
-      type: "string",
-      displayName: "Slider-1 Description",
-      defaultValue: "Swimwear, Tops, Shorts, Sunglasses &amp; much more...",
-    },
-    sliderImg1: {
-      type: "slot",
-      displayName: "Slider-1 Image",
-    },
-    bgColor1: {
-      type: "string",
-      displayName: "Slider-3 background color",
-      defaultValue: "#3aafd2",
-    },
-    sliderTitle2: {
-      type: "string",
-      displayName: "Slider-2 title",
-      defaultValue: "Women Sportswear Sale",
-    },
-    sliderCaption2: {
-      type: "string",
-      displayName: "Slider-2 Caption",
-      defaultValue: "Hurry up! Limited time offer.",
-    },
-    sliderDescription2: {
-      type: "string",
-      displayName: "Slider-2 Description",
-      defaultValue: "Sneakers, Keds, Sweatshirts, Hoodies &amp; much more...",
-    },
-    sliderImg2: {
-      type: "slot",
-      displayName: "Slider-2 Image",
-    },
-    bgColor2: {
-      type: "string",
-      displayName: "Slider-3 background color",
-      defaultValue: "#f5b1b0",
-    },
-    sliderTitle3: {
-      type: "string",
-      displayName: "Slider-3 title",
-      defaultValue: "New Men Accessories",
-    },
-
-    sliderCaption3: {
-      type: "string",
-      displayName: "Slider-3 Caption",
-      defaultValue: "Complete your look with",
-    },
-
-    sliderDescription3: {
-      type: "string",
-      displayName: "Slider-3 Description",
-      defaultValue: "Hats &amp; Caps, Sunglasses, Bags &amp; much more...",
-    },
-
-    sliderImg3: {
-      type: "slot",
-      displayName: "Slider-3 Image",
-    },
-    bgColor3: {
-      type: "string",
-      displayName: "Slider-3 background color",
-      defaultValue: "#eba170",
-    },
-  },
+  props: plasmicJsonContent.homepageSlider,
 });
 
 PLASMIC.registerComponent(HomepageHits, {
@@ -159,102 +59,67 @@ PLASMIC.registerComponent(Loadmore, {
 
 PLASMIC.registerComponent(Footer, {
   name: "Footer",
-  props: {
-    topSectionBgColor: {
-      displayName: "Top Section Background Color",
-      type: "string",
-      defaultValue: "#373F50",
-    },
-    bottomSectionBgColor: {
-      displayName: "Bottom Section Background Color",
-      type: "string",
-      defaultValue: "#2B3445",
-    },
-  },
+  props: plasmicJsonContent.footer,
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Medicine Products",
-  props: {
-    category: {
-      defaultValue: "Medicines",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.medicineProducts,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Hair Care Products",
-  props: {
-    category: {
-      defaultValue: "Hair Care",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.hairCareProducts,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Personal Care Products",
-  props: {
-    category: {
-      defaultValue: "Personal Care",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.personalCareProducts,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Beauty Products",
-  props: {
-    category: {
-      defaultValue: "Beauty",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.beautyProducts,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Veterinary and Pet Care Products",
-  props: {
-    category: {
-      defaultValue: "Veterinary and Pet Care",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.vetProducts,
 });
 
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Confectionery Products",
-  props: {
-    category: {
-      defaultValue: "Confectionery",
-      type: "string",
-      displayName: "Category Name",
-    },
-  },
+  props: plasmicJsonContent.confectioneryProducts,
 });
 
 PLASMIC.registerComponent(ShopByBrandCarousel, {
   name: "Shop by brand carousel",
+  props: plasmicJsonContent.shopByBrand,
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(TopHeaderSlider, {
+  name: "Header Slider",
   props: {
-    brandLogo1: "slot",
-    brandLogo2: "slot",
-    brandLogo3: "slot",
-    brandLogo4: "slot",
-    brandLogo5: "slot",
-    brandLogo6: "slot",
-    brandLogo7: "slot",
-    brandLogo8: "slot",
-    brandLogo9: "slot",
-    brandLogo10: "slot",
-    brandLogo11: "slot",
-    brandLogo12: "slot",
+    icon1: "slot",
+    icon2: "slot",
+    icon3: "slot",
+    sliderText1: {
+      displayName: "Topbar Content - Text 1",
+      type: "string",
+      defaultValue: "Free shipping for order over $200",
+    },
+    sliderText2: {
+      displayName: "Topbar Content - Text 2",
+      type: "string",
+      defaultValue: "We return money within 30 days",
+    },
+    sliderText3: {
+      displayName: "Topbar Content - Text 2",
+      type: "string",
+      defaultValue: "Delivery to your doorstep",
+    },
   },
   isDefaultExport: true,
 });
