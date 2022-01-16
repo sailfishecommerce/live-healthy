@@ -57,7 +57,7 @@ export default function useAccount() {
   async function forgotPassword(email: string) {
     return await swell.account.recover({
       email,
-      reset_url: `https://just-medic.vercel.app/password-reset?key={reset_key}`,
+      reset_url: `https://livehealthy.hk/password-reset?key={reset_key}`,
     });
   }
 

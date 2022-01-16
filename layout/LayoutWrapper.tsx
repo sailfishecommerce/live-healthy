@@ -42,7 +42,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
           {`
             var _vbset = _vbset || [];
             _vbset.push(['_account', 'VBT-88360-6048']);
-            _vbset.push(['_domain', 'https://just-medic.vercel.app']);
+            _vbset.push(['_domain', 'https://livehealthy.hk']);
 
             (function() {
               var vbt = document.createElement('script'); vbt.type = 'text/javascript'; vbt.async = true; 

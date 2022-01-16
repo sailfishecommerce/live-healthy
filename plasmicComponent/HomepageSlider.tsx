@@ -119,6 +119,9 @@ export default function HomepageSlider({
         ))}
       </TinySlider>
       <style jsx>{`
+        section.tns-carousel {
+          height: 680px;
+        }
         @media (max-width: 768px) {
           .sliderText h3 {
             font-size: 20px;

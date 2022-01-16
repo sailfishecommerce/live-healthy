@@ -19,10 +19,9 @@ export default async function createSwellProductHandler(
       case "GET": {
         base("To Shopify")
           .select({
-            maxRecords: 7794,
+            maxRecords: 14477,
             view: "Grid view",
             filterByFormula: "NOT({Product Type} = ' ')",
-            sort: [{ field: "Title", direction: "desc" }],
           })
           .eachPage(
             function page(records, fetchNextPage) {

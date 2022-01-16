@@ -15,7 +15,7 @@ export default function ProductMeta({ product }: Props) {
             "name":"${product.name}",
             "description":"${product.description}",      
             "image":"${product.images[0]?.file?.url}",
-            "url":"https://just-medic.vercel.app/products/${product.slug}",        
+            "url":"https://livehealthy.hk/products/${product.slug}",        
             "aggregateRating": {
               "@type": "AggregateRating",
               "ratingValue": "${product.rating}",
@@ -43,7 +43,7 @@ export default function ProductMeta({ product }: Props) {
             "sku":"${product.id}",
             "offers": {
               "@type": "Offer",
-              "url":"https://just-medic.vercel.app/products/${product.slug}",        
+              "url":"https://livehealthy.hk/products/${product.slug}",        
               "priceValidUntil": "2022-12-31",
               "availability": "https://schema.org/InStock",
               "price":"${product.price}",

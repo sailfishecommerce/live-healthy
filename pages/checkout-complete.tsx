@@ -33,7 +33,7 @@ export default function CheckoutComplete() {
               priority:'${item.id}',
               name:'${item.product.name}',
               brand:'${item.product.name}',
-              product_url:'${`https://just-medic.vercel.app/products/${item?.product.slug}`}',
+              product_url:'${`https://livehealthy.hk/products/${item?.product.slug}`}',
               image_url:'${item.product.images[0].file.url}'
             }`
           )}];
