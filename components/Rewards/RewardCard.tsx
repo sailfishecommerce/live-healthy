@@ -2,32 +2,25 @@
 import Link from "next/link";
 
 interface Props {
-  title: string;
-  text: string;
-  type: string;
-  links: {
-    img: string;
-    text: string;
-  }[];
-  textGroup: {
-    img: string;
-    text: string;
+  card: {
     title: string;
-  }[];
+    text: string;
+    type: string;
+    links?: {
+      icon: string;
+      title: string;
+      route?: string;
+      text?: string;
+    }[];
+  };
 }
 
-export default function RewardCard({
-  title,
-  text,
-  type,
-  links,
-  textGroup,
-}: Props) {
+export default function RewardCard({ card }: Props) {
   return (
     <div className="reward-card">
-      <h6>{title}</h6>
-      <p>{text}</p>
-      {type === "button" && (
+      <h6>{card.title}</h6>
+      <p>{card.text}</p>
+      {card.type === "button" && (
         <div className="button-view d-flex flex-column">
           <Link href="/my-account" passHref>
             <button>Join Now</button>
@@ -41,17 +34,17 @@ export default function RewardCard({
         </div>
       )}
       <ul className="menu-link">
-        {type === "links"
-          ? links.map((link) => (
-              <li key={link.text} className="d-flex align-items-center">
-                <img src={link.img} alt="icon" />
-                <p>{link.text}</p>
+        {card.type === "links"
+          ? card?.links?.map((link) => (
+              <li key={link.title} className="d-flex align-items-center">
+                <img src={link.icon} alt="icon" />
+                <p>{link.title}</p>
               </li>
             ))
-          : type === "referrals" &&
-            textGroup.map((item) => (
-              <li key={item.title} className="d-flex flex-column">
-                <img src={item.img} alt="icon" />
+          : card.type === "referrals" &&
+            card?.links?.map((item, index) => (
+              <li key={index} className="d-flex flex-column">
+                <img src={item.icon} alt="icon" />
                 <span className="d-flex flex-column">
                   <h6>{item.title}</h6>
                   <p>{item.text}</p>

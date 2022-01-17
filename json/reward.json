@@ -10,8 +10,33 @@
       "text": "Earn more Sailfish Points for different actions, and turn those Sailfish Points into awesome rewards!",
       "type": "links",
       "links": [
-        { "icon": "", "text": "Ways to earn", "route": "ways-to-earn" },
-        { "icon": "", "text": "Ways to redeem", "route": "ways-to-redeem" }
+        {
+          "icon": "/earn-more-points.svg",
+          "title": "Ways to earn",
+          "route": "ways-to-earn"
+        },
+        {
+          "icon": "/spend-your-points.svg",
+          "title": "Ways to redeem",
+          "route": "ways-to-redeem"
+        }
+      ]
+    },
+    {
+      "title": "Referrals",
+      "text": "Give your friends a reward and claim your own when they make a purchase.",
+      "type": "referrals",
+      "links": [
+        {
+          "icon": "/fixed-amount.svg",
+          "title": "They get",
+          "text": "$30 off coupon"
+        },
+        {
+          "icon": "/fixed-amount.svg",
+          "title": "You get",
+          "text": "$30 off coupon"
+        }
       ]
     }
   ]
