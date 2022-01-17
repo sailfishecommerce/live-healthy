@@ -142,7 +142,8 @@ export default function RewardView({ content }: Props) {
             border-radius: 10px;
             margin: 10px auto;
             width: 80%;
-            font-size: 13px;
+            font-size: 14px;
+            text-align: center;
           }
         `}
       </style>

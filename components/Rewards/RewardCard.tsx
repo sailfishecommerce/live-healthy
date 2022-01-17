@@ -48,7 +48,7 @@ export default function RewardCard({ card }: Props) {
                   <li
                     key={link.title}
                     onClick={() => viewRewardDetails(link.route)}
-                    className="point-list d-flex align-items-center justify-content-between"
+                    className="point-list links d-flex align-items-center justify-content-between"
                   >
                     <div className="d-flex align-items-center">
                       <img className="icon" src={link.icon} alt="icon" />
@@ -61,7 +61,7 @@ export default function RewardCard({ card }: Props) {
                 card?.links?.map((item, index) => (
                   <li
                     key={index}
-                    className="point-list d-flex align-items-center"
+                    className="point-list referral d-flex align-items-center"
                   >
                     <img className="icon" src={item.icon} alt="icon" />
                     <span className="d-flex flex-column">
@@ -113,7 +113,10 @@ export default function RewardCard({ card }: Props) {
         .point-list p {
           margin-bottom: 0px;
         }
-
+        li.point-list.links:first-child {
+          border-bottom: 1px solid #e6e6e6;
+          padding-bottom: 10px;
+        }
         .reward-card p {
           font-size: 13px;
           font-weight: 300;
@@ -143,7 +146,9 @@ export default function RewardCard({ card }: Props) {
           color: black;
           position: relative;
         }
-        
+        .referral h6 {
+          margin-bottom: 0px;
+        }
       `}</style>
     </>
   );

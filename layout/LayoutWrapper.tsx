@@ -99,7 +99,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
       <ToastContainer />
 
       <div className="content position-relative">{children}</div>
-      <div className="position-relative">
+      <div className="position-relative sailfish-reward-widget">
         <Reward />
       </div>
       {showPointer && (
