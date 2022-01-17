@@ -1,8 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRef } from "react";
-
 import CategoryBanner from "./CategoryBanner";
-import FeaturedCategoryCarousel from "./Carousel/FeaturedCategoryCarousel";
+import dynamic from "next/dynamic";
+
+import SpinnerRipple from "./spinnerLoader";
+
+const FeaturedCategoryCarousel = dynamic(
+  () => import("./Carousel/FeaturedCategoryCarousel"),
+  {
+    ssr: false,
+    loading: () => <SpinnerRipple />,
+  }
+);
 
 interface FeaturedCategoryProps {
   categoryImg?: string;
@@ -31,7 +39,7 @@ export default function FeaturedCategory({
           local={local}
         />
         {/*<!-- Product grid (carousel)-->*/}
-        <FeaturedCategoryCarousel  />
+        <FeaturedCategoryCarousel />
       </div>
     </section>
   );

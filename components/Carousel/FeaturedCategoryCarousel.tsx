@@ -1,17 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+import OwlCarousel from "react-owl-carousel";
+
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useRequest from "@/hooks/useRequest";
 import Category from "../Category";
 import LoadCategory from "../CategoryLoader";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
 
 export default function FeaturedCategoryCarousel() {
   const [categoryArray, setCategoryArray] = useState<any[]>([]);
