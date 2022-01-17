@@ -264,5 +264,9 @@
       "type": "string",
       "defaultValue": "#e2e9ef"
     }
+  },
+  "nav": {
+    "logo": "slot",
+    "navBgColor": "string"
   }
 }

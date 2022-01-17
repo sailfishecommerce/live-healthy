@@ -20,6 +20,7 @@ import Loadmore from "./components/Loadmore";
 import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
 import TopHeaderSlider from "./components/Carousel/TopHeaderSlider";
 import plasmicJson from "@/json/plasmic-init.json";
+import Nav from "./components/Nav";
 
 const plasmicJsonContent: any = plasmicJson;
 
@@ -37,6 +38,12 @@ export const PLASMIC = initPlasmicLoader({
 PLASMIC.registerComponent(Header, {
   name: "Header",
   props: plasmicJsonContent.header,
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(Nav, {
+  name: "Nav",
+  props: plasmicJsonContent.nav,
   isDefaultExport: true,
 });
 

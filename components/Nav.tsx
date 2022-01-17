@@ -19,7 +19,7 @@ const CategoryDropdown = dynamic(() => import("./NavDropdown"));
 interface NavProps {
   logo?: any;
   navBgColor: string;
-  local: boolean;
+  local?: boolean;
 }
 
 export default function Nav({ logo, navBgColor, local }: NavProps) {
