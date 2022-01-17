@@ -6,11 +6,7 @@ interface CategoryBannerProps {
   categoryImg?: string;
   categoryTitle: string;
   categoryCaption: string;
-  bannerBgColor: string;
-  controls: {
-    navigationNextRef: any;
-    navigationPrevRef: any;
-  };
+  bannerBgColor: string; 
   local?: boolean;
 }
 
@@ -19,10 +15,8 @@ export default function CategoryBanner({
   categoryTitle,
   categoryCaption,
   bannerBgColor,
-  controls,
   local,
 }: CategoryBannerProps) {
-  const { navigationNextRef, navigationPrevRef } = controls;
   return (
     <div className="col-md-5">
       <div
@@ -38,14 +32,6 @@ export default function CategoryBanner({
                 <i className="ci-arrow-right fs-xs align-middle ms-1"></i>
               </a>
             </Link>
-          </div>
-          <div className="d-flex">
-            <button className="control" ref={navigationPrevRef} type="button">
-              <i className="ci-arrow-left"></i>
-            </button>
-            <button className="control" ref={navigationNextRef} type="button">
-              <i className="ci-arrow-right"></i>
-            </button>
           </div>
         </div>
         <Link href="/shop" passHref>

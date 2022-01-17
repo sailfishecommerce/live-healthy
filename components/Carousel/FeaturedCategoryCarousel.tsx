@@ -1,21 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
-import { SwiperSlide } from "swiper/react";
+import dynamic from "next/dynamic";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useRequest from "@/hooks/useRequest";
 import Category from "../Category";
 import LoadCategory from "../CategoryLoader";
-import SliderView from "../SliderView";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
-interface Props {
-  controls: {
-    navigationNextRef: any;
-    navigationPrevRef: any;
-  };
-}
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+  ssr: false,
+});
 
-export default function FeaturedCategoryCarousel({ controls }: Props) {
+export default function FeaturedCategoryCarousel() {
   const [categoryArray, setCategoryArray] = useState<any[]>([]);
   const deviceWidth = useMediaQuery("(max-width:600px)");
   const { useCategories } = useRequest();
@@ -49,28 +47,26 @@ export default function FeaturedCategoryCarousel({ controls }: Props) {
       ) : categoryStatus === "loading" ? (
         <LoadCategory arrayType={arrayType} gridStyle={gridStyle} />
       ) : (
-        <SliderView
-          controls={controls}
-          className="w-full"
-          autoplay={false}
-          slidesPerView={1}
+        <OwlCarousel
+          autoplay
+          className="owl-theme owl-carousel w-full"
+          loop
+          margin={10}
+          dots
+          items={1}
         >
-          <div>
-            {categoryArray.map((categories, index) => {
-              return categories.length > 0 ? (
-                <SwiperSlide key={index}>
-                  <div>
-                    <div className="row mx-n2">
-                      {categories.map((category: any) => (
-                        <Category key={category.id} category={category} />
-                      ))}
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ) : null;
-            })}
-          </div>
-        </SliderView>
+          {categoryArray.map((categories, index) => {
+            return categories.length > 0 ? (
+              <div className="item" key={index}>
+                <div className="row mx-n2">
+                  {categories.map((category: any) => (
+                    <Category key={category.id} category={category} />
+                  ))}
+                </div>
+              </div>
+            ) : null;
+          })}
+        </OwlCarousel>
       )}
     </div>
   );
