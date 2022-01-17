@@ -21,8 +21,9 @@ export default function Reward() {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            width: 500px;
+            width: 400px;
             z-index: 10000;
+            height: 700px;
           }
         `}
       </style>

@@ -19,14 +19,14 @@ export default function RewardCard({ card }: Props) {
   return (
     <>
       <div className="reward-card">
-        <h6>{card.title}</h6>
-        <p>{card.text}</p>
+        <h6 className="title text-center">{card.title}</h6>
+        <p className="text-center">{card.text}</p>
         {card.type === "button" && (
           <div className="button-view d-flex flex-column">
             <Link href="/my-account" passHref>
               <button>Join Now</button>
             </Link>
-            <p>
+            <p className="text-center">
               Already have an account ?{" "}
               <Link href="/my-account" passHref>
                 <a>Sign in</a>
@@ -34,43 +34,74 @@ export default function RewardCard({ card }: Props) {
             </p>
           </div>
         )}
-        <ul className="menu-link">
-          {card.type === "links"
-            ? card?.links?.map((link) => (
-                <li key={link.title} className="d-flex align-items-center">
-                  <img className="icon" src={link.icon} alt="icon" />
-                  <p>{link.title}</p>
-                </li>
-              ))
-            : card.type === "referrals" &&
-              card?.links?.map((item, index) => (
-                <li key={index} className="d-flex">
-                  <img className="icon" src={item.icon} alt="icon" />
-                  <span className="d-flex flex-column">
-                    <h6>{item.title}</h6>
-                    <p>{item.text}</p>
-                  </span>
-                </li>
-              ))}
-        </ul>
+        {card.type !== "button" && (
+          <ul className="menu-link">
+            {card.type === "links"
+              ? card?.links?.map((link) => (
+                  <li
+                    key={link.title}
+                    className="point-list d-flex align-items-center"
+                  >
+                    <img className="icon" src={link.icon} alt="icon" />
+                    <p>{link.title}</p>
+                  </li>
+                ))
+              : card.type === "referrals" &&
+                card?.links?.map((item, index) => (
+                  <li
+                    key={index}
+                    className="point-list d-flex align-items-center"
+                  >
+                    <img className="icon" src={item.icon} alt="icon" />
+                    <span className="d-flex flex-column">
+                      <h6>{item.title}</h6>
+                      <p>{item.text}</p>
+                    </span>
+                  </li>
+                ))}
+          </ul>
+        )}
       </div>
       <style jsx>{`
         .menu-link {
           padding: 0px;
         }
         img.icon {
-          height: 25px;
-          width: 25px;
+          height: 30px;
+          width: 30px;
         }
         .button-view button {
           width: 90px;
         }
         .reward-card h6 {
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 500;
         }
+        .button-view button {
+          margin: auto;
+          border: none;
+          color: white;
+          background-color: #f79f24;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+        .point-list {
+          margin: 0px 0px 10px 15px;
+        }
+        .point-list img.icon {
+          margin-right: 20px;
+        }
+        .point-list p {
+          margin-bottom: 0px;
+        }
+        .button-view button:hover {
+          opacity: 0.8;
+        }
         .reward-card p {
-          font-size: 12px;
+          font-size: 13px;
+          font-weight: 300;
         }
         .reward-card {
           width: 350px;
@@ -91,11 +122,11 @@ export default function RewardCard({ card }: Props) {
           background-color: #fff;
           box-shadow: 0 0 13px 0 rgb(0 0 0 / 9%);
           margin-bottom: 12px;
+          margin-left: 15px;
           overflow: hidden;
           padding: 16px 12px;
           color: black;
           position: relative;
-          transform: translate(20px);
         }
       `}</style>
     </>
