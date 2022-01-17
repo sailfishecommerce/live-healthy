@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 import LayoutWrapper from "./LayoutWrapper";
 import useLoading from "@/hooks/useLoading";
+import Nav from "@/components/Nav";
 
 const Header = dynamic(() => import("../plasmicComponent/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
@@ -36,7 +37,6 @@ export default function Applayout({
 
       <Head>
         <title>{title}</title>
-
         <script
           src="https://en.trustmate.io/api/widget/4420c1ed-e3a7-47c2-b6a2-2d7386a819da/script"
           defer
@@ -47,11 +47,9 @@ export default function Applayout({
         ></script>
       </Head>
       {loading && <LoadingBar />}
-      <Header
-        support="00123-456-789"
-        topbarBgColor="#373F50"
-        navBgColor="white"
-      />
+      <Header support="00123-456-789" topbarBgColor="#373F50">
+        <Nav navBgColor="white" local />
+      </Header>
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
       <div id="01739a85-4698-4d4c-90d5-876048fba847"></div>

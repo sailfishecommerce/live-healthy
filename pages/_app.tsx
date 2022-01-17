@@ -1,3 +1,4 @@
+import "@/lib/wdyr";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import { Provider } from "react-redux";
@@ -10,12 +11,12 @@ import type { AppProps } from "next/app";
 import "simplebar";
 
 import store from "@/redux/store";
-import "@/lib/wdyr";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "simplebar/dist/simplebar.css";
 import "@/styles/globals.css";
 import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
+import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -47,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/src/css/lightgallery.css"
-        />        
+        />
       </Head>
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -74,3 +75,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+MyApp.whyDidYouRender = true;

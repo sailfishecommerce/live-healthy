@@ -17,11 +17,12 @@ const HeaderCartDropdown = dynamic(() => import("./HeaderCartDropdown"));
 const CategoryDropdown = dynamic(() => import("./NavDropdown"));
 
 interface NavProps {
-  logo: any;
+  logo?: any;
   navBgColor: string;
+  local: boolean;
 }
 
-export default function Nav({ logo, navBgColor }: NavProps) {
+export default function Nav({ logo, navBgColor, local }: NavProps) {
   const { cart, toggleCart }: any = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
@@ -50,7 +51,7 @@ export default function Nav({ logo, navBgColor }: NavProps) {
         <div className="container position-relative">
           <Link href="/" passHref>
             <a className="navbar-brand d-none d-sm-block flex-shrink-0">
-              {logo}
+              {!local ? logo : <img src="/logo.png" alt="logo" />}
             </a>
           </Link>
           <Link href="/" passHref>

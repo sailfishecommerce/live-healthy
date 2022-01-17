@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import Reward from "@/components/Rewards";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import useLoading from "@/hooks/useLoading";
 import "react-toastify/dist/ReactToastify.css";
@@ -98,6 +99,9 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
       <ToastContainer />
 
       <div className="content position-relative">{children}</div>
+      <div className="position-relative">
+        <Reward />
+      </div>
       {showPointer && (
         <a
           href="#head"

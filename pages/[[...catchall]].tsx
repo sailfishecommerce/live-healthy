@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { GetStaticPaths, GetStaticProps } from "next";
 import {
@@ -9,7 +8,6 @@ import Error from "next/error";
 import { PLASMIC } from "../plasmic-init";
 import PlasmicLayout from "@/layout/Plasmiclayout";
 import Metatag from "@/components/Metatag";
-import axios from "axios";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -17,17 +15,10 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
   )
 );
 
-export default function PlasmicLoaderPage(props: {
+export default function PlasmicPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
   const { plasmicData } = props;
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/from-airtable-to-swell")
-  //     .then((response) => console.log("response", response))
-  //     .catch((error) => console.log("error", error));
-  // }, []);
 
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
@@ -46,6 +37,8 @@ export default function PlasmicLoaderPage(props: {
     </>
   );
 }
+
+PlasmicPage.whyDidYouRender = true;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
