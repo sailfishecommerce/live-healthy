@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import Head from "next/head";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import Image from "@cloudinary/react";
 import RenderSmoothImage from "render-smooth-image-react";
 import "render-smooth-image-react/build/style.css";
 
@@ -14,7 +12,6 @@ import { replaceSpaceWithHypen } from "@/lib/formatString";
 import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
 import useProductPrice from "@/hooks/useProductPrice";
-import SpinnerRipple from "./spinnerLoader";
 
 const DynamicProductViewForm = dynamic(
   () => import("../components/ProductViewForm")
@@ -39,15 +36,6 @@ export default function Product({
       ? product.images[1]?.file?.url
       : product.images[0]?.file?.url;
 
-  function displaySecondProductImgOnHover() {
-    if (inHover && product.images.length > 1) {
-      return (
-        <>
-          <SpinnerRipple />
-        </>
-      );
-    }
-  }
   return (
     <div className="col-md-4 col-sm-6 mb-4">
       <DynamicProductMetatags product={product} />
@@ -83,12 +71,9 @@ export default function Product({
                 src={productImage}
                 alt={product?.image_alt_text[0]}
                 className="productImage"
+                height={300}
+                width={300}
               />
-              {/* <Image
-                publicId={`https://res.cloudinary.com/verrb-inc/image/fetch/${productImage}`}
-                alt={product?.image_alt_text[0]}
-                className="productImage"
-              /> */}
             </div>
           </a>
         </Link>

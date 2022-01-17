@@ -49,6 +49,18 @@ export default function RewardButton({ showChat, onClick }: Props) {
         .cancel {
           font-size: 25px;
         }
+        @media (max-width: 768px) {
+          button.rewardButton {
+            font-size: 14px;
+            height: 40px;
+            max-width: 120px;
+          }
+          button.rewardButton span img {
+            margin-right: 0px;
+            height: 25px;
+            width: 25px;
+          }
+        }
       `}</style>
     </>
   );

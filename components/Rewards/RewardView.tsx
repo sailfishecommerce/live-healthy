@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { useAppDispatch } from "@/hooks/useRedux";
-import { updateStage } from "@/redux/reward-slice";
+import { updateStage, updateWidget } from "@/redux/reward-slice";
 
 interface Props {
   content: {
@@ -17,9 +17,15 @@ interface Props {
 
 export default function RewardView({ content }: Props) {
   const dispatch = useAppDispatch();
+
   function viewRewardDetails(rewardMethod: string) {
     dispatch(updateStage(rewardMethod));
   }
+
+  function closeWidget() {
+    dispatch(updateWidget());
+  }
+
   return (
     <>
       <div className="rewards-list">
@@ -31,7 +37,7 @@ export default function RewardView({ content }: Props) {
             ></i>
             <h6>Sailfish + Rewards</h6>
           </span>
-          <i className="ci-close"></i>
+          <i onClick={closeWidget} className="ci-close"></i>
         </div>
         <div className="content">
           <h4>{content.title}</h4>
@@ -144,6 +150,11 @@ export default function RewardView({ content }: Props) {
             width: 80%;
             font-size: 14px;
             text-align: center;
+          }
+          @media (max-width: 768px) {
+            .rewards-list {
+              width: 80%;
+            }
           }
         `}
       </style>

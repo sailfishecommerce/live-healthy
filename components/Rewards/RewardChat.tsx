@@ -1,13 +1,24 @@
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import rewardContent from "@/json/reward.json";
+import { updateWidget } from "@/redux/reward-slice";
 import RewardCard from "./RewardCard";
 
 export default function RewardChat() {
+  const dispatch = useAppDispatch();
+
+  function closeWidget() {
+    dispatch(updateWidget());
+  }
+
   return (
     <>
       <div className="reward-chat-box">
-        <div className="chat-header">
-          <h6 className="mt-2">Welcome to</h6>
-          <h4>Sailfish + Rewards</h4>
+        <div className="chat-header d-flex align-items-center justify-content-between">
+          <div className="d-flex flex-column">
+            <h6 className="mt-2">Welcome to</h6>
+            <h4>Sailfish + Rewards</h4>
+          </div>
+          <i onClick={closeWidget} className="ci-close"></i>
         </div>
         <div className="reward-card-group">
           {rewardContent.cards.map((card) => (
@@ -50,6 +61,29 @@ export default function RewardChat() {
             padding: 20px;
             height: 600px;
             overflow-y: scroll;
+          }
+          @media (max-width: 768px) {
+            .chat-header {
+              height: 100px;
+              padding: 15px;
+              padding-left: 20px;
+              border-radius: 20px;
+            }
+            button.rewardButton span img {
+              margin-right: 0px;
+              height: 25px;
+              width: 25px;
+            }
+            .chat-header h6 {
+              font-size: 13px;
+            }
+            .chat-header h4 {
+              color: white;
+              font-size: 14px;
+            }
+            .reward-chat-box {
+              width: 80%;
+            }
           }
         `}
       </style>

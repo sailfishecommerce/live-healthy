@@ -1,9 +1,10 @@
+import { memo } from "react";
 import LoadProducts from "@/components/ProductsLoader";
 import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import Product from "./Product";
 import { productType } from "@/types";
 
-export default function TrendingProducts() {
+function TrendingProductsFromSwell() {
   const { liveHealthyProduct, liveHealthyProductStatus } =
     useLiveHealthyProduct();
 
@@ -35,3 +36,5 @@ export default function TrendingProducts() {
     </section>
   );
 }
+
+export const TrendingProducts = memo(TrendingProductsFromSwell);

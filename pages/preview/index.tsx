@@ -14,7 +14,7 @@ import { useCart } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { createCartVbout } from "@/redux/integration-slice";
 import Metatag from "@/components/Metatag";
-import CategoriesProducts from "@/components/CategoriesProduct";
+import { CategoriesProducts } from "@/components/CategoriesProduct";
 import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
 
 export default function Index() {

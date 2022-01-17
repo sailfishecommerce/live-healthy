@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   Configure,
   InstantSearch,
@@ -17,11 +18,10 @@ function CategoryRefinement() {
 
 const RefinedCategory = connectRefinementList(CategoryRefinement);
 
-export default function CategoriesProducts({ category }: Props) {
+function CategoryProducts({ category }: Props) {
   return (
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="h3 text-start">{category} products</h2>
-
       <InstantSearch
         indexName="New_Livehealthy_products_index"
         searchClient={searchClient}
@@ -49,3 +49,4 @@ export default function CategoriesProducts({ category }: Props) {
     </section>
   );
 }
+export const CategoriesProducts = memo(CategoryProducts);

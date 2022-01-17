@@ -149,6 +149,11 @@ export default function RewardCard({ card }: Props) {
         .referral h6 {
           margin-bottom: 0px;
         }
+        @media (max-width: 768px) {
+          .reward-card {
+            width: 250px;
+          }
+        }
       `}</style>
     </>
   );

@@ -1,21 +1,21 @@
-import { useAppSelector } from "@/hooks/useRedux";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { updateWidget } from "@/redux/reward-slice";
 import RewardButton from "./RewardButton";
 import rewardsTab from "./RewardsTab";
 
 export default function Reward() {
-  const [showChat, setShowChat] = useState(false);
-  const { stage } = useAppSelector((state) => state.rewardWidget);
+  const { stage, showWidget } = useAppSelector((state) => state.rewardWidget);
+  const dispatch = useAppDispatch();
 
   function displayChat() {
-    setShowChat(!showChat);
+    dispatch(updateWidget());
   }
 
   return (
     <>
       <div className="reward-widget d-flex flex-column">
-        {showChat && rewardsTab(stage)}
-        <RewardButton showChat={showChat} onClick={displayChat} />
+        {showWidget && rewardsTab(stage)}
+        <RewardButton showChat={showWidget} onClick={displayChat} />
       </div>
       <style jsx>
         {`
@@ -24,6 +24,12 @@ export default function Reward() {
             z-index: 100;
             right: 20px;
             bottom: 20px;
+          }
+          @media (max-width: 768px) {
+            .reward-widget {
+              bottom: 100px;
+              right: 0px;
+            }
           }
         `}
       </style>
