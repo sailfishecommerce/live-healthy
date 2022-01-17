@@ -8,18 +8,14 @@ import Head from "next/head";
 import Script from "next/script";
 import type { AppProps } from "next/app";
 import "simplebar";
-import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 import store from "@/redux/store";
+import "@/lib/wdyr";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "simplebar/dist/simplebar.css";
 import "@/styles/globals.css";
 import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
-
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  whyDidYouRender(React);
-}
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -51,15 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/src/css/lightgallery.css"
-        />
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.css"
-          rel="stylesheet"
-        />
+        />        
       </Head>
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"

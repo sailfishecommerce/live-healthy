@@ -44,7 +44,7 @@ export default function TopHeaderSlider({
       >
         {sliderContent.map((content) => (
           <div
-            key={content.icon}
+            key={content.text}
             style={{ backgroundColor: "#373F50" }}
             className="item slider-container d-flex align-items-center m-auto justify-content-center"
           >

@@ -57,7 +57,7 @@ export default function FeaturedCategoryCarousel() {
         >
           {categoryArray.map((categories, index) => {
             return categories.length > 0 ? (
-              <div className="item" key={index}>
+              <div className="item" key={`carousel-${index}`}>
                 <div className="row mx-n2">
                   {categories.map((category: any) => (
                     <Category key={category.id} category={category} />

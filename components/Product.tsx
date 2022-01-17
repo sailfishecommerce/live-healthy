@@ -110,7 +110,7 @@ export default function Product({
             <ul className="product-price d-flex align-items-baseline">
               <li className="text-accent">{price()}</li>
               {currency === "HKD" && product.hkd_compare_at_price > 0 && (
-                <li className="small text-accent mx-2">{oldPrice()}</li>
+                <li className="small text-accent">{oldPrice()}</li>
               )}
             </ul>
             <div className="reviewRating d-flex flex-column">
