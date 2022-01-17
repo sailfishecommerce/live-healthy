@@ -29,6 +29,9 @@ export default function RewardButton({ showChat, onClick }: Props) {
           align-items: center;
           background-color: #f79f24;
           border: none;
+          position: absolute;
+          right: 30 px;
+          bottom: 20 px;
         }
         button.rewardButton span img {
           height: 30px;
