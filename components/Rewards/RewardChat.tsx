@@ -38,9 +38,17 @@ export default function RewardChat() {
             background-color: white;
             border-radius: 30px;
             box-shadow: 0 0 13px 0 rgb(0 0 0 / 9%);
+            position: fixed;
+            right: 20px;
+            bottom: 120px;
+            width: 400px;
+            z-index: 1000;
+            height: 700px;
           }
           .reward-card-group {
             padding: 20px;
+            height: 500px;
+            overflow-y: scroll;
           }
         `}
       </style>

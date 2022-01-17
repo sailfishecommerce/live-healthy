@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import footerBottomContent from "@/json/footer-bottom.json";
 import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
 
@@ -37,14 +38,16 @@ export default function FooterBottomSection({
         <div className="row pb-2">
           <div className="col-md-6 text-center text-md-start mb-4">
             <div className="text-nowrap mb-4 d-flex align-items-center">
-              <a className="d-inline-block align-middle mt-n1 me-3" href="#">
-                <img
-                  className="d-block"
-                  src="/logo.png"
-                  width="117"
-                  alt="Bandicoot"
-                />
-              </a>
+              <Link href="/" passHref>
+                <a className="d-inline-block align-middle mt-n1 me-3" href="#">
+                  <img
+                    className="d-block"
+                    src="/logo.png"
+                    width="117"
+                    alt="Bandicoot"
+                  />
+                </a>
+              </Link>
               <CurrencyLanguageDropdown position="bottom" />
             </div>
             <div className="site-description">

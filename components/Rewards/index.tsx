@@ -11,19 +11,17 @@ export default function Reward() {
 
   return (
     <>
-      <div className="reward">
+      <div className="reward-widget d-flex flex-column">
         {showChat && <RewardChat />}
         <RewardButton showChat={showChat} onClick={displayChat} />
       </div>
       <style jsx>
         {`
-          .reward {
+          .reward-widget {
             position: fixed;
+            z-index: 100;
             right: 20px;
             bottom: 20px;
-            width: 400px;
-            z-index: 10000;
-            height: 700px;
           }
         `}
       </style>

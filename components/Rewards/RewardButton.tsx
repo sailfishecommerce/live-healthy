@@ -21,7 +21,7 @@ export default function RewardButton({ showChat, onClick }: Props) {
       <style jsx>{`
         button.rewardButton {
           height: 60px;
-          min-width: 60px;
+          max-width: 140px;
           color: white;
           padding: 20px;
           border-radius: 30px;
@@ -33,14 +33,18 @@ export default function RewardButton({ showChat, onClick }: Props) {
           right: 30px;
           bottom: 20px;
         }
+        button.rewardButton:hover {
+          opacity: 0.8;
+        }
         button.rewardButton span img {
           height: 30px;
           width: 30px;
-          margin-right: 03px;
+          margin-right: 3px;
         }
         .imgContainer {
           display: flex;
           align-items: center;
+          width: 100px;
         }
         .cancel {
           font-size: 25px;
