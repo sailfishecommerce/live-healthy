@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
+import { useAppDispatch } from "@/hooks/useRedux";
+import { updateStage } from "@/redux/reward-slice";
+
 interface Props {
   card: {
     title: string;
@@ -16,6 +19,10 @@ interface Props {
 }
 
 export default function RewardCard({ card }: Props) {
+  const dispatch = useAppDispatch();
+  function viewRewardDetails(rewardMethod: string) {
+    dispatch(updateStage(rewardMethod));
+  }
   return (
     <>
       <div className="reward-card">
@@ -37,13 +44,17 @@ export default function RewardCard({ card }: Props) {
         {card.type !== "button" && (
           <ul className="menu-link">
             {card.type === "links"
-              ? card?.links?.map((link) => (
+              ? card?.links?.map((link: any) => (
                   <li
                     key={link.title}
-                    className="point-list d-flex align-items-center"
+                    onClick={() => viewRewardDetails(link.route)}
+                    className="point-list d-flex align-items-center justify-content-between"
                   >
-                    <img className="icon" src={link.icon} alt="icon" />
-                    <p>{link.title}</p>
+                    <div className="d-flex align-items-center">
+                      <img className="icon" src={link.icon} alt="icon" />
+                      <p>{link.title}</p>
+                    </div>
+                    <i className="ci-arrow-right"></i>
                   </li>
                 ))
               : card.type === "referrals" &&
@@ -67,8 +78,8 @@ export default function RewardCard({ card }: Props) {
           padding: 0px;
         }
         img.icon {
-          height: 30px;
-          width: 30px;
+          height: 40px;
+          width: 40px;
         }
         .button-view button {
           width: 90px;
@@ -87,8 +98,14 @@ export default function RewardCard({ card }: Props) {
           font-size: 13px;
           margin-bottom: 10px;
         }
+        .button-view button:hover {
+          opacity: 0.8;
+        }
         .point-list {
           margin: 0px 0px 10px 15px;
+        }
+        .point-list.justify-content-between:hover {
+          opacity: 0.5;
         }
         .point-list img.icon {
           margin-right: 20px;
@@ -96,9 +113,7 @@ export default function RewardCard({ card }: Props) {
         .point-list p {
           margin-bottom: 0px;
         }
-        .button-view button:hover {
-          opacity: 0.8;
-        }
+
         .reward-card p {
           font-size: 13px;
           font-weight: 300;
@@ -122,12 +137,13 @@ export default function RewardCard({ card }: Props) {
           background-color: #fff;
           box-shadow: 0 0 13px 0 rgb(0 0 0 / 9%);
           margin-bottom: 12px;
-          margin-left: 15px;
+          margin-left: 9px;
           overflow: hidden;
           padding: 16px 12px;
           color: black;
           position: relative;
         }
+        
       `}</style>
     </>
   );

@@ -6,7 +6,7 @@ export default function RewardChat() {
     <>
       <div className="reward-chat-box">
         <div className="chat-header">
-          <h6 className="mt-4">Welcome to</h6>
+          <h6 className="mt-2">Welcome to</h6>
           <h4>Sailfish + Rewards</h4>
         </div>
         <div className="reward-card-group">
@@ -23,7 +23,7 @@ export default function RewardChat() {
               hsla(35, 93%, 55%, 1),
               hsla(35, 100%, 37%, 1)
             );
-            height: 160px;
+            height: 120px;
             width: 100%;
             color: white;
             padding: 20px;
@@ -40,14 +40,15 @@ export default function RewardChat() {
             box-shadow: 0 0 13px 0 rgb(0 0 0 / 9%);
             position: fixed;
             right: 20px;
-            bottom: 120px;
+            bottom: 100px;
             width: 400px;
-            z-index: 1000;
+            z-index: 5000;
             height: 700px;
+            overflow: hidden;
           }
           .reward-card-group {
             padding: 20px;
-            height: 500px;
+            height: 600px;
             overflow-y: scroll;
           }
         `}

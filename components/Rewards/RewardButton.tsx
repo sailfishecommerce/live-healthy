@@ -31,7 +31,7 @@ export default function RewardButton({ showChat, onClick }: Props) {
           border: none;
           position: absolute;
           right: 30px;
-          bottom: 20px;
+          bottom: 0px;
         }
         button.rewardButton:hover {
           opacity: 0.8;

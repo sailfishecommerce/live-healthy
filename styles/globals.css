@@ -16,31 +16,6 @@ a {
   box-sizing: border-box;
 }
 
-.brand-row .swiper-button-next,
-.brand-row .swiper-button-prev {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  z-index: 200;
-  background-color: #76727285;
-  margin-top: -30px;
-}
-
-.brand-row .swiper-button-next::after,
-.brand-row .swiper-button-prev::after {
-  font-size: 20px;
-  color: white;
-}
-
-.brand-row .swiper-button-next:hover,
-.brand-row .swiper-button-prev:hover {
-  background-color: blanchedalmond;
-}
-.brand-row .swiper-button-next:hover + .brand-row .swiper-button-next::after,
-.brand-row .swiper-button-prev:hover + .brand-row .swiper-button-prev::after {
-  color: #fb696a;
-}
-
 .electronicsBrandsCarousel .tns-outer button {
   display: none;
 }
@@ -262,16 +237,19 @@ li.ais-Hits-item:hover a h6 {
 
 /* style scrollbar */
 body::-webkit-scrollbar,
+.reward-card-group::-webkit-scrollbar,
 .product-gallery-thumblist::-webkit-scrollbar {
   width: 1em;
 }
 
 body::-webkit-scrollbar-track,
+.reward-card-group::-webkit-scrollbar-track,
 .product-gallery-thumblist::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 body::-webkit-scrollbar-thumb,
+.reward-card-group::-webkit-scrollbar-thumb,
 .product-gallery-thumblist::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
@@ -280,20 +258,6 @@ body::-webkit-scrollbar-thumb,
 
 /* media query */
 @media (max-width: 768px) {
-  .brand-row .swiper-button-next,
-  .brand-row .swiper-button-prev,
-  .otherProductCarousel .swiper-button-prev,
-  .otherProductCarousel .swiper-button-next {
-    height: 30px;
-    width: 30px;
-  }
-
-  .brand-row .swiper-button-next::after,
-  .brand-row .swiper-button-prev::after,
-  .otherProductCarousel .swiper-button-prev::after,
-  .otherProductCarousel .swiper-button-next::after {
-    font-size: 15px;
-  }
   .mobileInput button.ais-SearchBox-reset {
     right: 20px;
     top: 46px;
