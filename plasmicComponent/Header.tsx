@@ -5,21 +5,21 @@ interface HeaderProps {
   support: string;
   topbarBgColor: string;
   slider?: any;
-  children?: any;
+  nav?: any;
 }
 
 export default function Header({
   topbarBgColor,
   support,
   slider,
-  children,
+  nav,
 }: HeaderProps) {
   return (
     <header className="shadow-sm w-100">
       <Topbar support={support} topbarBgColor={topbarBgColor}>
         {slider}
       </Topbar>
-      {children}
+      {nav}
     </header>
   );
 }

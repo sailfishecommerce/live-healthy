@@ -2,6 +2,7 @@
   "header": {
     "logo": "slot",
     "slider": "slot",
+    "nav": "slot",
     "support": "string",
     "topbarBgColor": {
       "displayName": "Topbar Background Color",

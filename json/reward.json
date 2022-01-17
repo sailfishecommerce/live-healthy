@@ -1,0 +1,18 @@
+{
+  "cards": [
+    {
+      "title": "Become a meember",
+      "text": "With more ways to unlock exciting perks, this is your all access pass to exclusive rewards.",
+      "type": "button"
+    },
+    {
+      "title": "Sailfish Points",
+      "text": "Earn more Sailfish Points for different actions, and turn those Sailfish Points into awesome rewards!",
+      "type": "links",
+      "links": [
+        { "icon": "", "text": "Ways to earn", "route": "ways-to-earn" },
+        { "icon": "", "text": "Ways to redeem", "route": "ways-to-redeem" }
+      ]
+    }
+  ]
+}
