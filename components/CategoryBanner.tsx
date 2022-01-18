@@ -7,6 +7,10 @@ interface CategoryBannerProps {
   categoryTitle: string;
   categoryCaption: string;
   bannerBgColor: string;
+  controls: {
+    navigationNextRef: any;
+    navigationPrevRef: any;
+  };
   local?: boolean;
 }
 
@@ -15,8 +19,10 @@ export default function CategoryBanner({
   categoryTitle,
   categoryCaption,
   bannerBgColor,
+  controls,
   local,
 }: CategoryBannerProps) {
+  const { navigationNextRef, navigationPrevRef } = controls;
   return (
     <div className="col-md-5">
       <div
@@ -25,13 +31,21 @@ export default function CategoryBanner({
       >
         <div className="d-flex justify-content-between px-grid-gutter py-grid-gutter">
           <div>
-            <h3 className="mb-1 category-title">{categoryTitle}</h3>
+            <h3 className="mb-1">{categoryTitle}</h3>
             <Link href="/shop" passHref>
               <a className="fs-md text-white">
                 {categoryCaption}
                 <i className="ci-arrow-right fs-xs align-middle ms-1"></i>
               </a>
             </Link>
+          </div>
+          <div className="d-flex">
+            <button className="control" ref={navigationPrevRef} type="button">
+              <i className="ci-arrow-left"></i>
+            </button>
+            <button className="control" ref={navigationNextRef} type="button">
+              <i className="ci-arrow-right"></i>
+            </button>
           </div>
         </div>
         <Link href="/shop" passHref>
@@ -72,11 +86,6 @@ export default function CategoryBanner({
           }
           button.control:hover {
             opacity: 0.8;
-          }
-          @media (max-width: 768px) {
-            .category-title {
-              font-size: 16px;
-            }
           }
         `}
       </style>

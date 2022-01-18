@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @next/next/no-img-element */
-import dynamic from "next/dynamic";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import styles from "@/styles/ShopByBrandCarousel.module.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper";
 
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+
+import styles from "@/styles/ShopByBrandCarousel.module.css";
 
 export default function ShopByBrandCarousel({
   brandLogo1,
@@ -57,18 +56,20 @@ export default function ShopByBrandCarousel({
     <section className="container py-lg-4 mb-4">
       <h2 className="h3 text-center pb-4">Shop by brand</h2>
       <div className="row brand-row">
-        <OwlCarousel
-          className="owl-theme owl-carousel"
-          autoplay
-          loop
-          margin={10}
-          dots
-          center={true}
-          responsive={responsiveConfig}
-          items={4}
+        <Swiper
+          spaceBetween={50}
+          loop={true}
+          className="d-flex"
+          autoplay={true}
+          slidesPerView={5}
+          modules={[Autoplay, Navigation, Pagination]}
+          pagination={true}
+          mousewheel={true}
+          keyboard={true}
+          navigation={true}
         >
           {brandLogoImages.map((brand: any, index: number) => (
-            <div className="item" key={index}>
+            <SwiperSlide key={index}>
               <div className={styles.brand}>
                 <a
                   className={`${styles.brandLink} d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
@@ -79,9 +80,9 @@ export default function ShopByBrandCarousel({
                   </div>
                 </a>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </OwlCarousel>
+        </Swiper>
       </div>
     </section>
   );

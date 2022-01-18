@@ -62,13 +62,13 @@ export default function Index() {
       />
       <PopularCategories />
       <HomepageHits />
-      <CategoriesProducts category="Health" />
+      {/* <CategoriesProducts category="Health" />
       <CategoriesProducts category="Beauty" />
       <CategoriesProducts category="Personal Care" />
       <CategoriesProducts category="Medicines" />
       <CategoriesProducts category="Hair Colours" />
       <CategoriesProducts category="Medical Aids" />
-      <CategoriesProducts category="Confectionery" />
+      <CategoriesProducts category="Confectionery" /> */}
       <div className="text-center pt-5 mt-5">
         <Link href="/shop" passHref>
           <a className="btn btn-outline-accent">

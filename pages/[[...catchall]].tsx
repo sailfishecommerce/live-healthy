@@ -38,8 +38,6 @@ export default function PlasmicPage(props: {
   );
 }
 
-PlasmicPage.whyDidYouRender = true;
-
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
 

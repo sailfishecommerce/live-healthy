@@ -1,3 +1,4 @@
+import "../lib/wdyr";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import { Provider } from "react-redux";
@@ -16,15 +17,6 @@ import "@/styles/globals.css";
 import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
 
-if (process.env.NODE_ENV === "development") {
-  if (typeof window !== "undefined") {
-    const whyDidYouRender = require("@welldone-software/why-did-you-render");
-    whyDidYouRender(React, {
-      trackAllPureComponents: true,
-    });
-  }
-}
-
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     AOS.init({
@@ -36,14 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   const persistor = persistStore(store);
 
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnMount: true,
-        refetchOnReconnect: true,
-      },
-    },
-  });
+  const queryClient = new QueryClient();
 
   return (
     <div>
@@ -56,14 +41,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/src/css/lightgallery.css"
         />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/swiper/css/swiper.min.css"
+        />
       </Head>
-      <Script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-        strategy="afterInteractive"
-      />
       <Script
         src=" https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"
         strategy="afterInteractive"
@@ -96,5 +79,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
-MyApp.whyDidYouRender = true;

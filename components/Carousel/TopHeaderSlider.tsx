@@ -1,11 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import dynamic from "next/dynamic";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Autoplay, Mousewheel } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 export default function TopHeaderSlider({
   icon1,
@@ -31,28 +28,29 @@ export default function TopHeaderSlider({
   ];
   return (
     <>
-      <OwlCarousel
-        className="owl-theme owl-carousel"
-        autoplay
-        loop
-        margin={10}
-        dots={false}
-        style={{ width: "50%" }}
-        center={true}
-        nav={false}
-        items={1}
+      <Swiper
+        spaceBetween={30}
+        loop={true}
+        autoplay={true}
+        slidesPerView={1}
+        modules={[Autoplay, Mousewheel, EffectFade]}
+        effect={"fade"}
+        mousewheel={true}
+        navigation={false}
       >
-        {sliderContent.map((content) => (
-          <div
-            key={content.text}
-            style={{ backgroundColor: "#373F50" }}
-            className="item slider-container d-flex align-items-center m-auto justify-content-center"
-          >
-            <div className="icon-container">{content.icon}</div>
-            <p className="text-white text-center mb-0">{content.text}</p>
-          </div>
+        {sliderContent.map((content, index) => (
+          <SwiperSlide key={index}>
+            <div
+              key={content.text}
+              style={{ backgroundColor: "#373F50" }}
+              className="item slider-container d-flex align-items-center m-auto justify-content-center"
+            >
+              <div className="icon-container">{content.icon}</div>
+              <p className="text-white text-center mb-0">{content.text}</p>
+            </div>
+          </SwiperSlide>
         ))}
-      </OwlCarousel>
+      </Swiper>
       <style jsx>{`
         .icon-container {
           height: 50px;
