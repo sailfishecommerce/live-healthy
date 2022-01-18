@@ -1,13 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import dynamic from "next/dynamic";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import { productType } from "@/types";
-import ProductCarouselView from "../ProductCarouselView";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  EffectFade,
+  Autoplay,
+  Mousewheel,
+  Keyboard,
+} from "swiper";
 
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
+import { productType } from "@/types";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/keyboard";
+import "swiper/css/mousewheel";
+import ProductCarouselView from "../ProductCarouselView";
 
 interface Props {
   otherProducts: productType[];
@@ -23,21 +32,49 @@ export default function SingleShopProductCarousel1({
   return (
     <div className="otherProductCarousel container py-5 my-md-3">
       <h2 className="h3 text-center pb-4">You may also like</h2>
-      <OwlCarousel
-        className="owl-theme owl-carousel"
-        autoplay
-        loop
-        margin={10}
-        dots={false}
-        center={true}
-        items={3}
+      <Swiper
+        spaceBetween={20}
+        loop={true}
+        autoplay={true}
+        slidesPerView={2}
+        breakpoints={{
+          500: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          // when window width is >= 640px
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1400: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
+        modules={[
+          Autoplay,
+          Navigation,
+          Pagination,
+          Mousewheel,
+          Keyboard,
+          EffectFade,
+        ]}
+        pagination={true}
+        mousewheel={true}
+        keyboard={true}
+        navigation={true}
       >
         {filterProduct.map((product: productType) => (
-          <div className="item" key={product.id}>
+          <SwiperSlide key={product.id}>
             <ProductCarouselView product={product} />
-          </div>
+          </SwiperSlide>
         ))}
-      </OwlCarousel>
+      </Swiper>
     </div>
   );
 }

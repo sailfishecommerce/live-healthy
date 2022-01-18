@@ -41,11 +41,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/src/css/lightgallery.css"
         />
-        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/swiper/css/swiper.min.css"
-        />
       </Head>
       <Script
         src=" https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"

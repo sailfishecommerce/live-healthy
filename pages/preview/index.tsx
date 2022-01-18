@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import FeaturedCategory from "@/components/FeaturedCategory";
 import InfoCards from "@/components/InfoCards";
-import ShopByBrandPreview from "@/components/ShopByBrandPreview";
 import PopularCategories from "@/components/PopularCategories";
 import Banners from "@/components/Banner";
 import Applayout from "@/layout/Applayout";
@@ -89,7 +88,6 @@ export default function Index() {
         banner1Caption="Converse All Star on Sale"
         banner2Caption="Hurry up to reserve your spot"
       />
-      <ShopByBrandPreview />
       <InfoCards
         section1Title="Read the blog"
         section1Description="Latest store, fashion news and trends"
