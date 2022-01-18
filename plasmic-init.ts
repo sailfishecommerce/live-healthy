@@ -53,7 +53,7 @@ PLASMIC.registerComponent(HomepageSlider, {
 });
 
 PLASMIC.registerComponent(HomepageHits, {
-  name: "Homepage Hits",
+  name: "HomepageHits",
   props: {},
   isDefaultExport: true,
 });
@@ -112,7 +112,7 @@ PLASMIC.registerComponent(TopHeaderSlider, {
 });
 
 PLASMIC.registerComponent(TrendingProducts, {
-  name: "Trending Products",
+  name: "TrendingProducts",
   props: {},
   isDefaultExport: true,
 });
