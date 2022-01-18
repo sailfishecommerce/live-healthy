@@ -19,10 +19,7 @@ export async function getStaticProps(context: any) {
   swellNodeInit();
   const data = await swell.get("/products", {
     where: { select_store: "livehealthy" },
-    limit: 50,
-    page: 1,
   });
-  console.log("data", data);
   return {
     props: {
       products: data.results,
