@@ -1,4 +1,3 @@
-import "@/lib/wdyr";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import { Provider } from "react-redux";
@@ -16,7 +15,15 @@ import "simplebar/dist/simplebar.css";
 import "@/styles/globals.css";
 import "nouislider/dist/nouislider.css";
 import "@/styles/theme.min.css";
-import whyDidYouRender from "@welldone-software/why-did-you-render";
+
+if (process.env.NODE_ENV === "development") {
+  if (typeof window !== "undefined") {
+    const whyDidYouRender = require("@welldone-software/why-did-you-render");
+    whyDidYouRender(React, {
+      trackAllPureComponents: true,
+    });
+  }
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -78,7 +85,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PersistGate loading={null} persistor={persistor}>
-            <Component {...pageProps} />
+            <React.StrictMode>
+              <Component {...pageProps} />
+            </React.StrictMode>
           </PersistGate>
         </QueryClientProvider>
       </Provider>

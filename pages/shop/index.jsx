@@ -1,5 +1,4 @@
 import { Component } from "react";
-import isEqual from "lodash.isequal";
 import { withRouter } from "next/router";
 import qs from "qs";
 import { findResultsState } from "react-instantsearch-dom/server";
@@ -134,7 +133,7 @@ class Shop extends Component {
     };
   }
   static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state.lastRouter, props.router)) {
+    if (state.lastRouter !== props.router) {
       return {
         searchState: pathToSearchState(props.router.asPath),
         lastRouter: props.router,

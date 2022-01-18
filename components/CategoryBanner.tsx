@@ -6,7 +6,7 @@ interface CategoryBannerProps {
   categoryImg?: string;
   categoryTitle: string;
   categoryCaption: string;
-  bannerBgColor: string; 
+  bannerBgColor: string;
   local?: boolean;
 }
 
@@ -25,7 +25,7 @@ export default function CategoryBanner({
       >
         <div className="d-flex justify-content-between px-grid-gutter py-grid-gutter">
           <div>
-            <h3 className="mb-1">{categoryTitle}</h3>
+            <h3 className="mb-1 category-title">{categoryTitle}</h3>
             <Link href="/shop" passHref>
               <a className="fs-md text-white">
                 {categoryCaption}
@@ -72,6 +72,11 @@ export default function CategoryBanner({
           }
           button.control:hover {
             opacity: 0.8;
+          }
+          @media (max-width: 768px) {
+            .category-title {
+              font-size: 16px;
+            }
           }
         `}
       </style>

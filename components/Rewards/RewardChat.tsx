@@ -83,6 +83,8 @@ export default function RewardChat() {
             }
             .reward-chat-box {
               width: 80%;
+              height: 60%;
+              overflow: scroll;
             }
           }
         `}
