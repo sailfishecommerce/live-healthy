@@ -18,10 +18,10 @@ export default function useProcessPayment() {
   const router = useRouter();
   const { tokenizePayment, submitUserOrder } = usePayment();
   const { getUserDetails } = useAuth();
+  const { updateLoadingState } = useLoading();
 
   const { getACart } = useSwellCart();
   const { cart }: any = useCart();
-  const { updateLoadingState } = useLoading();
   const { updateUserBillingInfo, createUserAddresstAtCheckout } = useAccount();
   const dispatch = useAppDispatch();
   const [loadingState, setLoadingState] = useState(false);
@@ -70,7 +70,6 @@ export default function useProcessPayment() {
       });
     }
 
-    updateLoadingState();
     setLoadingState(true);
     tokenizePayment()
       .then((tokenPaymentResponse) => {
@@ -108,22 +107,18 @@ export default function useProcessPayment() {
                     .catch((error) => {
                       console.log("error submitUserOrder", error);
                       hasError(toastId, error?.message);
-                      updateLoadingState();
                     });
                 })
                 .catch((error) => {
                   console.log("updateUserBillingInfo error", error);
                   hasError(toastId, error?.message);
-                  updateLoadingState();
                 });
             })
             .catch((error) => {
               hasError(toastId, error?.message);
-              updateLoadingState();
             });
         } else {
           hasError(toastId, tokenPaymentResponse?.message);
-          updateLoadingState();
           setLoadingState(false);
         }
       })
@@ -131,7 +126,6 @@ export default function useProcessPayment() {
         console.log("error makePayment", err);
         hasError(toastId, err?.message);
         setLoading(false);
-        updateLoadingState();
         setLoadingState(false);
       });
   }

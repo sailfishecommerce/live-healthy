@@ -4,13 +4,11 @@ import useToast from "./useToast";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { authorizeError, authorizeUser, logout } from "@/redux/auth-slice";
-import useLoading from "./useLoading";
 import useVbout from "./useVbout";
 
 export default function useAuth() {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
-  const { updateLoadingState } = useLoading();
   const { addNewUserToList } = useVbout();
 
   const { loginUser, logoutUser, signedUserDetails, createUserAccount } =
@@ -18,7 +16,6 @@ export default function useAuth() {
 
   async function signIn(values: any, formik: any, notModal?: boolean) {
     const toastId = isLoading();
-    updateLoadingState();
     loginUser(values)
       .then((response) => {
         if (response) {
@@ -27,36 +24,30 @@ export default function useAuth() {
           formik.resetForm();
           formik.setSubmitting(false);
           dispatch(authorizeUser(response));
-          updateLoadingState();
           !notModal && dispatch(toggleAuthModal());
         } else {
           hasError(toastId, "login not successful");
           formik.setSubmitting(false);
-          updateLoadingState();
         }
       })
       .catch((error) => {
         hasError(toastId, error?.message);
         dispatch(authorizeError());
         formik.setSubmitting(false);
-        updateLoadingState();
       });
   }
 
   async function signUp(values: any, formik: any, notModal?: boolean) {
     const toastId = isLoading();
     addNewUserToList(values.email);
-    updateLoadingState();
     createUserAccount(values)
       .then((response) => {
         if (response?.email.code === "UNIQUE") {
           hasError(toastId, `${values.email} already exists `);
-          updateLoadingState();
         } else {
           isSuccessful(toastId, `${values.email}, sign up successful`);
           dispatch(authorizeUser(response));
           formik.resetForm();
-          updateLoadingState();
 
           !notModal && dispatch(toggleAuthModal());
         }
@@ -66,27 +57,22 @@ export default function useAuth() {
         hasError(toastId, error?.message);
         dispatch(authorizeError());
         formik.setSubmitting(false);
-        updateLoadingState();
       });
   }
 
   async function userLogout() {
     const toastId = isLoading();
-    updateLoadingState();
     logoutUser()
       .then((response) => {
         if (response?.success) {
           dispatch(logout());
-          updateLoadingState();
           isSuccessful(toastId, "logout successful");
         } else {
           hasError(toastId, "unable to logout user");
-          updateLoadingState();
         }
       })
       .catch((err) => {
         hasError(toastId, err?.message);
-        updateLoadingState();
       });
   }
 

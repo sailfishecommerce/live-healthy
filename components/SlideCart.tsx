@@ -84,7 +84,7 @@ export default function SlideCart(props: slideCartProps) {
       </div>
       <style jsx>
         {`
-          .slidecartOverlay {
+          .overlay.slidecartOverlay {
             background-color: #190f0fc4;
           }
           .sidebar-cart-product-wrapper.custom-scrollbar {
@@ -118,7 +118,7 @@ export default function SlideCart(props: slideCartProps) {
           }
           .overlay {
             width: 75%;
-            background-color: black;
+            background-color: #190f0fc4;
             height: 100%;
             position: fixed;
             left: 0;

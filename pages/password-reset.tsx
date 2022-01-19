@@ -11,7 +11,6 @@ export default function AccountPasswordRecovery() {
   const router = useRouter();
   const { recoverPassword } = useAccount();
   const { isLoading, isSuccessful, hasError } = useToast();
-  const { updateLoadingState } = useLoading();
   const searchParams = router.query;
   const key: string | any = searchParams.key;
 
@@ -35,11 +34,9 @@ export default function AccountPasswordRecovery() {
                 validationSchema={forgotPasswordSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                   const loading = isLoading();
-                  updateLoadingState();
                   recoverPassword(values.newPassword, key)
                     .then((response) => {
                       console.log("response", response);
-                      updateLoadingState();
                       if (response?.success) {
                         isSuccessful(loading, "Password reset successful");
                         router.push("/my-account");
@@ -49,7 +46,6 @@ export default function AccountPasswordRecovery() {
                     })
                     .catch((err) => {
                       console.log("err", err);
-                      updateLoadingState();
                       hasError(loading, "error resetting password");
                     });
                   resetForm();

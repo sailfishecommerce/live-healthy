@@ -3,14 +3,13 @@ import { useState } from "react";
 import checkoutFormContent from "@/json/checkout-form.json";
 import useVbout from "@/hooks/useVbout";
 import { useAppSelector } from "@/hooks/useRedux";
-import { useLoading, useToast } from "@/hooks";
+import { useToast } from "@/hooks";
 
 export default function BankTransferPaymentMethod() {
   const [bank, setBank] = useState("");
   const { sendBankTransfer } = useVbout();
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const { isLoading, hasError, isSuccessful } = useToast();
-  const { updateLoadingState } = useLoading();
 
   function setBankHandler(e: any) {
     setBank(e.target.value);
@@ -19,7 +18,6 @@ export default function BankTransferPaymentMethod() {
   function submitHandler(e: any) {
     e.preventDefault();
     const loading = isLoading();
-    updateLoadingState();
     sendBankTransfer(paymentForm?.email, bank)
       .then((response) => {
         console.log("response sendBankTransfer", response);
@@ -27,12 +25,10 @@ export default function BankTransferPaymentMethod() {
           loading,
           `An email has been sent to ${paymentForm?.email}`
         );
-        updateLoadingState();
       })
       .catch((error) => {
         console.error("error sendBankTransfer", error);
         hasError(loading, "an error occured");
-        updateLoadingState();
       });
   }
 

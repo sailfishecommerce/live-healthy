@@ -93,17 +93,17 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                 <a
                   onClick={userLogout}
                   href="#"
-                  className="navbar-tool cursor-pointer ms-1 ms-lg-0 me-n1 me-lg-2"
+                  className="navbar-tool cursor-pointer ms-1 ms-lg-5 me-n1 me-lg-2"
                 >
                   <span className="navbar-tool-tooltip">Logout</span>
                   <div className="navbar-tool-icon-box">
-                    <i className="navbar-tool-icon ci-user"></i>
+                    <i className="navbar-tool-icon ci-user me-5"></i>
                   </div>
                   <div className="navbar-tool-text ms-n3">
-                    <small className="d-flex flex-column">
+                    <small className="d-flex flex-column me-3">
                       <span>Hello,</span> <span>{userDetail.name}</span>
                     </small>
-                    <p className="logout">Logout</p>
+                    <p className="logout mb-0">Logout</p>
                   </div>
                 </a>
               )}
