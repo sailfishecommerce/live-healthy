@@ -150,7 +150,7 @@ export function ProductQuantityCounter({
           type="button"
           className="p-2 d-flex align-items-center justify-content-center btn btn-danger text-white"
         >
-          <i className="fas fa-minus mb-0"></i>
+          -
         </button>
         <input
           className="w-25 mx-2 text-center border"
@@ -162,7 +162,7 @@ export function ProductQuantityCounter({
           type="button"
           className={`p-2 d-flex align-items-center justify-content-center btn btn-success text-white`}
         >
-          <i className="ci-add"></i>
+          +
         </button>
       </div>
       <button
@@ -177,6 +177,10 @@ export function ProductQuantityCounter({
         {`
           .addToCartBtn {
             height: 43px;
+          }
+          .cartCounter button {
+            font-size: 30px;
+            height: 30px;
           }
         `}
       </style>

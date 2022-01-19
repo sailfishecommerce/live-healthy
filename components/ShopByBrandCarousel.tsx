@@ -39,16 +39,21 @@ export default function ShopByBrandCarousel({
 
   const responsiveConfig = {
     0: {
-      items: 2,
+      slidesPerView: 2,
+      spaceBetween: 20,
     },
-    480: {
-      items: 3,
+    400: {
+      spaceBetween: 30,
+      slidesPerView: 3,
     },
     768: {
-      items: 4,
+      slidesPerView: 4,
+      spaceBetween: 40,
     },
+
     1200: {
-      items: 5,
+      slidesPerView: 5,
+      spaceBetween: 50,
     },
   };
 
@@ -65,6 +70,7 @@ export default function ShopByBrandCarousel({
           modules={[Autoplay, Navigation, Pagination]}
           pagination={true}
           mousewheel={true}
+          breakpoints={responsiveConfig}
           keyboard={true}
           navigation={true}
         >

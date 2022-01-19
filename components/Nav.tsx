@@ -100,7 +100,9 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                     <i className="navbar-tool-icon ci-user"></i>
                   </div>
                   <div className="navbar-tool-text ms-n3">
-                    <small>Hello, {userDetail.name}</small>
+                    <small className="d-flex flex-column">
+                      <span>Hello,</span> <span>{userDetail.name}</span>
+                    </small>
                     <p className="logout">Logout</p>
                   </div>
                 </a>
