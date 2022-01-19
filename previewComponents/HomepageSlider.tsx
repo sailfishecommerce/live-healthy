@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Head from "next/head";
 import dynamic from "next/dynamic";
+import styles from "@/styles/homepageslider.module.css";
 
 const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
   ssr: false,
@@ -78,11 +80,19 @@ export default function HomepageSlider({
     },
   ];
   return (
-    <section className="section-carousel tns-carousel tns-controls-lg mb-4 mb-lg-5">
+    <section
+      className={`${styles.tnsCarousel} tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100`}
+    >
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"
+        />
+      </Head>
       <TinySlider settings={settings}>
         {content.map((item, index) => (
-          <div key={index}>
-            <div key={index} className="px-lg-5 sliderItem">
+          <div className="tinySlider" key={index}>
+            <div className="px-lg-5 sliderItem">
               <div className="d-lg-flex justify-content-between align-items-center ps-lg-4">
                 <img
                   src={item.sliderImg}
@@ -91,7 +101,7 @@ export default function HomepageSlider({
                   className="carouselImg d-block order-lg-2 me-lg-n5 flex-shrink-0"
                   alt="Summer Collection"
                 />
-                <div className="sliderWidth position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1">
+                <div className="position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1">
                   <div className="pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
                     <h3 className="h2 text-light fw-light pb-1 from-start">
                       {item.sliderCaption}
@@ -114,26 +124,30 @@ export default function HomepageSlider({
                 </div>
               </div>
             </div>
-              <style jsx>{`
-                .sliderItem {
-                  background-color: ${item.bgColor};
+            <style jsx>{`
+              .sliderItem {
+                background-color: ${item.bgColor};
+              }
+              .tinySlider,
+              .sliderItem {
+                height: 680px;
+              }
+              .sliderWidth {
+                max-width: 42rem;
+                z-index: 10;
+              }
+              @media (max-width: 768px) {
+                .sliderText h3 {
+                  font-size: 20px;
                 }
-                .sliderWidth {
-                  max-width: 42rem;
-                  z-index: 10;
+                .sliderText h2 {
+                  font-size: 24px;
                 }
-                @media (max-width: 768px) {
-                  .sliderText h3 {
-                    font-size: 20px;
-                  }
-                  .sliderText h2 {
-                    font-size: 24px;
-                  }
-                  .sliderText p {
-                    font-size: 16px;
-                  }
+                .sliderText p {
+                  font-size: 16px;
                 }
-              `}</style>
+              }
+            `}</style>
           </div>
         ))}
       </TinySlider>

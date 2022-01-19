@@ -1,13 +1,16 @@
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import {
   ComponentRenderData,
   PlasmicRootProvider,
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
-import { PLASMIC } from "../plasmic-init";
+
+import swellClientInit from "@/lib/config";
 import PlasmicLayout from "@/layout/Plasmiclayout";
 import Metatag from "@/components/Metatag";
+import { PLASMIC } from "../plasmic-init";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -15,10 +18,21 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
   )
 );
 
-export default function PlasmicPage(props: {
+export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
+  const { swell, initializeSwell } = swellClientInit();
   const { plasmicData } = props;
+
+  useEffect(() => {
+    initializeSwell();
+    async function getUserAccount() {
+      return await swell.account.get();
+    }
+    getUserAccount()
+      .then((response) => console.log("response", response))
+      .catch((error) => console.log("error", error));
+  }, []);
 
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
@@ -47,6 +61,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       : Array.isArray(catchall)
       ? `/${catchall.join("/")}`
       : "/";
+
   const plasmicData = await PLASMIC.maybeFetchComponentData(plasmicPath);
   if (plasmicData) {
     return {

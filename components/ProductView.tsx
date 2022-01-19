@@ -162,7 +162,7 @@ export function ProductQuantityCounter({
           type="button"
           className={`p-2 d-flex align-items-center justify-content-center btn btn-success text-white`}
         >
-          <i className="fas fa-plus"></i>
+          <i className="ci-add"></i>
         </button>
       </div>
       <button

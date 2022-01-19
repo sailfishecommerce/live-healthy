@@ -5,7 +5,7 @@ import FormattedPrice, { HkdPrice } from "@/lib/formatPrice";
 export default function useProductPrice(product: any) {
   const { currency } = useCurrency();
   const productPrice =
-    currency === "HKD" ? product.hkd_selling_price : product.price;
+    currency === "HKD" ? product?.hkd_selling_price : product.price;
 
   function price() {
     return (
@@ -23,7 +23,7 @@ export default function useProductPrice(product: any) {
       <div className="price d-flex">
         {currency === "HKD" && (
           <del>
-            <HkdPrice price={product.hkd_compare_at_price} />
+            <HkdPrice price={product?.hkd_compare_at_price} />
           </del>
         )}
       </div>

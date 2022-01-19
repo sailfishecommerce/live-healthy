@@ -17,7 +17,7 @@ const DynamicContactModal = dynamic(
   () => import("../components/ContactForMoreModal")
 );
 
-export default function ProductDetail({ product }: Props) {
+export default function  ProductDetail({ product }: Props) {
   const [modal, setModal] = useState(false);
 
   function toggleModal() {

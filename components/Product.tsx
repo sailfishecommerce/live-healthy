@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useState } from "react";
+import { useState, memo } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import memoize from "memoize-one";
+import { areEqual } from "react-window";
 
 import { ProductProps } from "@/types";
 import useProduct from "@/hooks/useProduct";
@@ -21,10 +23,7 @@ const DynamicProductMetatags = dynamic(
 );
 declare function tcjs(trigger: string, type: string, name: string): any;
 
-export default function Product({
-  product,
-  forCategory,
-}: ProductProps): JSX.Element {
+const Product = memo(({ product, forCategory }: ProductProps) => {
   const { productViewEvent } = useProduct(product);
   const [inHover, setHover] = useState(false);
   const { currency } = useCurrency();
@@ -160,4 +159,8 @@ export default function Product({
       </style>
     </div>
   );
-}
+}, areEqual);
+
+Product.displayName = "Product";
+
+export default Product;

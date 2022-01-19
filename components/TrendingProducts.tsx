@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import LoadProducts from "@/components/ProductsLoader";
 import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import Product from "./Product";

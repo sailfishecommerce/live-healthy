@@ -1,6 +1,5 @@
 import "../lib/wdyr";
-
-import React, { useEffect } from "react";
+import { useEffect, StrictMode } from "react";
 import AOS from "aos";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -31,12 +30,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
 
   return (
-    <div>      
-      
+    <div>
       <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         strategy="afterInteractive"
-      />      
+      />
       <Script
         src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"
         strategy="afterInteractive"
@@ -46,9 +44,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PersistGate loading={null} persistor={persistor}>
-            <React.StrictMode>
+            <StrictMode>
               <Component {...pageProps} />
-            </React.StrictMode>
+            </StrictMode>
           </PersistGate>
         </QueryClientProvider>
       </Provider>

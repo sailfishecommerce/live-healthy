@@ -60,7 +60,7 @@ export default function Index() {
         sliderImg3="/img/home/hero-slider/03.jpg"
       />
       <PopularCategories />
-      <HomepageHits />
+      {/* <HomepageHits /> */}
       {/* <CategoriesProducts category="Health" />
       <CategoriesProducts category="Beauty" />
       <CategoriesProducts category="Personal Care" />
