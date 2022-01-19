@@ -2,6 +2,12 @@ import { Dropdown } from "react-bootstrap";
 import { connectSortBy } from "react-instantsearch-dom";
 
 const SortBy = ({ items, refine, createURL }: any) => {
+  function onClickHandler(e: any, item: any) {
+    e.preventDefault();
+    refine(item.value);
+    createURL(item.value);
+  }
+
   return (
     <Dropdown className="dropdown d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
       <Dropdown.Toggle
@@ -11,20 +17,18 @@ const SortBy = ({ items, refine, createURL }: any) => {
         Sort by
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu">
-        {items.map((item: any) => (
-          <Dropdown.Item
-            key={item.value}
-            style={{ fontWeight: item.isRefined ? "bold" : "normal" }}
-            className="dropdown-item"
-            onClick={(event) => {
-              event.preventDefault();
-              refine(item.value);
-              createURL(item.value);
-            }}
-          >
-            {item.label}
-          </Dropdown.Item>
-        ))}
+        {items.map((item: any) => {
+          const dropdownClassName = item.isRefined ? "fw-bold" : "fst-normal";
+          return (
+            <Dropdown.Item
+              key={item.value}
+              className={`dropdown-item ${dropdownClassName}`}
+              onClick={(e) => onClickHandler(e, item)}
+            >
+              {item.label}
+            </Dropdown.Item>
+          );
+        })}
       </Dropdown.Menu>
     </Dropdown>
   );

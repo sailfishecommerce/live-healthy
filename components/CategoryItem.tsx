@@ -102,10 +102,7 @@ export default function CategoryItem({
                   <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
                 </div>
                 <ul
-                  className="widget-list widget-filter-list pt-1"
-                  style={{
-                    height: "8rem",
-                  }}
+                  className="widget-list data widget-filter-list pt-1"
                   data-simplebar
                   data-simplebar-auto-hide="false"
                 >
@@ -147,6 +144,9 @@ export default function CategoryItem({
       )}
       <style jsx>
         {`
+          .widget-list.data {
+            height: 8rem;
+          }
           .productCategory h3 a.cat-link {
             font-size: 0.9375rem;
             color: #4b566b;

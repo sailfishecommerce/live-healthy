@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import Link from "next/link";
 
 interface InfoCardsProps {
@@ -31,6 +32,12 @@ export default function InfoCards({
       icon: "ci-instagram h3 mt-2 mb-4 text-accent",
     },
   ];
+  const cardBgColor: any = useCallback(
+    (item: any) => ({
+      backgroundColor: `${item.bgColor}`,
+    }),
+    []
+  );
   return (
     <section className="container-fluid px-0">
       <div className="row g-0">
@@ -39,7 +46,7 @@ export default function InfoCards({
             {item.link ? (
               <Link href={item.link} passHref>
                 <a
-                  style={{ backgroundColor: `${item.bgColor}` }}
+                  style={cardBgColor(item)}
                   className="card border-0 rounded-0 text-decoration-none py-md-4"
                 >
                   <div className="card-body text-center">
@@ -51,7 +58,7 @@ export default function InfoCards({
               </Link>
             ) : (
               <a
-                style={{ backgroundColor: `${item.bgColor}` }}
+                style={cardBgColor(item)}
                 className="card border-0 rounded-0 text-decoration-none py-md-4"
               >
                 <div className="card-body text-center">

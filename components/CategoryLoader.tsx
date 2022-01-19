@@ -1,11 +1,14 @@
+import { useMemo } from "react";
 import ContentLoader from "react-content-loader";
 
 export function CategoryLoader(props: any) {
+  const loaderStyle = useMemo(() => ({ width: "100%" }), []);
+
   return (
     <ContentLoader
       speed={2}
       viewBox="0 0 70 70"
-      style={{ width: "100%" }}
+      style={loaderStyle}
       backgroundColor="#e3d9d9"
       foregroundColor="#ada4a4"
       title="loading product..."

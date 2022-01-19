@@ -35,12 +35,7 @@ export default function Banners({
           </div>
         </div>
         <div className="col-md-4 mb-4">
-          <div
-            className="d-flex flex-column h-100 justify-content-center bg-size-cover bg-position-center rounded-3"
-            style={{
-              backgroundImage: "url(img/blog/banner-bg.jpg)",
-            }}
-          >
+          <div className="bannerImg d-flex flex-column h-100 justify-content-center bg-size-cover bg-position-center rounded-3">
             <div className="py-4 my-2 px-4 text-center">
               <div className="py-1">
                 <h5 className="mb-2"> {banner2Title}</h5>
@@ -52,6 +47,13 @@ export default function Banners({
             </div>
           </div>
         </div>
+        <style jsx>
+          {`
+            .bannerImg {
+              background-image: "url(img/blog/banner-bg.jpg)";
+            }
+          `}
+        </style>
       </div>
     </section>
   );

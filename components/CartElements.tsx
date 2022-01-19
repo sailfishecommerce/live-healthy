@@ -21,9 +21,8 @@ export function CartControl({ item }: cartControlProps) {
     <div>
       <div className="d-flex align-items-center">
         <label
-          style={{ fontSize: "13px" }}
           htmlFor="itemQuantity"
-          className="fw-normal me-1 text-muted"
+          className="itemQuantity fw-normal me-1 text-muted"
         >
           Quantity:
         </label>
@@ -40,6 +39,9 @@ export function CartControl({ item }: cartControlProps) {
       </div>
       <style jsx>
         {`
+          .itemQuantity {
+            fontsize: 13px;
+          }
           .cartControl button {
             height: 30px;
             width: 30px;

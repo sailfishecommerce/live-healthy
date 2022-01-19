@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import { productType, productOptions } from "@/types";
 import {
@@ -60,6 +60,11 @@ export default function ProductForm({ product }: ProductFormType) {
     ? "mb-3 align-items-end"
     : "mb-3 align-items-center";
 
+  const formBg = useCallback((name: string) => {
+    const style = { backgroundColor: name.toLowerCase() };
+    return style;
+  }, []);
+
   return (
     <div className="productform mb-3">
       {product?.options?.length > 0 ? (
@@ -106,9 +111,7 @@ export default function ProductForm({ product }: ProductFormType) {
                         >
                           <span
                             className="form-option-color rounded-circle"
-                            style={{
-                              backgroundColor: `${value.name.toLowerCase()}`,
-                            }}
+                            style={formBg(value.name)}
                           ></span>
                         </label>
                       </div>
@@ -146,14 +149,20 @@ export default function ProductForm({ product }: ProductFormType) {
               />
             )}
             <button
-              style={{ height: "43px" }}
-              className="btn btn-primary btn-shadow d-block w-50"
+              className="submitBtn btn btn-primary btn-shadow d-block w-50"
               type="submit"
             >
               <i className="ci-cart fs-lg me-2"></i>
               Add to Cart
             </button>
           </div>
+          <style jsx>
+            {`
+              .submitBtn {
+                height: 43px;
+              }
+            `}
+          </style>
         </form>
       ) : (
         <ProductQuantityCounter product={product} />

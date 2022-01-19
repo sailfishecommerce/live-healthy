@@ -52,7 +52,7 @@ export function CategoriesList({
           filteredItem.map((item) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a style={{ fontWeight: "bold" }} className="cat-link">
+                <a className="cat-link">
                   {isFromSearch ? (
                     <Highlight attribute="label" hit={item} />
                   ) : (
@@ -74,7 +74,7 @@ export function CategoriesList({
           a.cat-link {
             font-size: 0.9375rem;
             color: #4b566b;
-            font-weight: normal;
+            fontweight: bold;
           }
           a:hover {
             color: #fe696a;

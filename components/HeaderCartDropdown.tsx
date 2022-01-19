@@ -69,10 +69,7 @@ export default function HeaderCartDropdown({ cart, toggleCart }: Props) {
   const { removeFromCart } = useCart();
   return (
     <div className="dropdown-menu dropdown-menu-end">
-      <div
-        className="widget widget-cart px-3 pt-2 pb-3"
-        style={{ width: "20rem" }}
-      >
+      <div className="widget widget-cart px-3 pt-2 pb-3">
         {cart?.items.map((item: cartType, index: number) => (
           <CartWidget
             removeFromCart={removeFromCart}
@@ -99,6 +96,13 @@ export default function HeaderCartDropdown({ cart, toggleCart }: Props) {
           </a>
         </Link>
       </div>
+      <style jsx>
+        {`
+          .widget.widget-cart {
+            width: 20rem;
+          }
+        `}
+      </style>
     </div>
   );
 }

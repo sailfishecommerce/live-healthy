@@ -1,13 +1,16 @@
+import { useMemo } from "react";
 import ContentLoader from "react-content-loader";
 
 function PopularCategoryLoader(props: any) {
+  const loaderStyle = useMemo(() => ({ width: "100%" }), []);
+
   return (
     <ContentLoader
       speed={2}
       width={200}
       height={200}
       viewBox="0 0 200 150"
-      style={{ width: "100%" }}
+      style={loaderStyle}
       backgroundColor="#b5a6a6"
       foregroundColor="#ecebeb"
       className="mx-2"

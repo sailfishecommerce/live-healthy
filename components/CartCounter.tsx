@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
-import useSwellCart from "@/hooks/useSwellCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateProduct } from "@/redux/product-slice";
 
@@ -110,14 +109,20 @@ export function CartCounter({ counterType }: any) {
           </div>
         )}
         <button
-          style={{ height: "43px" }}
-          className="btn btn-primary btn-shadow d-block w-50"
+          className="submitBtn btn btn-primary btn-shadow d-block w-50"
           type="submit"
         >
           <i className="ci-cart fs-lg me-2"></i>
           Add to Cart
         </button>
       </div>
+      <style jsx>
+        {`
+          .submitBtn {
+            height: 43px;
+          }
+        `}
+      </style>
     </form>
   );
 }
@@ -186,7 +191,10 @@ export function SelectProductOption({ product }: SelectProductOptionProps) {
 }
 
 export function SearchInput() {
-  const svgStyle: any = { enableBackground: "new 0 0 56.966 56.966" };
+  const svgStyle: any = useMemo(
+    () => ({ enableBackground: "new 0 0 56.966 56.966" }),
+    []
+  );
   return (
     <div className="flex relative border border-gray-200 rounded-md my-1 mx-auto max-w-md">
       <input

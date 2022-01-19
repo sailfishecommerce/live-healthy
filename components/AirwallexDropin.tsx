@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   createElement,
   loadAirwallex,
@@ -90,6 +90,13 @@ export default function AirwallexCard({
     }
   };
 
+  const fieldContainerStyle = useMemo(
+    () => ({
+      display: elementShow ? "block" : "none",
+    }),
+    [elementShow]
+  );
+
   return (
     <div>
       {!elementShow && <p>Loading...</p>}
@@ -101,10 +108,7 @@ export default function AirwallexCard({
           {errorMessage}
         </p>
       )}
-      <div
-        className="field-container"
-        style={{ display: elementShow ? "block" : "none" }}
-      >
+      <div className="field-container" style={fieldContainerStyle}>
         <div id="airwallexCard" className="form-control" />
         <button
           className="btn btn-outline-primary d-flex m-auto mt-4 mb-2"

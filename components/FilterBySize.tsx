@@ -13,8 +13,7 @@ export default function FilterBySize({
     <div className="widget widget-filter">
       <h3 className="widget-title">{attribute.name}</h3>
       <ul
-        className="widget-list widget-filter-list list-unstyled pt-1"
-        style={{ maxHeight: "11rem" }}
+        className="widget-list data widget-filter-list list-unstyled pt-1"
         data-simplebar
         data-simplebar-auto-hide="false"
       >
@@ -39,6 +38,11 @@ export default function FilterBySize({
           </li>
         ))}
       </ul>
+      <style jsx>{`
+        .widget-list.data {
+          maxheight: 11rem;
+        }
+      `}</style>
     </div>
   );
 }

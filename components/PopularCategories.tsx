@@ -14,10 +14,7 @@ export default function PopularCategories() {
   const getFirstThreeCategories = (category: any[]) => category.slice(12, 15);
 
   return (
-    <section
-      className="container position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10 popularCategory"
-      style={{ zIndex: 10 }}
-    >
+    <section className="container popularCategories position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10 popularCategory">
       <div className="row">
         <div className="col-xl-8 col-lg-9">
           <div className="card border-0 shadow-lg">
@@ -48,6 +45,9 @@ export default function PopularCategories() {
       </div>
       <style jsx>
         {`
+          .popularCategories {
+            z-index: 10;
+          }
           @media (max-width: 768px) {
             section.popularCategory {
               margin-top: -70px;

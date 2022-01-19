@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -18,6 +19,11 @@ export default function ProductList({ product }: ProductProps) {
     quickViewHandler,
     optionHandler,
   } = useProduct(product);
+
+  const labelBg = useCallback((name: string) => {
+    const style = { backgroundColor: name.toLowerCase() };
+    return style;
+  }, []);
 
   return (
     <div className="card product-card product-list mb-3 border-bottom justify-content-center">
@@ -99,9 +105,7 @@ export default function ProductList({ product }: ProductProps) {
                             >
                               <span
                                 className="form-option-color rounded-circle"
-                                style={{
-                                  backgroundColor: `${value.name.toLowerCase()}`,
-                                }}
+                                style={labelBg(value.name)}
                               ></span>
                             </label>
                           </div>
@@ -111,8 +115,7 @@ export default function ProductList({ product }: ProductProps) {
                   ) : option?.name === "Size" ? (
                     <div key={option.id} className="d-flex mb-2">
                       <select
-                        className="form-select form-select-sm me-2"
-                        style={{ maxWidth: "14rem" }}
+                        className="form-select select-size form-select-sm me-2"
                         onChange={optionHandler}
                         name="Size"
                         required
@@ -130,6 +133,13 @@ export default function ProductList({ product }: ProductProps) {
                         <i className="ci-cart fs-sm me-1"></i>
                         Add to Cart
                       </button>
+                      <style jsx>
+                        {`
+                          .select.form-select.select-size {
+                            max-width: 14rem;
+                          }
+                        `}
+                      </style>
                     </div>
                   ) : null;
                 })

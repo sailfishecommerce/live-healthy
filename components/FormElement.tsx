@@ -89,11 +89,18 @@ export function Input({ content, formik, className, withIcon }: Props) {
           </label>
         </div>
       )}
-      <p style={{ fontSize: "12px" }} className="text-danger">
+      <p className="text-danger error">
         {formik.errors[content.name] &&
           formik.touched[content.name] &&
           formik.errors[content.name]}
       </p>
+      <style jsx>
+        {`
+          .text-danger.error {
+            font-size: 12px;
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -109,11 +116,18 @@ export function TextArea({ content, formik }: Props) {
         value={formik.values[content.name]}
         placeholder={content.placeholder}
       ></textarea>
-      <p style={{ fontSize: "12px" }} className="text-danger">
+      <p className="text-danger error">
         {formik.errors[content.name] &&
           formik.touched[content.name] &&
           formik.errors[content.name]}
       </p>
+      <style jsx>
+        {`
+          .text-danger.error {
+            font-size: 12px;
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -138,11 +152,18 @@ export function Select({ content, formik }: SelectProps) {
           </option>
         ))}
       </select>
-      <p style={{ fontSize: "12px" }} className="text-danger">
+      <p className="text-danger error">
         {formik.errors[content.name] &&
           formik.touched[content.name] &&
           formik.errors[content.name]}
       </p>
+      <style jsx>
+        {`
+          .text-danger.error {
+            font-size: 12px;
+          }
+        `}
+      </style>
     </div>
   );
 }

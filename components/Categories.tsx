@@ -13,9 +13,8 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
   return (
     <aside className="col-lg-3">
       <div
-        className="offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
+        className="categoryCanvas offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
         id="shop-sidebar"
-        style={{ maxWidth: "22rem" }}
       >
         <div className="offcanvas-header align-items-center shadow-sm">
           <h2 className="h5 mb-0">Filters</h2>
@@ -24,7 +23,7 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
             type="button"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-          ></button>
+          ></button> 
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
           {categoryMarketplace ? (
@@ -56,6 +55,13 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
           <RatingsList attribute="rating" />
         </div>
       </div>
+      <style jsx>
+        {`
+          .categoryCanvas {
+            max-width: 22rem;
+          }
+        `}
+      </style>
     </aside>
   );
 }

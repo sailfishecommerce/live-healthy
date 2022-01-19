@@ -3,7 +3,7 @@ import { connectPagination } from "react-instantsearch-dom";
 export default function AlgoliaPaginationWidget({
   currentRefinement,
   nbPages,
-  
+
   refine,
   createURL,
 }: any) {
@@ -27,9 +27,7 @@ export default function AlgoliaPaginationWidget({
       <ul className="pagination">
         {paginationArray.map((_, index) => {
           const page = index + 1;
-          const style: any = {
-            fontWeight: currentRefinement === page ? "bold" : "",
-          };
+          const style: any = currentRefinement === page ? ".bold" : ".normal";
           return (
             <li
               className="page-item active d-none d-sm-block"
@@ -38,8 +36,7 @@ export default function AlgoliaPaginationWidget({
             >
               <a
                 href={createURL(page)}
-                style={style}
-                className="page-link"
+                className={`page-link ${style}`}
                 onClick={(event) => {
                   event.preventDefault();
                   refine(page);
@@ -51,6 +48,16 @@ export default function AlgoliaPaginationWidget({
             </li>
           );
         })}
+        <style jsx>
+          {`
+            .bold {
+              font-weight: bold;
+            }
+            .normal {
+              font-weight: normal;
+            }
+          `}
+        </style>
       </ul>
       <ul className="pagination">
         <li className={`page-item ${pagStyle}`}>

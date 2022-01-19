@@ -9,8 +9,8 @@ export function PaymentNote() {
     <div className="payment-partners d-flex flex-column mt-5">
       <img
         src="/img/payment-card.png"
+        className="payment-card"
         alt="we are accept visa, mastercard cards and bank transfers"
-        style={{ width: "120px" }}
       />
       <div className="secured-by d-flex align-items-center mt-2">
         <i className="fas fa-lock me-2"></i>
@@ -29,6 +29,13 @@ export function PaymentNote() {
           documentation might be requested{" "}
         </p>
       </div>
+      <style jsx>
+        {`
+          img.payment-card {
+            width: 120px;
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -159,14 +166,20 @@ export function ProductQuantityCounter({
         </button>
       </div>
       <button
-        style={{ height: "43px" }}
-        className="btn btn-primary btn-shadow d-block w-50"
+        className="addToCartBtn btn btn-primary btn-shadow d-block w-50"
         type="button"
         onClick={addToCart}
       >
         <i className="ci-cart fs-lg me-2"></i>
         Add to Cart
       </button>
+      <style jsx>
+        {`
+          .addToCartBtn {
+            height: 43px;
+          }
+        `}
+      </style>
     </div>
   );
 }

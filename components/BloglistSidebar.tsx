@@ -8,7 +8,6 @@ export default function BloglistSidebar() {
       <div
         className="offcanvas offcanvas-collapse offcanvas-end border-start ms-lg-auto"
         id="blog-sidebar"
-        style={{ maxWidth: "22rem" }}
       >
         <div className="offcanvas-header align-items-center shadow-sm">
           <h2 className="h5 mb-0">Sidebar</h2>
@@ -83,12 +82,7 @@ export default function BloglistSidebar() {
               </a>
             ))}
           </div>
-          <div
-            className="bg-size-cover bg-position-center rounded-3 py-5 mx-lg-2"
-            style={{
-              backgroundImage: "url(img/blog/banner-bg.jpg)",
-            }}
-          >
+          <div className="blogBg bg-size-cover bg-position-center rounded-3 py-5 mx-lg-2">
             <div className="py-5 px-4 text-center">
               <h5 className="mb-2">Your Add Banner Here</h5>
               <p className="fs-sm text-muted">Hurry up to reserve your spot</p>
@@ -99,6 +93,16 @@ export default function BloglistSidebar() {
           </div>
         </div>
       </div>
+      <style jsx>
+        {`
+          #blog-sidebar {
+            max-width: 22rem;
+          }
+          .blogBg {
+            background-image: url(img/blog/banner-bg.jpg);
+          }
+        `}
+      </style>
     </aside>
   );
 }

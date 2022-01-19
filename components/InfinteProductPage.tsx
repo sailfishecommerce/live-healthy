@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { useAppSelector } from "@/hooks/useRedux";
@@ -31,6 +31,13 @@ export default function InfinteProductPage({
     setStoreProducts(newProductList);
     setProductCounter((productCount) => productCount + 30);
   }
+  const style = useMemo(() => {
+    const scrollStyle: any = {
+      overflow: { overflow: "none" },
+      text: { textAlign: "center" },
+    };
+    return scrollStyle;
+  }, []);
   return (
     <>
       {filterProducts.length > 0 ? (
@@ -38,11 +45,11 @@ export default function InfinteProductPage({
           dataLength={storeProducts.length}
           next={fetchData}
           hasMore={true}
-          style={{ overflow: "none" }}
+          style={style.overflow}
           className="row"
           loader={<ShopLoader />}
           endMessage={
-            <p style={{ textAlign: "center" }}>
+            <p style={style.text}>
               <b>Yay! You have seen it all</b>
             </p>
           }

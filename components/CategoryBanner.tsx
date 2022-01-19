@@ -23,12 +23,10 @@ export default function CategoryBanner({
   local,
 }: CategoryBannerProps) {
   const { navigationNextRef, navigationPrevRef } = controls;
+
   return (
     <div className="col-md-5">
-      <div
-        className="d-flex flex-column h-100 overflow-hidden rounded-3"
-        style={{ backgroundColor: `${bannerBgColor}` }}
-      >
+      <div className="categoryBannerColor d-flex flex-column h-100 overflow-hidden rounded-3">
         <div className="d-flex justify-content-between px-grid-gutter py-grid-gutter">
           <div>
             <h3 className="mb-1">{categoryTitle}</h3>
@@ -68,6 +66,9 @@ export default function CategoryBanner({
       </div>
       <style jsx>
         {`
+          .categoryBannerColor {
+            background-color: ${bannerBgColor};
+          }
           .categoryBanner {
             height: 100%;
             width: 100%;

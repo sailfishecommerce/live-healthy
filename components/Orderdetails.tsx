@@ -4,7 +4,6 @@ import Link from "next/link";
 import { cartType, itemType } from "@/types";
 import FormattedPrice from "@/lib/formatPrice";
 
-
 interface OrderdetailsProps {
   cart: cartType;
 }
@@ -45,10 +44,7 @@ function OrderdetailsItem({ item }: OrderdetailsItemProps) {
           </div>
         </div>
       </div>
-      <div
-        className="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-end"
-        style={{ maxWidth: "9rem" }}
-      >
+      <div className="QuantityView pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-end">
         <p className="mb-0">
           <span className="text-muted fs-sm">Quantity:</span>
           <span>&nbsp;{item.quantity}</span>
@@ -58,6 +54,13 @@ function OrderdetailsItem({ item }: OrderdetailsItemProps) {
           <span className="fs-sm">Edit</span>
         </button>
       </div>
+      <style jsx>
+        {`
+          .QuantityView {
+            maxwidth: 9rem;
+          }
+        `}
+      </style>
     </div>
   );
 }

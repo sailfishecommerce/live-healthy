@@ -15,10 +15,7 @@ export default function DashboardSidebar() {
       <div className="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
         <div className="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
           <div className="d-md-flex align-items-center">
-            <div
-              className="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0"
-              style={{ width: "6.375rem" }}
-            >
+            <div className="dashboardImg img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0">
               <span
                 className="badge bg-warning position-absolute end-0 mt-n2"
                 data-bs-toggle="tooltip"
@@ -71,6 +68,13 @@ export default function DashboardSidebar() {
           ))}
         </div>
       </div>
+      <style jsx>
+        {`
+          .dashboardImg {
+            width: 6.375rem;
+          }
+        `}
+      </style>
     </aside>
   );
 }

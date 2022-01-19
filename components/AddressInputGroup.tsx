@@ -34,7 +34,7 @@ export default function AddressInputGroup({ formik }: Props): JSX.Element {
                   onChange={updateInput}
                   name={formInput.name}
                 />
-                <p style={{ fontSize: "12px" }} className="text-danger">
+                <p className="text-danger text">
                   {formik.errors[formInput.name] &&
                     formik.errors[formInput.name]}
                 </p>
@@ -43,6 +43,13 @@ export default function AddressInputGroup({ formik }: Props): JSX.Element {
           ))}
         </div>
       ))}
+      <style jsx>
+        {`
+          .text {
+            font-size: 12px;
+          }
+        `}
+      </style>
     </div>
   );
 }

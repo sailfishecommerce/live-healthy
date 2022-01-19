@@ -14,13 +14,14 @@ export default function Brands({ brand, local }: BrandProps) {
         {local ? (
           <img src={brand.img} alt={brand.name} className="d-block mx-auto" />
         ) : (
-          <div style={{ width: "150px" }} className="d-block mx-auto">
-            {brand}
-          </div>
+          <div className="brand-container d-block mx-auto">{brand}</div>
         )}
       </a>
       <style jsx>
         {`
+          .brand-container {
+            width: 150px;
+          }
           .brand {
             height: 220px;
           }
