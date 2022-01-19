@@ -2,6 +2,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import styles from "@/styles/homepageslider.module.css";
 
 const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
   ssr: false,
@@ -79,7 +80,9 @@ export default function HomepageSlider({
     autoplayButtonOutput: false,
   };
   return (
-    <section className="tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100">
+    <section
+      className={`${styles.tnsCarousel} tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100`}
+    >
       <Head>
         <link
           rel="stylesheet"
@@ -88,7 +91,7 @@ export default function HomepageSlider({
       </Head>
       <TinySlider settings={settings}>
         {content.map((item, index) => (
-          <div key={index}>
+          <div className="tinySlider" key={index}>
             <div className="px-lg-5 sliderItem">
               <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
                 <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
@@ -120,6 +123,10 @@ export default function HomepageSlider({
             <style jsx>{`
               .sliderItem {
                 background-color: ${item.bgColor};
+              }
+              .tinySlider,
+              .sliderItem {
+                height: 680px;
               }
               .sliderWidth {
                 max-width: 42rem;
