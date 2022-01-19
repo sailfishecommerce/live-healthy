@@ -50,7 +50,7 @@ export default function Banners({
         <style jsx>
           {`
             .bannerImg {
-              background-image: "url(img/blog/banner-bg.jpg)";
+              background-image: url(img/blog/banner-bg.jpg);
             }
           `}
         </style>

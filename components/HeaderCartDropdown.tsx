@@ -6,18 +6,13 @@ import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
 import useVbout from "@/hooks/useVbout";
 
-interface Props {
-  cart: cartType;
-  toggleCart: () => void;
-}
-
 interface CartWidgetProps {
   cart: cartType;
-  removeFromCart: (cart: any) => void;
 }
 
-function CartWidget({ cart, removeFromCart }: CartWidgetProps) {
+function CartWidget({ cart }: CartWidgetProps) {
   const { removeVboutCartItem } = useVbout();
+  const { removeFromCart } = useCart();
 
   function removeItemFromCart() {
     removeFromCart(cart);
@@ -65,17 +60,14 @@ function CartWidget({ cart, removeFromCart }: CartWidgetProps) {
   );
 }
 
-export default function HeaderCartDropdown({ cart, toggleCart }: Props) {
-  const { removeFromCart } = useCart();
+export default function HeaderCartDropdown() {
+  const { cart, toggleCart }: any = useCart();
+
   return (
     <div className="dropdown-menu dropdown-menu-end">
       <div className="widget widget-cart px-3 pt-2 pb-3">
         {cart?.items.map((item: cartType, index: number) => (
-          <CartWidget
-            removeFromCart={removeFromCart}
-            key={`item.productId-${index}`}
-            cart={item}
-          />
+          <CartWidget key={`item.productId-${index}`} cart={item} />
         ))}
         <div className="d-flex flex-wrap justify-content-between align-items-center py-3">
           <div className="fs-sm me-2 py-2 align-items-baseline">

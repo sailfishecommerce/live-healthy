@@ -23,7 +23,7 @@ interface NavProps {
 }
 
 export default function Nav({ logo, navBgColor, local }: NavProps) {
-  const { cart, toggleCart }: any = useCart();
+  const { cart }: any = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
   const router = useRouter();
@@ -127,9 +127,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                     )}
                   </a>
                 </div>
-                {cart?.items.length > 0 && (
-                  <HeaderCartDropdown toggleCart={toggleCart} cart={cart} />
-                )}
+                {cart?.items.length > 0 && <HeaderCartDropdown />}
               </div>
             </div>
           </div>
@@ -188,7 +186,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
       <style jsx>
         {`
           .navbar-sticky {
-            backgroundcolor: ${navBgColor};
+            background-color: ${navBgColor};
             width: 100%;
           }
           .navbar-brand.d-sm-none.flex-shrink-0.me-2 img {
@@ -216,3 +214,5 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
     </>
   );
 }
+
+Nav.whyDidYouRender = true;
