@@ -2,6 +2,7 @@
 import { connectRange } from "react-instantsearch-dom";
 import { useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
+import Script from "next/script";
 
 export default function RangeSlider({
   min,
@@ -42,44 +43,50 @@ export default function RangeSlider({
   };
 
   return (
-    <div className="widget mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Price</h3>
-      <Nouislider
-        step={10}
-        range={{ min: min, max: max }}
-        start={[min, max]}
-        className="cz-range-slider-ui"
-        pips={{ mode: "count", values: 5 }}
-        connect
-        onChange={onChange}
-        onUpdate={priceSlider}
-        tooltips={true}
+    <>
+      <Script
+        src=" https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"
+        strategy="afterInteractive"
       />
-      <div className="d-flex">
-        <div className="d-flex pb-1">
-          <div className="w-50 pe-2 me-2">
-            <div className="input-group input-group-sm">
-              <span className="input-group-text">$</span>
-              <input
-                className="form-control range-slider-value-min"
-                type="text"
-                value={priceMin}
-              />
+      <div className="widget mb-4 pb-4 border-bottom">
+        <h3 className="widget-title">Price</h3>
+        <Nouislider
+          step={10}
+          range={{ min: min, max: max }}
+          start={[min, max]}
+          className="cz-range-slider-ui"
+          pips={{ mode: "count", values: 5 }}
+          connect
+          onChange={onChange}
+          onUpdate={priceSlider}
+          tooltips={true}
+        />
+        <div className="d-flex">
+          <div className="d-flex pb-1">
+            <div className="w-50 pe-2 me-2">
+              <div className="input-group input-group-sm">
+                <span className="input-group-text">$</span>
+                <input
+                  className="form-control range-slider-value-min"
+                  type="text"
+                  value={priceMin}
+                />
+              </div>
             </div>
-          </div>
-          <div className="w-50 ps-2">
-            <div className="input-group input-group-sm">
-              <span className="input-group-text">$</span>
-              <input
-                className="form-control range-slider-value-max"
-                type="text"
-                value={priceMax}
-              />
+            <div className="w-50 ps-2">
+              <div className="input-group input-group-sm">
+                <span className="input-group-text">$</span>
+                <input
+                  className="form-control range-slider-value-max"
+                  type="text"
+                  value={priceMax}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

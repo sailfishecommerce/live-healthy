@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
   ssr: false,
@@ -79,6 +80,12 @@ export default function HomepageSlider({
   };
   return (
     <section className="tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100">
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"
+        />
+      </Head>
       <TinySlider settings={settings}>
         {content.map((item, index) => (
           <div key={index}>
