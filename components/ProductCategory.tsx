@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import CategoriesSidebar from "@/components/CategoriesSidebar";
-import ProductList from "./ProductList";
+import ProductList from "@/components/ProductList";
 import SpinnerRipple from "@/components/spinnerLoader";
 import { categorySlugType, categoryType, productType } from "@/types";
 import useCategory from "@/hooks/useCategory";
 import Product from "@/components/Product";
-import ShopBannerToolbar from "./ShopBannerToolbar";
-import ShopPagination from "./ShopPagination";
+import ShopBannerToolbar from "@/components/ShopBannerToolbar";
+import ShopPagination from "@/components/ShopPagination";
 import { useAppSelector } from "@/hooks/useRedux";
 
 interface ProductCategoryProps {

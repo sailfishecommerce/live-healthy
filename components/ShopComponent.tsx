@@ -6,11 +6,11 @@ import CategoriesSidebar from "@/components/CategoriesSidebar";
 import SpinnerRipple from "@/components/spinnerLoader";
 import { productType } from "@/types";
 import Product from "@/components/Product";
-import ShopBannerToolbar from "./ShopBannerToolbar";
-import ShopPagination from "./ShopPagination";
+import ShopBannerToolbar from "@/components/ShopBannerToolbar";
+import ShopPagination from "@/components/ShopPagination";
 import useSwellProducts from "@/hooks/useSwellProducts";
 import { useAppSelector } from "@/hooks/useRedux";
-import ProductList from "./ProductList";
+import ProductList from "@/components/ProductList";
 
 export default function ShopComponent() {
   const { allProducts } = useSwellProducts();

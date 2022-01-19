@@ -38,7 +38,6 @@ function CategoryProducts({ category }: Props) {
         />
         <HitProduct />
       </InstantSearch>
-
       <style jsx>
         {`
           section.container h2 {

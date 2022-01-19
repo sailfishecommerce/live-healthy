@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import ShopLoader from "@/components/ShopLoader";
-import ProductList from "./ProductList";
+import ProductList from "@/components/ProductList";
 import Product from "./Product";
 import { productType } from "@/types";
 

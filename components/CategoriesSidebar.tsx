@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "@/components/CategoryItem";
 import useCategory from "@/hooks/useCategory";
-import PriceSlider from "./PriceSlider";
-import FilterBySize from "./FilterBySize";
-import FilterByColor from "./FilterByColor";
-import LoadCategorySidebar from "./CategorySidebarLoader";
+import PriceSlider from "@/components/PriceSlider";
+import FilterBySize from "@/components/FilterBySize";
+import FilterByColor from "@/components/FilterByColor";
+import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 import { attributeType, categorySlugType } from "@/types";
 import useSwellProducts from "@/hooks/useSwellProducts";
 import useFilter from "@/hooks/useFilter";
@@ -87,10 +87,7 @@ export default function CategoriesSidebar({ categorySlug }: CategoriesSidebar) {
               />
             ) : (
               attribute.name === "Color" && (
-                <FilterByColor
-                  attribute={attribute}
-                  onChangeFilter={onChangeFilter}
-                />
+                <FilterByColor attribute={attribute} />
               )
             )
           )}

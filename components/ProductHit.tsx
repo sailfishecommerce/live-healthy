@@ -1,7 +1,7 @@
 import { connectHits } from "react-instantsearch-dom";
 
-import Product from "./Product";
-import ProductList from "./ProductList";
+import Product from "@/components/Product";
+import ProductList from "@/components/ProductList";
 import LoadProducts from "@/components/ProductsLoader";
 
 export function ProductHit({ hits }: any) {
