@@ -12,9 +12,8 @@ export default function VendorCategories({ vendorView }: props) {
   return (
     <aside className="col-lg-3">
       <div
-        className="offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
+        className="vendorCategoryCanvas offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
         id="shop-sidebar"
-        style={{ maxWidth: "22rem" }}
       >
         <div className="offcanvas-header align-items-center shadow-sm">
           <h2 className="h5 mb-0">Filters</h2>
@@ -51,6 +50,13 @@ export default function VendorCategories({ vendorView }: props) {
           <RatingsList attribute="rating" />
         </div>
       </div>
+      <style jsx>
+        {`
+          .vendorCategoryCanvas {
+            max-width: 22rem;
+          }
+        `}
+      </style>
     </aside>
   );
 }

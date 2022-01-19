@@ -4,7 +4,6 @@ import Link from "next/link";
 import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
 import styles from "@/styles/Topbar.module.css";
 
-
 interface TopbarProps {
   support: string;
   topbarBgColor: string;
@@ -16,10 +15,7 @@ export default function Topbar({
   children,
 }: TopbarProps) {
   return (
-    <div
-      style={{ backgroundColor: topbarBgColor, width: "100%" }}
-      className="topbar topbar-dark"
-    >
+    <div className="topbar topbar-dark">
       <div className="container">
         <Dropdown
           className={`${styles.dropdown} topbar-text dropdown d-md-none`}
@@ -63,6 +59,10 @@ export default function Topbar({
       </div>
       <style jsx>
         {`
+          .topbar.topbar-dark {
+            background-color: ${topbarBgColor};
+            width: 100%;
+          }
           @media (max-width: 768px) {
             .topbar a.topbar-link.dropdown-toggle {
               font-size: 12px;

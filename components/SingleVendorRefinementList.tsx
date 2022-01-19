@@ -38,9 +38,7 @@ export function SingleVendorList({
       <div className="accordion mt-n1" id="shop-categories">
         <div className="accordion-item">
           <h3 className="text-sm">
-            <a style={{ fontWeight: "bold" }} className="cat-link">
-              {vendor}
-            </a>
+            <a className="cat-link">{vendor}</a>
           </h3>
         </div>
       </div>
@@ -49,7 +47,7 @@ export function SingleVendorList({
           a.cat-link {
             font-size: 0.9375rem;
             color: #4b566b;
-            font-weight: normal;
+            font-weight: bold;
           }
           a:hover {
             color: #fe696a;

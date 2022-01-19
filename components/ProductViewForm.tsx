@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import useProduct from "@/hooks/useProduct";
 import { ProductProps } from "@/types";
 
@@ -8,6 +9,11 @@ export default function ProductViewForm({
   const { addToCartHandler, quickViewHandler, optionHandler } =
     useProduct(product);
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
+
+  const formOptionBg = useCallback((name: string) => {
+    const style = { backgroundColor: name.toLowerCase() };
+    return style;
+  }, []);
 
   return (
     <div className="card-body card-body-hidden">
@@ -36,9 +42,7 @@ export default function ProductViewForm({
                     >
                       <span
                         className="form-option-color rounded-circle"
-                        style={{
-                          backgroundColor: `${value.name.toLowerCase()}`,
-                        }}
+                        style={formOptionBg(value.name)}
                       ></span>
                     </label>
                   </div>

@@ -30,9 +30,8 @@ export default function SlideCart(props: slideCartProps) {
     <div>
       <div className="slidecart d-flex align-items-center h-full position-fixed top-0 w-full justify-content-between right">
         <div
-          style={{ backgroundColor: "#190f0fc4" }}
           onClick={props.toggle}
-          className="overlay w-3/4 h-screen cursor-pointer"
+          className="overlay slidecartOverlay w-3/4 h-screen cursor-pointer"
         />
         <div
           data-aos="fade-left"
@@ -85,6 +84,9 @@ export default function SlideCart(props: slideCartProps) {
       </div>
       <style jsx>
         {`
+          .slidecartOverlay {
+            background-color: #190f0fc4;
+          }
           .sidebar-cart-product-wrapper.custom-scrollbar {
             height: 400px;
             overflow-y: auto;

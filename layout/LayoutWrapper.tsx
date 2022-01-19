@@ -105,7 +105,6 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
       {showPointer && (
         <a
           href="#head"
-          style={{ zIndex: 1000 }}
           data-aos="fade-right-up"
           className="goUp position-fixed d-flex"
         >
@@ -119,6 +118,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
             font-size: 25px;
             right: 20px;
             bottom: 20px;
+            z-index: 1000;
           }
 
           .goUp:hover {

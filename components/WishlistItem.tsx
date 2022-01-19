@@ -19,10 +19,7 @@ export default function WishlistItem({ content }: Props) {
     <div className="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
       <div className="d-block d-sm-flex align-items-start text-center text-sm-start">
         <Link href={content.link} passHref>
-          <a
-            className="d-block flex-shrink-0 mx-auto me-sm-4"
-            style={{ width: "10rem" }}
-          >
+          <a className="wishlistLink d-block flex-shrink-0 mx-auto me-sm-4">
             <img src={content.image} alt="Product" />
           </a>
         </Link>
@@ -56,6 +53,13 @@ export default function WishlistItem({ content }: Props) {
           <i className="ci-trash me-2"></i>Remove
         </button>
       </div>
+      <style jsx>
+        {`
+          .wishlistLink {
+            width: 10rem;
+          }
+        `}
+      </style>
     </div>
   );
 }

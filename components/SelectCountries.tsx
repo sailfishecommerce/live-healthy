@@ -34,7 +34,7 @@ export default function SelectCountries({
       (country) => country.Iso2 === e.target.value
     );
     const payload = {
-      country
+      country,
     };
     formik.setValues({
       ...formik.values,
@@ -61,11 +61,18 @@ export default function SelectCountries({
           </option>
         ))}
       </select>
-      <p style={{ fontSize: "12px" }} className="text-danger">
+      <p className="brandContainer text-danger">
         {formik.errors["country"] &&
           formik.touched["country"] &&
           formik.errors["country"]}
       </p>
+      <style jsx>
+        {`
+          .brandContainer {
+            width: 150px;
+          }
+        `}
+      </style>
     </div>
   );
 }

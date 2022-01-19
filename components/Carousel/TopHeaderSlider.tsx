@@ -41,7 +41,6 @@ export default function TopHeaderSlider({
           <SwiperSlide key={index}>
             <div
               key={content.text}
-              style={{ backgroundColor: "#373F50" }}
               className="item slider-container d-flex align-items-center m-auto justify-content-center"
             >
               <div className="icon-container">{content.icon}</div>
@@ -51,6 +50,9 @@ export default function TopHeaderSlider({
         ))}
       </Swiper>
       <style jsx>{`
+        .slider-container {
+          background-color: #373f50;
+        }
         .icon-container {
           height: 50px;
           width: 60px;

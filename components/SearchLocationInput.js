@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from "react";
-import { useAppSelector } from "@/hooks/useRedux";
 import { updateUserAddress } from "@/redux/payment-slice";
 import { useAppDispatch } from "@/redux/store";
 
@@ -117,11 +116,18 @@ export default function SearchLocationInput({ formik }) {
         className="form-control"
         autoComplete="true"
       />
-      <p style={{ fontSize: "12px" }} className="text-danger">
+      <p className="text-danger errorText">
         {formik.errors["address1"] &&
           formik.touched["address1"] &&
           formik.errors["address1"]}
       </p>
+      <style jsx>
+        {`
+          .errorText {
+            font-size: 12px;
+          }
+        `}
+      </style>
     </div>
   );
 }

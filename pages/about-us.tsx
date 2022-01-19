@@ -27,14 +27,10 @@ function DisplayAboutus({ content }: contentProps) {
   return (
     <section className="row g-0">
       <div
-        className={`col-md-6 bg-position-center bg-size-cover bg-secondary ${imageOrder}`}
-        style={{
-          minHeight: "15rem",
-          backgroundImage: `url(${content.image})`,
-        }}
+        className={`about-us-bg col-md-6 bg-position-center bg-size-cover bg-secondary ${imageOrder}`}
       ></div>
       <div className={`col-md-6 px-3 px-md-5 py-5 ${textOrder}`}>
-        <div className="mx-auto py-lg-5" style={{ maxWidth: "35rem" }}>
+        <div className="content-text mx-auto py-lg-5">
           <h2 className="h3 pb-3">{content.title}</h2>
           <p className="fs-sm pb-3 text-muted">{content.text}</p>
           {content.buttons?.map((button) => (
@@ -44,6 +40,17 @@ function DisplayAboutus({ content }: contentProps) {
           ))}
         </div>
       </div>
+      <style jsx>
+        {`
+          .about-us-bg {
+            min-height: 15rem;
+            background-image: url(${content.image});
+          }
+          .content-text {
+            max-width: 35rem;
+          }
+        `}
+      </style>
     </section>
   );
 }
@@ -90,15 +97,9 @@ export default function About() {
         </section>
         <hr />
         <section className="row g-0">
-          <div
-            className="col-md-6 bg-position-center bg-size-cover bg-secondary order-md-2"
-            style={{
-              minHeight: "15rem",
-              backgroundImage: `url(${aboutUsContent.hireTalent.bgImage})`,
-            }}
-          ></div>
+          <div className="section-bg col-md-6 bg-position-center bg-size-cover bg-secondary order-md-2"></div>
           <div className="col-md-6 px-3 px-md-5 py-5 order-md-1">
-            <div className="mx-auto py-lg-5" style={{ maxWidth: "35rem" }}>
+            <div className="text-content mx-auto py-lg-5">
               <h2 className="h3 mb-2">We are hiring new talents</h2>
               <p className="fs-sm text-muted pb-2">
                 If you want to be part of our team please submit you CV using
@@ -146,6 +147,17 @@ export default function About() {
           </div>
         </section>
       </main>
+      <style jsx>
+        {`
+          .section-bg {
+            min-height: 15rem;
+            background-image: url(${aboutUsContent.hireTalent.bgImage});
+          }
+          .text-content {
+            max-width: 35rem;
+          }
+        `}
+      </style>
     </Applayout>
   );
 }
