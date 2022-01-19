@@ -1,9 +1,9 @@
 import aa from "search-insights";
 
-import useAlgoliaInsight from "./useAlgoliaInsight";
+import { useAppSelector } from "./useRedux";
 
 export default function useAlgoliaEvents() {
-  const { userToken } = useAlgoliaInsight();
+  const { userToken }: any = useAppSelector((state) => state.user);
 
   function clickedObjectIDsAfterSearch(
     insights: (

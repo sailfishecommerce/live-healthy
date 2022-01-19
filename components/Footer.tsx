@@ -12,8 +12,6 @@ export default function Footer({
   topSectionBgColor,
   bottomSectionBgColor,
 }: FooterProps) {
-  
-
   return (
     <footer className="footer w-100">
       <FooterTopSection topSectionBgColor={topSectionBgColor} />
@@ -22,3 +20,5 @@ export default function Footer({
     </footer>
   );
 }
+
+Footer.whyDidYouRender = true;

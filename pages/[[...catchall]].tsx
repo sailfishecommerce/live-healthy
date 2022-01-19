@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -7,7 +8,7 @@ import {
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
 
-import swellClientInit from "@/lib/config";
+import useUserToken from "@/hooks/useUserToken";
 import PlasmicLayout from "@/layout/Plasmiclayout";
 import Metatag from "@/components/Metatag";
 import { PLASMIC } from "../plasmic-init";
@@ -21,18 +22,12 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
 export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
-  const { swell, initializeSwell } = swellClientInit();
   const { plasmicData } = props;
+  const { generateUserToken, status } = useUserToken();
 
   useEffect(() => {
-    initializeSwell();
-    async function getUserAccount() {
-      return await swell.account.get();
-    }
-    getUserAccount()
-      .then((response) => console.log("response", response))
-      .catch((error) => console.log("error", error));
-  }, []);
+    if (status === "success") generateUserToken();
+  }, [status]);
 
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;

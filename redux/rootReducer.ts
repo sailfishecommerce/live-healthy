@@ -16,6 +16,7 @@ import shopReducer from "@/redux/shop-slice";
 import marketplaceCategoryReducer from "@/redux/marketplace-category-slice";
 import currencyLanguageSlice from "@/redux/currency-language-slice";
 import rewardSlice from "@/redux/reward-slice";
+import userSlice from "@/redux/user-slice";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   marketplaceCategory: marketplaceCategoryReducer,
   currencyLanguage: currencyLanguageSlice,
   rewardWidget: rewardSlice,
+  user: userSlice,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 

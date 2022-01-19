@@ -44,9 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PersistGate loading={null} persistor={persistor}>
-            <StrictMode>
-              <Component {...pageProps} />
-            </StrictMode>
+            <Component {...pageProps} />
           </PersistGate>
         </QueryClientProvider>
       </Provider>

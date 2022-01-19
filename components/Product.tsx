@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useState, memo } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import memoize from "memoize-one";
-import { areEqual } from "react-window";
 
 import { ProductProps } from "@/types";
 import useProduct from "@/hooks/useProduct";
@@ -23,7 +21,7 @@ const DynamicProductMetatags = dynamic(
 );
 declare function tcjs(trigger: string, type: string, name: string): any;
 
-const Product = memo(({ product, forCategory }: ProductProps) => {
+const MProduct = ({ product, forCategory }: ProductProps) => {
   const { productViewEvent } = useProduct(product);
   const [inHover, setHover] = useState(false);
   const { currency } = useCurrency();
@@ -159,8 +157,9 @@ const Product = memo(({ product, forCategory }: ProductProps) => {
       </style>
     </div>
   );
-}, areEqual);
+};
 
-Product.displayName = "Product";
-
+const Product = memo(MProduct);
 export default Product;
+
+Product.whyDidYouRender = true;

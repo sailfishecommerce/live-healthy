@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Topbar from "@/components/Topbar";
 
 interface HeaderProps {
@@ -23,3 +22,5 @@ export default function Header({
     </header>
   );
 }
+
+Header.whyDidYouRender = true;

@@ -140,3 +140,5 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
     </div>
   );
 }
+
+LayoutWrapper.whyDidYouRender = true;

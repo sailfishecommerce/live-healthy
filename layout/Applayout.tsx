@@ -59,3 +59,5 @@ export default function Applayout({
     </LayoutWrapper>
   );
 }
+
+Applayout.whyDidYouRender = true;
