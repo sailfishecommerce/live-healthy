@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import { SwiperSlide } from "swiper/react";
+
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useRequest from "@/hooks/useRequest";
 import Category from "../Category";

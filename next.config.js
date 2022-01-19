@@ -11,3 +11,9 @@ module.exports = {
 module.exports = (phase, defaultConfig) => {
   return withBundleAnalyzer(defaultConfig);
 };
+
+module.exports = {
+  images: {
+    domains: ["cdn.schema.io"],
+  },
+};

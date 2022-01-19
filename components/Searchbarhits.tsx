@@ -1,8 +1,6 @@
 import { connectHits, Highlight } from "react-instantsearch-dom";
 import Link from "next/link";
-
-import RenderSmoothImage from "render-smooth-image-react";
-import "render-smooth-image-react/build/style.css";
+import Image from "next/image";
 import { hitType } from "@/types";
 
 interface SearchHitsProps {
@@ -34,12 +32,15 @@ function SearchHits({ hits }: SearchHitsProps) {
                   >
                     <a className="hit d-flex align-items-center my-0 py-1">
                       <div className="hit-image">
-                        <RenderSmoothImage
+                        <Image
                           src={hit.product_images[0].link}
                           alt={hit.name}
                           className="productImage"
-                          height="70px"
-                          width="100px"
+                          height={70}
+                          width={100}
+                          placeholder="blur"
+                          blurDataURL={hit.product_images[0].link}
+                          loading="lazy"
                         />
                       </div>
                       <div className="hit-content d-flex">

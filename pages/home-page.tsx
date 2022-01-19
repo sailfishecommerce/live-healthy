@@ -15,7 +15,7 @@ export default function Homepage({ products }: any) {
   );
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
   swellNodeInit();
   const data = await swell.get("/products", {
     where: { select_store: "livehealthy" },

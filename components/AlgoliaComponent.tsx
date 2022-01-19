@@ -2,11 +2,10 @@
 import Link from "next/link";
 import aa from "search-insights";
 import { connectHitInsights, Highlight } from "react-instantsearch-dom";
-import RenderSmoothImage from "render-smooth-image-react";
-import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
-import "render-smooth-image-react/build/style.css";
-import { hitType } from "@/types";
+import Image from "next/image";
 
+import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import { hitType } from "@/types";
 
 interface HitComponentProps {
   hit: hitType;
@@ -32,12 +31,14 @@ export function HitComponent({
         className="hit d-flex align-items-center my-0 py-1"
       >
         <div className="hit-image">
-          <RenderSmoothImage
+          <Image
             src={hit.product_images[0].link}
             alt={hit.name}
             className="productImage"
-            height="70px"
-            width="100px"
+            height={70}
+            width={100}
+            blurDataURL={hit.product_images[0].link}
+            loading="lazy"
           />
         </div>
         <div className="hit-content d-flex">

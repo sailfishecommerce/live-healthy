@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import RenderSmoothImage from "render-smooth-image-react";
-import "render-smooth-image-react/build/style.css";
+import Image from "next/image";
 
 import FormattedPrice from "@/lib/formatPrice";
 import RatingStar from "./RatingStar";
@@ -35,7 +34,9 @@ export default function ProductList({ product }: ProductProps) {
       <div className="d-sm-flex align-items-center">
         <Link href={`/products/${product.slug}`} passHref>
           <a onClick={productViewEvent} className="product-list-thumb">
-            <RenderSmoothImage
+            <Image
+              height={300}
+              width={300}
               src={product.images[0]?.file?.url}
               alt={
                 product?.image_alt_text
@@ -43,6 +44,9 @@ export default function ProductList({ product }: ProductProps) {
                   : product.name
               }
               className="productImage"
+              placeholder="blur"
+              blurDataURL={product.images[0]?.file?.url}
+              loading="lazy"
             />
           </a>
         </Link>

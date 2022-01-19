@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 interface BannersProps {
   banner1Title: string;
@@ -25,10 +25,12 @@ export default function Banners({
                 Shop Now
               </a>
             </div>
-            <img
+            <Image
               className="d-block ms-auto"
               src="/img/shop/catalog/banner.jpg"
               alt="Shop Converse"
+              height={350}
+              width={600}
             />
           </div>
         </div>

@@ -1,6 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
+import Image from "next/image";
 import Link from "next/link";
+
+import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
 interface PopularCategoryProps {
   category: {
@@ -24,9 +25,14 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
           onClick={() => selectedFooterCategory(category.name)}
           className="imgLink d-block text-center text-decoration-none me-1"
         >
-          <img
+          <Image
+            height={300}
+            width={300}
             src={category.images[0].file.url}
             alt={category.name}
+            placeholder="blur"
+            blurDataURL={category.images[0].file.url}
+            loading="lazy"
             className="d-block rounded mx-1 mb-3"
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>

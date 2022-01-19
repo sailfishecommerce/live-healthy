@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import dynamic from "next/dynamic";
-import RenderSmoothImage from "render-smooth-image-react";
-import "render-smooth-image-react/build/style.css";
 
 import { ProductProps } from "@/types";
 import useProduct from "@/hooks/useProduct";
@@ -56,7 +55,6 @@ export default function Product({
             <i className="ci-heart"></i>
           </button>
         </div>
-        {/* {<SpinnerRipple />} */}
         <Link href={`/products/${product.slug}`} passHref>
           <a
             onClick={productViewEvent}
@@ -67,12 +65,14 @@ export default function Product({
               onMouseLeave={() => setHover(false)}
               className="productImage"
             >
-              <RenderSmoothImage
-                src={productImage}
-                alt={product?.image_alt_text[0]}
-                className="productImage"
+              <Image
                 height={300}
                 width={300}
+                src={productImage}
+                alt={product?.image_alt_text[0]}
+                placeholder="blur"
+                blurDataURL={productImage}
+                loading="lazy"
               />
             </div>
           </a>
