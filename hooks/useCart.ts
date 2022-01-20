@@ -17,7 +17,6 @@ export default function useCart() {
   } = useSwellCart();
   const dispatch = useAppDispatch();
   const { slideCart } = useAppSelector((state) => state.UI);
-  const { productOption } = useAppSelector((state) => state.product);
   const { cart }: useCartType = useAppSelector((state) => state.cart);
 
   function updateQuantity(product: any, quantity: number) {
@@ -33,7 +32,7 @@ export default function useCart() {
       })
       .catch((error) => {
         console.log("error updateCartItemQuantity", error);
-        hasError(toastId, "an error occured, please check your network");
+        hasError(toastId, error.message);
       });
   }
 
@@ -43,7 +42,7 @@ export default function useCart() {
 
   function addItemToCart(product: productType) {
     const toastId = isLoading();
-    addToCart(product, productOption)
+    addToCart(product)
       .then((response) => {
         console.log("response addItemToCart", response);
         if (!response?.errors) {
@@ -56,7 +55,7 @@ export default function useCart() {
       })
       .catch((error) => {
         console.log("error addItemToCart", error);
-        hasError(toastId, "an error occured, please check your network");
+        hasError(toastId, error.message);
       });
   }
 
@@ -69,7 +68,7 @@ export default function useCart() {
       })
       .catch((error) => {
         console.log("removeCartItem error", error);
-        hasError(toastId, "an error occured, please check your network");
+        hasError(toastId, error.message);
       });
   }
 

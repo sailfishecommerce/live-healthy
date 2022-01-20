@@ -42,7 +42,7 @@ export default function useProduct(product: productType) {
     e.preventDefault();
     addItemToCart(product);
     // tcjs("trigger", "hm", "add-product-to-cart");
-    addCartItemVboutHandler();
+    // addCartItemVboutHandler();
     productAddedToCart(product.id, [product.slug]);
   }
 
