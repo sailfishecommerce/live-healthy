@@ -6,8 +6,8 @@ const storeCartSlice = createSlice({
     cart: {
       items: [],
       display_currency: null,
+      cartId: null,
     },
-    cartId: null,
   },
   reducers: {
     updateStoreCartItem(state: any, action: PayloadAction<any>) {
@@ -16,8 +16,8 @@ const storeCartSlice = createSlice({
     updateStoreCartCurrency(state, action: PayloadAction<any>) {
       state.cart.display_currency = action.payload;
     },
-    updateCartId(state: any, action: PayloadAction<string>) {
-      state.cartId = action.payload;
+    updateCartId(state: any, action: PayloadAction<any>) {
+      state.cart.cartId = action.payload;
     },
   },
 });

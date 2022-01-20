@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { ReactText } from "react";
 import axios from "axios";
-import formatCartItem, { dispatchCartItem } from "@/lib/formatCart";
+import formatCartItem from "@/lib/formatCart";
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "./useRedux";
 import useToast from "@/hooks/useToast";
@@ -12,30 +13,32 @@ import {
 
 export default function useStoreCart(product: any) {
   const { currency } = useAppSelector((state) => state.currencyLanguage);
-  const { cart, cartId } = useAppSelector((state) => state.storeCart);
+  const { cart } = useAppSelector((state) => state.storeCart);
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
 
-  function dispatchCart() {
+  console.log("cart.items.length", cart.items.length);
+
+  function createCart() {
+    const loading = isLoading();
     const cartItem = formatCartItem(product, currency, 1);
     dispatch(updateStoreCartItem(cartItem));
     dispatch(updateStoreCartCurrency(currency));
+    createCartItem(loading, product.name, {
+      items: [cartItem],
+      display_currency: currency,
+    });
   }
 
-  function createCart() {
-    dispatchCart();
-    postCart();
-  }
-
-  function postCart() {
-    const loading = isLoading();
-    console.log("postCart", cart);
+  function createCartItem(loading: ReactText, name: string, cart: any) {
     return axios
       .post("/api/cart/create", cart)
       .then((response: any) => {
         console.log("create cart", response);
-        isSuccessful(loading, "successful");
-        dispatch(updateCartId(response.id));
+        console.log("Rresponse.ID", response.id);
+
+        dispatch(updateCartId(response.data.id));
+        isSuccessful(loading, `${name} added to cart`);
       })
       .catch((error) => {
         console.log("error", error);
@@ -45,15 +48,26 @@ export default function useStoreCart(product: any) {
 
   function updateCart() {
     const loading = isLoading();
+    const cartItem = formatCartItem(product, currency, 1);
+    dispatch(updateStoreCartItem(cartItem));
+    dispatch(updateStoreCartCurrency(currency));
+    const updatedCart = {
+      id: cart.cartId,
+      items: [...cart.items, cartItem],
+    };
+    console.log("updatedCart", updatedCart);
+    updateCartItem(loading, product.name, {
+      id: cart.cartId,
+      cart: updatedCart,
+    });
+  }
+
+  function updateCartItem(loading: ReactText, name: string, cart: any) {
     return axios
-      .post("/api/cart/update", {
-        id: cartId,
-        items: cart.items,
-        display_currency: currency,
-      })
+      .post("/api/cart/update", cart)
       .then((response: any) => {
         console.log("create cart", response);
-        isSuccessful(loading, "successful");
+        isSuccessful(loading, `${name} added to cart`);
       })
       .catch((error) => {
         console.log("error", error);

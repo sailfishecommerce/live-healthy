@@ -8,8 +8,7 @@ export default function ProductViewForm({
   product,
   forCategory,
 }: ProductProps) {
-  const { addToCartHandler, quickViewHandler, optionHandler } =
-    useProduct(product);
+  const { quickViewHandler, optionHandler } = useProduct(product);
   const { addToCart } = useStoreCart(product);
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
