@@ -34,7 +34,7 @@ export default function useProcessPayment() {
         orderId: order.id,
         orderNumber: order.number,
         paymentMethod: order.billing?.card.brand,
-        grandTotal: order.grandTotal,
+        grand_total: order.grand_total,
         status: order.status,
         subtotal: order.subtotal,
         customerInfo: {

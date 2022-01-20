@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ReactText } from "react";
 import axios from "axios";
+
 import formatCartItem from "@/lib/formatCart";
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "./useRedux";
@@ -10,6 +11,7 @@ import {
   updateStoreCartCurrency,
   updateStoreCartItem,
 } from "@/redux/store-cart-slice";
+import { updateCart } from "@/redux/cart-slice";
 
 export default function useStoreCart(product: any) {
   const { currency } = useAppSelector((state) => state.currencyLanguage);
@@ -22,6 +24,7 @@ export default function useStoreCart(product: any) {
   function createCart() {
     const loading = isLoading();
     const cartItem = formatCartItem(product, currency, 1);
+    console.log("product", product);
     dispatch(updateStoreCartItem(cartItem));
     dispatch(updateStoreCartCurrency(currency));
     createCartItem(loading, product.name, {
@@ -36,8 +39,8 @@ export default function useStoreCart(product: any) {
       .then((response: any) => {
         console.log("create cart", response);
         console.log("Rresponse.ID", response.id);
-
         dispatch(updateCartId(response.data.id));
+        dispatch(updateCart(response.data));
         isSuccessful(loading, `${name} added to cart`);
       })
       .catch((error) => {
@@ -46,7 +49,7 @@ export default function useStoreCart(product: any) {
       });
   }
 
-  function updateCart() {
+  function updateStoreCart() {
     const loading = isLoading();
     const cartItem = formatCartItem(product, currency, 1);
     dispatch(updateStoreCartItem(cartItem));
@@ -67,6 +70,7 @@ export default function useStoreCart(product: any) {
       .post("/api/cart/update", cart)
       .then((response: any) => {
         console.log("create cart", response);
+        dispatch(updateCart(response.data));
         isSuccessful(loading, `${name} added to cart`);
       })
       .catch((error) => {
@@ -76,7 +80,7 @@ export default function useStoreCart(product: any) {
   }
 
   function addToCart() {
-    return cart.items.length === 0 ? createCart() : updateCart();
+    return cart.items.length === 0 ? createCart() : updateStoreCart();
   }
 
   return {

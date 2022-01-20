@@ -16,30 +16,30 @@ export default function CheckoutReviewSidebar({
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Subtotal:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.subTotal} />
+                <FormattedPrice price={cart.sub_total} />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Shipping:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.shipmentTotal} />
+                <FormattedPrice price={cart.shipment_total} />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Taxes:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.taxTotal} />
+                <FormattedPrice price={cart.tax_total} />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Discount:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.discountTotal} />
+                <FormattedPrice price={cart.discount_total} />
               </span>
             </li>
           </ul>
           <h3 className="fw-normal text-center my-4">
-            <FormattedPrice price={cart.grandTotal} />$
+            <FormattedPrice price={cart.grand_total} />$
           </h3>
           <form className="needs-validation" method="post" noValidate>
             <div className="mb-3">

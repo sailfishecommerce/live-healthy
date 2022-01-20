@@ -122,8 +122,8 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                 <div className="d-flex price-overview flex-column">
                   <small>My Cart</small>
                   <a className="navbar-tool-text">
-                    {cart?.grandTotal ? (
-                      <FormattedPrice price={cart?.grandTotal} />
+                    {cart?.grand_total ? (
+                      <FormattedPrice price={cart?.grand_total} />
                     ) : (
                       <FormattedPrice price={0} />
                     )}

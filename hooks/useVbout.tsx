@@ -120,7 +120,7 @@ export default function useVbout() {
       orderid: item.orderId,
       ordernumber: item.orderNumber,
       paymentmethod: item.paymentMethod,
-      grandtotal: item.grandTotal,
+      grandTotal: item.grand_total,
       subtotal: item.subtotal,
       currency: "USD",
       status: item.status,

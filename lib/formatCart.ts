@@ -10,7 +10,7 @@ type cartItemProductType = {
 };
 
 export default function formatCartItem(
-  product: cartItemProductType,
+  product: any,
   currency: string,
   quantity: number
 ) {
@@ -18,6 +18,13 @@ export default function formatCartItem(
     product_id: product.id,
     price: currency === "HKD" ? product.hkd_selling_price : product.price,
     quantity,
+    metadata: {
+      name: product.name,
+      images: product.images,
+      product_type: product.product_type,
+      slug: product.slug,
+      vendor: product.vendor,
+    },
   };
   return cartItem;
 }

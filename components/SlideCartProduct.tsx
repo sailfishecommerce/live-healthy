@@ -41,11 +41,11 @@ export default function SlideCartProduct({
           <span aria-hidden="true">&times;</span>
         </button>
         <div className="d-flex align-items-center">
-          <Link href={`/products/${item.product.slug}`} passHref>
+          <Link href={`/products/${item.metadata.slug}`} passHref>
             <a className="flex-shrink-0">
               <img
-                src={item.product?.images[0].file.url.split(";")[0]}
-                alt={item.product?.name}
+                src={item.metadata?.images[0].file.url.split(";")[0]}
+                alt={item.metadata?.name}
                 width="64"
               />
             </a>
@@ -53,11 +53,11 @@ export default function SlideCartProduct({
           <div className="ps-2">
             <div className="name-group d-flex flex-column">
               <h5 className="widget-product-title">
-                <Link href={`/products/${item.product.slug}`} passHref>
-                  <a>{item.product.name}</a>
+                <Link href={`/products/${item.metadata.slug}`} passHref>
+                  <a>{item.metadata.name}</a>
                 </Link>
               </h5>
-              {item.product.attributes?.box && (
+              {item?.metadata.attributes?.box && (
                 <p>
                   {item.quantity} carton = {Number(item.quantity) * 10} boxes
                 </p>
@@ -71,7 +71,7 @@ export default function SlideCartProduct({
                 <span className="text-muted">x {item.quantity}</span>
                 <span className="mx-1">= </span>
                 <span className="text-accent me-2">
-                  <FormattedPrice price={item.priceTotal} />
+                  <FormattedPrice price={item.price_total} />
                 </span>
               </div>
             </div>
@@ -80,8 +80,8 @@ export default function SlideCartProduct({
       </div>
       <div className="cartItem d-flex align-items-center justify-content-between">
         <CartControl item={item} />
-        {item.options &&
-          item.options.map((item: any, index: number) => (
+        {item?.options &&
+          item?.options.map((item: any, index: number) => (
             <p
               className="small text-muted mx-2 mb-0 border px-2 rounded"
               key={`item.name-${index}`}

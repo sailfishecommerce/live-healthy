@@ -57,22 +57,22 @@ export type reviewFormContentType = {
 };
 
 export type cartType = {
-  grandTotal: number;
+  grand_total: number;
   items: any;
-  subTotal: number;
+  sub_total: number;
   price: number;
   quantity: number;
   options: any[];
   salePrice: number;
   slug: string;
   tags: string[];
-  priceTotal: number;
-  product: productType;
-  productId: string;
-  shipmentTotal: number;
-  taxTotal: number;
+  price_total: number;
+  metadata: productType;
+  product_id: string;
+  shipment_total: number;
+  tax_total: number;
   id: string;
-  discountTotal: number;
+  discount_total: number;
 };
 
 export type useCartType = {
@@ -235,7 +235,7 @@ export type createVboutOrderType = {
   orderId: string;
   orderNumber: string;
   paymentMethod: string;
-  grandTotal: string;
+  grand_total: string;
   subtotal: string;
   status: string;
   customerInfo: customerInfoType;
