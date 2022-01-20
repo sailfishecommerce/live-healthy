@@ -22,7 +22,7 @@ const DynamicProductMetatags = dynamic(
 declare function tcjs(trigger: string, type: string, name: string): any;
 
 const MProduct = ({ product, forCategory }: ProductProps) => {
-  console.log("product", product);
+  // console.log("product", product);
   const { productViewEvent } = useProduct(product);
   const [inHover, setHover] = useState(false);
   const { currency } = useCurrency();

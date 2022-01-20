@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback } from "react";
 import useProduct from "@/hooks/useProduct";
+import useStoreCart from "@/hooks/useStoreCart";
 import { ProductProps } from "@/types";
 
 export default function ProductViewForm({
@@ -8,6 +10,7 @@ export default function ProductViewForm({
 }: ProductProps) {
   const { addToCartHandler, quickViewHandler, optionHandler } =
     useProduct(product);
+  const { addToCart } = useStoreCart(product);
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
   const formOptionBg = useCallback((name: string) => {
@@ -15,9 +18,14 @@ export default function ProductViewForm({
     return style;
   }, []);
 
+  function onSubmitHandler(e: any) {
+    e.preventDefault();
+    addToCart();
+  }
+
   return (
     <div className="card-body card-body-hidden">
-      <form onSubmit={addToCartHandler}>
+      <form onSubmit={onSubmitHandler}>
         {product?.options?.length > 0 ? (
           product?.options?.map((option) => {
             return option.name === "Color" ? (

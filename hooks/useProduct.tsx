@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useQuery } from "react-query";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { quickViewModal } from "@/redux/ui-slice";
 import useCart from "@/hooks/useCart";
@@ -7,7 +8,6 @@ import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import { productType } from "@/types";
 import useSwellCart from "./useSwellCart";
-import { useQuery } from "react-query";
 
 export default function useProduct(product: productType) {
   const { addItemToCart, cart }: any = useCart();
@@ -21,8 +21,6 @@ export default function useProduct(product: productType) {
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
   }
-
-  console.log("cart", cart, "cart data", data);
 
   function addCartItemVboutHandler() {
     const content = {

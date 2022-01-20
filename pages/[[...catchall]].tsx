@@ -7,6 +7,7 @@ import {
   PlasmicRootProvider,
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
+import axios from "axios";
 
 import useUserToken from "@/hooks/useUserToken";
 import PlasmicLayout from "@/layout/Plasmiclayout";
@@ -28,6 +29,13 @@ export default function PlasmicLoaderPage(props: {
   useEffect(() => {
     if (status === "success") generateUserToken();
   }, [status]);
+
+  // useEffect(() => {
+  //   axios
+  //     .post("/api/cart/retrieve", { id: "61e93193c5f78c7ecf9787f6" })
+  //     .then((response) => console.log("response", response))
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
