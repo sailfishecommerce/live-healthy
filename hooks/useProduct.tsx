@@ -6,9 +6,13 @@ import useProductOptions from "@/hooks/useProductOptions";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import { productType } from "@/types";
+import useSwellCart from "./useSwellCart";
+import { useQuery } from "react-query";
 
 export default function useProduct(product: productType) {
   const { addItemToCart, cart }: any = useCart();
+  const { getACart } = useSwellCart();
+  const { data, status } = useQuery("getCart", getACart);
   const { optionHandler } = useProductOptions();
   const { addProductViewVbout, addCartItemVbout } = useVbout();
   const { itemViewed, productAddedToCart } = useAlgoliaEvents();
@@ -18,11 +22,13 @@ export default function useProduct(product: productType) {
     dispatch(quickViewModal(product));
   }
 
+  console.log("cart", cart, "cart data", data);
+
   function addCartItemVboutHandler() {
     const content = {
       email: cart?.account?.email || "",
       id: product.id,
-      cartId: cart?.id,
+      cartId: cart?.id || product.id,
       productId: product.id,
       productName: product.name,
       price: product.price,
