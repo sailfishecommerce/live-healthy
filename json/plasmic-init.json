@@ -185,7 +185,7 @@
       "displayName": "Category Image",
       "type": "slot"
     },
-    "categoryName": {
+    "categoryName": { 
       "displayName": "Category Name",
       "type": "string"
     }
