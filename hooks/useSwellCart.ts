@@ -1,5 +1,4 @@
 import swellClientInit from "@/lib/config";
-import { useAppDispatch } from "@/redux/store";
 import { cartDetailsType, productOptionType, productType } from "@/types";
 
 export default function useSwellCart() {
@@ -10,7 +9,7 @@ export default function useSwellCart() {
     return await swell.cart.get();
   }
 
-  async function addToCart(product: productType, quantity:number) {
+  async function addToCart(product: productType, quantity: number) {
     return await swell.cart.addItem({
       product_id: product.id,
       quantity,
@@ -47,6 +46,7 @@ export default function useSwellCart() {
   }
 
   async function removeCartItem(product: { id: string }) {
+    console.log("product rmo", product);
     return await swell.cart.removeItem(product.id);
   }
 

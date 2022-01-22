@@ -14,7 +14,6 @@ export function CartControl({ item }: cartControlProps) {
   const minValue = item?.product?.attributes?.box ? 10 : 1;
 
   function updateItemQuantity(e: any) {
-    console.log("e.target.value", e.target.value);
     updateQuantity(item, e.target.value);
   }
   return (
