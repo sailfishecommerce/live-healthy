@@ -22,7 +22,6 @@ const DynamicProductMetatags = dynamic(
 declare function tcjs(trigger: string, type: string, name: string): any;
 
 const MProduct = ({ product, forCategory }: ProductProps) => {
-  // console.log("product", product);
   const { productViewEvent } = useProduct(product);
   const [inHover, setHover] = useState(false);
   const { currency } = useCurrency();
@@ -90,9 +89,9 @@ const MProduct = ({ product, forCategory }: ProductProps) => {
             </Link>
           </h3>
           <div className="d-flex justify-content-between">
-            <ul className="product-price d-flex align-items-baseline">
+            <ul className="product-price d-flex flex-column align-items-baseline">
               <li className="text-accent">{price()}</li>
-              {currency === "HKD" && product.hkd_compare_at_price > 0 && (
+              {product.hkd_compare_at_price > 0 && (
                 <li className="small text-accent">{oldPrice()}</li>
               )}
             </ul>

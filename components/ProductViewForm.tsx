@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback } from "react";
 import useProduct from "@/hooks/useProduct";
-import useStoreCart from "@/hooks/useStoreCart";
+import useCart from "@/hooks/useCart";
 import { ProductProps } from "@/types";
 
 export default function ProductViewForm({
@@ -9,7 +9,7 @@ export default function ProductViewForm({
   forCategory,
 }: ProductProps) {
   const { quickViewHandler, optionHandler } = useProduct(product);
-  const { addToCart } = useStoreCart(product);
+  const { addItemToCart } = useCart();
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
 
   const formOptionBg = useCallback((name: string) => {
@@ -19,7 +19,7 @@ export default function ProductViewForm({
 
   function onSubmitHandler(e: any) {
     e.preventDefault();
-    addToCart();
+    addItemToCart(product, 1);
   }
 
   return (

@@ -21,6 +21,7 @@ export default function useCart() {
 
   function updateQuantity(product: any, quantity: number) {
     const toastId = isLoading();
+
     return updateCartItemQuantity(product, quantity)
       .then((response) => {
         dispatch(updateCart(response));
@@ -32,7 +33,7 @@ export default function useCart() {
       })
       .catch((error) => {
         console.log("error updateCartItemQuantity", error);
-        hasError(toastId, error.message);
+        hasError(toastId, "an error occured, please check your network");
       });
   }
 
@@ -40,22 +41,18 @@ export default function useCart() {
     dispatch(toggleSlideCart());
   }
 
-  function addItemToCart(product: productType) {
+  function addItemToCart(product: productType, quantity: number) {
     const toastId = isLoading();
-    addToCart(product)
+    addToCart(product, quantity)
       .then((response) => {
         console.log("response addItemToCart", response);
-        if (!response?.errors) {
-          dispatch(updateCart(response));
-          isSuccessful(toastId, `${product?.name} added to cart`);
-          dispatch(toggleSlideCart());
-        } else {
-          hasError(toastId, response.errors.itemOptions.message);
-        }
+        dispatch(updateCart(response));
+        isSuccessful(toastId, `${product?.name} added to cart`);
+        dispatch(toggleSlideCart());
       })
       .catch((error) => {
         console.log("error addItemToCart", error);
-        hasError(toastId, error.message);
+        hasError(toastId, error);
       });
   }
 
@@ -68,7 +65,7 @@ export default function useCart() {
       })
       .catch((error) => {
         console.log("removeCartItem error", error);
-        hasError(toastId, error.message);
+        hasError(toastId, "an error occured, please check your network");
       });
   }
 
@@ -78,6 +75,7 @@ export default function useCart() {
     selectedOptions: productOptionType
   ) {
     const toastId = isLoading();
+
     addToCartModal(product, productQty, selectedOptions)
       .then((response: any) => {
         if (!response?.errors) {
@@ -104,6 +102,7 @@ export default function useCart() {
       .catch((error) => {
         console.error("error", error);
         hasError(loading, error?.message);
+
         return error;
       });
   }

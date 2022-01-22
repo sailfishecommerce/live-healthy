@@ -5,9 +5,10 @@ import useCart from "@/hooks/useCart";
 import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
 import useVbout from "@/hooks/useVbout";
+import { memo } from "react";
 
 interface CartWidgetProps {
-  cart: any;
+  cart: cartType;
 }
 
 function CartWidget({ cart }: CartWidgetProps) {
@@ -18,7 +19,7 @@ function CartWidget({ cart }: CartWidgetProps) {
     removeFromCart(cart);
     removeVboutCartItem({
       cartId: cart.id,
-      productId: cart.product_id,
+      productId: cart.productId,
     });
   }
 
@@ -33,19 +34,19 @@ function CartWidget({ cart }: CartWidgetProps) {
         <span aria-hidden="true">&times;</span>
       </button>
       <div className="d-flex align-items-center">
-        <Link href={`/products/${cart.metadata.slug}`} passHref>
+        <Link href={`/products/${cart.product.slug}`} passHref>
           <a className="flex-shrink-0">
             <img
-              src={cart.metadata?.images[0].file.url.split(";")[0]}
-              alt={cart.metadata.name}
+              src={cart.product.images[0].file.url.split(";")[0]}
+              alt={cart.product.name}
               width="64"
             />
           </a>
         </Link>
         <div className="ps-2">
           <h6 className="widget-product-title">
-            <Link href={`/products/${cart.metadata.slug}`} passHref>
-              <a>{cart.metadata.name}</a>
+            <Link href={`/products/${cart.product.slug}`} passHref>
+              <a>{cart.product.name}</a>
             </Link>
           </h6>
           <div className="widget-product-meta d-flex align-items-baseline">
@@ -60,9 +61,9 @@ function CartWidget({ cart }: CartWidgetProps) {
   );
 }
 
-export default function HeaderCartDropdown() {
+function HeaderCartDropdownComponent() {
   const { cart, toggleCart }: any = useCart();
-
+  console.log("cart", cart);
   return (
     <div className="dropdown-menu dropdown-menu-end">
       <div className="widget widget-cart px-3 pt-2 pb-3">
@@ -73,7 +74,7 @@ export default function HeaderCartDropdown() {
           <div className="fs-sm me-2 py-2 align-items-baseline">
             <span className="text-muted">Subtotal:</span>
             <span className="text-accent fs-base ms-1">
-              <FormattedPrice price={cart?.sub_total} />
+              <FormattedPrice price={cart?.subTotal} />
             </span>
           </div>
           <a onClick={toggleCart} className="btn btn-outline-secondary btn-sm">
@@ -98,5 +99,7 @@ export default function HeaderCartDropdown() {
     </div>
   );
 }
+const HeaderCartDropdown = memo(HeaderCartDropdownComponent);
+export default HeaderCartDropdown;
 
 HeaderCartDropdown.whyDidYouRender = true;

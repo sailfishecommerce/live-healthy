@@ -19,8 +19,6 @@ export default function useStoreCart(product: any) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
 
-  console.log("cart.items.length", cart.items.length);
-
   function createCart() {
     const loading = isLoading();
     const cartItem = formatCartItem(product, currency, 1);

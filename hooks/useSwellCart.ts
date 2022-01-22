@@ -10,10 +10,10 @@ export default function useSwellCart() {
     return await swell.cart.get();
   }
 
-  async function addToCart(product: productType) {
+  async function addToCart(product: productType, quantity:number) {
     return await swell.cart.addItem({
       product_id: product.id,
-      quantity: product.quantity,
+      quantity,
     });
   }
 

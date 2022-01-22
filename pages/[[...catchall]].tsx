@@ -7,12 +7,13 @@ import {
   PlasmicRootProvider,
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
-import axios from "axios";
+import swell from "swell-js";
 
 import useUserToken from "@/hooks/useUserToken";
 import PlasmicLayout from "@/layout/Plasmiclayout";
 import Metatag from "@/components/Metatag";
 import { PLASMIC } from "../plasmic-init";
+import { useAppSelector } from "@/hooks/useRedux";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -20,15 +21,28 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
   )
 );
 
+async function getCart() {
+  return await swell.cart.get();
+}
+
 export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
   const { plasmicData } = props;
   const { generateUserToken, status } = useUserToken();
+  // const { cart } = useAppSelector((state) => state.storeCart);
 
   useEffect(() => {
     if (status === "success") generateUserToken();
   }, [status]);
+
+  useEffect(() => {
+    getCart()
+      .then((response) => console.log("cart response", response))
+      .catch((error) => console.log("error", error));
+  }, []);
+
+  // console.log("store cart", cart);
 
   // useEffect(() => {
   //   axios
