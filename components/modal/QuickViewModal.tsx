@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { Modal } from "react-bootstrap";
 
+import FormattedPrice from "@/lib/formatPrice";
 import { quickViewModal } from "@/redux/ui-slice";
 import Rating from "../Rating";
 import ProductForm from "../ProductForm";
 import { useAppDispatch } from "@/hooks/useRedux";
 import ProductGallery from "@/components/ProductGallery";
-import useProductPrice from "@/hooks/useProductPrice";
 import discountPrice from "@/lib/discountPrice";
 
 interface QuickViewModalProps {
@@ -20,7 +20,8 @@ interface QuickViewModalProps {
 export default function QuickViewModal({ product }: QuickViewModalProps) {
   const dispatch = useAppDispatch();
   const { productToView } = product;
-  const { price, oldPrice } = useProductPrice(productToView);
+  
+  console.log("productToView", productToView);
 
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
@@ -67,8 +68,18 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
               </div>
               <div className="price-group mb-2 d-flex justify-content-between align-items-center">
                 <div className="d-flex price">
-                  <div className="text-accent me-2">{price()}</div>
-                  <div className="text-accent">{oldPrice()}</div>
+                  <div className="text-accent me-2 fs-lg">
+                    <FormattedPrice price={productToView.price} isProduct />
+                  </div>
+                  {productToView.hkd_compare_at_price > 0 && (
+                    <del className="small text-accent fs-ms">
+                      <FormattedPrice
+                        price={productToView.hkd_compare_at_price}
+                        oldPrice
+                        isProduct
+                      />
+                    </del>
+                  )}
                 </div>
                 <div className="percentage">{`${discountPrice(
                   productToView

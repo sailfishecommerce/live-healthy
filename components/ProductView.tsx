@@ -20,13 +20,12 @@ export function PaymentNote() {
       </div>
       <div className="border w-100 p-3 mt-4 rounded">
         <p>
-          {" "}
           We accept bank deposits through all major networks globally including
-          ACH,Fedwire, SWIFT,IBAN and BSB.{" "}
+          ACH,Fedwire, SWIFT,IBAN and BSB.
         </p>
         <p className="mb-0">
           Orders are shipped after transfers are manually verified. Additional
-          documentation might be requested{" "}
+          documentation might be requested
         </p>
       </div>
       <style jsx>
@@ -127,7 +126,6 @@ export function ProductQuantityCounter({
   product,
 }: ProductQuantityCounterType) {
   const { addItemToCartWithOptions } = useCart();
-  console.log("product", product);
   const [itemQty, setItemQty] = useState(1);
 
   function updateCounter(type: "increment" | "decrement") {

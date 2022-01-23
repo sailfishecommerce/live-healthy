@@ -8,9 +8,7 @@ import { ProductProps } from "@/types";
 import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
-import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
-import useProductPrice from "@/hooks/useProductPrice";
 import FormattedPrice from "@/lib/formatPrice";
 
 const DynamicProductViewForm = dynamic(

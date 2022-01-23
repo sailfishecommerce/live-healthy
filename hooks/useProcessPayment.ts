@@ -8,7 +8,6 @@ import useSwellCart from "./useSwellCart";
 import { updateCart } from "@/redux/cart-slice";
 import useCart from "./useCart";
 import { useAuth } from ".";
-import { toggleAuthModal } from "@/redux/ui-slice";
 import { sendProductReview, updateSubmittedOrder } from "@/redux/payment-slice";
 import useVbout from "./useVbout";
 
@@ -34,7 +33,7 @@ export default function useProcessPayment() {
         orderId: order.id,
         orderNumber: order.number,
         paymentMethod: order.billing?.card.brand,
-        grand_total: order.grand_total,
+        grandTotal: order.grandTotal,
         status: order.status,
         subtotal: order.subtotal,
         customerInfo: {
