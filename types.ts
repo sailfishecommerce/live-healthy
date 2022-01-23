@@ -368,3 +368,10 @@ export interface ProductProps {
   product: productType;
   forCategory?: boolean;
 }
+
+
+export type typeModal =
+  | "CHECKOUT_NOTIFICATION_MODAL"
+  | "AUTH_MODAL"
+  | "AUTHFORM"
+  | "SECURE_CHECKOUT";

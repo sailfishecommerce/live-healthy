@@ -2,24 +2,15 @@
 import { useProcessPayment } from "@/hooks";
 import StripePaymentMethod from "./StripePaymentMethod";
 import { FormStagesType } from "@/types";
-import { useState } from "react";
 
 export default function PaymentWithStripe({ formStages }: FormStagesType) {
-  const { makePayment } = useProcessPayment();
-  const [loading, setLoading] = useState(false);
+  const { makePayment, loadingState } = useProcessPayment();
 
   function makePaymentHandler() {
     console.log("formStages.shippingForm", formStages.shippingForm);
-    setLoading(true);
     makePayment(formStages.shippingForm)
-      .then((response) => {
-        console.log("makePayment", response);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("error", err);
-        setLoading(false);
-      });
+      .then((response) => console.log("makePayment", response))
+      .catch((err) => console.error("error", err));
   }
 
   return (
@@ -46,7 +37,7 @@ export default function PaymentWithStripe({ formStages }: FormStagesType) {
             />
           </p>
           <StripePaymentMethod
-            loading={loading}
+            loading={loadingState}
             makePaymentHandler={makePaymentHandler}
           />
         </div>

@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Applayout from "@/layout/Applayout";
 import dynamic from "next/dynamic";
 import useAirwallex from "@/hooks/useAirwallex";
@@ -52,7 +51,7 @@ export default function CheckoutSingle() {
                   </span>
                 ) : (
                   <span className="guest fw-bold text-decoration-underline">
-                    Hello Guest
+                    Hello Guest, Thanks for choosing Sailfish.
                   </span>
                 )}
                 <div className="ps-3">
