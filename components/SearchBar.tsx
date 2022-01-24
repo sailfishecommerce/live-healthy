@@ -16,6 +16,7 @@ type paramsType = {
 
 export default function SearchBar() {
   const [querylength, setQueryLength] = useState();
+  const [searchQuery, setSearchQuery] = useState(null);
   const inputRef = useRef(null);
   const { userDetail }: any = useAppSelector((state) => state.auth);
   const tabWidth = useMediaQuery("(max-width:768px)");
@@ -37,6 +38,7 @@ export default function SearchBar() {
     search(requests: any) {
       const reqlength = requests[0].params?.query.length;
       setQueryLength(reqlength);
+       setSearchQuery(requests[0].params?.query);
       const searchContent = {
         id: uuidv4(),
         email: userDetail?.email ? userDetail?.email : "",

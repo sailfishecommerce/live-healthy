@@ -1,15 +1,10 @@
-import instantsearch from "instantsearch.js";
 import aa from "search-insights";
+import useAlgoliaInsight from "./useAlgoliaInsight";
 
 import { useAppSelector } from "./useRedux";
 
 export default function useAlgoliaEvents() {
-  const { userToken }: any = useAppSelector((state) => state.user);
-
-  aa("init", {
-    appId: "CZT5MA7JLJ",
-    apiKey: `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`,
-  });
+  const { userToken }: any = useAlgoliaInsight();
 
   function clickedObjectIDsAfterSearch(
     insights: (

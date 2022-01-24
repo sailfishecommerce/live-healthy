@@ -1,7 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { connectHits, Highlight } from "react-instantsearch-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { hitType } from "@/types";
+import { useEffect } from "react";
+import { useAppSelector } from "@/hooks/useRedux";
+import { updateSearchData, updateViewSearch } from "@/redux/algolia-slice";
+import { useAppDispatch } from "@/redux/store";
 
 interface SearchHitsProps {
   hits: hitType[];
@@ -9,15 +14,30 @@ interface SearchHitsProps {
 
 function SearchHits({ hits }: SearchHitsProps) {
   const formattedHit = hits.slice(0, 6);
+  const { viewSearch } = useAppSelector((state) => state.algolia);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (viewSearch) {
+      dispatch(updateSearchData(hits));
+    }
+  }, [viewSearch]);
+
+  function viewHits() {
+    dispatch(updateViewSearch());
+  }
+
   return (
     <div className="searchhits">
       <div className="results row">
         <div className="col-lg-4">
           <h6>Popular Suggestions</h6>
           {hits.length > 0 && (
-            <button className="btn btn-primary">
-              VIEW ALL {hits.length} ITEMS{" "}
-            </button>
+            <Link href="/search" passHref>
+              <button onClick={viewHits} className="btn btn-primary">
+                VIEW ALL {hits.length} ITEMS{" "}
+              </button>
+            </Link>
           )}
         </div>
         <div className="col-lg-8">
@@ -33,13 +53,13 @@ function SearchHits({ hits }: SearchHitsProps) {
                     <a className="hit d-flex align-items-center my-0 py-1">
                       <div className="hit-image">
                         <Image
-                          src={hit.product_images[0].link}
+                          src={hit.images[0]?.file?.url}
                           alt={hit.name}
                           className="productImage"
                           height={70}
                           width={100}
                           placeholder="blur"
-                          blurDataURL={hit.product_images[0].link}
+                          blurDataURL={hit.images[0]?.file?.url}
                           loading="lazy"
                         />
                       </div>
