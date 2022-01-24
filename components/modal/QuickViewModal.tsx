@@ -20,8 +20,6 @@ interface QuickViewModalProps {
 export default function QuickViewModal({ product }: QuickViewModalProps) {
   const dispatch = useAppDispatch();
   const { productToView } = product;
-  
-  console.log("productToView", productToView);
 
   function quickViewHandler(product: any) {
     dispatch(quickViewModal(product));
@@ -67,7 +65,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                 </button>
               </div>
               <div className="price-group mb-2 d-flex justify-content-between align-items-center">
-                <div className="d-flex price">
+                <div className="d-flex price align-items-center">
                   <div className="text-accent me-2 fs-lg">
                     <FormattedPrice price={productToView.price} isProduct />
                   </div>
@@ -81,9 +79,11 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                     </del>
                   )}
                 </div>
-                <div className="percentage">{`${discountPrice(
-                  productToView
-                )} %`}</div>
+                {productToView.hkd_compare_at_price > 0 && (
+                  <div className="percentage">{`${discountPrice(
+                    productToView
+                  )} %`}</div>
+                )}
               </div>
               <ProductForm product={productToView} />
               <div
