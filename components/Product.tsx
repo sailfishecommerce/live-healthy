@@ -48,8 +48,6 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       : null;
   }
 
-  console.log("productproduct", product);
-
   const linkURL =
     algoliaEvent === "search"
       ? `/products/${product.slug}?query-id=${product.__queryID}`

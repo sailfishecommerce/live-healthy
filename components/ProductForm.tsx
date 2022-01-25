@@ -24,8 +24,6 @@ export default function ProductForm({ product }: ProductFormType) {
     useAlgoliaEvents();
   const queryID: any = router.query["query-id"];
 
-  console.log("queryID", queryID);
-
   const { addItemToCartWithOptions } = useCart();
   const { optionHandler, selectedOptions } = useProductOptions();
 
@@ -36,18 +34,20 @@ export default function ProductForm({ product }: ProductFormType) {
   }
 
   function algoliaEvent() {
-    queryID
+    const itemId =
+      product.objectID !== undefined ? [product.objectID] : [product.id];
+    return queryID
       ? productAddedToCartAfterSearch(queryID, [product.objectID])
-      : productAddedToCart([product.objectID]);
+      : productAddedToCart(itemId);
   }
 
   const counterType = product.attributes;
 
-  function onSubmitHandler(e: any) {
-    e.preventDefault();
-    addItemToCartWithOptions(product, productQty, selectedOptions);
-    algoliaEvent();
-  }
+ function onSubmitHandler(e: any) {
+   e.preventDefault();
+   algoliaEvent();
+   addItemToCartWithOptions(product, productQty, selectedOptions);
+ }
 
   const optionsClassName = counterType?.box
     ? "mb-3 align-items-end"
