@@ -37,7 +37,7 @@ export default function FooterTopSection({ topSectionBgColor }: Props) {
   }
   function categoryEvents(contentLink: contentLinkType) {
     vboutCategoryViewHandler(contentLink);
-    itemViewed("category_viewed", contentLink.id, [contentLink.slug]);
+    itemViewed("category_viewed", [contentLink.id]);
   }
 
   return (
