@@ -92,8 +92,20 @@ export default function HomepageSlider({
       >
         <TinySlider settings={settings}>
           {content.map((item, index) => (
-            <div className="tinySlider" key={index}>
-              <div className="px-lg-5 sliderItem">
+            <div
+              style={{
+                height: "680px",
+              }}
+              className="tinySlider"
+              key={index}
+            >
+              <div
+                style={{
+                  backgroundColor: item.bgColor,
+                  height: "680px",
+                }}
+                className="px-lg-5 sliderItem"
+              >
                 <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
                   <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
                     {item.sliderImg}
