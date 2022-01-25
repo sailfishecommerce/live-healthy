@@ -1,4 +1,5 @@
-import { memo } from "react";
+import { memo, useCallback, useRef } from "react";
+import { useVirtual } from "react-virtual";
 
 import LoadProducts from "@/components/ProductsLoader";
 import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
@@ -9,6 +10,15 @@ function TrendingProductsFromSwell() {
   const { liveHealthyProduct, liveHealthyProductStatus } =
     useLiveHealthyProduct();
 
+  const parentRef: any = useRef();
+
+  const rowVirtualizerFixed = useVirtual({
+    size: liveHealthyProduct?.data.length,
+    parentRef,
+    estimateSize: useCallback(() => 10, []),
+    overscan: 6,
+  });
+
   return (
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="h3 text-center">Trending products</h2>
@@ -17,10 +27,18 @@ function TrendingProductsFromSwell() {
       ) : liveHealthyProductStatus === "loading" ? (
         <LoadProducts />
       ) : (
-        <div className="row pt-4 mx-n2">
+        <div
+          ref={parentRef}
+          style={{ height: `${rowVirtualizerFixed.totalSize}px` }}
+          className="row pt-4 mx-n2"
+        >
           {liveHealthyProduct.data.length > 0 ? (
             liveHealthyProduct.data.map((product: productType) => (
-              <Product key={product.id} product={product} algoliaEvent="click" />
+              <Product
+                key={product.id}
+                product={product}
+                algoliaEvent="click"
+              />
             ))
           ) : (
             <h2 className="text-center">No product in this store.</h2>
