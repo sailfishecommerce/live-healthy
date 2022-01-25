@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import styles from "@/styles/homepageslider.module.css";
 
 const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
@@ -80,87 +79,79 @@ export default function HomepageSlider({
     autoplayButtonOutput: false,
   };
   return (
-    <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"
-        />
-      </Head>
-      <section
-        className={`${styles.tnsCarousel} tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100`}
-      >
-        <TinySlider settings={settings}>
-          {content.map((item, index) => (
+    <section
+      className={`${styles.tnsCarousel} tns-carousel tns-controls-lg mb-4 mb-lg-5 w-100`}
+    >
+      <TinySlider settings={settings}>
+        {content.map((item, index) => (
+          <div
+            style={{
+              height: "680px",
+            }}
+            className="tinySlider"
+            key={index}
+          >
             <div
               style={{
+                backgroundColor: item.bgColor,
                 height: "680px",
               }}
-              className="tinySlider"
-              key={index}
+              className="px-lg-5 sliderItem"
             >
-              <div
-                style={{
-                  backgroundColor: item.bgColor,
-                  height: "680px",
-                }}
-                className="px-lg-5 sliderItem"
-              >
-                <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
-                  <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
-                    {item.sliderImg}
-                  </div>
-                  <div className="sliderWidth position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1">
-                    <div className="sliderText pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
-                      <h3 className="text-light fw-light pb-1 from-start">
-                        {item.sliderCaption}
-                      </h3>
-                      <h2 className="text-light display-5 from-start delay-1">
-                        {item.sliderTitle}
-                      </h2>
-                      <p className="fs-lg text-light pb-3 from-start delay-2">
-                        {item.sliderDescription}
-                      </p>
-                      <div className="d-table scale-up delay-4 mx-auto mx-lg-0">
-                        <Link href="/shop" passHref>
-                          <a className="btn btn-primary">
-                            Shop Now
-                            <i className="ci-arrow-right ms-2 me-n1"></i>
-                          </a>
-                        </Link>
-                      </div>
+              <div className="d-lg-flex justify-c ontent-between align-items-center ps-lg-4">
+                <div className="d-block order-lg-2 me-lg-n5 flex-shrink-0">
+                  {item.sliderImg}
+                </div>
+                <div className="sliderWidth position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1">
+                  <div className="sliderText pb-lg-5 mb-lg-5 text-center text-lg-start text-lg-nowrap">
+                    <h3 className="text-light fw-light pb-1 from-start">
+                      {item.sliderCaption}
+                    </h3>
+                    <h2 className="text-light display-5 from-start delay-1">
+                      {item.sliderTitle}
+                    </h2>
+                    <p className="fs-lg text-light pb-3 from-start delay-2">
+                      {item.sliderDescription}
+                    </p>
+                    <div className="d-table scale-up delay-4 mx-auto mx-lg-0">
+                      <Link href="/shop" passHref>
+                        <a className="btn btn-primary">
+                          Shop Now
+                          <i className="ci-arrow-right ms-2 me-n1"></i>
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
-              <style jsx>{`
-                .sliderItem {
-                  background-color: ${item.bgColor};
-                }
-                .tinySlider,
-                .sliderItem {
-                  height: 680px;
-                }
-                .sliderWidth {
-                  max-width: 42rem;
-                  z-index: 10;
-                }
-                @media (max-width: 768px) {
-                  .sliderText h3 {
-                    font-size: 20px;
-                  }
-                  .sliderText h2 {
-                    font-size: 24px;
-                  }
-                  .sliderText p {
-                    font-size: 16px;
-                  }
-                }
-              `}</style>
             </div>
-          ))}
-        </TinySlider>
-      </section>
-    </>
+            <style jsx>{`
+              .sliderItem {
+                background-color: ${item.bgColor};
+              }
+              .tinySlider,
+              .sliderItem {
+                height: 680px;
+              }
+              .sliderWidth {
+                max-width: 42rem;
+                z-index: 10;
+              }
+              @media (max-width: 768px) {
+                .sliderText h3 {
+                  font-size: 20px;
+                }
+                .sliderText h2 {
+                  font-size: 24px;
+                }
+                .sliderText p {
+                  font-size: 16px;
+                }
+              }
+            `}</style>
+          </div>
+        ))}
+      </TinySlider>
+    </section>
   );
 }
