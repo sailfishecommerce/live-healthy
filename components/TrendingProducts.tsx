@@ -28,8 +28,8 @@ function TrendingProductsFromSwell() {
         <LoadProducts />
       ) : (
         <div
-          ref={parentRef}
-          style={{ height: `${rowVirtualizerFixed.totalSize}px` }}
+          // ref={parentRef}
+          // style={{ height: `${rowVirtualizerFixed.totalSize}px` }}
           className="row pt-4 mx-n2"
         >
           {liveHealthyProduct.data.length > 0 ? (
