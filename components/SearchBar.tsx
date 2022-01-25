@@ -7,6 +7,8 @@ import searchClient from "@/lib/algoliaConfig";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useVbout from "@/hooks/useVbout";
 import { useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/redux/store";
+import { updateQuery } from "@/redux/algolia-slice";
 
 type paramsType = {
   params: {
@@ -15,12 +17,15 @@ type paramsType = {
 };
 
 export default function SearchBar() {
-  const [querylength, setQueryLength] = useState();
-  const [searchQuery, setSearchQuery] = useState(null);
+  const [querylength, setQueryLength] = useState(null);
+  const dispatch = useAppDispatch();
   const inputRef = useRef(null);
+  const { closeSearchView } = useAppSelector((state) => state.algolia);
   const { userDetail }: any = useAppSelector((state) => state.auth);
   const tabWidth = useMediaQuery("(max-width:768px)");
   const { addProductSearch } = useVbout();
+
+  console.log("closeSearchView", closeSearchView);
 
   const inputClassName = !tabWidth
     ? "input-group d-none d-lg-flex mx-4"
@@ -38,7 +43,7 @@ export default function SearchBar() {
     search(requests: any) {
       const reqlength = requests[0].params?.query.length;
       setQueryLength(reqlength);
-       setSearchQuery(requests[0].params?.query);
+      dispatch(updateQuery(requests[0].params?.query));
       const searchContent = {
         id: uuidv4(),
         email: userDetail?.email ? userDetail?.email : "",
@@ -78,7 +83,7 @@ export default function SearchBar() {
             className={inputClassName}
           />
         </div>
-        {querylength !== 0 && <SearchbarHits />}
+        {querylength ? <SearchbarHits /> : ""}
       </div>
       <style jsx>
         {`

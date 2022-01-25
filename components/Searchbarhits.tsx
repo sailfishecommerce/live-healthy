@@ -5,8 +5,13 @@ import Image from "next/image";
 import { hitType } from "@/types";
 import { useEffect } from "react";
 import { useAppSelector } from "@/hooks/useRedux";
-import { updateSearchData, updateViewSearch } from "@/redux/algolia-slice";
+import {
+  closeSearch,
+  updateSearchData,
+  updateViewSearch,
+} from "@/redux/algolia-slice";
 import { useAppDispatch } from "@/redux/store";
+import { useRouter } from "next/router";
 
 interface SearchHitsProps {
   hits: hitType[];
@@ -14,8 +19,9 @@ interface SearchHitsProps {
 
 function SearchHits({ hits }: SearchHitsProps) {
   const formattedHit = hits.slice(0, 6);
-  const { viewSearch } = useAppSelector((state) => state.algolia);
+  const { viewSearch, query } = useAppSelector((state) => state.algolia);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (viewSearch) {
@@ -25,6 +31,8 @@ function SearchHits({ hits }: SearchHitsProps) {
 
   function viewHits() {
     dispatch(updateViewSearch());
+    dispatch(closeSearch());
+    router.push({ pathname: "/search", query: { product: query } });
   }
 
   return (
@@ -33,11 +41,9 @@ function SearchHits({ hits }: SearchHitsProps) {
         <div className="col-lg-4">
           <h6>Popular Suggestions</h6>
           {hits.length > 0 && (
-            <Link href="/search" passHref>
-              <button onClick={viewHits} className="btn btn-primary">
-                VIEW ALL {hits.length} ITEMS{" "}
-              </button>
-            </Link>
+            <button onClick={viewHits} className="btn btn-primary">
+              VIEW ALL {hits.length} ITEMS{" "}
+            </button>
           )}
         </div>
         <div className="col-lg-8">

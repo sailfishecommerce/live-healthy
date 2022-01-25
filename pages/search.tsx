@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { useVirtual } from "react-virtual";
 import Applayout from "@/layout/Applayout";
 import Metatag from "@/components/Metatag";
@@ -12,6 +13,10 @@ export default function SearchPage() {
   const dispatch = useAppDispatch();
   const { viewSearch, searchData } = useAppSelector((state) => state.algolia);
   const parentRef: any = useRef();
+  const router = useRouter();
+  const { query } = router;
+
+  console.log("query", query);
 
   const rowVirtualizer = useVirtual({
     size: searchData.length,
@@ -26,12 +31,17 @@ export default function SearchPage() {
     }
   }, [viewSearch]);
 
-  console.log("rowVirtualizer", rowVirtualizer);
-
   return (
     <Applayout title="Search Store | Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
       <div ref={parentRef} className="container">
+        <h5 className="text-center my-5">
+          <span className="fw-bold text-danger">
+            {searchData.length} products
+          </span>{" "}
+          found from{" "}
+          <span className="fw-bold text-danger">{query.product}</span> search{" "}
+        </h5>
         <div className="row pt-4 mx-n2">
           {rowVirtualizer.virtualItems.map((virtualRow) => (
             <Product
