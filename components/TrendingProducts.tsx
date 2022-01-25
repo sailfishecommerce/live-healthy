@@ -20,7 +20,7 @@ function TrendingProductsFromSwell() {
         <div className="row pt-4 mx-n2">
           {liveHealthyProduct.data.length > 0 ? (
             liveHealthyProduct.data.map((product: productType) => (
-              <Product key={product.id} product={product} />
+              <Product key={product.id} product={product} algoliaEvent="click" />
             ))
           ) : (
             <h2 className="text-center">No product in this store.</h2>

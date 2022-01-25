@@ -33,6 +33,10 @@ export default function PlasmicLoaderPage(props: {
   // const { cart } = useAppSelector((state) => state.storeCart);
 
   useEffect(() => {
+    generateUserToken();
+  }, []);
+
+  useEffect(() => {
     if (status === "success") generateUserToken();
   }, [status]);
 
