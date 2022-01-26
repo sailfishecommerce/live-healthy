@@ -1,4 +1,5 @@
 import Topbar from "@/components/Topbar";
+import styles from "@/styles/ui.module.css";
 
 interface HeaderProps {
   support: string;
@@ -14,7 +15,7 @@ export default function Header({
   nav,
 }: HeaderProps) {
   return (
-    <header className="shadow-sm w-100">
+    <header className={`${styles.header} shadow-sm w-100`}>
       <Topbar support={support} topbarBgColor={topbarBgColor}>
         {slider}
       </Topbar>

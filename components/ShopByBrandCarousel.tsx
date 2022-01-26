@@ -81,12 +81,7 @@ export default function ShopByBrandCarousel({
                   className={`${styles.brandLink} d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
                   href="#"
                 >
-                  <div
-                    style={{ height: "100px", width: "200px" }}
-                    className="brandContainer d-flex mx-auto"
-                  >
-                    {brand}
-                  </div>
+                  <div className="brandContainer d-flex mx-auto">{brand}</div>
                 </a>
               </div>
             </SwiperSlide>
@@ -97,6 +92,7 @@ export default function ShopByBrandCarousel({
         {`
           .brandContainer {
             width: 150px;
+            height: 50px;
           }
         `}
       </style>

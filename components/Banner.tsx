@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Image";
 
 interface BannersProps {
   banner1Title: string;
@@ -27,9 +27,9 @@ export default function Banners({
             </div>
             <Image
               className="d-block ms-auto"
-              src="/img/shop/catalog/banner.jpg"
+              src="/img/shop/catalog/banner.webp"
               alt="Shop Converse"
-              height={350}
+              height={300}
               width={600}
             />
           </div>
@@ -50,7 +50,7 @@ export default function Banners({
         <style jsx>
           {`
             .bannerImg {
-              background-image: url(img/blog/banner-bg.jpg);
+              background-image: url(img/blog/banner-bg.webp);
             }
           `}
         </style>
