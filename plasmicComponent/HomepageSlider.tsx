@@ -76,7 +76,7 @@ export default function HomepageSlider({
     mouseDrag: true,
     speed: 500,
     loop: true,
-    autoplay: true,
+    autoplay: false,
     autoplayHoverPause: true,
     autoplayButtonOutput: false,
   };
@@ -136,6 +136,9 @@ export default function HomepageSlider({
                 z-index: 10;
               }
               @media (max-width: 768px) {
+                .sliderItem {
+                  flex-direction: column;
+                }
                 .sliderText h3 {
                   font-size: 20px;
                 }
