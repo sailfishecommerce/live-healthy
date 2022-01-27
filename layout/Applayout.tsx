@@ -3,11 +3,11 @@ import Head from "next/head";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 
+import Header from "@/plasmicComponent/Header";
 import LayoutWrapper from "./LayoutWrapper";
 import useLoading from "@/hooks/useLoading";
 import Nav from "@/components/Nav";
 
-const Header = dynamic(() => import("../plasmicComponent/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
 const LoadingBar = dynamic(() => import("../components/loadingBar"));
 
@@ -37,8 +37,6 @@ export default function Applayout({
 
       <Head>
         <title>{title} | Sailfish e-commerce online store </title>
-        <Head>          
-        </Head>
         <script
           src="https://en.trustmate.io/api/widget/4420c1ed-e3a7-47c2-b6a2-2d7386a819da/script"
           defer

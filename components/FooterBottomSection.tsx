@@ -51,6 +51,7 @@ export default function FooterBottomSection({
                       width={200}
                       height={70}
                       alt="Bandicoot"
+                      loading="lazy"
                     />
                   </a>
                 </Link>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "@/components/Image";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
+
 interface PopularCategoryProps {
   category: {
     images: {

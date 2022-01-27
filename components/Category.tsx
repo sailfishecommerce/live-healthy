@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 import RatingStar from "./RatingStar";
+
 interface CategoryProps {
   category: {
     name: string;

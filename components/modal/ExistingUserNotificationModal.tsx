@@ -51,6 +51,7 @@ export default function ExistingUserNotificationModal({
           alt="shopping bag"
           height={40}
           width={40}
+          loading="lazy"
         />
       </div>
       <h6 className="text-center">
