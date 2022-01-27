@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
 import dynamic from "next/dynamic";
 import Script from "next/script";
+import Head from "next/head";
 
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
@@ -47,6 +48,13 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
         src="node_modules/default-passive-events/dist/index.js"
         strategy="afterInteractive"
       />
+      <Head>
+        <link
+          href="https://CZT5MA7JLJ-dsn.algolia.net"
+          rel="preconnect"
+          crossOrigin="true"
+        />
+      </Head>
       <LayoutMetatag />
       <div data-aos="fade-up" id="head" />
       {slideCart && <SlideCart toggle={toggleCart} />}
