@@ -25,8 +25,6 @@ export default function SearchBar() {
   const tabWidth = useMediaQuery("(max-width:768px)");
   const { addProductSearch } = useVbout();
 
-  console.log("closeSearchView", closeSearchView);
-
   const inputClassName = !tabWidth
     ? "input-group d-none d-lg-flex mx-4"
     : "mobileInput w-100 my-0";
@@ -52,22 +50,13 @@ export default function SearchBar() {
       reqlength > 0 && addProductSearch(searchContent);
       if (requests.every(({ params }: paramsType): boolean => !params.query)) {
         return Promise.resolve({
-          results: requests.map((dataRequest: any) => {
-            if (
-              !dataRequest.params.query ||
-              dataRequest.params.query.length === 0
-            ) {
-              dataRequest.params.analytics = false;
-            }
-            const formatHit = {
-              hits: [],
-              nbHits: 0,
-              nbPages: 0,
-              page: 0,
-              processingTimeMS: 0,
-            };
-            return formatHit;
-          }),
+          results: requests.map(() => ({
+            hits: [],
+            nbHits: 0,
+            nbPages: 0,
+            page: 0,
+            processingTimeMS: 0,
+          })),
         });
       }
       return searchClient.search(requests);
