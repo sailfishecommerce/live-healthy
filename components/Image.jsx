@@ -33,6 +33,10 @@ const Image = (props) => {
     }
   }, [props.loading, props.priority]);
 
+  const styles = props.slider
+    ? { width: "unset", height: "unset" }
+    : { width: `${props.width}px`, height: `${props.height}px` };
+
   return (
     <div
       className="lazyImageWrapper"
