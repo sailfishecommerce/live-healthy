@@ -1,4 +1,4 @@
-import { ReactText } from "react";
+import { ReactText, useRef } from "react";
 import { toast } from "react-toastify";
 
 import useLoading from "@/hooks/useLoading";
@@ -37,9 +37,45 @@ export default function useToast() {
     });
   }
 
+  const toastId: any = useRef(null);
+
+  const loadToast = () => {
+    updateLoadingState();
+    toastId.current = toast.loading("Processing ...", {
+      position: "top-left",
+    });
+  };
+
+  const successToast = (text: string) => {
+    updateLoadingState();
+    toast.update(toastId.current, {
+      render: text,
+      type: "success",
+      isLoading: false,
+      position: "top-left",
+      closeButton: true,
+      autoClose: 5000,
+    });
+  };
+
+  const errorToast = (text: string) => {
+    updateLoadingState();
+    toast.update(toastId.current, {
+      render: text,
+      type: "error",
+      isLoading: false,
+      position: "top-left",
+      closeButton: true,
+      autoClose: 5000,
+    });
+  };
+
   return {
     isLoading,
     isSuccessful,
     hasError,
+    loadToast,
+    successToast,
+    errorToast,
   };
 }
