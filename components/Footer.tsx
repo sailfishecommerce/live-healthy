@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-
+import useMediaQuery from "@/hooks/useMediaQuery";
 import BottomTab from "./BottomTab";
 import FooterBottomSection from "./FooterBottomSection";
 import FooterTopSection from "./FooterTopSection";
@@ -12,11 +12,13 @@ export default function Footer({
   topSectionBgColor,
   bottomSectionBgColor,
 }: FooterProps) {
+  const tabWidth = useMediaQuery("(max-width:768px)");
+
   return (
     <footer className="footer w-100">
       <FooterTopSection topSectionBgColor={topSectionBgColor} />
       <FooterBottomSection bottomSectionBgColor={bottomSectionBgColor} />
-      <BottomTab />
+      {tabWidth ? <BottomTab /> : null}
     </footer>
   );
 }

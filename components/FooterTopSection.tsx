@@ -13,14 +13,12 @@ interface Props {
 }
 
 export default function FooterTopSection({ topSectionBgColor }: Props) {
-  const { listAllCategory } = useCategory();
-  const { data, status } = useQuery("listAllCategory", listAllCategory);
+  const { allCategories } = useCategory();
+  const categories = allCategories();
 
-  const categories = data?.results.slice(12);
-
-  if (status === "success") {
-    footerContent.section1[0].links = categories;
-  }
+    if (categories !== undefined) {
+      footerContent.section1[0].links = categories?.results.slice(12);
+    }
   const { addCategoryView } = useVbout();
   const { itemViewed } = useAlgoliaEvents();
 

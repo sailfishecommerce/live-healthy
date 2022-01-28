@@ -1,3 +1,4 @@
+import { useQueryClient } from "react-query";
 import swellClientInit from "@/lib/config";
 
 type checkoutData = {
@@ -31,6 +32,8 @@ export default function useAccount() {
   const { swell, initializeSwell } = swellClientInit();
   initializeSwell();
 
+  const queryClient = useQueryClient();
+
   async function createUserAccount(userDetails: userDetailsType) {
     const { firstName, lastName, email, password } = userDetails;
     return await swell.account.create({
@@ -61,6 +64,10 @@ export default function useAccount() {
     });
   }
 
+  async function getUserAccount() {
+    return await swell.account.get();
+  }
+
   async function recoverPassword(password: string, reset_key: string) {
     return await swell.account.recover({
       password,
@@ -80,6 +87,11 @@ export default function useAccount() {
       zip: data.zip,
       country: data.country,
     });
+  }
+
+  function displayUserDetails(): any {
+    const userDetails = queryClient.getQueryData("getAccount");
+    return userDetails;
   }
 
   async function createUserAddresstAtCheckout(data: checkoutData) {
@@ -119,14 +131,14 @@ export default function useAccount() {
     });
   }
 
-  
-
   return {
     createUserAccount,
     signedUserDetails,
     loginUser,
     logoutUser,
     forgotPassword,
+    getUserAccount,
+    displayUserDetails,
     createUserAccountAtCheckout,
     recoverPassword,
     createUserAddresstAtCheckout,

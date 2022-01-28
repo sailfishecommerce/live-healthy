@@ -19,7 +19,14 @@ interface Props {
 function CurrencyLanguageDropdownComponent({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
-  const { currencies, selectCurrencies } = useCurrency();
+  const { selectCurrencies, listEnabledCurrencies, getCurrencies } =
+    useCurrency();
+
+  const currencies: any = getCurrencies();
+
+  console.log("getCurrencies", currencies);
+
+  // const { data: currencies } = useQuery("currencies", listEnabledCurrencies);
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
   const { getACart } = useSwellCart();
