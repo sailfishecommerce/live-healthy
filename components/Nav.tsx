@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import useCart from "@/hooks/useCart";
 
+import useCart from "@/hooks/useCart";
+import useSwellCart from "@/hooks/useSwellCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
 import menuLink from "@/json/menu.json";
@@ -23,7 +24,7 @@ interface NavProps {
 }
 
 export default function Nav({ logo, navBgColor, local }: NavProps) {
-  const { cart }: any = useCart();
+  const { useCartData } = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
   const router = useRouter();
@@ -33,6 +34,8 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
   const dispatch = useAppDispatch();
   const tabWidth = useMediaQuery("(max-width:768px)");
   const largerDeviceWidth = useMediaQuery("(min-width:768px)");
+
+  const { data: cart } = useCartData();
 
   function toggleAuthModalHandler() {
     dispatch(toggleAuthModal());
@@ -129,7 +132,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                     )}
                   </a>
                 </div>
-                {cart?.items.length > 0 && <HeaderCartDropdown />}
+                {cart?.items.length > 0 && <HeaderCartDropdown cart={cart} />}
               </div>
             </div>
           </div>

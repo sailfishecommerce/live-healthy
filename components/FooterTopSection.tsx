@@ -1,8 +1,7 @@
-import { useQuery } from "react-query";
 import Link from "next/link";
 
 import footerContent from "@/json/footer.json";
-import useCategory from "@/hooks/useCategory";
+import { useCategoryData } from "@/hooks/useCategory";
 import { contentLinkType } from "@/types";
 import useVbout from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
@@ -13,12 +12,11 @@ interface Props {
 }
 
 export default function FooterTopSection({ topSectionBgColor }: Props) {
-  const { allCategories } = useCategory();
-  const categories = allCategories();
+  const [categories, status] = useCategoryData();
 
-    if (categories !== undefined) {
-      footerContent.section1[0].links = categories?.results.slice(12);
-    }
+  if (status === "success") {
+    footerContent.section1[0].links = categories?.results.slice(12);
+  }
   const { addCategoryView } = useVbout();
   const { itemViewed } = useAlgoliaEvents();
 
@@ -28,11 +26,12 @@ export default function FooterTopSection({ topSectionBgColor }: Props) {
     addCategoryView({
       id: contentLink.id,
       categoryId: contentLink.slug,
-      categoryName: contentLink.name,
+      categoryName: contentLink?.name,
       categoryLink: `categories/${contentLink.slug}`,
-      categoryImage: contentLink.images[0]?.file?.url,
+      categoryImage: contentLink?.images[0]?.file?.url,
     });
   }
+
   function categoryEvents(contentLink: contentLinkType) {
     vboutCategoryViewHandler(contentLink);
     itemViewed("category_viewed", [contentLink.id]);
@@ -76,9 +75,9 @@ export default function FooterTopSection({ topSectionBgColor }: Props) {
               ) : (
                 <div key={index} className="col-md-4 col-sm-6">
                   <div className="widget widget-links widget-light pb-2 mb-4">
-                    <h3 className="widget-title text-light">{content.name}</h3>
+                    <h3 className="widget-title text-light">{content?.name}</h3>
                     <ul className="widget-list">
-                      {content.links.map((contentLink) => (
+                      {content?.links?.map((contentLink) => (
                         <li key={contentLink.name} className="widget-list-item">
                           <Link
                             href={`/collections/product-type/${contentLink.slug}`}

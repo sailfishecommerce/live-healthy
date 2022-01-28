@@ -13,10 +13,6 @@ import useUserToken from "@/hooks/useUserToken";
 import PlasmicLayout from "@/layout/Plasmiclayout";
 import Metatag from "@/components/Metatag";
 import { PLASMIC } from "../plasmic-init";
-import { useAppSelector } from "@/hooks/useRedux";
-import { useQueryClient } from "react-query";
-import usePrefetch from "@/hooks/usePrefetch";
-import useShoppingCart from "@/hooks/useShoppingCart";
 
 const DyanmicPlasmicComponent: any = dynamic(() =>
   import("@plasmicapp/loader-nextjs").then(
@@ -33,29 +29,11 @@ export default function PlasmicLoaderPage(props: {
 }) {
   const { plasmicData } = props;
   const { generateUserToken } = useUserToken();
-  const { getShopCart } = useShoppingCart();
-  const { getCategories, fetchCurrencies, getUserAccountDetails, getCart } =
-    usePrefetch();
-
-  getCategories();
-  fetchCurrencies();
-  getUserAccountDetails();
-  getCart();
-  // const { cart } = useAppSelector((state) => state.storeCart);
 
   useEffect(() => {
     generateUserToken();
   }, []);
 
-  // useEffect(() => {
-  //   generateUserToken();
-  // }, [authorized]);
-  
-  useEffect(() => {
-    getCart()
-      .then((response) => console.log("cart response", response))
-      .catch((error) => console.log("error", error));
-  }, []);
 
   // console.log("store cart", cart);
 

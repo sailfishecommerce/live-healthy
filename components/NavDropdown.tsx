@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import { useQueryClient, useQuery } from "react-query";
 import Link from "next/link";
 
-import useCategory from "@/hooks/useCategory";
+import useCategory, { useCategoryData } from "@/hooks/useCategory";
 import { categoryType } from "@/types";
 import useVbout from "@/hooks/useVbout";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
@@ -89,8 +90,8 @@ function CategoryDropdownList({ category, categories }: Props) {
 }
 
 export default function CategoryDropdown() {
-  const { allCategories } = useCategory();
-  const categories = allCategories();
+  const [categories, status] = useCategoryData();
+
   const topCategories = categories?.results?.filter(
     (category: categoryType) => !category.topId
   );
@@ -101,9 +102,9 @@ export default function CategoryDropdown() {
   function displayCategories(categorySet: categoryType[]) {
     return (
       <div>
-        {categories === null ? (
+        {status === "error" ? (
           "unable to fetch categories"
-        ) : categories === undefined ? (
+        ) : status === "loading" ? (
           "loading categories"
         ) : (
           <div className="d-flex flex-wrap flex-sm-nowrap categorySet">

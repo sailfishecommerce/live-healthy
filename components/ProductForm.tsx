@@ -11,6 +11,7 @@ import {
 import useProductOptions from "@/hooks/useProductOptions";
 import { useCart } from "@/hooks";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import useShoppingCart from "@/hooks/useShoppingCart";
 
 interface ProductFormType {
   product: productType;
@@ -23,8 +24,8 @@ export default function ProductForm({ product }: ProductFormType) {
   const { productAddedToCartAfterSearch, productAddedToCart } =
     useAlgoliaEvents();
   const queryID: any = router.query["query-id"];
+  const { dataStatus, addItemToCartModal } = useShoppingCart();
 
-  const { addItemToCartWithOptions } = useCart();
   const { optionHandler, selectedOptions } = useProductOptions();
 
   const [productQty, setProductQty] = useState<number | null | any>(null);
@@ -34,6 +35,7 @@ export default function ProductForm({ product }: ProductFormType) {
   }
 
   function algoliaEvent() {
+    console.log("algoliaEvent working");
     const itemId =
       product.objectID !== undefined ? [product.objectID] : [product.id];
     return queryID
@@ -43,11 +45,11 @@ export default function ProductForm({ product }: ProductFormType) {
 
   const counterType = product.attributes;
 
- function onSubmitHandler(e: any) {
-   e.preventDefault();
-   algoliaEvent();
-   addItemToCartWithOptions(product, productQty, selectedOptions);
- }
+  function onSubmitHandler(e: any) {
+    e.preventDefault();
+    algoliaEvent();
+    addItemToCartModal.mutate({ product, productQty, selectedOptions });
+  }
 
   const optionsClassName = counterType?.box
     ? "mb-3 align-items-end"

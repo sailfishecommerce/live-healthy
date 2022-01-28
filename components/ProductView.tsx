@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { useCart } from "@/hooks";
+import useShoppingCart from "@/hooks/useShoppingCart";
 import { productOptions, productType } from "@/types";
 import { useState } from "react";
 
@@ -20,12 +20,13 @@ export function PaymentNote() {
       </div>
       <div className="border w-100 p-3 mt-4 rounded">
         <p>
+          {" "}
           We accept bank deposits through all major networks globally including
-          ACH,Fedwire, SWIFT,IBAN and BSB.
+          ACH,Fedwire, SWIFT,IBAN and BSB.{" "}
         </p>
         <p className="mb-0">
           Orders are shipped after transfers are manually verified. Additional
-          documentation might be requested
+          documentation might be requested{" "}
         </p>
       </div>
       <style jsx>
@@ -125,8 +126,10 @@ interface ProductQuantityCounterType {
 export function ProductQuantityCounter({
   product,
 }: ProductQuantityCounterType) {
-  const { addItemToCartWithOptions } = useCart();
   const [itemQty, setItemQty] = useState(1);
+  const { dataStatus, addItemToCartModal } = useShoppingCart();
+
+  dataStatus(addItemToCartModal, `${product.name} updated`);
 
   function updateCounter(type: "increment" | "decrement") {
     if (type === "increment") {
@@ -137,7 +140,11 @@ export function ProductQuantityCounter({
   }
 
   function addToCart() {
-    addItemToCartWithOptions(product, itemQty, []);
+    addItemToCartModal.mutate({
+      product,
+      productQty: itemQty,
+      selectedOptions: [],
+    });
   }
 
   return (
