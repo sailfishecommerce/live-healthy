@@ -5,8 +5,11 @@ import PopularCategory from "@/components/PopularCategory";
 import LoadingPopularCategory from "@/components/PopularCategoryLoader";
 
 export default function PopularCategories() {
-  const { allCategories } = useCategory();
-  const categories = allCategories();
+  const { listAllCategory } = useCategory();
+  const { data: categories, status } = useQuery(
+    "listAllCategory",
+    listAllCategory
+  );
   const topCategories = categories?.results?.filter(
     (category: { topId: string }) => !category.topId
   );
