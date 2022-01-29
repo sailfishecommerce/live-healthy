@@ -13,6 +13,7 @@ import useScroll from "@/hooks/useScroll";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useRouter } from "next/router";
 import FormattedPrice from "@/lib/formatPrice";
+import MobileCategoryList from "./MobileCategoryList";
 
 const HeaderCartDropdown = dynamic(() => import("./HeaderCartDropdown"));
 const CategoryDropdown = dynamic(() => import("./NavDropdown"));
@@ -166,7 +167,11 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                     <i className="ci-view-grid me-2"></i>
                     Collections
                   </a>
-                  <CategoryDropdown />
+                  {largerDeviceWidth ? (
+                    <CategoryDropdown />
+                  ) : (
+                    <MobileCategoryList />
+                  )}
                 </li>
               </ul>
               <ul className="navbar-nav">
@@ -193,6 +198,8 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
           .navbar-sticky {
             background-color: ${navBgColor};
             width: 100%;
+            z-index: 1000;
+            position: relative;
           }
           .navbar-brand.d-sm-none.flex-shrink-0.me-2 img {
             height: 50px;

@@ -1,8 +1,8 @@
 import Link from "next/link";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 import Image from "@/components/Image";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
-
 
 interface PopularCategoryProps {
   category: {
@@ -16,8 +16,11 @@ interface PopularCategoryProps {
   };
 }
 
+
 export default function PopularCategory({ category }: PopularCategoryProps) {
   const selectedFooterCategory = useMarketplaceCategory();
+  const tabWidth = useMediaQuery("(max-width:768px)");
+  const size = tabWidth ?  { height: 250, width: 340 }:  { height: 250, width: 250 };
 
   return (
     <div className="popularCategory col-sm-4 px-2 mb-grid-gutter">
@@ -27,15 +30,16 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
           className="imgLink d-block text-center text-decoration-none me-1"
         >
           <Image
-            height={320}
-            width={350}
+            height={size.height}
+            width={size.width}
             src={category.images[0].file.url}
             alt={category.name}
             placeholder="blur"
             blurDataURL={category.images[0].file.url}
             loading="lazy"
             className="d-block rounded mx-1 mb-3"
-            slider
+            slider="true"
+            layout="responsive"
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>
         </a>

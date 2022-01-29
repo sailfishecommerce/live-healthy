@@ -2,7 +2,7 @@
 import { useQueryClient, useQuery } from "react-query";
 import Link from "next/link";
 
-import useCategory, { useCategoryData } from "@/hooks/useCategory";
+import  { useCategoryData } from "@/hooks/useCategory";
 import { categoryType } from "@/types";
 import useVbout from "@/hooks/useVbout";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
