@@ -59,7 +59,7 @@ export default function ShopByBrandCarousel({
 
   return (
     <section className="container py-lg-4 mb-4">
-      <h2 className="h3 text-center pb-4">Shop by brand</h2>
+      <h2 className="h3 text-center pb-4 carouselTitle">Shop by brand</h2>
       <div className="row brand-row">
         <Swiper
           spaceBetween={50}
@@ -78,7 +78,7 @@ export default function ShopByBrandCarousel({
             <SwiperSlide key={index}>
               <div className={styles.brand}>
                 <a
-                  className={`${styles.brandLink} d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
+                  className={`${styles.brandLink} brandlink d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
                   href="#"
                 >
                   <div className="brandContainer d-flex mx-auto">{brand}</div>
@@ -93,6 +93,21 @@ export default function ShopByBrandCarousel({
           .brandContainer {
             width: 150px;
             height: 50px;
+          }
+          @media (max-width: 768px) {
+            .carouselTitle {
+              font-size: 20px;
+            }
+            .brandContainer {
+              width: 180px;
+              height: 40px;
+              display: flex;
+              align-item: center;
+              justify-content: center;
+            }
+            .brandlink {
+              padding: 10px;
+            }
           }
         `}
       </style>

@@ -3,7 +3,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import useCart from "@/hooks/useCart";
-import useSwellCart from "@/hooks/useSwellCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
 import menuLink from "@/json/menu.json";

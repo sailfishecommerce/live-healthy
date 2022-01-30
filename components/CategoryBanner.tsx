@@ -29,9 +29,9 @@ export default function CategoryBanner({
       <div className="categoryBannerColor d-flex flex-column h-100 overflow-hidden rounded-3">
         <div className="d-flex justify-content-between px-grid-gutter py-grid-gutter">
           <div>
-            <h3 className="mb-1">{categoryTitle}</h3>
+            <h3 className="mb-1 title">{categoryTitle}</h3>
             <Link href="/shop" passHref>
-              <a className="fs-md text-white">
+              <a className="fs-md text-white fw-bold">
                 {categoryCaption}
                 <i className="ci-arrow-right fs-xs align-middle ms-1"></i>
               </a>
@@ -87,6 +87,11 @@ export default function CategoryBanner({
           }
           button.control:hover {
             opacity: 0.8;
+          }
+          @media (max-width: 768px) {
+            .title {
+              font-size: 20px;
+            }
           }
         `}
       </style>

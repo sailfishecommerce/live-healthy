@@ -16,18 +16,19 @@ interface PopularCategoryProps {
   };
 }
 
-
 export default function PopularCategory({ category }: PopularCategoryProps) {
   const selectedFooterCategory = useMarketplaceCategory();
   const tabWidth = useMediaQuery("(max-width:768px)");
-  const size = tabWidth ?  { height: 250, width: 340 }:  { height: 250, width: 250 };
+  const size = tabWidth
+    ? { height: 250, width: 300 }
+    : { height: 250, width: 250 };
 
   return (
-    <div className="popularCategory col-sm-4 px-2 mb-grid-gutter">
+    <div className="popularCategory col-12 col-md-4 px-1 mb-grid-gutter">
       <Link href={`/collections/product-type/${category.slug}`} passHref>
         <a
           onClick={() => selectedFooterCategory(category.name)}
-          className="imgLink d-block text-center text-decoration-none me-1"
+          className="imgLink d-flex flex-column text-center text-decoration-none"
         >
           <Image
             height={size.height}
@@ -65,7 +66,7 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
             color: #fb696a;
           }
           @media (max-width: 768px) {
-            .imgLink img {
+            .imgLink {
               width: 100%;
               height: 250px;
             }

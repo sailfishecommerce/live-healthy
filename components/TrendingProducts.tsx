@@ -1,23 +1,21 @@
-import { memo, useCallback, useRef } from "react";
-import { useVirtual } from "react-virtual";
+import { memo } from "react";
 
 import LoadProducts from "@/components/ProductsLoader";
 import { useLiveHealthyProduct } from "@/hooks/useSwellProducts";
 import Product from "./Product";
 import { productType } from "@/types";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 function TrendingProductsFromSwell() {
   const { liveHealthyProduct, liveHealthyProductStatus } =
     useLiveHealthyProduct();
+  const mobileView = useMediaQuery("(max-width:768px)");
 
-  const parentRef: any = useRef();
-
-  const rowVirtualizerFixed = useVirtual({
-    size: liveHealthyProduct?.data.length,
-    parentRef,
-    estimateSize: useCallback(() => 10, []),
-    overscan: 6,
-  });
+  function updateProductSize(productData: any[]) {
+    const productSize = mobileView ? productData.slice(0, 14) : productData;
+    console.log("productSize", productSize.length);
+    return productSize;
+  }
 
   return (
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
@@ -27,19 +25,17 @@ function TrendingProductsFromSwell() {
       ) : liveHealthyProductStatus === "loading" ? (
         <LoadProducts />
       ) : (
-        <div
-          // ref={parentRef}
-          // style={{ height: `${rowVirtualizerFixed.totalSize}px` }}
-          className="row pt-4 mx-n2"
-        >
+        <div className="row pt-4 mx-n2">
           {liveHealthyProduct.data.length > 0 ? (
-            liveHealthyProduct.data.map((product: productType) => (
-              <Product
-                key={product.id}
-                product={product}
-                algoliaEvent="click"
-              />
-            ))
+            updateProductSize(liveHealthyProduct.data).map(
+              (product: productType) => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  algoliaEvent="click"
+                />
+              )
+            )
           ) : (
             <h2 className="text-center">No product in this store.</h2>
           )}
