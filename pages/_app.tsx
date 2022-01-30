@@ -38,7 +38,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         strategy="beforeInteractive"
       />
       <Script
-        src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"
+        type="module"
+        src="/js/smooth-scroll.js"
         strategy="beforeInteractive"
       />
       <Script type="module" src="/js/theme.js" strategy="afterInteractive" />
