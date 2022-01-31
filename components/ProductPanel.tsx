@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 
 import { productType } from "@/types";
 
@@ -30,7 +29,7 @@ export default function ProductPanel({ product }: Props) {
         >
           <div className="accordion-body">
             <h6 className="fs-sm mb-2">Benefits</h6>
-            <ul className="fs-sm px-0">
+            {/* <ul className="fs-sm px-0">
               {product?.content?.productBenefits.map(
                 (benefit: { icon: string; text: string }) => (
                   <li className="my-1 list-unstyled" key={benefit.icon}>
@@ -43,7 +42,7 @@ export default function ProductPanel({ product }: Props) {
                   </li>
                 )
               )}
-            </ul>
+            </ul> */}
             <h6 className="fs-sm mb-2">Quantity in Stock</h6>
             <ul className="fs-sm ps-4 mb-0">
               <li>{product.content.maxQuantity}</li>

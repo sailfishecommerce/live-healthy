@@ -42,12 +42,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   }
 
   return (
-    <div>
-      <Script
-        type="text/javascript"
-        src="node_modules/default-passive-events/dist/index.js"
-        strategy="afterInteractive"
-      />
+    <div>     
       <Head>
         <link
           href="https://CZT5MA7JLJ-dsn.algolia.net"

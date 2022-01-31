@@ -37,8 +37,6 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       });
   }
 
-console.log("currencies", currencies);
-
   return (
     <Dropdown
       className={`${styles.dropdown} ${footerStyle} topbar-text dropdown disable-autohide`}

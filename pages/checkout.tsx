@@ -36,7 +36,7 @@ export default function Checkout() {
       dispatch(updateClientSecretStatus(false));
       airwallexPaymentIntent();
     }
-  }, []);
+  }, [cart]);
 
   return (
     <Applayout title="Checkout your order">

@@ -7,7 +7,7 @@ import {
 } from "@/lib/airwallex-payment";
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "./useRedux";
-import { airwallexType, cartType, paymentDetailsType } from "@/types";
+import { airwallexType } from "@/types";
 import {
   paymentError,
   updateAccessTokenStatus,
@@ -17,7 +17,8 @@ import useCart from "./useCart";
 
 export default function useAirwallex() {
   const dispatch = useAppDispatch();
-  const { cart }: any = useCart();
+  const { useCartData } = useCart();
+  const { data: cart } = useCartData();
   const airwallex: airwallexType = useAppSelector((state) => state.airwallex);
 
   function generateAirwallexAccessToken() {

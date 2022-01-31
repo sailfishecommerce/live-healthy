@@ -5,7 +5,6 @@ export default function getPaymentTokenHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("req.method", req.method);
   switch (req.method) {
     case "GET": {
       axios

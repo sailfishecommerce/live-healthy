@@ -36,7 +36,7 @@ export default function AirwallexCard({
 
   useEffect(() => {
     loadAirwallex({
-      env: "demo",
+      env: "prod",
       origin: window.location.origin,
       fonts: [
         {
