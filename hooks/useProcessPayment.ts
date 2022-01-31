@@ -18,7 +18,8 @@ export default function useProcessPayment() {
   const { onShowModal } = useModal();
 
   const { getACart } = useSwellCart();
-  const { cart }: any = useCart();
+  const { useCartData } = useCart();
+  const { data: cart } = useCartData();
   const { updateUserBillingInfo, createUserAddresstAtCheckout } = useAccount();
   const dispatch = useAppDispatch();
   const [loadingState, setLoadingState] = useState(false);

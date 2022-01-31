@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 
 import Image from "@/components/Image";
 import { ProductProps } from "@/types";
-import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
@@ -26,7 +25,7 @@ const DynamicProductMetatags = dynamic(
 declare function tcjs(trigger: string, type: string, name: string): any;
 
 const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
-  const { productViewEvent } = useProduct(product);
+  const { itemViewed } = useAlgoliaEvents();
   const [inHover, setHover] = useState(false);
   // const { clickedProductAfterSearch, itemClicked, itemViewed } =
   //   useAlgoliaEvents();
@@ -49,6 +48,11 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
   //     ? itemClickedAndViewed(objectIDs, id)
   //     : null;
   // }
+
+  function productViewHandler() {
+    itemViewed("product_viewed", [product.objectID]);
+  }
+
   const mobileView = useMediaQuery("(max-width:768px)");
 
   const linkURL =
@@ -121,7 +125,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           </Link>
           <h3 className="product-title fs-sm">
             <Link href={`/products/${product.slug}`} passHref>
-              <a onClick={productViewEvent}>{product.name}</a>
+              <a onClick={productViewHandler}>{product.name}</a>
             </Link>
           </h3>
           <div className="d-flex justify-content-between">

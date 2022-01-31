@@ -46,7 +46,6 @@ export default function useSwellCart() {
   }
 
   async function removeCartItem(product: { id: string }) {
-    console.log("product rmo", product);
     return await swell.cart.removeItem(product.id);
   }
 

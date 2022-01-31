@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback } from "react";
-import useProduct from "@/hooks/useProduct";
 import { ProductProps } from "@/types";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
+import useProductOptions from "@/hooks/useProductOptions";
+import useEvent from "@/hooks/useEvent";
 
 export default function ProductViewForm({
   product,
   forCategory,
 }: ProductProps) {
-  const { quickViewHandler, optionHandler } = useProduct(product);
+  const { optionHandler } = useProductOptions();
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
   const { productAddedToCart } = useAlgoliaEvents();
+  const { algoliaQuickViewEvent } = useEvent();
   const formOptionBg = useCallback((name: string) => {
     const style = { backgroundColor: name.toLowerCase() };
     return style;
@@ -20,6 +22,10 @@ export default function ProductViewForm({
   const { dataStatus, addItemToCart } = useShoppingCart();
 
   dataStatus(addItemToCart, `${product.name} added to cart`);
+
+  function algoliaViewHandler() {
+    algoliaQuickViewEvent(product);
+  }
 
   function onSubmitHandler(e: any) {
     e.preventDefault();
@@ -95,7 +101,7 @@ export default function ProductViewForm({
       <div className="text-center">
         <button
           className="nav-link-style fs-ms btn btn-link"
-          onClick={() => quickViewHandler(product)}
+          onClick={algoliaViewHandler}
           data-bs-toggle="quickViewModal"
         >
           <i className="ci-eye align-middle me-1"></i>

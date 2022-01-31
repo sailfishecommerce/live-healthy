@@ -6,19 +6,36 @@ import Image from "@/components/Image";
 import FormattedPrice from "@/lib/formatPrice";
 import RatingStar from "@/components/RatingStar";
 import { productType } from "@/types";
-import useProduct from "@/hooks/useProduct";
+import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import useProductOptions from "@/hooks/useProductOptions";
+import useShoppingCart from "@/hooks/useShoppingCart";
+import useEvent from "@/hooks/useEvent";
 
 interface ProductProps {
   product: productType;
 }
 
 export default function ProductList({ product }: ProductProps) {
-  const {
-    productViewEvent,
-    addToCartHandler,
-    quickViewHandler,
-    optionHandler,
-  } = useProduct(product);
+  const { itemViewed, productAddedToCart } = useAlgoliaEvents();
+  const { optionHandler } = useProductOptions();
+  const { dataStatus, addItemToCart } = useShoppingCart();
+  const { algoliaQuickViewEvent } = useEvent();
+
+  dataStatus(addItemToCart, `${product.name} added to cart`);
+
+  function productViewedHandler() {
+    itemViewed("product_viewed", [product.objectID]);
+  }
+
+  function onSubmitHandler(e: any) {
+    e.preventDefault();
+    addItemToCart.mutate({ product, quantity: 1 });
+    productAddedToCart([product.id]);
+  }
+
+  function quickViewHandler() {
+    algoliaQuickViewEvent(product);
+  }
 
   const labelBg = useCallback((name: string) => {
     const style = { backgroundColor: name.toLowerCase() };
@@ -40,7 +57,7 @@ export default function ProductList({ product }: ProductProps) {
         </button>
         <div className="d-sm-flex align-items-center">
           <Link href={`/products/${product.slug}`} passHref>
-            <a onClick={productViewEvent} className="product-list-thumb">
+            <a onClick={productViewedHandler} className="product-list-thumb">
               <Image
                 height={300}
                 width={300}
@@ -61,7 +78,7 @@ export default function ProductList({ product }: ProductProps) {
             <a className="product-meta d-block fs-xs pb-1">{product.vendor}</a>
             <h3 className="product-title fs-base">
               <Link href={`/products/${product.slug}`} passHref>
-                <a onClick={productViewEvent}>{product.name}</a>
+                <a onClick={productViewedHandler}>{product.name}</a>
               </Link>
             </h3>
             <div className="d-flex justify-content-between">
@@ -80,7 +97,7 @@ export default function ProductList({ product }: ProductProps) {
               <RatingStar rate={product.rating} />
             </div>
             <div className="card-body card-body-hidden">
-              <form onSubmit={addToCartHandler}>
+              <form onSubmit={onSubmitHandler}>
                 {product?.options && product?.options.length > 0 ? (
                   product?.options.map((option) => {
                     return option?.name === "Color" ? (
@@ -153,7 +170,7 @@ export default function ProductList({ product }: ProductProps) {
               <div className="text-start">
                 <a
                   className="nav-link-style fs-ms"
-                  onClick={() => quickViewHandler(product)}
+                  onClick={quickViewHandler}
                   data-bs-toggle="quickViewModal"
                 >
                   <i className="ci-eye align-middle me-1"></i>

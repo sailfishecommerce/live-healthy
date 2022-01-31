@@ -13,7 +13,7 @@ export default function useShoppingCart() {
   const addItemToCart = useAddItemToCart();
   const addItemToCartModal = useAddItemToCartModal();
   const updateCartItem = useUpdateCartItem();
-
+  
   return {
     addItemToCart,
     dataStatus,

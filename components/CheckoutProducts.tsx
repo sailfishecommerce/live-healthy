@@ -47,7 +47,8 @@ export function DiscountCoupon() {
 }
 
 export default function CheckoutProducts() {
-  const { cart }: any = useCart();
+  const { useCartData } = useCart();
+  const { data: cart } = useCartData();
   return (
     <div className="row">
       <div className="flex-column col-6 col-sm-12">
