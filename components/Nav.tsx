@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 import useCart from "@/hooks/useCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
@@ -28,6 +29,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
   const router = useRouter();
+  const [toggleCollection, setToggleCollection] = useState(false);
   const { scroll } = useScroll();
   const scrollUp = Number(scroll) > 400 ? true : false;
   const navStyle = scrollUp ? "navbar-sticky navbar-stuck" : "navbar-sticky";
@@ -39,6 +41,10 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
 
   function toggleAuthModalHandler() {
     dispatch(toggleAuthModal());
+  }
+
+  function onCollectionMenuHandler() {
+    setToggleCollection(!toggleCollection);
   }
 
   function toggleSlideCartMobile() {
@@ -161,6 +167,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                   <a
                     className="nav-link dropdown-toggle ps-lg-0"
                     href="#"
+                    onClick={onCollectionMenuHandler}
                     data-bs-toggle="dropdown"
                   >
                     <i className="ci-view-grid me-2"></i>
@@ -169,7 +176,8 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
                   {largerDeviceWidth ? (
                     <CategoryDropdown />
                   ) : (
-                    <MobileCategoryList />
+                    !largerDeviceWidth &&
+                    toggleCollection && <MobileCategoryList />
                   )}
                 </li>
               </ul>

@@ -10,17 +10,14 @@ export default function MobileCategoryList() {
   console.log("categories", categories);
 
   return (
-    <ul className="ms-3 mb-3 widget-list d-flex flex-column">
+    <ul className="dropdown-menu ms-3 mb-3 widget-list d-flex flex-column">
       {status === "error"
         ? "unable to load collections"
         : status === "loading"
         ? "loading collections"
         : livehealthyCategories(categories.results).map((category: any) => (
             <li key={category.name} className="widget-list-item">
-              <Link
-                href={`/collections/${category.slug}`}
-                passHref
-              >
+              <Link href={`/collections/${category.slug}`} passHref>
                 <a
                   onClick={() => selectedFooterCategory(category.name)}
                   className="widget-list-link"
