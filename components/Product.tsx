@@ -7,12 +7,14 @@ import Image from "@/components/Image";
 import { ProductProps } from "@/types";
 import useProduct from "@/hooks/useProduct";
 import RatingStar from "./RatingStar";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
 import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
 import useProductPrice from "@/hooks/useProductPrice";
 import FormattedPrice from "@/lib/formatPrice";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import styles from "@/styles/ui.module.css";
 
 const DynamicProductViewForm = dynamic(
   () => import("../components/ProductViewForm")
@@ -47,6 +49,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
   //     ? itemClickedAndViewed(objectIDs, id)
   //     : null;
   // }
+  const mobileView = useMediaQuery("(max-width:768px)");
 
   const linkURL =
     algoliaEvent === "search"
@@ -59,7 +62,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       : product.images[0]?.file?.url;
 
   return (
-    <div className="col-md-4 col-6 mb-4 p-0 p-md-1 product">
+    <div className="col-md-4 col-6 mb-3 mb-lg-4 p-0 p-md-1 product">
       <DynamicProductMetatags product={product} />
       <div className="card product-card p-1 p-md-2">
         <div className="d-flex justify-content-between">
@@ -107,7 +110,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             </div>
           </a>
         </Link>
-        <div className="card-body py-3">
+        <div className="card-body p-1 py-lg-3">
           <Link
             href={`/collections/vendors/${replaceSpaceWithHypen(
               product.vendor
@@ -123,11 +126,11 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           </h3>
           <div className="d-flex justify-content-between">
             <ul className="product-price d-flex flex-column align-items-baseline">
-              <li className="text-accent fs-sm fs-lg">
+              <li className={`text-accent fs-sm fs-lg ${styles.price}`}>
                 <FormattedPrice price={product.price} isProduct />
               </li>
               {product.hkd_compare_at_price > 0 && (
-                <del className="small text-accent fs-xs">
+                <del className={`small text-accent fs-xs ${styles.oldPrice} `}>
                   <FormattedPrice
                     price={product.hkd_compare_at_price}
                     oldPrice
@@ -139,7 +142,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             <div className="reviewRating d-flex flex-column">
               <RatingStar rate={product.rating} />
               {product.review_rating ? (
-                <p className="widget-product-meta">
+                <p className="widget-product-meta review">
                   ({product.review_rating} reviews)
                 </p>
               ) : (
@@ -148,7 +151,9 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             </div>
           </div>
         </div>
-        <DynamicProductViewForm product={product} forCategory={forCategory} />
+        {!mobileView && (
+          <DynamicProductViewForm product={product} forCategory={forCategory} />
+        )}
       </div>
       <hr className="d-sm-none" />
       <style jsx>
@@ -189,6 +194,12 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             font-size: 12px;
           }
           @media (max-width: 768px) {
+            .card.product-card {
+              min-height: 380px;
+            }
+            .product {
+              min-height: 380px;
+            }
             .productLink img {
               margin: auto;
               display: flex;
@@ -198,6 +209,9 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
+            }
+            .reviewRating p.review {
+              font-size: 10px;
             }
           }
         `}

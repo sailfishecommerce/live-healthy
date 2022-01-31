@@ -18,9 +18,9 @@ interface PopularCategoryProps {
 
 export default function PopularCategory({ category }: PopularCategoryProps) {
   const selectedFooterCategory = useMarketplaceCategory();
-  const tabWidth = useMediaQuery("(max-width:768px)");
-  const size = tabWidth
-    ? { height: 250, width: 300 }
+  const mobileView = useMediaQuery("(max-width:768px)");
+  const size = mobileView
+    ? { height: 300, width: 300 }
     : { height: 250, width: 250 };
 
   return (
@@ -39,8 +39,8 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
             blurDataURL={category.images[0].file.url}
             loading="lazy"
             className="d-block rounded mx-1 mb-3"
-            slider="true"
             layout="responsive"
+            defaultSize="true"
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>
         </a>
@@ -68,7 +68,7 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
           @media (max-width: 768px) {
             .imgLink {
               width: 100%;
-              height: 250px;
+              height: 100%;
             }
           }
         `}

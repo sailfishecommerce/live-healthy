@@ -6,7 +6,7 @@ import { memo } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateCurrency } from "@/redux/currency-language-slice";
-import useCurrency from "@/hooks/useCurrency";
+import useCurrency, { useCurrencies } from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
 import styles from "@/styles/Dropdown.module.css";
 
@@ -18,8 +18,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
   const { selectCurrencies } = useCurrency();
-  const queryClient = useQueryClient();
-  const currencies: any = queryClient.getQueryData("currencies");
+  const [currencies, status] = useCurrencies();
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
@@ -38,6 +37,8 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       });
   }
 
+console.log("currencies", currencies);
+
   return (
     <Dropdown
       className={`${styles.dropdown} ${footerStyle} topbar-text dropdown disable-autohide`}
@@ -53,7 +54,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       ) : status === "loading" ? (
         "loading currencies"
       ) : (
-        <Dropdown.Menu>
+        <Dropdown.Menu className={styles.dropdownMenu}>
           <Dropdown.Item>
             <select
               onChange={selectCurrency}

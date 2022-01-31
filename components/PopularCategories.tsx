@@ -49,14 +49,14 @@ export default function PopularCategories() {
             z-index: 10;
           }
           .card-body {
-            height: 260px;
+            height: 330px;
           }
           @media (max-width: 768px) {
             .popularCategories,
             .card-body {
               width: 100%;
-              min-height: 900px;
-              max-height: 950px;
+              min-height: 1220px;
+              max-height: 1250px;
             }
             section.popularCategory {
               margin-bottom: 30px;

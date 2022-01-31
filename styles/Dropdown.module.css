@@ -10,6 +10,10 @@
   background-color: #2b3445 !important;
 }
 
+.dropdownMenu {
+  z-index: 2000;
+}
+
 @media (max-width: 768px) {
   .dropdown button {
     font-size: 14px;

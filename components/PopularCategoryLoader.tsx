@@ -7,13 +7,15 @@ function PopularCategoryLoader(props: any) {
   const mobileView = useMediaQuery("(max-width:768px)");
 
   const contentLoaderSize = mobileView
-    ? { height: 260, width: 400 }
+    ? { height: 350, width: 400 }
     : { height: 200, width: 200 };
+
+  const viewBox = mobileView ? "0 0 100 100" : "0 0 200 150";
 
   const loaderSize = mobileView
     ? {
-        first: { x: 20, y: 140, rx: 3, ry: 3, width: "80%", height: 6 },
-        second: { x: 0, y: 0, rx: 0, ry: 0, width: "100%", height: "90%" },
+        first: { x: 10, y: 90, rx: 3, ry: 3, width: "80%", height: 6 },
+        second: { x: 0, y: 0, rx: 0, ry: 0, width: "100%", height: "85%" },
       }
     : {
         first: { x: 48, y: 125, rx: 3, ry: 3, width: "60%", height: 6 },
@@ -27,11 +29,11 @@ function PopularCategoryLoader(props: any) {
       speed={2}
       width={width}
       height={height}
-      viewBox="0 0 200 150"
+      viewBox={viewBox}
       style={loaderStyle}
       backgroundColor="#b5a6a6"
       foregroundColor="#ecebeb"
-      className="m-2"
+      className="m-2 my-4 my-lg-2"
       {...props}
     >
       <rect

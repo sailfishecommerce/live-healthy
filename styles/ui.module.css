@@ -62,4 +62,12 @@ header.header {
   .cartDiscount p {
     font-size: 14px;
   }
+
+  .price div {
+    font-size: 13px;
+  }
+
+  .oldPrice div {
+    font-size: 10px;
+  }
 }

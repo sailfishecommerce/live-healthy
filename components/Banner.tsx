@@ -16,8 +16,8 @@ export default function Banners({
 }: BannersProps) {
   const tabWidth = useMediaQuery("(max-width:768px)");
   const bannerSize = tabWidth
-    ? { height: 200, width: 400 }
-    : { height: 300, width: 500 };
+    ? { height: 150, width: 300 }
+    : { height: 200, width: 400 };
 
   return (
     <section className="container pb-4 mb-md-3">
