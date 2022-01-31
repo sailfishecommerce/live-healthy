@@ -6,7 +6,7 @@ import LoadProducts from "@/components/ProductsLoader";
 
 export function ProductHit({ hits }: any) {
   return (
-    <div className="row pt-4 mx-n2">
+    <div className="row pt-0 mx-n2">
       {hits.length > 0 ? (
         hits.map((hit: any, index: number) => (
           <Product key={index} product={hit} />

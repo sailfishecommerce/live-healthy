@@ -11,7 +11,7 @@ const SortBy = ({ items, refine, createURL }: any) => {
   return (
     <Dropdown className="dropdown d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
       <Dropdown.Toggle
-        className="btn btn-light dropdown-toggle text-light fs-sm me-2 d-none d-sm-block"
+        className="btn btn-light dropdown-toggle text-light fs-sm me-2  d-sm-block"
         id="sort-by-dropdown"
       >
         Sort by

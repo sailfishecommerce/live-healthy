@@ -27,7 +27,7 @@ export default function ProductList({ product }: ProductProps) {
 
   return (
     <>
-      <div className="card product-card product-list mb-3 border-bottom justify-content-center">
+      <div className="card product-card  product-list mb-3 border-bottom justify-content-center">
         <span className="badge bg-danger badge-shadow">Sale</span>
         <button
           className="btn-wishlist btn-sm"
@@ -169,9 +169,7 @@ export default function ProductList({ product }: ProductProps) {
           .card-body.card-body-hidden {
             height: 100%;
           }
-          .card.product-card {
-            height: 250px;
-          }
+
           .select.form-select.select-size {
             max-width: 14rem;
           }

@@ -22,7 +22,7 @@ export default function ShopBannerToolbar() {
           { value: "New_Livehealthy_products_index_z-a", label: "Name Z-A" },
         ]}
       />
-      <div className="d-none d-sm-flex pb-3">
+      <div className="d d-sm-flex pb-3">
         <span
           className={`btn btn-icon nav-link-style ${gridStyle} me-2 cursor-pointer`}
           onClick={() => updateView("grid")}
