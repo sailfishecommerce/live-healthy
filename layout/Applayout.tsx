@@ -60,4 +60,4 @@ export default function Applayout({
   );
 }
 
-Applayout.whyDidYouRender = true;
+// Applayout.whyDidYouRender = true;

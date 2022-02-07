@@ -23,4 +23,4 @@ export default function Footer({
   );
 }
 
-Footer.whyDidYouRender = true;
+// Footer.whyDidYouRender = true;

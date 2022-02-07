@@ -234,4 +234,4 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
   );
 }
 
-Nav.whyDidYouRender = true;
+// Nav.whyDidYouRender = true;

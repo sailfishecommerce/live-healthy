@@ -111,4 +111,4 @@ function HeaderCartDropdownComponent({ cart }: Props) {
 const HeaderCartDropdown = memo(HeaderCartDropdownComponent);
 export default HeaderCartDropdown;
 
-HeaderCartDropdown.whyDidYouRender = true;
+// HeaderCartDropdown.whyDidYouRender = true;

@@ -24,4 +24,4 @@ export default function Header({
   );
 }
 
-Header.whyDidYouRender = true;
+// Header.whyDidYouRender = true;

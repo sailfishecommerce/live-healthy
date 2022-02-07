@@ -227,4 +227,4 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
 const Product = memo(MProduct);
 export default Product;
 
-Product.whyDidYouRender = true;
+// Product.whyDidYouRender = true;

@@ -24,4 +24,4 @@ const CheckoutForm = memo(CheckoutFormComponent);
 
 export default CheckoutForm;
 
-CheckoutForm.whyDidYouRender = true;
+// CheckoutForm.whyDidYouRender = true;

@@ -77,4 +77,4 @@ export default function Checkout() {
   );
 }
 
-Checkout.whyDidYouRender = true;
+// Checkout.whyDidYouRender = true;

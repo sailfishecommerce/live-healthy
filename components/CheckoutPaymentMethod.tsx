@@ -73,4 +73,4 @@ export default function CheckoutPaymentMethod({
   );
 }
 
-CheckoutPaymentMethod.whyDidYouRender = true;
+// CheckoutPaymentMethod.whyDidYouRender = true;

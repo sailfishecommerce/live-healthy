@@ -77,4 +77,4 @@ const CurrencyLanguageDropdown = memo(CurrencyLanguageDropdownComponent);
 
 export default CurrencyLanguageDropdown;
 
-CurrencyLanguageDropdown.whyDidYouRender = true;
+// CurrencyLanguageDropdown.whyDidYouRender = true;

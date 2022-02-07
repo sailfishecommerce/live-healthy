@@ -106,4 +106,4 @@ export default function ShippingCheckoutForm({
 }
 
 
-ShippingCheckoutForm.whyDidYouRender = true;
+// ShippingCheckoutForm.whyDidYouRender = true;
