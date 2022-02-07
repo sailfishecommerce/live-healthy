@@ -6,12 +6,16 @@ export default function CreatePaymentIntentHandler(
   res: NextApiResponse
 ) {
   console.log("req.body", req.body);
+  console.log(
+    "req.body.payment_method",
+    req.body.cardDetails.payment_method.card
+  );
   switch (req.method) {
     case "POST": {
       axios
         .post(
-          `${process.env.NEXT_PUBLIC_AIRWALLEX_DEMO_BASE_API}/pa/payment_intents/create`,
-          req.body.paymentDetails,
+          `${process.env.NEXT_PUBLIC_AIRWALLEX_DEMO_BASE_API}/pa/payment_intents/${req.body.id}/confirm`,
+          req.body.cardDetails,
           {
             headers: {
               "Content-Type": "application/json",
@@ -31,6 +35,5 @@ export default function CreatePaymentIntentHandler(
   }
 }
 
-// 856c9510dea0c7e8df49e0a5858aca0b
-//CZT5MA7JLJ
-// New_Livehealthy_products_index
+
+// //div[@class='sub_div' and @data-slide='0' ]

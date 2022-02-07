@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useMemo, useRef } from "react";
 import {
   createElement,
@@ -11,6 +12,8 @@ import { useRouter } from "next/router";
 
 import SpinnerRipple from "@/components/spinnerLoader";
 import { useToast } from "@/hooks";
+import { useAppSelector } from "@/hooks/useRedux";
+import useAirwallex from "@/hooks/useAirwallex";
 
 interface AirwallexDropinProps {
   intent_id: string | any;
@@ -23,9 +26,13 @@ export default function AirwallexCard({
   const [elementShow, setElementShow] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const router = useRouter();
-  const { loadToast, successToast, errorToast } = useToast();
+  const [inputErrorMessage, setInputErrorMessage] = useState(false);
 
+  const { confirmAirwallexPaymentIntent } = useAirwallex();
+  const router = useRouter();
+  const { paymentForm }: any = useAppSelector((state) => state.payment);
+
+  const { loadToast, successToast, errorToast } = useToast();
   console.log("intent_id", intent_id, "client_secret", client_secret);
 
   useEffect(() => {
@@ -36,7 +43,7 @@ export default function AirwallexCard({
 
   useEffect(() => {
     loadAirwallex({
-      env: "prod",
+      env: "demo",
       origin: window.location.origin,
       fonts: [
         {
@@ -48,9 +55,13 @@ export default function AirwallexCard({
     }).then(() => {
       createElement("card" as ElementType)?.mount("airwallexCard");
     });
+    const cardAWX = getElement("card");
+
+    console.log("cardAWX", cardAWX);
 
     const onReady = (event: CustomEvent): void => {
       setElementShow(true);
+      getElement("card")?.focus();
       console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };
 
@@ -63,11 +74,27 @@ export default function AirwallexCard({
       console.log("There is an error", error);
     };
 
+    // STEP #9: Add an event listener to get input focus status
+    const onFocus = (_event: CustomEvent) => {
+      setInputErrorMessage(false); // Example: clear input error message
+    };
+
+    // STEP #10: Add an event listener to show input error message when finish typing
+    const onBlur = (event: CustomEvent) => {
+      const { error } = event.detail;
+      setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
+    };
+
     window.addEventListener("onReady", onReady as EventListener);
     window.addEventListener("onError", onError as EventListener);
+    window.addEventListener("onBlur", onBlur as EventListener);
+    window.addEventListener("onFocus", onFocus as EventListener);
+
     return () => {
       window.removeEventListener("onReady", onReady as EventListener);
       window.removeEventListener("onError", onError as EventListener);
+      window.removeEventListener("onBlur", onBlur as EventListener);
+      window.removeEventListener("onFocus", onFocus as EventListener);
     };
   }, []);
 
@@ -80,36 +107,60 @@ export default function AirwallexCard({
   const triggerConfirm = (): void => {
     setIsSubmitting(true);
     loadToast();
-    const card = getElement("card");
-    if (card) {
-      confirmPaymentIntent({
-        element: card,
-        id: intent_id,
-        client_secret,
+    const card: any = getElement("card");
+
+    console.log("cardcard", card);
+    confirmAirwallexPaymentIntent(
+      {
+        request_id: uuidv4(),
+        payment_method: {
+          type: "card",
+          card: {
+            name: `${paymentForm?.firstName} ${paymentForm?.lastName}`,
+            billing: {
+              email: paymentForm?.email,
+              first_name: paymentForm?.firstName,
+              last_name: paymentForm?.lastName,
+              address: {
+                city: paymentForm?.city,
+                postcode: paymentForm.zip,
+                state: paymentForm.state,
+                street: paymentForm.address1,
+                country_code: paymentForm.country.toUpperCase(),
+              },
+            },
+          },
+        },
         payment_method_options: {
           card: {
             auto_capture: true,
           },
         },
+      },
+      intent_id
+    );
+    confirmPaymentIntent({
+      element: card,
+      id: intent_id,
+      client_secret,
+    })
+      .then((response) => {
+        console.log("response triggerConfirm", response);
+        setIsSubmitting(false);
+        successToast("Payment successful");
+        window.alert(
+          `Payment Intent confirmation was successful: ${JSON.stringify(
+            response
+          )}`
+        );
+        router.push("/checkout-complete");
       })
-        .then((response) => {
-          console.log("response triggerConfirm", response);
-          setIsSubmitting(false);
-          successToast("Payment successful");
-          window.alert(
-            `Payment Intent confirmation was successful: ${JSON.stringify(
-              response
-            )}`
-          );
-          router.push("/checkout-complete");
-        })
-        .catch((error) => {
-          setIsSubmitting(false);
-          setErrorMessage(error.message ?? JSON.stringify(error));
-          console.error("There is an error", error);
-          errorToast(error);
-        });
-    }
+      .catch((error) => {
+        setIsSubmitting(false);
+        setErrorMessage(error.message ?? JSON.stringify(error));
+        console.error("There is an error", error);
+        errorToast(error);
+      });
   };
 
   const fieldContainerStyle = useMemo(

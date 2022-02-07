@@ -4,7 +4,7 @@ import { useAppDispatch } from "@/redux/store";
 import { quickViewModal } from "@/redux/ui-slice";
 
 export default function useEvent() {
-  const { itemViewed, productAddedToCart } = useAlgoliaEvents();
+  const { itemViewed } = useAlgoliaEvents();
   const dispatch = useAppDispatch();
 
   function algoliaQuickViewEvent(product: productType) {

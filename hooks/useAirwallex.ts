@@ -41,6 +41,13 @@ export default function useAirwallex() {
       order: {
         products: cart?.items,
       },
+      payment_method_options: {
+        card: {
+          risk_control: {
+            skip_risk_processing: false,
+          },
+        },
+      },
     },
     auth: airwallex?.accessToken,
   };
@@ -64,9 +71,21 @@ export default function useAirwallex() {
     }
   }
 
+  function confirmAirwallexPaymentIntent(methodData: any, id: string) {
+    return axios
+      .post("/api/confirm-payment-intent", {
+        id,
+        cardDetails: methodData,
+        auth: airwallex?.accessToken,
+      })
+      .then((response: any) => console.log("response confirm", response))
+      .catch((error) => console.error("error confirm", error));
+  }
+
   return {
     generateAirwallexAccessToken,
     airwallex,
     airwallexPaymentIntent,
+    confirmAirwallexPaymentIntent,
   };
 }
