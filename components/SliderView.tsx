@@ -9,7 +9,6 @@ import {
   Keyboard,
 } from "swiper";
 import { Swiper } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";

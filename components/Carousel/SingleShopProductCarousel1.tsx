@@ -10,13 +10,14 @@ import {
 } from "swiper";
 
 import { productType } from "@/types";
+import ProductCarouselView from "../ProductCarouselView";
+import "@/styles/react-swiper.css";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/keyboard";
 import "swiper/css/mousewheel";
-import ProductCarouselView from "../ProductCarouselView";
 
 interface Props {
   otherProducts: productType[];

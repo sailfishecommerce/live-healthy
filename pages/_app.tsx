@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-css-tags */
 // import "../lib/wdyr";
 import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -40,13 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
         strategy="afterInteractive"
-      />
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.6/simplebar.min.css"
-        integrity="sha512-uZTwaYYhJLFXaXYm1jdNiH6JZ1wLCTVnarJza7iZ1OKQmvi6prtk85NMvicoSobylP5K4FCdGEc4vk1AYT8b9Q=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
       />
       <Script
         type="module"

@@ -1,7 +1,6 @@
 import { PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import Head from "next/head";
 
 import useCart from "@/hooks/useCart";
@@ -42,7 +41,7 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   }
 
   return (
-    <div>     
+    <div>
       <Head>
         <link
           href="https://CZT5MA7JLJ-dsn.algolia.net"
