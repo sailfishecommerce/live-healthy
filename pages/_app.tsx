@@ -3332,7 +3332,6 @@ input[type="search"]::-webkit-search-results-decoration {
 
           `}
         </style>
-        <link rel="stylesheet" href="../styles/not-critical-styles.css" />
       </Head>
       <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
