@@ -166,6 +166,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             height: 220px;
             display: flex;
             margin: auto;
+            justify-content: center;
           }
           .productImage img.productImage:hover {
             transform: scale(1.03) !important;
