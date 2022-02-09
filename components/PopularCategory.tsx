@@ -40,7 +40,7 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
             loading="lazy"
             className="d-block rounded mx-1 mb-3"
             layout="responsive"
-            defaultSize="true"
+            size={true}
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>
         </a>

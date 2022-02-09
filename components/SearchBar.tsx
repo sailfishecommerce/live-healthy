@@ -75,7 +75,7 @@ export default function SearchBar() {
             translations={{
               placeholder: "Search for products...",
             }}
-            autoFocus
+            autoFocus={false}
             showLoadingIndicator
             inputRef={inputRef}
             className={inputClassName}

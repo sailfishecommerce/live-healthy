@@ -9,6 +9,7 @@ import { updateCurrency } from "@/redux/currency-language-slice";
 import useCurrency, { useCurrencies } from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
 import styles from "@/styles/Dropdown.module.css";
+import Image from "next/image";
 
 interface Props {
   position?: string;
@@ -44,7 +45,16 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       <Dropdown.Toggle
         className={`${styles.dropdownToggle} topbar-link dropdown-toggle`}
       >
-        <img className="me-2" src="/img/flags/en.png" width="20" alt="en" />
+        <div className={styles.imageContainer}>
+          <Image
+            className="me-2"
+            src="/img/flags/en.png"
+            width={20}
+            height={20}
+            alt="en"
+            layout="responsive"
+          />
+        </div>
         {`En / ${currency}`}
       </Dropdown.Toggle>
       {status === "error" ? (
