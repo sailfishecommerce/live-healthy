@@ -20,9 +20,7 @@ const DyanmicPlasmicComponent: any = dynamic(() =>
   )
 );
 
-async function getCart() {
-  return await swell.cart.get();
-}
+
 
 export default function PlasmicLoaderPage(props: {
   plasmicData?: ComponentRenderData;

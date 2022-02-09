@@ -14,22 +14,23 @@ export default function Vendors({ vendor }) {
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
       <div className={styles.shop}>
-        <VendorView vendor={vendor} />
+        {/* <VendorView vendor={vendor} /> */}
+        <h1>Hello</h1>
       </div>
     </Applayout>
   );
 }
 
-export async function getStaticProps({ params }) {
-  const formatVendor = replaceHypenWithSpace(params.slug);
-  const vendor = toTitleCase(formatVendor);
+// export async function getStaticProps({ params }) {
+//   const formatVendor = replaceHypenWithSpace(params.slug);
+//   const vendor = toTitleCase(formatVendor);
 
-  return {
-    props: {
-      vendor,
-    },
-  };
-}
+//   return {
+//     props: {
+//       vendor,
+//     },
+//   };
+// }
 
 export async function getStaticPaths() {
   const productData = await fetchAllSwellProducts();

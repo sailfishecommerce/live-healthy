@@ -29,6 +29,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   return (
     <div>
+      <Head>       
+      </Head>
       <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         strategy="beforeInteractive"

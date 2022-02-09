@@ -11,9 +11,6 @@ module.exports = (phase, defaultConfig) => {
 
 module.exports = withPurgeCss({
   purgeCssPaths: ["pages/**/*", "components/**/*", "layout/**/*"],
-});
-
-module.exports = {
   images: {
     domains: ["cdn.schema.io"],
   },
@@ -23,4 +20,4 @@ module.exports = {
   },
   reactStrictMode: true,
   staticPageGenerationTimeout: 240,
-};
+});
