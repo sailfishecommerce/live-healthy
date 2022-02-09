@@ -5,15 +5,16 @@ import dynamic from "next/dynamic";
 
 import swellNodeInit from "@/lib/swellNode";
 import FeaturedCategory from "@/components/FeaturedCategory";
-import InfoCards from "@/components/InfoCards";
 import PopularCategories from "@/components/PopularCategories";
-import Banners from "@/components/Banner";
 import Applayout from "@/layout/Applayout";
 import HomepageSlider from "@/components/HomepageSlider";
 import Metatag from "@/components/Metatag";
-import TrendingProducts from "@/components/TrendingProduct";
-import ShopByBrand from "@/components/ShopByBrand";
 import useUserToken from "@/hooks/useUserToken";
+
+const TrendingProducts = dynamic(() => import("@/components/TrendingProduct"));
+const ShopByBrand = dynamic(() => import("@/components/ShopByBrand"));
+const Banners = dynamic(() => import("@/components/Banner"));
+const InfoCards = dynamic(() => import("@/components/InfoCards"));
 
 export default function Index({ products }: any) {
   const { generateUserToken, authorized } = useUserToken();

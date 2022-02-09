@@ -20,6 +20,7 @@ export default function HomepageSlider() {
     mouseDrag: true,
     items: 1,
     speed: 500,
+    slideCount: false,
     loop: true,
     autoplay: true,
     autoplayHoverPause: true,
@@ -82,6 +83,7 @@ export default function HomepageSlider() {
                 background-color: ${item.bgColor};
                 display: flex;
                 width: 100%;
+                height: 100%;
                 align-items: center;
                 justify-content: space-around;
               }

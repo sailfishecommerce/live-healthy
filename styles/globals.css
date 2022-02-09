@@ -240,6 +240,10 @@ li.ais-Hits-item:hover a h6 {
   align-items: center;
 }
 
+.tns-liveregion.tns-visually-hidden {
+  display: none;
+}
+
 .bottomPagination ul li a {
   color: white;
 }
