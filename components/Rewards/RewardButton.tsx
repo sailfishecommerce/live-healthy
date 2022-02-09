@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Image from "next/image";
+
 interface Props {
   onClick: () => void;
   showChat: boolean;
@@ -15,7 +17,7 @@ export default function RewardButton({ showChat, onClick }: Props) {
       >
         {!showChat ? (
           <span className="imgContainer">
-            <img
+            <Image
               src="/img/cartLoveIcon.png"
               alt="shopping cart with rewards"
               height="25px"

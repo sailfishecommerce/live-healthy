@@ -3,7 +3,7 @@ import Header from "@/plasmicComponent/Header";
 import HomepageSlider from "@/plasmicComponent/HomepageSlider";
 import PopularCategories from "./components/PopularCategories";
 import Footer from "./components/Footer";
-import { TrendingProducts } from "./components/TrendingProducts";
+import TrendingProducts from "./components/TrendingProduct";
 import Banners from "./components/Banner";
 import InfoCards from "./components/InfoCards";
 import FeaturedCategory from "./components/FeaturedCategory";

@@ -7,7 +7,6 @@ import {
   PlasmicRootProvider,
 } from "@plasmicapp/loader-react";
 import Error from "next/error";
-import swell from "swell-js";
 
 import useUserToken from "@/hooks/useUserToken";
 import PlasmicLayout from "@/layout/Plasmiclayout";

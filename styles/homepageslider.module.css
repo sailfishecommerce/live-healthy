@@ -1,11 +1,16 @@
+.slider {
+  display: flex;
+}
+
 .tnsCarousel {
   height: 680px;
   background-color: #3aafd2;
+  width: 100%;
 }
 
 .imageContainer {
-  height: 100%;
-  width: 55%;
+  height: 55%;
+  width: 50%;
 }
 
 @media (max-width: 768px) {
