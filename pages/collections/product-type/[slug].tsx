@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Head from "next/head";
-
 import Applayout from "@/layout/Applayout";
 import { categoryType } from "@/types";
 import CollectionMarketplace from "@/components/CollectionMarketplace";
@@ -18,26 +16,25 @@ export default function Category({ collection }: collectionProps): JSX.Element {
     >
       <CategoryMetatag collection={collection} />
       <div className={styles.shop}>
-        {/* <CollectionMarketplace collection={collection} /> */}
-        <h1>Hello</h1>
+        <CollectionMarketplace collection={collection} />
       </div>
     </Applayout>
   );
 }
 
-// export async function getStaticProps({ params }: { params: { slug: string } }) {
-//   const storeCategories: any[] = await getStoreCategories();
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const storeCategories: any[] = await getStoreCategories();
 
-//   const collection = storeCategories?.filter(
-//     (collection: { slug: any }) => collection?.slug === params.slug
-//   );
+  const collection = storeCategories?.filter(
+    (collection: { slug: any }) => collection?.slug === params.slug
+  );
 
-//   return {
-//     props: {
-//       collection: collection[0],
-//     },
-//   };
-// }
+  return {
+    props: {
+      collection: collection[0],
+    },
+  };
+}
 
 export async function getStaticPaths() {
   const storeCategories: any[] = await getStoreCategories();

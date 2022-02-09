@@ -14,26 +14,25 @@ export default function Category({ collection }: collectionProps): JSX.Element {
     <Applayout
       title={`${collection.name} | Free Delivery to HK | Live healthy Online Store`}
     >
-      {/* <CategoryMetatag collection={collection} />
-      <CollectionMarketplace collection={collection} /> */}
-      <h1>Hello</h1>
+      <CategoryMetatag collection={collection} />
+      <CollectionMarketplace collection={collection} />
     </Applayout>
   );
 }
 
-// export async function getStaticProps({ params }: { params: { slug: string } }) {
-//   const storeCategories: any[] = await getStoreCategories();
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const storeCategories: any[] = await getStoreCategories();
 
-//   const collection = storeCategories?.filter(
-//     (collection: { slug: any }) => collection?.slug === params.slug
-//   );
+  const collection = storeCategories?.filter(
+    (collection: { slug: any }) => collection?.slug === params.slug
+  );
 
-//   return {
-//     props: {
-//       collection: collection[0],
-//     },
-//   };
-// }
+  return {
+    props: {
+      collection: collection[0],
+    },
+  };
+}
 
 export async function getStaticPaths() {
   const storeCategories: any[] = await getStoreCategories();
