@@ -71,6 +71,7 @@ export default function Nav({ logo, navBgColor, local }: NavProps) {
               <button
                 className="navbar-toggler"
                 type="button"
+                aria-label="nav-bar"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse"
               >

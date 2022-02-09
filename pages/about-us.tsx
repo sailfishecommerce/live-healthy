@@ -138,7 +138,7 @@ export default function About() {
                   <input className="form-control" type="file" required />
                 </div>
                 <div className="col-12">
-                  <button className="btn btn-info btn-shadow" type="submit">
+                  <button aria-label="submit cv" className="btn btn-info btn-shadow" type="submit">
                     Submit your CV
                   </button>
                 </div>

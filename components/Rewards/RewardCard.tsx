@@ -31,7 +31,7 @@ export default function RewardCard({ card }: Props) {
         {card.type === "button" && (
           <div className="button-view d-flex flex-column">
             <Link href="/my-account" passHref>
-              <button>Join Now</button>
+              <button aria-label="join sailfish rewards">Join Now</button>
             </Link>
             <p className="text-center">
               Already have an account ?{" "}

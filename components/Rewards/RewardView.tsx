@@ -56,7 +56,7 @@ export default function RewardView({ content }: Props) {
             ))}
           </ul>
           <div className="banner">Join now for free to start earning</div>
-          <button className="button">Join now</button>
+          <button aria-label='Join sailfish pro club' className="button">Join now</button>
           <p className="signin text-center">
             Already have an account?{" "}
             <Link href="/">

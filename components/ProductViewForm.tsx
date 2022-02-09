@@ -81,7 +81,11 @@ export default function ProductViewForm({
                     </option>
                   ))}
                 </select>
-                <button className="btn btn-primary btn-sm" type="submit">
+                <button
+                  aria-label="Add to Cart"
+                  className="btn btn-primary btn-sm"
+                  type="submit"
+                >
                   <i className="ci-cart fs-sm me-1"></i>
                   Add to Cart
                 </button>
@@ -90,6 +94,7 @@ export default function ProductViewForm({
           })
         ) : (
           <button
+            aria-label="Add to Cart"
             className="btn btn-primary btn-sm m-auto d-flex align-items-center"
             type="submit"
           >
@@ -100,6 +105,7 @@ export default function ProductViewForm({
       </form>
       <div className="text-center">
         <button
+          aria-label="Product Quick View"
           className="nav-link-style fs-ms btn btn-link"
           onClick={algoliaViewHandler}
           data-bs-toggle="quickViewModal"

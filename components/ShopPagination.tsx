@@ -49,7 +49,7 @@ export default function ShopPagination() {
         </ul>
         <ul className="pagination">
           <li className="page-item">
-            <a className="page-link" href="#" aria-label="Next">
+            <a className="page-link" href="#" aria-label="next">
               Next
               <i className="ci-arrow-right ms-2"></i>
             </a>

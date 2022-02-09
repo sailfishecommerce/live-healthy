@@ -78,6 +78,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           <button
             className="btn-wishlist btn-sm"
             type="button"
+            aria-label="Add to Wishlist"
             data-bs-toggle="tooltip"
             data-bs-placement="left"
             title="Add to wishlist"
@@ -95,7 +96,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             //     [product.id]
             //   )
             // }
-            className="productLink card-img-top d-block overflow-hidden"
+            className="productLink card-img-top d-block"
           >
             <div
               onMouseEnter={() => setHover(true)}
@@ -134,13 +135,17 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
                 <FormattedPrice price={product.price} isProduct />
               </li>
               {product.hkd_compare_at_price > 0 && (
-                <del className={`small text-accent fs-xs ${styles.oldPrice} `}>
-                  <FormattedPrice
-                    price={product.hkd_compare_at_price}
-                    oldPrice
-                    isProduct
-                  />
-                </del>
+                <li className="m-0">
+                  <del
+                    className={`small text-accent fs-xs ${styles.oldPrice} `}
+                  >
+                    <FormattedPrice
+                      price={product.hkd_compare_at_price}
+                      oldPrice
+                      isProduct
+                    />
+                  </del>
+                </li>
               )}
             </ul>
             <div className="reviewRating d-flex flex-column">

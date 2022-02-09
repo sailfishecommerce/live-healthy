@@ -15,6 +15,7 @@ export default function ProductCarouselView({ product }: ProductCarouselView) {
         <button
           className="btn-wishlist btn-sm"
           type="button"
+          aria-label="Add to Wishlist"
           data-bs-toggle="tooltip"
           data-bs-placement="left"
           title="Add to wishlist"

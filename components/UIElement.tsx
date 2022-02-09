@@ -26,6 +26,7 @@ export function Button({
       disabled={disableBtn}
       onClick={onClick}
       type={btnType}
+      aria-label="button"
     >
       {loading && (
         <a>

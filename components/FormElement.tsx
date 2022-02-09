@@ -77,7 +77,7 @@ export function Input({ content, formik, className, withIcon }: Props) {
           />
           <label
             className="password-toggle-btn"
-            aria-label="Show/hide password"
+            aria-label="show/hide-password"
           >
             <input
               onClick={passwordVisibilityHandler}

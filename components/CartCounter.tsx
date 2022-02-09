@@ -90,6 +90,7 @@ export function CartCounter({ counterType }: any) {
             <button
               onClick={() => updateCounter("decrement")}
               type="button"
+              aria-label="Remove Item"
               className="p-2 d-flex align-items-center justify-content-center btn btn-danger text-white"
             >
               <i className="fas fa-minus mb-0"></i>
@@ -102,6 +103,7 @@ export function CartCounter({ counterType }: any) {
             <button
               onClick={() => updateCounter("increment")}
               type="button"
+              aria-label="Add Item"
               className={`p-2 d-flex align-items-center justify-content-center btn btn-success text-white`}
             >
               <i className="fas fa-plus"></i>
@@ -111,6 +113,7 @@ export function CartCounter({ counterType }: any) {
         <button
           className="submitBtn btn btn-primary btn-shadow d-block w-50"
           type="submit"
+          aria-label="Add to Cart"
         >
           <i className="ci-cart fs-lg me-2"></i>
           Add to Cart

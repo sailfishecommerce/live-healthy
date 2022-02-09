@@ -19,9 +19,9 @@ export default function VendorCategories({ vendorView }: props) {
           <h2 className="h5 mb-0">Filters</h2>
           <button
             className="btn-close ms-auto"
-            type="button"
+            type="button"            
             data-bs-dismiss="offcanvas"
-            aria-label="Close"
+            aria-label="close"
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">

@@ -26,6 +26,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
         <button
           className="btn-wishlist btn-sm"
           type="button"
+          aria-label="Add to Wishlist"
           data-bs-toggle="tooltip"
           data-bs-placement="left"
           title="Add to wishlist "
@@ -43,7 +44,7 @@ export default function Category({ category }: CategoryProps): JSX.Element {
                 width={400}
                 className="categoryImg"
                 src={category.images[0].file.url}
-                alt={category.images[0].name}
+                alt={category.name}
                 blurDataURL={category.images[0].file.url}
                 loading="lazy"
                 layout="responsive"

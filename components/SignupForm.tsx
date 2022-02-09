@@ -43,6 +43,7 @@ export default function SignupForm() {
             );
           })}
           <button
+          aria-label="Sign up"
             className="btn btn-primary btn-shadow d-block w-100"
             type="submit"
             disabled={formik.isSubmitting}

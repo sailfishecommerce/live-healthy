@@ -79,10 +79,18 @@ export default function ProductReviews({ product }: Props) {
                   </li>
                 </ul>
                 <div className="text-nowrap">
-                  <button className="btn-like" type="button">
+                  <button
+                    aria-label="review like button"
+                    className="btn-like"
+                    type="button"
+                  >
                     {review.like}
                   </button>
-                  <button className="btn-dislike" type="button">
+                  <button
+                    aria-label="review dislike button"
+                    className="btn-dislike"
+                    type="button"
+                  >
                     {review.dislike}
                   </button>
                 </div>

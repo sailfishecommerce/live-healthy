@@ -8,10 +8,19 @@ interface Props {
 export default function RewardButton({ showChat, onClick }: Props) {
   return (
     <>
-      <button onClick={onClick} className="rewardButton">
+      <button
+        aria-label="display rewards"
+        onClick={onClick}
+        className="rewardButton"
+      >
         {!showChat ? (
           <span className="imgContainer">
-            <img src="/img/cartLoveIcon.png" alt="shopping cart with rewards" />{" "}
+            <img
+              src="/img/cartLoveIcon.png"
+              alt="shopping cart with rewards"
+              height="25px"
+              width="25px"
+            />{" "}
             Rewards
           </span>
         ) : (

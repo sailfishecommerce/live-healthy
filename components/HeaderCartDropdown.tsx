@@ -34,9 +34,9 @@ function CartWidget({ cart }: CartWidgetProps) {
         className="btn-close text-danger"
         type="button"
         onClick={removeItemFromCart}
-        aria-label="Remove"
+        aria-label="remove"
       >
-        <span aria-hidden="true">&times;</span>
+        <span>&times;</span>
       </button>
       <div className="d-flex align-items-center">
         <Link href={`/products/${cart.product.slug}`} passHref>

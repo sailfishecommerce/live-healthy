@@ -60,7 +60,7 @@ export default function AccountSigninForm() {
                 </div>
                 <hr className="mt-4" />
                 <div className="text-end pt-4">
-                  <button className="btn btn-primary" type="submit">
+                  <button aria-label='submit-form' className="btn btn-primary" type="submit">
                     <i className="ci-sign-in me-2 ms-n21"></i>
                     Sign In
                   </button>

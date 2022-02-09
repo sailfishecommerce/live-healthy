@@ -8,6 +8,7 @@ export default function SlideCartNote() {
           industry insights and enhanced data profiles.
         </h5>
         <button
+        aria-label="Sailfish Pro Club - Learn more"
           className="learnMore btn btn-outline-primary d-block m-auto"
           type="button"
         >

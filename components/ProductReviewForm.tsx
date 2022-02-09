@@ -42,8 +42,9 @@ export default function ProductReviewForm() {
                 {formInput.helperText}
               </small>
             </div>
-          ))}        
+          ))}
           <button
+            aria-label="Submit Review"
             className="btn btn-primary btn-shadow d-block w-100"
             type="button"
           >

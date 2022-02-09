@@ -49,6 +49,7 @@ export default function ProductList({ product }: ProductProps) {
         <button
           className="btn-wishlist btn-sm"
           type="button"
+          aria-label="Add to Wishlist"
           data-bs-toggle="tooltip"
           data-bs-placement="left"
           title="Add to wishlist"
@@ -148,6 +149,7 @@ export default function ProductList({ product }: ProductProps) {
                           )}
                         </select>
                         <button
+                          aria-label="Add to Cart"
                           className="btn btn-primary btn-sm"
                           type="submit"
                         >
@@ -161,6 +163,7 @@ export default function ProductList({ product }: ProductProps) {
                   <button
                     className="btn btn-primary btn-sm m-auto d-flex align-items-center"
                     type="submit"
+                    aria-label="Add to Cart"
                   >
                     <i className="ci-cart fs-sm me-1"></i>
                     Add to Cart

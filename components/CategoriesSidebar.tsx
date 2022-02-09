@@ -51,7 +51,7 @@ export default function CategoriesSidebar({ categorySlug }: CategoriesSidebar) {
             className="btn-close ms-auto"
             type="button"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"
+            aria-label="close"
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">

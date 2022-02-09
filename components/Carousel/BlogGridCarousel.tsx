@@ -22,14 +22,14 @@ export default function BlogGridCarousel() {
   return (
     <div className="pt-5 position-relative">
       <div className="tns-controls" id="blog-grid-controls">
-        <button type="button">
+        <button aria-label='Prev' type="button">
           <i className="ci-arrow-left"></i>
         </button>
-        <button type="button">
+        <button aria-label='Next' type="button">
           <i className="ci-arrow-right"></i>
         </button>
       </div>
-      <CarouselWrapper onClick={() => {}} settings={settings}>
+      <CarouselWrapper settings={settings}>
         {carouselContent.map((content) => (
           <article key={content.title}>
             <Link href={content.link} passHref>

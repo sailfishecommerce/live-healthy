@@ -58,6 +58,7 @@ export default function QuickViewModal({ product }: QuickViewModalProps) {
                 <button
                   className="btn-wishlist"
                   type="button"
+                  aria-label="Add to wishlist"
                   data-bs-toggle="tooltip"
                   title="Add to wishlist"
                 >

@@ -4,7 +4,7 @@ export default function BlogListPagination({ pagination }: PaginationProps) {
   return (
     <nav
       className="d-flex justify-content-between pt-2"
-      aria-label="Page navigation"
+      aria-label="page-navigation"
     >
       <ul className="pagination">
         <li className="page-item">
@@ -41,7 +41,7 @@ export default function BlogListPagination({ pagination }: PaginationProps) {
       </ul>
       <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" href="#" aria-label="Next">
+          <a className="page-link" href="#" aria-label="next">
             Next
             <i className="ci-arrow-right ms-2"></i>
           </a>

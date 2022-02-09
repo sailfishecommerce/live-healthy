@@ -74,6 +74,7 @@ export default function ShippingCheckoutForm({
                   <AddressInputGroup formik={formik} />
                 </div>
                 <button
+                  aria-label="proceed with shipping"
                   type="submit"
                   disabled={formik.isSubmitting}
                   className="btn btn-outline-primary d-flex mt-3 mb-2 mx-auto font-bold"
@@ -104,6 +105,5 @@ export default function ShippingCheckoutForm({
     </div>
   );
 }
-
 
 // ShippingCheckoutForm.whyDidYouRender = true;

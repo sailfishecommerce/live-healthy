@@ -151,6 +151,7 @@ export function ProductQuantityCounter({
     <div className="d-flex align-items-center mb-2">
       <div className="cartCounter w-50 d-flex align-items-center mb-0">
         <button
+        aria-label="Remove"
           onClick={() => updateCounter("decrement")}
           type="button"
           className="p-2 d-flex align-items-center justify-content-center btn btn-danger text-white"
@@ -163,6 +164,7 @@ export function ProductQuantityCounter({
           value={itemQty}
         />
         <button
+        aria-label="Add"
           onClick={() => updateCounter("increment")}
           type="button"
           className={`p-2 d-flex align-items-center justify-content-center btn btn-success text-white`}
@@ -171,6 +173,7 @@ export function ProductQuantityCounter({
         </button>
       </div>
       <button
+      aria-label="Add to Cart"
         className="addToCartBtn btn btn-primary btn-shadow d-block w-50"
         type="button"
         onClick={addToCart}

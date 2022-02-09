@@ -41,7 +41,11 @@ export default function AccountSignupForm() {
               </div>
             ))}
             <div className="col-12 text-end">
-              <button className="btn btn-primary" type="submit">
+              <button
+                aria-label="submit signup form"
+                className="btn btn-primary"
+                type="submit"
+              >
                 <i className="ci-user me-2 ms-n1"></i>
                 Sign Up
               </button>

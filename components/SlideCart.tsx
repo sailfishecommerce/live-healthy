@@ -64,6 +64,7 @@ export default function SlideCart(props: slideCartProps) {
                 </div>
                 <Link href="/checkout" passHref>
                   <button
+                  aria-label="Proceed to Checkout"
                     onClick={toggleCheckoutModal}
                     className="btn btn-outline-primary d-block w-100 proceedBtn"
                     type="button"

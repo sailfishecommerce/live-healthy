@@ -79,7 +79,7 @@ export default function ShopByBrandCarousel({
               <div className={styles.brand}>
                 <a
                   className={`${styles.brandLink} brandlink d-flex bg-white shadow-sm rounded-3 py-3 py-sm-4`}
-                  href="#"
+                  href="#brand-logo"
                 >
                   <div className="brandContainer d-flex mx-auto">{brand}</div>
                 </a>

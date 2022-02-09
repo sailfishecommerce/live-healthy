@@ -38,6 +38,7 @@ export default function ProductDetail({ product }: Props) {
           <button
             className="btn-wishlist me-0 me-lg-n3"
             type="button"
+            aria-label="Add to Wishlist"
             data-bs-toggle="tooltip"
             title="Add to wishlist"
           >
@@ -78,6 +79,7 @@ export default function ProductDetail({ product }: Props) {
             </a>
           </Link>
           <button
+            aria-label="Contact for more"
             onClick={toggleModal}
             className="notEnoughLink btn btn-link link-accent text-decoration-underline px-0"
           >

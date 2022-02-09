@@ -65,7 +65,11 @@ export default function AccountPasswordRecovery() {
                         </div>
                       ))}
                     </div>
-                    <button className="btn btn-primary" type="submit">
+                    <button
+                      aria-label="password reset"
+                      className="btn btn-primary"
+                      type="submit"
+                    >
                       Submit
                     </button>
                   </form>

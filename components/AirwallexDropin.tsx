@@ -186,6 +186,7 @@ export default function AirwallexCard({
         <button
           className="btn btn-outline-primary d-flex m-auto mt-4 mb-2"
           onClick={triggerConfirm}
+          aria-label="Make Payment"
           disabled={isSubmitting}
         >
           Submit

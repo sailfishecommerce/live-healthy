@@ -44,7 +44,11 @@ function SearchHits({ hits }: SearchHitsProps) {
         <div className="col-lg-4">
           <h6>Popular Suggestions</h6>
           {hits.length > 0 && (
-            <button onClick={viewHits} className="btn btn-primary">
+            <button
+              aria-label="view all searched product"
+              onClick={viewHits}
+              className="btn btn-primary"
+            >
               VIEW ALL {hits.length} ITEMS{" "}
             </button>
           )}

@@ -100,6 +100,7 @@ export default function BankTransferPaymentMethod() {
             </table>
             <button
               type="submit"
+              aria-label="Submit"
               className="btn btn-outline-primary d-flex m-auto"
             >
               Submit

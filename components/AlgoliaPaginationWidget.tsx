@@ -17,7 +17,7 @@ export default function AlgoliaPaginationWidget({
     >
       <ul className="pagination">
         <li className={`page-item ${pagStyle}`}>
-          <button disabled={shouldDisableButton} className="page-link">
+          <button aria-label="Prev" disabled={shouldDisableButton} className="page-link">
             <i className="ci-arrow-left me-2"></i>
             Prev
           </button>

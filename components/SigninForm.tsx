@@ -37,7 +37,7 @@ export default function SigninForm() {
               {displayFormElement(content, formik)}
             </div>
           ))}
-          <div className="mb-3 d-flex flex-wrap justify-content-between">          
+          <div className="mb-3 d-flex flex-wrap justify-content-between">
             <Link href="/account-password-recovery" passHref>
               <a onClick={toggleAuthmodal} className="fs-sm">
                 Forgot password?
@@ -45,6 +45,7 @@ export default function SigninForm() {
             </Link>
           </div>
           <button
+            aria-label="Sign in"
             className="btn btn-primary btn-shadow d-block w-100"
             type="submit"
           >

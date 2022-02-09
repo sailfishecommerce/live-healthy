@@ -36,7 +36,7 @@ export default function ContactForm() {
                   required
                 ></textarea>
                 <div className="invalid-feedback">Please write a message!</div>
-                <button className="btn btn-primary mt-4" type="submit">
+                <button aria-label="Send Message" className="btn btn-primary mt-4" type="submit">
                   Send message
                 </button>
               </div>

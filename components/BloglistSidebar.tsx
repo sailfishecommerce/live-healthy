@@ -15,7 +15,7 @@ export default function BloglistSidebar() {
             className="btn-close ms-auto"
             type="button"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"
+            aria-label="close"
           ></button>
         </div>
         <div

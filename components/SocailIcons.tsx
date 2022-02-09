@@ -5,7 +5,7 @@ export default function SocailIcons() {
     <div className="d-inline-block align-middle">
       <a
         className="btn-social bs-google me-2 mb-2"
-        href="#"
+        href="#google"
         data-bs-toggle="tooltip"
         title="Sign in with Google"
       >
@@ -13,7 +13,7 @@ export default function SocailIcons() {
       </a>
       <a
         className="btn-social bs-facebook me-2 mb-2"
-        href="#"
+        href="#facebook"
         data-bs-toggle="tooltip"
         title="Sign in with Facebook"
       >
@@ -21,7 +21,7 @@ export default function SocailIcons() {
       </a>
       <a
         className="btn-social bs-twitter me-2 mb-2"
-        href="#"
+        href="#twitter"
         data-bs-toggle="tooltip"
         title="Sign in with Twitter"
       >

@@ -91,6 +91,7 @@ export default function AccountPasswordRecovery() {
                       </div>
                     ))}
                     <button
+                      aria-label="get new password"
                       disabled={formik.isSubmitting}
                       className="btn btn-primary"
                       type="submit"

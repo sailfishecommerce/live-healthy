@@ -49,7 +49,7 @@ function OrderdetailsItem({ item }: OrderdetailsItemProps) {
           <span className="text-muted fs-sm">Quantity:</span>
           <span>&nbsp;{item.quantity}</span>
         </p>
-        <button className="btn btn-link px-0" type="button">
+        <button aria-label="Edit" className="btn btn-link px-0" type="button">
           <i className="ci-edit me-2"></i>
           <span className="fs-sm">Edit</span>
         </button>

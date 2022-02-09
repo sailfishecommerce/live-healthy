@@ -44,7 +44,11 @@ export default function ContactForMoreForm({ setStage }: any): JSX.Element {
                   mapContent(content, "col-sm-12", formik)}
             </div>
           ))}
-          <button type="submit" className="btn d-flex m-auto btn-accent mt-2">
+          <button
+            aria-label="Submit form"
+            type="submit"
+            className="btn d-flex m-auto btn-accent mt-2"
+          >
             Submit
           </button>
         </form>

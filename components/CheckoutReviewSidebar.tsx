@@ -52,6 +52,7 @@ export default function CheckoutReviewSidebar({
               <div className="invalid-feedback">Please provide promo code.</div>
             </div>
             <button
+            aria-label="Apply Promo code"
               className="btn btn-outline-primary d-block w-100"
               type="button"
             >

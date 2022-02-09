@@ -144,6 +144,7 @@ export default function ProductForm({ product }: ProductFormType) {
               />
             )}
             <button
+              aria-label="Add to cart"
               className="submitBtn btn btn-primary btn-shadow d-block w-50"
               type="submit"
             >

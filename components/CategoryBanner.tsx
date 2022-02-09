@@ -38,10 +38,20 @@ export default function CategoryBanner({
             </Link>
           </div>
           <div className="d-flex">
-            <button className="control" ref={navigationPrevRef} type="button">
+            <button
+              aria-label="Prev"
+              className="control"
+              ref={navigationPrevRef}
+              type="button"
+            >
               <i className="ci-arrow-left"></i>
             </button>
-            <button className="control" ref={navigationNextRef} type="button">
+            <button
+              aria-label="Next"
+              className="control"
+              ref={navigationNextRef}
+              type="button"
+            >
               <i className="ci-arrow-right"></i>
             </button>
           </div>
