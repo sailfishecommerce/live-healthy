@@ -14,10 +14,6 @@ module.exports = withPurgeCss({
   images: {
     domains: ["cdn.schema.io"],
   },
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
   reactStrictMode: true,
   staticPageGenerationTimeout: 240,
 });
