@@ -34,13 +34,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         strategy="beforeInteractive"
       />
       <Script
-        src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.6/simplebar.min.js"
-        integrity="sha512-rn0CaCtyheymRT43p0ZuFH0SvNriLU5cuJpY2f4IcyLrbHzJdsIF1dygi9oNha1BhHagO8U+h2xRWCosYf9gCg=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-        strategy="afterInteractive"
-      />
-      <Script
         type="module"
         src="/js/smooth-scroll.js"
         strategy="beforeInteractive"
