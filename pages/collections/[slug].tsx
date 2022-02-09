@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
 import Applayout from "@/layout/Applayout";
 import { categoryType } from "@/types";
 import CollectionMarketplace from "@/components/CollectionMarketplace";
