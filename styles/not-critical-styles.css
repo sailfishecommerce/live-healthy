@@ -7439,21 +7439,6 @@ li.ais-Hits-item:hover a h6 {
 }
 
 @media (max-width: 768px) {
-  .brand-row .swiper-button-next,
-  .brand-row .swiper-button-prev,
-  .otherProductCarousel .swiper-button-next,
-  .otherProductCarousel .swiper-button-prev {
-    height: 30px;
-    width: 30px;
-  }
-
-  .brand-row .swiper-button-next:after,
-  .brand-row .swiper-button-prev:after,
-  .otherProductCarousel .swiper-button-next:after,
-  .otherProductCarousel .swiper-button-prev:after {
-    font-size: 15px;
-  }
-
   .mobileInput button.ais-SearchBox-reset {
     right: 20px;
     top: 46px;
