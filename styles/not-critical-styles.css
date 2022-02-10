@@ -2585,7 +2585,7 @@ textarea.form-control.is-invalid {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -2648,7 +2648,7 @@ textarea.form-control.is-invalid {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -2682,7 +2682,7 @@ textarea.form-control.is-invalid {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -2745,7 +2745,7 @@ textarea.form-control.is-invalid {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -2808,7 +2808,6 @@ textarea.form-control.is-invalid {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -7251,7 +7250,7 @@ textarea.form-control.is-invalid {
   direction: rtl;
   position: fixed;
   opacity: 0;
-  visibility: hidden;
+  
   height: 500px;
   width: 500px;
   overflow-y: hidden;
@@ -7261,7 +7260,7 @@ textarea.form-control.is-invalid {
 .simplebar-hide-scrollbar {
   position: fixed;
   left: 0;
-  visibility: hidden;
+  
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -7519,8 +7518,8 @@ li.ais-Hits-item:hover a h6 {
 }
 
 .noUi-handle {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  -webkit-backface-
+  backface-
   position: absolute;
 }
 
@@ -11747,7 +11746,7 @@ fieldset:disabled .btn {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -11810,7 +11809,7 @@ fieldset:disabled .btn {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -11845,7 +11844,7 @@ fieldset:disabled .btn {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -11908,7 +11907,7 @@ fieldset:disabled .btn {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -11971,7 +11970,7 @@ fieldset:disabled .btn {
     bottom: 0;
     z-index: 1000;
     flex-grow: 1;
-    visibility: visible !important;
+    
     background-color: transparent;
     border-right: 0;
     border-left: 0;
@@ -12032,7 +12031,7 @@ fieldset:disabled .btn {
   bottom: 0;
   z-index: 1000;
   flex-grow: 1;
-  visibility: visible !important;
+  
   background-color: transparent;
   border-right: 0;
   border-left: 0;
@@ -13854,8 +13853,8 @@ fieldset:disabled .btn {
   float: left;
   width: 100%;
   margin-right: -100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  -webkit-backface-
+  backface-
   -webkit-transition: -webkit-transform 0.6s ease-in-out;
   transition: -webkit-transform 0.6s ease-in-out;
   transition: transform 0.6s ease-in-out;
@@ -14144,7 +14143,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  visibility: hidden;
+  
   background-color: #fff;
   background-clip: padding-box;
   outline: 0;
@@ -15735,14 +15734,6 @@ fieldset:disabled .btn {
 
 .rounded-top {
   border-top-left-radius: 0.3125rem !important;
-}
-
-.visible {
-  visibility: visible !important;
-}
-
-.invisible {
-  visibility: hidden !important;
 }
 
 .bg-image-none {
@@ -22439,9 +22430,6 @@ div.code-toolbar > .toolbar > .toolbar-item > button > span {
   right: 100%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  -webkit-transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
-  visibility: hidden;
   opacity: 0;
 }
 
@@ -22451,7 +22439,7 @@ div.code-toolbar > .toolbar > .toolbar-item > button > span {
 }
 
 .btn-scroll-top:hover .btn-scroll-top-tooltip {
-  visibility: visible;
+  
   opacity: 1;
 }
 
@@ -24989,8 +24977,8 @@ a.nav-link:hover .media-tab-media {
 }
 
 .tns-carousel .tns-carousel-inner > * {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  -webkit-backface-
+  backface-
 }
 
 .tns-carousel .tns-controls:focus {
@@ -25558,12 +25546,10 @@ a.nav-link:hover .media-tab-media {
   padding: 0;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  -webkit-transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
-  transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
   background: none;
   font-size: 1.5rem;
   font-weight: 300;
-  visibility: hidden;
+  
   opacity: 0;
 }
 
@@ -25578,7 +25564,7 @@ a.nav-link:hover .media-tab-media {
 }
 
 .widget-cart-item:hover .btn-close {
-  visibility: visible;
+  
   opacity: 1;
 }
 
@@ -25691,7 +25677,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
   border-radius: 0.25rem;
   background-color: #fff;
   font-size: 0.8125rem;
-  visibility: hidden;
+  
   opacity: 0;
 }
 
@@ -25707,7 +25693,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
 @media (min-width: 992px) {
   .product-card:hover:not(.card-static) .product-card-actions .btn-action {
     opacity: 1;
-    visibility: visible;
+    
   }
 }
 
@@ -25777,7 +25763,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
   right: 0.75rem;
   background-color: #fff;
   z-index: 5;
-  visibility: hidden;
+  
 }
 
 .product-card-alt .badge {
@@ -25795,7 +25781,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
   transform: translateY(-50%);
   text-align: center;
   z-index: 5;
-  visibility: hidden;
+  
 }
 
 .product-card-alt .btn-wishlist,
@@ -25811,7 +25797,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
   .product-card-alt .product-thumb:hover .btn-wishlist,
   .product-card-alt .product-thumb:hover .product-card-actions,
   .product-card-alt .product-thumb:hover .product-thumb-overlay {
-    visibility: visible;
+    
     opacity: 1;
   }
 }
@@ -26186,7 +26172,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
     -webkit-box-shadow 0.3s ease;
   -webkit-box-shadow: none;
   box-shadow: none;
-  visibility: visible !important;
+  
 }
 
 .offcanvas:not(.offcanvas-end):not(.offcanvas-bottom) {

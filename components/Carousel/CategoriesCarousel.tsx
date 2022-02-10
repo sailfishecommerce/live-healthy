@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
@@ -5,7 +6,7 @@ import { useCategoryData } from "@/hooks/useCategory";
 import Category from "../Category";
 import LoadCategory from "../CategoryLoader";
 
-export default function CategorieCarousel() {
+function CategorieCarouselComponent() {
   const [categories, status] = useCategoryData();
   const sliceCategories = (category: any[]) => category.slice(12);
 
@@ -38,3 +39,5 @@ export default function CategorieCarousel() {
     </div>
   );
 }
+
+export default CategorieCarousel

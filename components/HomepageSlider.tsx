@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import {memo} from 'react'
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -10,7 +11,7 @@ const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
   ssr: false,
 });
 
-export default function HomepageSlider() {
+function HomepageSliderComponent() {
   const settings = {
     controlsText: [
       '<i class="ci-arrow-left"></i>',
@@ -111,3 +112,5 @@ export default function HomepageSlider() {
     </section>
   );
 }
+
+export default HomepageSlider = memo(HomepageSliderComponent)

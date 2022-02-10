@@ -1,9 +1,10 @@
+import {memo} from 'react'
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Image from "next/image";
 import "@splidejs/splide/dist/css/splide.min.css";
 import sliderContent from "@/json/header-slider.json";
 
-export default function HeaderSlider() {
+function HeaderSliderComponent() {
   return (
     <div className="header-slider">
       <Splide
@@ -46,3 +47,5 @@ export default function HeaderSlider() {
     </div>
   );
 }
+
+export default  HeaderSlider

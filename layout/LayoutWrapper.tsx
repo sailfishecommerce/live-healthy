@@ -10,9 +10,9 @@ import Reward from "@/components/Rewards";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import useLoading from "@/hooks/useLoading";
 import LayoutMetatag from "./LayoutMetatag";
-import "react-toastify/dist/ReactToastify.css";
 import useModal from "@/hooks/useModal";
 import displayAppModal from "@/lib/displayAppModal";
+import "react-toastify/dist/ReactToastify.css";
 
 const SlideCart = dynamic(() => import("../components/SlideCart"));
 const NextNProgress = dynamic(() => import("../components/Nprogress"));
