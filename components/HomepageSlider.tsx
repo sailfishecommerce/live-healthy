@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {memo} from 'react'
+import { memo } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -113,4 +113,5 @@ function HomepageSliderComponent() {
   );
 }
 
-export default HomepageSlider = memo(HomepageSliderComponent)
+const HomepageSlider = memo(HomepageSliderComponent);
+export default HomepageSlider;
