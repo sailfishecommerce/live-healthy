@@ -27,9 +27,9 @@
 
 @media (max-width: 768px) {
   .dropdown button {
-    font-size: 14px;
+    font-size: 13px;
     padding: 8px;
-    padding-right: 30px;
+    padding-right: 0px;
   }
   .dropdownToggle {
     font-size: 10px !important;

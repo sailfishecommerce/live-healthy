@@ -9,11 +9,7 @@ interface TopbarProps {
   topbarBgColor: string;
   children: any;
 }
-export default function Topbar({
-  support,
-  topbarBgColor,
-  children,
-}: TopbarProps) {
+export default function Topbar({ support, children }: TopbarProps) {
   return (
     <div className="topbar topbar-dark">
       <div className="container">
@@ -27,7 +23,7 @@ export default function Topbar({
             <Dropdown.Item>
               <a className="dropdown-item" href="tel:00331697720">
                 <i className="ci-support text-muted me-2"></i>
-                {support}
+                00123-456-789
               </a>
             </Dropdown.Item>
             <li>
@@ -44,7 +40,7 @@ export default function Topbar({
           <i className="ci-support"></i>
           <span className="text-muted me-1">Support</span>
           <a className="topbar-link" href="tel:00331697720">
-            {support}
+            00123-456-789
           </a>
         </div>
         {children}
@@ -60,7 +56,7 @@ export default function Topbar({
       <style jsx>
         {`
           .topbar.topbar-dark {
-            background-color: ${topbarBgColor};
+            background-color: #373f50;
             width: 100%;
           }
           @media (max-width: 768px) {

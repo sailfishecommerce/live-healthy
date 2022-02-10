@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -12,13 +11,20 @@ import { useAuth } from "@/hooks";
 import SearchBar from "@/components/SearchBar";
 import useScroll from "@/hooks/useScroll";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useRouter } from "next/router";
 import FormattedPrice from "@/lib/formatPrice";
 import MobileCategoryList from "./MobileCategoryList";
 
 const HeaderCartDropdown = dynamic(() => import("./HeaderCartDropdown"));
 const CategoryDropdown = dynamic(() => import("./NavDropdown"));
 
-export default function Nav() {
+interface NavProps {
+  logo?: any;
+  navBgColor: string;
+  local?: boolean;
+}
+
+export default function Nav({ logo, navBgColor, local }: NavProps) {
   const { useCartData } = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
@@ -52,7 +58,7 @@ export default function Nav() {
           <div className="container position-relative">
             <Link href="/" passHref>
               <a className="navbar-brand d-none d-sm-block flex-shrink-0">
-                <img src="/logo.png" alt="logo" />
+                {!local ? logo : <img src="/logo.png" alt="logo" />}
               </a>
             </Link>
             <Link href="/" passHref>
@@ -149,13 +155,13 @@ export default function Nav() {
               {tabWidth && <SearchBar />}
               {/*<!-- Search-->*/}
               <div className="input-group d-lg-none my-3">
-                <i className="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                <input
-                  className="form-control rounded-start"
-                  type="text"
-                  placeholder="Search for products"
-                />
-              </div>
+              <i className="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
+              <input
+                className="form-control rounded-start"
+                type="text"
+                placeholder="Search for products"
+              />
+            </div>
               {/*<!-- Departments menu-->*/}
               <ul className="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
                 <li className="nav-item dropdown">
@@ -198,7 +204,7 @@ export default function Nav() {
       <style jsx>
         {`
           .navbar-sticky {
-            background-color: white;
+            background-color: ${navBgColor};
             width: 100%;
             z-index: 1000;
             position: relative;

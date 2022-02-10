@@ -3,10 +3,9 @@ import Head from "next/head";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 
-import Header from "@/plasmicComponent/Header";
+import Header from "@/components/Header";
 import LayoutWrapper from "./LayoutWrapper";
 import useLoading from "@/hooks/useLoading";
-import Nav from "@/components/Nav";
 
 const Footer = dynamic(() => import("../components/Footer"));
 const LoadingBar = dynamic(() => import("../components/loadingBar"));
@@ -47,11 +46,7 @@ export default function Applayout({
         ></script>
       </Head>
       {loading && <LoadingBar />}
-      <Header
-        support="00123-456-789"
-        topbarBgColor="#373F50"
-        nav={<Nav navBgColor="white" local />}
-      ></Header>
+      <Header support="00123-456-789" topbarBgColor="#373F50" />
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
       <div id="01739a85-4698-4d4c-90d5-876048fba847"></div>

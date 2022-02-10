@@ -19,31 +19,6 @@ a {
   box-sizing: border-box;
 }
 
-.brand-row .swiper-button-next,
-.brand-row .swiper-button-prev {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  z-index: 200;
-  background-color: #76727285;
-  margin-top: -30px;
-}
-
-.brand-row .swiper-button-next::after,
-.brand-row .swiper-button-prev::after {
-  font-size: 20px;
-  color: white;
-}
-
-.brand-row .swiper-button-next:hover,
-.brand-row .swiper-button-prev:hover {
-  background-color: blanchedalmond;
-}
-.brand-row .swiper-button-next:hover + .brand-row .swiper-button-next::after,
-.brand-row .swiper-button-prev:hover + .brand-row .swiper-button-prev::after {
-  color: #fb696a;
-}
-
 .electronicsBrandsCarousel .tns-outer button {
   display: none;
 }
@@ -156,26 +131,6 @@ li.ais-Hits-item:hover a h6 {
   color: #fb696a !important;
 }
 
-.otherProductCarousel .swiper-button-prev::after,
-.otherProductCarousel .swiper-button-next::after {
-  color: white;
-  font-size: 25px;
-}
-
-.otherProductCarousel .swiper-button-prev,
-.otherProductCarousel .swiper-button-next {
-  height: 50px;
-  width: 50px;
-  background-color: #fb696a;
-  z-index: 100;
-  color: black;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
-
 .ShopBannerToolbar li.ais-Pagination-item.ais-Pagination-item--nextPage,
 .ShopBannerToolbar li.ais-Pagination-item.ais-Pagination-item--previousPage,
 .ShopBannerToolbar
@@ -260,6 +215,22 @@ li.ais-Hits-item:hover a h6 {
   color: #fb696a;
 }
 
+.header-slider button.splide__arrow {
+  display: none;
+}
+
+.header-slider ul.splide__pagination {
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: auto;
+  padding: 0;
+  right: -1.5rem;
+  top: 0;
+  transform: none;
+  width: auto;
+}
+
 .bottomPagination
   .ais-Pagination-item.ais-Pagination-item--selected.ais-Pagination-item--page {
   background-color: white;
@@ -287,20 +258,7 @@ body::-webkit-scrollbar-thumb,
 
 /* media query */
 @media (max-width: 768px) {
-  .brand-row .swiper-button-next,
-  .brand-row .swiper-button-prev,
-  .otherProductCarousel .swiper-button-prev,
-  .otherProductCarousel .swiper-button-next {
-    height: 30px;
-    width: 30px;
-  }
-
-  .brand-row .swiper-button-next::after,
-  .brand-row .swiper-button-prev::after,
-  .otherProductCarousel .swiper-button-prev::after,
-  .otherProductCarousel .swiper-button-next::after {
-    font-size: 15px;
-  }
+ 
   .mobileInput button.ais-SearchBox-reset {
     right: 20px;
     top: 46px;

@@ -8,9 +8,7 @@ interface CategoryBannerProps {
   };
 }
 
-export default function CategoryBanner({ controls }: CategoryBannerProps) {
-  const { navigationNextRef, navigationPrevRef } = controls;
-
+export default function CategoryBanner() {
   return (
     <div className="col-md-5">
       <div className="categoryBannerColor d-flex flex-column h-100 overflow-hidden rounded-3">
@@ -23,14 +21,6 @@ export default function CategoryBanner({ controls }: CategoryBannerProps) {
                 <i className="ci-arrow-right fs-xs align-middle ms-1"></i>
               </a>
             </Link>
-          </div>
-          <div className="d-flex">
-            <button className="control" ref={navigationPrevRef} type="button">
-              <i className="ci-arrow-left"></i>
-            </button>
-            <button className="control" ref={navigationNextRef} type="button">
-              <i className="ci-arrow-right"></i>
-            </button>
           </div>
         </div>
         <Link href="/shop" passHref>

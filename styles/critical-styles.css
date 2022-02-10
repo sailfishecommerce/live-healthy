@@ -1007,21 +1007,6 @@ a {
   box-sizing: border-box;
 }
 
-.brand-row .swiper-button-next,
-.brand-row .swiper-button-prev {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  z-index: 200;
-  background-color: #76727285;
-  margin-top: -30px;
-}
-
-.brand-row .swiper-button-next:after,
-.brand-row .swiper-button-prev:after {
-  font-size: 20px;
-  color: #fff;
-}
 
 .footer .widget {
   border-bottom: none;

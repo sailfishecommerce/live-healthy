@@ -1,27 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRef } from "react";
-
 import CategoryBanner from "./CategoryBanner";
-import FeaturedCategoryCarousel from "./Carousel/FeaturedCategoryCarousel";
+import CategoriesCarousel from "./Carousel/CategoriesCarousel";
 
 export default function FeaturedCategory() {
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
-
-  const controlRef = {
-    navigationNextRef,
-    navigationPrevRef,
-  };
   return (
     <section className="container mb-4 pb-3 pb-sm-0 mb-sm-5">
-      <div className="row">
-        {/*<!-- Banner with controls-->*/}
-        <CategoryBanner controls={controlRef} />
-        {/*<!-- Product grid (carousel)-->*/}
-        <FeaturedCategoryCarousel controls={controlRef} />
+      <div className="row align-items-center">
+        <CategoryBanner />
+        <CategoriesCarousel />
       </div>
     </section>
   );
 }
 
-FeaturedCategory.whyDidYouRender = true;
+// FeaturedCategory.whyDidYouRender = true;

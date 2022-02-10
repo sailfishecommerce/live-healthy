@@ -14,13 +14,11 @@ import ProductGalleryDetails from "./components/ProductGalleryDetails";
 import ProductReviews from "./components/ProductReviews";
 import PopularCategory from "./components/PopularCategory";
 import ProductOverview from "./components/ProductOverview";
-import ShopByBrandCarousel from "./components/ShopByBrandCarousel";
 import { CategoriesProducts } from "./components/CategoriesProduct";
 import Loadmore from "./components/Loadmore";
 import HomepageHits from "@/components/AlgoliaWidgets/HomepageHits";
-import TopHeaderSlider from "./components/Carousel/TopHeaderSlider";
 import plasmicJson from "@/json/plasmic-init.json";
-import Nav from "./components/Nav";
+import Nav from "./components/plasmicNav";
 
 const plasmicJsonContent: any = plasmicJson;
 
@@ -97,18 +95,6 @@ PLASMIC.registerComponent(CategoriesProducts, {
 PLASMIC.registerComponent(CategoriesProducts, {
   name: "Confectionery Products",
   props: plasmicJsonContent.confectioneryProducts,
-});
-
-PLASMIC.registerComponent(ShopByBrandCarousel, {
-  name: "Shop by brand carousel",
-  props: plasmicJsonContent.shopByBrand,
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(TopHeaderSlider, {
-  name: "Header Slider",
-  props: plasmicJsonContent.headerSlider,
-  isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(TrendingProducts, {

@@ -7267,16 +7267,6 @@ textarea.form-control.is-invalid {
   -ms-overflow-style: none;
 }
 
-brand-row .swiper-button-next:hover,
-.brand-row .swiper-button-prev:hover {
-  background-color: #ffebcd;
-}
-
-.brand-row .swiper-button-next:hover + .brand-row .swiper-button-next:after,
-.brand-row .swiper-button-prev:hover + .brand-row .swiper-button-prev:after {
-  color: #fb696a;
-}
-
 .electronicsBrandsCarousel .tns-outer button {
   display: none;
 }
@@ -7358,26 +7348,6 @@ li.ais-Hits-item:last-child .hit {
 
 li.ais-Hits-item:hover a h6 {
   color: #fb696a !important;
-}
-
-.otherProductCarousel .swiper-button-next:after,
-.otherProductCarousel .swiper-button-prev:after {
-  color: #fff;
-  font-size: 25px;
-}
-
-.otherProductCarousel .swiper-button-next,
-.otherProductCarousel .swiper-button-prev {
-  height: 50px;
-  width: 50px;
-  background-color: #fb696a;
-  z-index: 100;
-  color: #000;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
 }
 
 .ShopBannerToolbar li.ais-Pagination-item.ais-Pagination-item--firstPage,
