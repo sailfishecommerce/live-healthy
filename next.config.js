@@ -9,11 +9,10 @@ module.exports = (phase, defaultConfig) => {
   return withBundleAnalyzer(defaultConfig);
 };
 
-module.exports = withPurgeCss({
-  purgeCssPaths: ["pages/**/*", "components/**/*", "layout/**/*"],
+module.exports = {
   images: {
     domains: ["cdn.schema.io"],
   },
   reactStrictMode: true,
   staticPageGenerationTimeout: 240,
-});
+};
