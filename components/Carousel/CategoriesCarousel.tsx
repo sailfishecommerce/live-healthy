@@ -1,4 +1,4 @@
-import {memo} from 'react'
+import { memo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
@@ -40,4 +40,5 @@ function CategorieCarouselComponent() {
   );
 }
 
-export default CategorieCarousel = memo(CategorieCarouselComponent)
+const CategorieCarousel = memo(CategorieCarouselComponent);
+export default CategorieCarousel;

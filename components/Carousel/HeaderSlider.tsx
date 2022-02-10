@@ -1,4 +1,4 @@
-import {memo} from 'react'
+import { memo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Image from "next/image";
 import "@splidejs/splide/dist/css/splide.min.css";
@@ -48,4 +48,5 @@ function HeaderSliderComponent() {
   );
 }
 
-export default HeaderSlider = memo(HeaderSliderComponent)
+const HeaderSlider = memo(HeaderSliderComponent);
+export default HeaderSlider;
