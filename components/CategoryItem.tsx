@@ -102,9 +102,7 @@ export default function CategoryItem({
                   <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
                 </div>
                 <ul
-                  className="widget-list data widget-filter-list pt-1"
-                  data-simplebar
-                  data-simplebar-auto-hide="false"
+                  className="widget-list data widget-filter-list pt-1"               
                 >
                   <li className="widget-list-item widget-filter-item">
                     <Link href={`/${categorySlug}/${category.slug}`} passHref>

@@ -1692,21 +1692,7 @@ input[type="search"]::-webkit-search-results-decoration {
     padding-right: 0.9375rem;
   }
 }
-[data-simplebar] {
-  overflow-y: auto;
-}
-[data-simplebar]::-webkit-scrollbar {
-  width: 0.1875rem;
-  background-color: transparent;
-  opacity: 0;
-}
-[data-simplebar]::-webkit-scrollbar-thumb {
-  background-color: #aeb4be;
-  border-radius: 0.09375rem;
-}
-[data-simplebar]:not(.offcanvas-body) {
-  padding-right: 1rem !important;
-}
+
 body,
 html {
   padding: 0;

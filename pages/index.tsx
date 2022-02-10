@@ -4,7 +4,6 @@ import swell from "swell-node";
 import dynamic from "next/dynamic";
 
 import swellNodeInit from "@/lib/swellNode";
-import FeaturedCategory from "@/components/FeaturedCategory";
 import PopularCategories from "@/components/PopularCategories";
 import Applayout from "@/layout/Applayout";
 import HomepageSlider from "@/components/HomepageSlider";
@@ -15,6 +14,7 @@ const TrendingProducts = dynamic(() => import("@/components/TrendingProduct"));
 const ShopByBrand = dynamic(() => import("@/components/ShopByBrand"));
 const Banners = dynamic(() => import("@/components/Banner"));
 const InfoCards = dynamic(() => import("@/components/InfoCards"));
+const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 
 export default function Index({ products }: any) {
   const { generateUserToken, authorized } = useUserToken();
@@ -26,13 +26,13 @@ export default function Index({ products }: any) {
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
-      <HomepageSlider />
-      <PopularCategories />
-      <TrendingProducts products={products} />
-      <FeaturedCategory />
-      <Banners />
-      <ShopByBrand />
-      <InfoCards />
+        <HomepageSlider />
+        <PopularCategories />
+        <TrendingProducts products={products} />
+         <FeaturedCategory />
+        <Banners />
+        <ShopByBrand />
+        <InfoCards />
       <style jsx>
         {`
           @media (min-width: 800px) {

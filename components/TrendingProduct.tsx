@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { memo, } from "react";
 
+import JustInView from "@/components/JustInView";
 import Product from "./Product";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { productType } from "@/types";
@@ -14,11 +15,11 @@ function TrendingProductsCatalog({ products }: PropsType) {
 
   function updateProductSize(productData: any[]) {
     const productSize = mobileView ? productData.slice(0, 14) : productData;
-    console.log("productSize", productSize.length);
     return productSize;
   }
 
   return (
+    <JustInView>
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="text-center trending">Trending products</h2>
       <div className="row pt-4 mx-n2">
@@ -47,6 +48,7 @@ function TrendingProductsCatalog({ products }: PropsType) {
         `}
       </style>
     </section>
+    </JustInView>
   );
 }
 

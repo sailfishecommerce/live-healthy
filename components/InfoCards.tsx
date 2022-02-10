@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import Link from "next/link";
 
+import JustInView from "@/components/JustInView";
 import infoContent from "@/json/info-section.json";
 
 export default function InfoCards() {
@@ -11,6 +12,7 @@ export default function InfoCards() {
     []
   );
   return (
+    <JustInView>
     <section className="container-fluid px-0">
       <div className="row g-0">
         {infoContent.map((item: any, index: number) => (
@@ -51,6 +53,7 @@ export default function InfoCards() {
         `}
       </style>
     </section>
+    </JustInView>
   );
 }
 

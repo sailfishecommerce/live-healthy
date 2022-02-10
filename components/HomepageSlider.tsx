@@ -4,6 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import Image from "@/components/Image";
+import JustInView from "@/components/JustInView";
 import sliderContent from "@/json/homepage-slider.json";
 import styles from "@/styles/homepageslider.module.css";
 
@@ -29,6 +30,7 @@ function HomepageSliderComponent() {
   };
 
   return (
+    <JustInView>
     <section
       className={`${styles.tnsCarousel} tns-carousel overflow-hidden tns-controls-lg mb-4 mb-lg-5 w-100`}
     >
@@ -46,6 +48,7 @@ function HomepageSliderComponent() {
                   width={400}
                   layout="responsive"
                   size="true"
+                  priority={false}
                 />
               </div>
               <div className="sliderWidth position-relative mx-auto me-lg-n5 py-5 px-4 mb-lg-5 order-lg-1">
@@ -110,6 +113,7 @@ function HomepageSliderComponent() {
         ))}
       </TinySlider>
     </section>
+    </JustInView>
   );
 }
 

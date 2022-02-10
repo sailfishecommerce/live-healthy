@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { memo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import JustInView from "@/components/JustInView";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "@/components/Image";
@@ -7,7 +9,7 @@ import brands from "@/json/brand.json";
 import styles from "@/styles/ShopByBrandCarousel.module.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-export default function ShopByBrand() {
+function ShopByBrandComponent() {
   const tabWidth = useMediaQuery("(max-width:768px)");
 
   const imageSize = tabWidth
@@ -15,6 +17,7 @@ export default function ShopByBrand() {
     : { height: 60, width: 200 };
 
   return (
+    <JustInView>
     <section className="container py-lg-4 mb-4">
       <h2 className="h3 text-center pb-4">Shop by brand</h2>
       <div className="row brand-row">
@@ -69,5 +72,9 @@ export default function ShopByBrand() {
         `}
       </style>
     </section>
+    </JustInView>
   );
 }
+
+const ShopByBrand = memo(ShopByBrandComponent);
+export default ShopByBrand;

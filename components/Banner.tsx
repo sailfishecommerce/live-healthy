@@ -1,5 +1,6 @@
 import Image from "@/components/Image";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import JustInView from "@/components/JustInView";
 
 export default function Banners() {
   const tabWidth = useMediaQuery("(max-width:768px)");
@@ -8,6 +9,7 @@ export default function Banners() {
     : { height: 300, width: 500 };
 
   return (
+    <JustInView>
     <section className="container pb-4 mb-md-3">
       <div className="row">
         <div className="col-md-8 mb-4">
@@ -55,5 +57,6 @@ export default function Banners() {
         </style>
       </div>
     </section>
+    </JustInView>
   );
 }

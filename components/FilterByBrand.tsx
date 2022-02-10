@@ -10,11 +10,7 @@ export default function FilterByBrand() {
         />
         <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
       </div>
-      <ul
-        className="widget-list data widget-filter-list list-unstyled pt-1"
-        data-simplebar
-        data-simplebar-auto-hide="false"
-      >
+      <ul className="widget-list data widget-filter-list list-unstyled pt-1">
         <li className="widget-filter-item d-flex justify-content-between align-items-center mb-1">
           <div className="form-check">
             <input className="form-check-input" type="checkbox" id="adidas" />

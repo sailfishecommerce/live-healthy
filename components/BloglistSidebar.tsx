@@ -19,9 +19,7 @@ export default function BloglistSidebar() {
           ></button>
         </div>
         <div
-          className="offcanvas-body py-grid-gutter py-lg-1 px-lg-4"
-          data-simplebar
-          data-simplebar-auto-hide="true"
+          className="offcanvas-body py-grid-gutter py-lg-1 px-lg-4"    
         >
           <div className="widget widget-links mb-grid-gutter pb-grid-gutter border-bottom mx-lg-2">
             <h3 className="widget-title">Blog categories</h3>

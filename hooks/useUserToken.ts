@@ -14,8 +14,6 @@ export default function useUserToken() {
 
   const dispatch = useAppDispatch();
 
-  console.log("userDetails", userDetails);
-
   function generateUserToken() {
     if (userToken === null && authorized === false) {
       const generatedUserId = uuidv4();

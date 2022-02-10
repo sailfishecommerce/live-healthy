@@ -22,7 +22,7 @@ export default function Applayout({
 
   return (
     <LayoutWrapper>
-      <Script strategy="afterInteractive" id="truconversionScript">{`
+      <Script strategy="lazyOnload" id="truconversionScript">{`
         var _tip = _tip || [];
         (function(d,s,id){
             var js, tjs = d.getElementsByTagName(s)[0];

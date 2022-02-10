@@ -12,11 +12,7 @@ export default function FilterBySize({
   return (
     <div className="widget widget-filter">
       <h3 className="widget-title">{attribute.name}</h3>
-      <ul
-        className="widget-list data widget-filter-list list-unstyled pt-1"
-        data-simplebar
-        data-simplebar-auto-hide="false"
-      >
+      <ul className="widget-list data widget-filter-list list-unstyled pt-1">
         {attribute.values.map((value, index) => (
           <li
             key={index}
