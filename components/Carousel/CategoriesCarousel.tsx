@@ -40,4 +40,4 @@ function CategorieCarouselComponent() {
   );
 }
 
-export default CategorieCarousel
+export default CategorieCarousel = memo(CategorieCarouselComponent)

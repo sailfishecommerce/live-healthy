@@ -48,4 +48,4 @@ function HeaderSliderComponent() {
   );
 }
 
-export default  HeaderSlider
+export default HeaderSlider = memo(HeaderSliderComponent)
