@@ -1,46 +1,28 @@
-/* eslint-disable @next/next/no-img-element */
-import { useCallback } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import Image from "@/components/Image";
 import FormattedPrice from "@/lib/formatPrice";
 import RatingStar from "@/components/RatingStar";
 import { productType } from "@/types";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
-import useProductOptions from "@/hooks/useProductOptions";
 import useShoppingCart from "@/hooks/useShoppingCart";
-import useEvent from "@/hooks/useEvent";
 
 interface ProductProps {
   product: productType;
 }
 
+const ProductListQuickView = dynamic(() => import("./ProductListQuickView"));
+
 export default function ProductList({ product }: ProductProps) {
-  const { itemViewed, productAddedToCart } = useAlgoliaEvents();
-  const { optionHandler } = useProductOptions();
+  const { itemViewed } = useAlgoliaEvents();
   const { dataStatus, addItemToCart } = useShoppingCart();
-  const { algoliaQuickViewEvent } = useEvent();
 
   dataStatus(addItemToCart, `${product.name} added to cart`);
 
   function productViewedHandler() {
     itemViewed("product_viewed", [product.objectID]);
   }
-
-  function onSubmitHandler(e: any) {
-    e.preventDefault();
-    addItemToCart.mutate({ product, quantity: 1 });
-    productAddedToCart([product.id]);
-  }
-
-  function quickViewHandler() {
-    algoliaQuickViewEvent(product);
-  }
-
-  const labelBg = useCallback((name: string) => {
-    const style = { backgroundColor: name.toLowerCase() };
-    return style;
-  }, []);
 
   return (
     <>
@@ -97,90 +79,7 @@ export default function ProductList({ product }: ProductProps) {
               </div>
               <RatingStar rate={product.rating} />
             </div>
-            <div className="card-body card-body-hidden">
-              <form onSubmit={onSubmitHandler}>
-                {product?.options && product?.options.length > 0 ? (
-                  product?.options.map((option) => {
-                    return option?.name === "Color" ? (
-                      <div key={option.id} className="pb-2">
-                        {option?.values.map(
-                          (value: { name: string; id: string }) => (
-                            <div
-                              key={value.id}
-                              className="form-check form-option form-check-inline mb-2"
-                            >
-                              <input
-                                className="form-check-input"
-                                type="radio"
-                                value={value.name}
-                                onChange={optionHandler}
-                                name={option.name}
-                                id={value.id}
-                                required
-                              />
-                              <label
-                                className="form-option-label rounded-circle"
-                                htmlFor={value.id}
-                              >
-                                <span
-                                  className="form-option-color rounded-circle"
-                                  style={labelBg(value.name)}
-                                ></span>
-                              </label>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    ) : option?.name === "Size" ? (
-                      <div key={option.id} className="d-flex mb-2">
-                        <select
-                          className="form-select select-size form-select-sm me-2"
-                          onChange={optionHandler}
-                          name="Size"
-                          required
-                        >
-                          <option value="">Select Size</option>
-                          {option.values.map(
-                            (value: { name: string; id: string }) => (
-                              <option value={value.name} key={value.id}>
-                                {value.name}
-                              </option>
-                            )
-                          )}
-                        </select>
-                        <button
-                          aria-label="Add to Cart"
-                          className="btn btn-primary btn-sm"
-                          type="submit"
-                        >
-                          <i className="ci-cart fs-sm me-1"></i>
-                          Add to Cart
-                        </button>
-                      </div>
-                    ) : null;
-                  })
-                ) : (
-                  <button
-                    className="btn btn-primary btn-sm m-auto d-flex align-items-center"
-                    type="submit"
-                    aria-label="Add to Cart"
-                  >
-                    <i className="ci-cart fs-sm me-1"></i>
-                    Add to Cart
-                  </button>
-                )}
-              </form>
-              <div className="text-start">
-                <a
-                  className="nav-link-style fs-ms"
-                  onClick={quickViewHandler}
-                  data-bs-toggle="quickViewModal"
-                >
-                  <i className="ci-eye align-middle me-1"></i>
-                  Quick view
-                </a>
-              </div>
-            </div>
+            <ProductListQuickView product={product} />
           </div>
         </div>
       </div>

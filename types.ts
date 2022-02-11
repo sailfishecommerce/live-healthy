@@ -380,3 +380,17 @@ export type typeModal =
   | "AUTH_MODAL"
   | "AUTHFORM"
   | "SECURE_CHECKOUT";
+
+export type addCategoryViewType = {
+  id: string;
+  categoryId: string;
+  categoryName: string;
+  categoryLink: string;
+  categoryImage: string;
+};
+
+export type addProductSearchType = {
+  id: string;
+  email: string;
+  query: string;
+};
