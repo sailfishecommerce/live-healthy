@@ -14,6 +14,11 @@ const ProductOptionSelect: any = dynamic((): any =>
 const ProductOptionSelectBox: any = dynamic((): any =>
   import("./ProductView").then((mod) => mod.ProductOptionSelectBox)
 );
+
+const ProductColorOption: any = dynamic((): any =>
+  import("./ProductFormElement").then((mod) => mod.ProductColorOption)
+);
+
 import useProductOptions from "@/hooks/useProductOptions";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
@@ -71,59 +76,12 @@ export default function ProductForm({ product }: ProductFormType) {
         <form onSubmit={onSubmitHandler}>
           {product?.options?.map((option: productOptions) => {
             return option?.name === "Color" ? (
-              <div key={option.id}>
-                <div className="fs-sm mb-4 d-flex align-items-center">
-                  <span className="text-heading fw-medium me-1">Color:</span>
-                  <span
-                    className="text-muted d-flex align-items-center"
-                    id="colorOptionText"
-                  >
-                    {option?.values?.map((value, index) => {
-                      return option.values.length - 1 === index ? (
-                        <div key={value.id}>{value.name}</div>
-                      ) : (
-                        <div key={value.id}>
-                          {value.name} <span className="mx-1">/</span>
-                        </div>
-                      );
-                    })}
-                  </span>
-                </div>
-                <div className="position-relative me-n4 mb-3">
-                  {option?.name === "Color" &&
-                    option?.values.map((value, index) => (
-                      <div
-                        key={value.id}
-                        className="form-check form-option form-check-inline mb-2"
-                      >
-                        <input
-                          className="form-check-input ms-1"
-                          type="radio"
-                          name={option.name}
-                          id={value.id}
-                          onChange={optionHandler}
-                          value={value.name}
-                          required
-                        />
-                        <label
-                          className="form-option-label rounded-circle"
-                          htmlFor={value.id}
-                        >
-                          <span
-                            className="form-option-color rounded-circle"
-                            style={formBg(value.name)}
-                          ></span>
-                        </label>
-                      </div>
-                    ))}
-                  {product.price && (
-                    <div className="product-badge product-available mt-n1">
-                      <i className="ci-security-check"></i>
-                      Product available
-                    </div>
-                  )}
-                </div>
-              </div>
+              <ProductColorOption
+                option={option}
+                optionHandler={optionHandler}
+                formBg={formBg}
+                product={product}
+              />
             ) : (
               option.name === "Size" && (
                 <ProductOptionSelect

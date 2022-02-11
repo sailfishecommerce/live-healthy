@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { Formik } from "formik";
-
-import { useAccount, useLoading } from "@/hooks";
-import Applayout from "@/layout/Applayout";
-import { passwordRecoverySchema } from "@/components/AuthSchema";
-import { displayFormElement } from "@/components/FormElement";
+import dynamic from "next/dynamic";
 import passwordResetForm from "@/json/password-reset.json";
+
+import Applayout from "@/layout/Applayout";
 
 type stateType = { status: any; email?: string };
 
+const AccountRecoveryform = dynamic(
+  () => import("@/components/account-recovery-form")
+);
+
 export default function AccountPasswordRecovery() {
-  const { forgotPassword } = useAccount();
-  const [recoveryStatus, setRecoveryStatus] = useState<null | stateType>(null);
-  const { updateLoadingState } = useLoading();
-  console.log("recoveryStatus", recoveryStatus);
+  const [recoveryStatus] = useState<null | stateType>(null);
 
   return (
     <Applayout title="Recover your password with ease">
@@ -36,72 +34,14 @@ export default function AccountPasswordRecovery() {
               new password secure.
             </p>
             <ol className="list-unstyled fs-md">
-              <li>
-                <span className="text-primary me-2">1.</span>
-                Fill in your email address below.
-              </li>
-              <li>
-                <span className="text-primary me-2">2.</span>
-                We&#39;ll email you a reset link
-              </li>
-              <li>
-                <span className="text-primary me-2">3.</span>
-                Click on the reset link to reset your password
-              </li>
+              {passwordResetForm.listView.map((list, index) => (
+                <li key={index}>
+                  <span className="text-primary me-2">{list.count}.</span>
+                  {list.text}
+                </li>
+              ))}
             </ol>
-            <div className="card py-2 mt-4">
-              <Formik
-                initialValues={{
-                  email: "",
-                }}
-                validationSchema={passwordRecoverySchema}
-                onSubmit={(values, { setSubmitting, resetForm }) => {
-                  console.log("values", values);
-                  updateLoadingState();
-                  forgotPassword(values.email)
-                    .then((response) => {
-                      console.log("response forgotPassword", response);
-                      updateLoadingState();
-                      setRecoveryStatus({
-                        status: response,
-                        email: values.email,
-                      });
-                      resetForm();
-                    })
-                    .catch((error) => {
-                      console.log("error forgotPassword", error);
-                      setRecoveryStatus({
-                        status: error,
-                      });
-                      updateLoadingState();
-                      resetForm();
-                    });
-                  setSubmitting(false);
-                }}
-              >
-                {(formik) => (
-                  <form
-                    onSubmit={formik.handleSubmit}
-                    className="card-body needs-validation"
-                    noValidate
-                  >
-                    {passwordResetForm.recover.map((formInput) => (
-                      <div key={formInput.name} className="col-12">
-                        {displayFormElement(formInput, formik)}
-                      </div>
-                    ))}
-                    <button
-                      aria-label="get new password"
-                      disabled={formik.isSubmitting}
-                      className="btn btn-primary"
-                      type="submit"
-                    >
-                      Get new password
-                    </button>
-                  </form>
-                )}
-              </Formik>
-            </div>
+            <AccountRecoveryform />
           </div>
         </div>
       </div>

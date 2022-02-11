@@ -3,7 +3,6 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 
 import { ShareProductLink } from "@/components/ProductView";
-import ProductPanel from "@/components/ProductPanel";
 import { productType } from "@/types";
 import FormattedPrice from "@/lib/formatPrice";
 import Rating from "./Rating";
@@ -86,9 +85,6 @@ export default function ProductDetail({ product }: Props) {
             Not enough? Contact us for more
           </button>
         </div>
-        {product?.content?.productBenefits && (
-          <ProductPanel product={product} />
-        )}
         <ShareProductLink />
       </div>
       <style jsx>

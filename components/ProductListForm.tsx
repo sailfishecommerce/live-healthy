@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useCallback } from "react";
 
 import { productType } from "@/types";
@@ -96,6 +95,13 @@ export default function ProductListForm({ product }: ProductProps) {
           Add to Cart
         </button>
       )}
+      <style jsx>
+        {`
+          .select.form-select.select-size {
+            max-width: 14rem;
+          }
+        `}
+      </style>
     </form>
   );
 }

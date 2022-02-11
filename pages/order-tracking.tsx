@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Applayout from "@/layout/Applayout";
 import OrderTrackingBanner from "@/components/OrderTrackingBanner";
 import contentData from "@/json/order-tracking.json";

@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-page-custom-font */
 // import "../lib/wdyr";
-import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AOS from "aos";
 import { useEffect } from "react";

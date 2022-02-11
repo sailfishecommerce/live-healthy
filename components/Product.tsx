@@ -5,15 +5,11 @@ import dynamic from "next/dynamic";
 
 import Image from "@/components/Image";
 import { ProductProps } from "@/types";
-import RatingStar from "./RatingStar";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
-import useCurrency from "@/hooks/useCurrency";
 import discountPrice from "@/lib/discountPrice";
-import useProductPrice from "@/hooks/useProductPrice";
-import FormattedPrice from "@/lib/formatPrice";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
-import styles from "@/styles/ui.module.css";
+import ProductPriceView from "./ProductPriceView";
 
 const DynamicProductViewForm = dynamic(
   () => import("../components/ProductViewForm")
@@ -129,36 +125,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
               <a onClick={productViewHandler}>{product.name}</a>
             </Link>
           </h3>
-          <div className="d-flex justify-content-between">
-            <ul className="product-price d-flex flex-column align-items-baseline">
-              <li className={`text-accent fs-sm fs-lg ${styles.price}`}>
-                <FormattedPrice price={product.price} isProduct />
-              </li>
-              {product.hkd_compare_at_price > 0 && (
-                <li className="m-0">
-                  <del
-                    className={`small text-accent fs-xs ${styles.oldPrice} `}
-                  >
-                    <FormattedPrice
-                      price={product.hkd_compare_at_price}
-                      oldPrice
-                      isProduct
-                    />
-                  </del>
-                </li>
-              )}
-            </ul>
-            <div className="reviewRating d-flex flex-column">
-              <RatingStar rate={product.rating} />
-              {product.review_rating ? (
-                <p className="widget-product-meta review">
-                  ({product.review_rating} reviews)
-                </p>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+          <ProductPriceView product={product} />
         </div>
         {!mobileView && (
           <DynamicProductViewForm product={product} forCategory={forCategory} />
@@ -180,16 +147,6 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           .product-meta:hover {
             color: red;
           }
-          .product-price {
-            padding: 0px;
-          }
-          .product-price li {
-            list-style: none;
-            padding: 0px;
-          }
-          ul.product-price {
-            font-size: 13px;
-          }
           .discount-price {
             height: 35px;
             width: 50px;
@@ -200,9 +157,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
             justify-content: center;
             font-size: 12px;
           }
-          .reviewRating p {
-            font-size: 12px;
-          }
+
           @media (max-width: 768px) {
             .card.product-card {
               min-height: 380px;
@@ -219,9 +174,6 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-            }
-            .reviewRating p.review {
-              font-size: 10px;
             }
           }
         `}
