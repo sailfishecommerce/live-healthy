@@ -1,15 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
-import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
+import dynamic from "next/dynamic";
+import HeaderSlider from "@/components/Carousel/HeaderSlider";
 import styles from "@/styles/Topbar.module.css";
 
-interface TopbarProps {
-  support: string;
-  topbarBgColor: string;
-  children: any;
-}
-export default function Topbar({ support, children }: TopbarProps) {
+const CurrencyLanguageDropdown = dynamic(
+  () => import("@/components/CurrencyLanguageDropdown")
+);
+
+export default function Topbar() {
   return (
     <div className="topbar topbar-dark">
       <div className="container">
@@ -43,7 +43,7 @@ export default function Topbar({ support, children }: TopbarProps) {
             00123-456-789
           </a>
         </div>
-        {children}
+        <HeaderSlider />
         <div className="ms-3 text-nowrap">
           <Link href="/order-tracking" passHref>
             <a className="topbar-link me-4 d-none d-md-inline-block">

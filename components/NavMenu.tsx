@@ -43,6 +43,7 @@ export default function NavMenu() {
       </div>
       <style jsx>
         {`
+         
           @media (max-width: 768px) {
             .navbar-toolbar {
               justify-content: space-between;

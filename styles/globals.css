@@ -221,6 +221,12 @@ li.ais-Hits-item:hover a h6 {
   color: #fb696a;
 }
 
+.price-overview a.navbar-tool-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .header-slider button.splide__arrow {
   display: none;
 }

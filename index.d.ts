@@ -1,12 +1,8 @@
 declare module "swell-js";
 declare module "swell-node";
-declare module "tiny-slider-react";
 declare module "uuid";
 declare module "sharp";
 declare module "aos";
 declare module "react-dom";
-declare module "@cloudinary/react";
 declare module "imagemin";
-declare module "imagemin-jpegtran";
-declare module "imagemin-pngquant";
 declare module "imagemin-webp";

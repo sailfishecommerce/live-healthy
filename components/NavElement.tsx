@@ -131,8 +131,8 @@ export function NavbarDropdown({
       <style jsx>
         {`
           .price-overview {
-            width: 80px;
-            margin-left: 10px;
+            width: 90px;
+            margin-left: 20px;
           }
         `}
       </style>

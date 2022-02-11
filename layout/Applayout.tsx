@@ -34,7 +34,7 @@ export default function Applayout({
         <title>{title} | Sailfish e-commerce online store </title>
       </Head>
       {loading && <LoadingBar />}
-      <Header support="00123-456-789" topbarBgColor="#373F50" />
+      <Header />
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
       <div id="01739a85-4698-4d4c-90d5-876048fba847"></div>

@@ -12,7 +12,7 @@ export default function InfoCards() {
     []
   );
   return (
-    <JustInView>
+    <JustInView section="InfoCards">
       <section className="container-fluid px-0">
         <div className="row g-0">
           {infoContent.content.map((item: any, index: number) => (

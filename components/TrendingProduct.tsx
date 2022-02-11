@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { memo, } from "react";
+import { memo } from "react";
 
 import JustInView from "@/components/JustInView";
 import Product from "./Product";
@@ -19,35 +19,35 @@ function TrendingProductsCatalog({ products }: PropsType) {
   }
 
   return (
-    <JustInView>
-    <section className="container pt-md-3 pb-0 mb-md-3 w-100">
-      <h2 className="text-center trending">Trending products</h2>
-      <div className="row pt-4 mx-n2">
-        {updateProductSize(products).map((product: productType) => (
-          <Product key={product.id} product={product} algoliaEvent="click" />
-        ))}
+    <JustInView section="TrendingProducts">
+      <section className="container pt-md-3 pb-0 mb-md-3 w-100">
+        <h2 className="text-center trending">Trending products</h2>
+        <div className="row pt-4 mx-n2">
+          {updateProductSize(products).map((product: productType) => (
+            <Product key={product.id} product={product} algoliaEvent="click" />
+          ))}
 
-        <div className="text-center pt-1 mt-1 mb-3">
-          <Link href="/shop" passHref>
-            <a className="btn btn-outline-accent">
-              More products<i className="ci-arrow-right ms-1"></i>
-            </a>
-          </Link>
+          <div className="text-center pt-1 mt-1 mb-3">
+            <Link href="/shop" passHref>
+              <a className="btn btn-outline-accent">
+                More products<i className="ci-arrow-right ms-1"></i>
+              </a>
+            </Link>
+          </div>
         </div>
-      </div>
-      <style jsx>
-        {`
-          h2.trending {
-            font-size: 24px;
-          }
-          @media (max-width: 768px) {
+        <style jsx>
+          {`
             h2.trending {
-              font-size: 18px;
+              font-size: 24px;
             }
-          }
-        `}
-      </style>
-    </section>
+            @media (max-width: 768px) {
+              h2.trending {
+                font-size: 18px;
+              }
+            }
+          `}
+        </style>
+      </section>
     </JustInView>
   );
 }

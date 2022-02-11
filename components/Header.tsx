@@ -1,21 +1,13 @@
+import dynamic from "next/dynamic";
 import Topbar from "@/components/Topbar";
 import styles from "@/styles/ui.module.css";
-import HeaderSlider from "@/components/Carousel/HeaderSlider";
-import Nav from "@/components/Nav";
 
-interface HeaderProps {
-  support: string;
-  topbarBgColor: string;
-  slider?: any;
-  nav?: any;
-}
+const Nav = dynamic(() => import("@/components/Nav"));
 
-export default function Header({ topbarBgColor, support }: HeaderProps) {
+export default function Header() {
   return (
     <header className={`${styles.header} shadow-sm w-100`}>
-      <Topbar support={support} topbarBgColor={topbarBgColor}>
-        <HeaderSlider />
-      </Topbar>
+      <Topbar />
       <Nav />
     </header>
   );
