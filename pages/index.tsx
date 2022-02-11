@@ -4,11 +4,10 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 import swellNodeInit from "@/lib/swellNode";
-import PopularCategories from "@/components/PopularCategories";
 import Applayout from "@/layout/Applayout";
-import HomepageSlider from "@/components/HomepageSlider";
 import useUserToken from "@/hooks/useUserToken";
 
+const Hero = dynamic(() => import("@/components/Hero"));
 const Metatag = dynamic(() => import("@/components/Metatag"));
 const TrendingProducts = dynamic(() => import("@/components/TrendingProduct"));
 const ShopByBrand = dynamic(() => import("@/components/ShopByBrand"));
@@ -26,8 +25,7 @@ export default function Index({ products }: any) {
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
-      <HomepageSlider />
-      <PopularCategories />
+      <Hero />
       <TrendingProducts products={products} />
       <FeaturedCategory />
       <Banners />

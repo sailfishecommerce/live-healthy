@@ -1,42 +1,26 @@
-/* eslint-disable @next/next/no-img-element */
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { memo } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 import Image from "@/components/Image";
 import JustInView from "@/components/JustInView";
 import sliderContent from "@/json/homepage-slider.json";
 import styles from "@/styles/homepageslider.module.css";
 
-const TinySlider: any = dynamic(() => import("tiny-slider-react"), {
-  ssr: false,
-});
-
 function HomepageSliderComponent() {
-  const settings = {
-    controlsText: [
-      '<i class="ci-arrow-left"></i>',
-      '<i class="ci-arrow-right"></i>',
-    ],
-    nav: false,
-    mouseDrag: true,
-    items: 1,
-    speed: 500,
-    slideCount: false,
-    loop: true,
-    autoplay: true,
-    autoplayHoverPause: true,
-    autoplayButtonOutput: false,
-  };
-
   return (
     <JustInView>
-      <section
-        className={`${styles.tnsCarousel} tns-carousel overflow-hidden tns-controls-lg mb-4 mb-lg-5 w-100`}
-      >
-        <TinySlider className={styles.slider} settings={settings}>
+      <section className={`${styles.carousel} mb-4 mb-lg-5 w-100`}>
+        <Splide
+          options={{
+            autoplay: true,
+            type: "loop",
+          }}
+          className={styles.slider}
+        >
           {sliderContent.map((item, index) => (
-            <div className="tinySlider" key={index}>
+            <SplideSlide className={styles.SplideSlide} key={index}>
               <div className="px-lg-5 sliderItem">
                 <div
                   className={`${styles.imageContainer} d-block order-lg-2 me-lg-5 flex-shrink-0 justify-content-between align-items-center ps-lg-4`}
@@ -78,7 +62,7 @@ function HomepageSliderComponent() {
                   display: flex;
                   align-items: center;
                 }
-                .tinySlider {
+                .slider {
                   background-color: #3aafd2;
                   height: 680px;
                   width: 100%;
@@ -109,9 +93,9 @@ function HomepageSliderComponent() {
                   }
                 }
               `}</style>
-            </div>
+            </SplideSlide>
           ))}
-        </TinySlider>
+        </Splide>
       </section>
     </JustInView>
   );

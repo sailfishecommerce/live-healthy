@@ -1,8 +1,13 @@
 .slider {
   display: flex;
+  height: 100%;
 }
 
-.tnsCarousel {
+.SplideSlide {
+  height: 100%;
+}
+
+.carousel {
   height: 680px;
   background-color: #3aafd2;
   width: 100%;

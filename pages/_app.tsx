@@ -12,7 +12,6 @@ import type { AppProps } from "next/app";
 // import { ReactQueryDevtools } from "react-query/devtools";
 
 import store from "@/redux/store";
-import "nouislider/dist/nouislider.css";
 import "@/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
