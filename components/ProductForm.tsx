@@ -3,14 +3,16 @@ import dynamic from "next/dynamic";
 import { useState, useCallback } from "react";
 
 import { productType, productOptions } from "@/types";
-import {
-  ProductOptionSelect,
-  ProductQuantityCounter,
-  ProductOptionSelectBox,
-} from "./ProductView";
+import { ProductQuantityCounter } from "./ProductView";
 
-const ProductBoxTable = dynamic((): any =>
+const ProductBoxTable: any = dynamic((): any =>
   import("./ProductView").then((mod) => mod.ProductBoxTable)
+);
+const ProductOptionSelect: any = dynamic((): any =>
+  import("./ProductView").then((mod) => mod.ProductOptionSelect)
+);
+const ProductOptionSelectBox: any = dynamic((): any =>
+  import("./ProductView").then((mod) => mod.ProductOptionSelectBox)
 );
 import useProductOptions from "@/hooks/useProductOptions";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";

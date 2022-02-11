@@ -2,7 +2,8 @@
 import { useState } from "react";
 
 import useShoppingCart from "@/hooks/useShoppingCart";
-import { productOptions, productType } from "@/types";
+import { productType } from "@/types";
+import productBox from "@/json/info-section.json";
 
 export function PaymentNote() {
   return (
@@ -45,14 +46,13 @@ export function ProductBoxTable() {
     <div className="productAttribute">
       <table className="table table-bordered">
         <tbody>
-          <tr>
-            <td>1 box</td>
-            <td>100 qty</td>
-          </tr>
-          <tr>
-            <td>1 Carton</td>
-            <td>10 boxes</td>
-          </tr>
+          {productBox.productView.map((row, index) => (
+            <tr key={`row-${index}`}>
+              {row.map((data, index) => (
+                <td key={`data-${index}`}>{data}</td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -60,7 +60,7 @@ export function ProductBoxTable() {
 }
 
 interface ProductOptionSelectType {
-  option: productOptions;
+  option: any;
   selectedItemHandler: (e: any) => void;
 }
 
