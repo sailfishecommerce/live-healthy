@@ -1,29 +1,18 @@
-import { SearchBox, InstantSearch, Configure } from "react-instantsearch-dom";
-import { useRef, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { InstantSearch } from "react-instantsearch-dom";
+import { SearchBox } from "react-instantsearch-dom";
+import { Configure } from "react-instantsearch-dom";
+import dynamic from "next/dynamic";
+import { useRef, useEffect } from "react";
 
-import SearchbarHits from "@/components/Searchbarhits";
-import searchClient from "@/lib/algoliaConfig";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import useVbout from "@/hooks/useVbout";
-import { useAppSelector } from "@/hooks/useRedux";
-import { useAppDispatch } from "@/redux/store";
-import { updateQuery } from "@/redux/algolia-slice";
+import useAlgoliaClient from "@/hooks/useAlgoliaClient";
 
-type paramsType = {
-  params: {
-    query: string;
-  };
-};
+const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
 export default function SearchBar() {
-  const [querylength, setQueryLength] = useState(null);
-  const dispatch = useAppDispatch();
+  const { querylength, algoliasearchClient } = useAlgoliaClient();
   const inputRef = useRef(null);
-  const { closeSearchView } = useAppSelector((state) => state.algolia);
-  const { userDetail }: any = useAppSelector((state) => state.auth);
   const tabWidth = useMediaQuery("(max-width:768px)");
-  const { addProductSearch } = useVbout();
 
   const inputClassName = !tabWidth
     ? "input-group d-none d-lg-flex mx-4"
@@ -35,33 +24,6 @@ export default function SearchBar() {
     const searchInputRef: any = inputRef.current;
     searchInputRef.className = "form-control rounded-end pe-5";
   }, []);
-
-  const algoliasearchClient = {
-    ...searchClient,
-    search(requests: any) {
-      const reqlength = requests[0].params?.query.length;
-      setQueryLength(reqlength);
-      dispatch(updateQuery(requests[0].params?.query));
-      const searchContent = {
-        id: uuidv4(),
-        email: userDetail?.email ? userDetail?.email : "",
-        query: requests[0]?.params?.query,
-      };
-      reqlength > 0 && addProductSearch(searchContent);
-      if (requests.every(({ params }: paramsType): boolean => !params.query)) {
-        return Promise.resolve({
-          results: requests.map(() => ({
-            hits: [],
-            nbHits: 0,
-            nbPages: 0,
-            page: 0,
-            processingTimeMS: 0,
-          })),
-        });
-      }
-      return searchClient.search(requests);
-    },
-  };
 
   return (
     <InstantSearch

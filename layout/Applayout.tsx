@@ -22,17 +22,6 @@ export default function Applayout({
 
   return (
     <LayoutWrapper>
-      <Script strategy="lazyOnload" id="truconversionScript">{`
-        var _tip = _tip || [];
-        (function(d,s,id){
-            var js, tjs = d.getElementsByTagName(s)[0];
-            if(d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.async = true;
-            js.src = d.location.protocol + '//app.truconversion.com/ti-js/19189/ae4b0.js';
-            tjs.parentNode.insertBefore(js, tjs);
-        }(document, 'script', 'ti-js'));                       
-      `}</Script>
       <Script
         src="https://en.trustmate.io/api/widget/4420c1ed-e3a7-47c2-b6a2-2d7386a819da/script"
         strategy="afterInteractive"
@@ -49,7 +38,7 @@ export default function Applayout({
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
       <div id="01739a85-4698-4d4c-90d5-876048fba847"></div>
-      <Footer topSectionBgColor="#373F50" bottomSectionBgColor="#2B3445" />
+      <Footer />
     </LayoutWrapper>
   );
 }

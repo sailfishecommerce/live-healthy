@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import useCart from "@/hooks/useCart";
-import { cartType, productType } from "@/types";
+import {  productType } from "@/types";
 import { CheckoutNote } from "./SlideCartNote";
 
 interface CartProductProps {
@@ -35,7 +35,9 @@ export function DiscountCoupon() {
       <p>$50 Special Discount</p>
       <div className="discount-input d-flex align-items-center">
         <input className="border" placeholder="Enter discount coupon" />{" "}
-        <button aria-label="Add" className="btn btn-success mx-2">ADD</button>
+        <button aria-label="Add" className="btn btn-success mx-2">
+          ADD
+        </button>
       </div>
       <div className="price-group">
         <p>US $ 8,000</p>

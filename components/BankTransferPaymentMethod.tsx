@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import checkoutFormContent from "@/json/checkout-form.json";
-import useVbout from "@/hooks/useVbout";
+import { sendBankTransfer } from "@/hooks/useVbout";
 import { useAppSelector } from "@/hooks/useRedux";
 import { useToast } from "@/hooks";
 
 export default function BankTransferPaymentMethod() {
   const [bank, setBank] = useState("");
-  const { sendBankTransfer } = useVbout();
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const { isLoading, hasError, isSuccessful } = useToast();
 

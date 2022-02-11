@@ -91,5 +91,16 @@
   },
   "hireTalent": {
     "bgImage": "/img/about/03.webp"
-  }
+  },
+  "form": [
+    { "className": "col-sm-6", "placeholder": "Your name", "type": "text" },
+    { "className": "col-sm-6", "placeholder": "Your email", "type": "email" },
+    {
+      "className": "col-12",
+      "placeholder": "Message",
+      "rows": 4,
+      "type": "textarea"
+    },
+    { "className": "col-12", "placeholder": "upload cv", "type": "file" }
+  ]
 }

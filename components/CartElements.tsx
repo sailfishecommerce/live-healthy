@@ -1,4 +1,3 @@
-import useCart from "@/hooks/useCart";
 import useCoupon from "@/hooks/useCoupon";
 import { Button } from "@/components/UIElement";
 import styles from "@/styles/ui.module.css";

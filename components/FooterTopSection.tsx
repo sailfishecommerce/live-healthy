@@ -3,21 +3,16 @@ import Link from "next/link";
 import footerContent from "@/json/footer.json";
 import { useCategoryData } from "@/hooks/useCategory";
 import { contentLinkType } from "@/types";
-import useVbout from "@/hooks/useVbout";
+import { addCategoryView } from "@/hooks/useVbout";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
-interface Props {
-  topSectionBgColor: string;
-}
-
-export default function FooterTopSection({ topSectionBgColor }: Props) {
+export default function FooterTopSection() {
   const [categories, status] = useCategoryData();
 
   if (status === "success") {
     footerContent.section1[0].links = categories?.results.slice(12);
   }
-  const { addCategoryView } = useVbout();
   const { itemViewed } = useAlgoliaEvents();
 
   const selectedFooterCategory = useMarketplaceCategory();
@@ -113,7 +108,7 @@ export default function FooterTopSection({ topSectionBgColor }: Props) {
                       required
                     />
                     <button
-                    aria-label="Subscribe to Newsletter"
+                      aria-label="Subscribe to Newsletter"
                       className="btn btn-primary"
                       type="submit"
                       name="subscribe"
@@ -158,7 +153,7 @@ export default function FooterTopSection({ topSectionBgColor }: Props) {
       <style jsx>
         {`
           .topSection {
-            background-color: ${topSectionBgColor};
+            background-color: #373f50;
           }
           .antispam-container {
             position: absolute;

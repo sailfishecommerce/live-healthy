@@ -24,11 +24,12 @@ const QuickViewModal = dynamic(
 );
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
-  const { toggleCart, slideCart } = useCart();
+  const { toggleCart } = useCart();
   const { modal, onHideModal } = useModal();
   const { scroll } = useScroll();
   const UI = useAppSelector((state) => state.UI);
   const dispatch = useAppDispatch();
+  const { slideCart } = useAppSelector((state) => state.UI);
   const { loading } = useAppSelector((state) => state.checkout);
   const loadingData = useLoading();
 

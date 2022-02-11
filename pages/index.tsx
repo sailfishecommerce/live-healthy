@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import swell from "swell-node";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 import swellNodeInit from "@/lib/swellNode";
 import PopularCategories from "@/components/PopularCategories";
 import Applayout from "@/layout/Applayout";
 import HomepageSlider from "@/components/HomepageSlider";
-import Metatag from "@/components/Metatag";
 import useUserToken from "@/hooks/useUserToken";
 
+const Metatag = dynamic(() => import("@/components/Metatag"));
 const TrendingProducts = dynamic(() => import("@/components/TrendingProduct"));
 const ShopByBrand = dynamic(() => import("@/components/ShopByBrand"));
 const Banners = dynamic(() => import("@/components/Banner"));
@@ -26,13 +26,13 @@ export default function Index({ products }: any) {
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
-        <HomepageSlider />
-        <PopularCategories />
-        <TrendingProducts products={products} />
-         <FeaturedCategory />
-        <Banners />
-        <ShopByBrand />
-        <InfoCards />
+      <HomepageSlider />
+      <PopularCategories />
+      <TrendingProducts products={products} />
+      <FeaturedCategory />
+      <Banners />
+      <ShopByBrand />
+      <InfoCards />
       <style jsx>
         {`
           @media (min-width: 800px) {

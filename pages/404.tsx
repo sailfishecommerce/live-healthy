@@ -1,13 +1,9 @@
-import {
-  PlasmicRootProvider,
-  PlasmicComponent,
-} from "@plasmicapp/loader-react";
-import { PLASMIC } from "../plasmic-init";
+import Applayout from "@/layout/Applayout";
 
 export default function Error404() {
   return (
-    <PlasmicRootProvider loader={PLASMIC}>
-      <PlasmicComponent component="/error" />
-    </PlasmicRootProvider>
+    <Applayout title="Error">
+      <Error404 />
+    </Applayout>
   );
 }

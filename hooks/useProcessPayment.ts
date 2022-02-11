@@ -7,7 +7,7 @@ import useSwellCart from "./useSwellCart";
 import { useAuth, useToast, useAccount, useCart } from "@/hooks";
 import { sendProductReview, updateSubmittedOrder } from "@/redux/payment-slice";
 import { updateCart } from "@/redux/cart-slice";
-import useVbout from "@/hooks/useVbout";
+import { createVboutOrder } from "@/hooks/useVbout";
 import useModal from "@/hooks/useModal";
 import { vboutOrderData } from "@/lib/vbout";
 
@@ -23,7 +23,6 @@ export default function useProcessPayment() {
   const { updateUserBillingInfo, createUserAddresstAtCheckout } = useAccount();
   const dispatch = useAppDispatch();
   const [loadingState, setLoadingState] = useState(false);
-  const { createVboutOrder } = useVbout();
   const { isLoading, isSuccessful, hasError } = useToast();
 
   function processPayment(data: any, loading: any) {

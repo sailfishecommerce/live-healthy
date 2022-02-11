@@ -4,12 +4,11 @@ import useToast from "./useToast";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { authorizeError, authorizeUser, logout } from "@/redux/auth-slice";
-import useVbout from "./useVbout";
+import { addNewUserToList } from "./useVbout";
 
 export default function useAuth() {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
-  const { addNewUserToList } = useVbout();
 
   const { loginUser, logoutUser, signedUserDetails, createUserAccount } =
     useAccount();

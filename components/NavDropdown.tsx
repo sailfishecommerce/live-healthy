@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { useQueryClient, useQuery } from "react-query";
 import Link from "next/link";
 
-import  { useCategoryData } from "@/hooks/useCategory";
+import { useCategoryData } from "@/hooks/useCategory";
 import { categoryType } from "@/types";
-import useVbout from "@/hooks/useVbout";
+import { addCategoryView } from "@/hooks/useVbout";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
 interface Props {
@@ -14,7 +13,6 @@ interface Props {
 function CategoryDropdownList({ category, categories }: Props) {
   const subCategories = categories.filter((cats) => cats.topId === category.id);
   const displayThreeSubCat = subCategories.slice(0, 3);
-  const { addCategoryView } = useVbout();
   const selectedFooterCategory = useMarketplaceCategory();
 
   function linkHandler(category: any) {

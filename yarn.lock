@@ -575,11 +575,6 @@
   dependencies:
     "@splidejs/splide" "^3.6.12"
 
-"@splidejs/splide-extension-grid@^0.3.20":
-  version "0.3.20"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide-extension-grid/-/splide-extension-grid-0.3.20.tgz#e834a0f418e4356588a5b17b92e8b61804b21e64"
-  integrity sha512-3DvhCqlc3B64/6Tr3NkqITIRjkM6p0tKdnJJCB1iHP3fMVAss3KmFeMPdEO2cyD00osSjU/8pkM6pVd5EJCwKA==
-
 "@splidejs/splide@^3.6.12":
   version "3.6.12"
   resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-3.6.12.tgz#9b6bede5c99140fd06754990c91e474374566c30"
@@ -1431,11 +1426,6 @@ bn.js@^5.0.0, bn.js@^5.1.1:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.0.tgz#358860674396c6997771a9d051fcc1b57d4ae002"
   integrity sha512-D7iWRBvnZE8ecXiLj/9wbxH7Tk79fAh8IHaTNq1RWRixsS02W+5qS+iE9yq6RYl0asXx5tw0bLhmT5pIfbSquw==
-
-bootstrap@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.1.3.tgz#ba081b0c130f810fa70900acbc1c6d3c28fa8f34"
-  integrity sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -4733,11 +4723,6 @@ next-purgecss@^4.0.0:
   dependencies:
     glob-all "3.1.0"
     purgecss-webpack-plugin "2.1.0"
-
-next-safe@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/next-safe/-/next-safe-3.2.1.tgz#76bb6deb2b11a39318e5b962a6da4e57584bf77f"
-  integrity sha512-2BBbnendVIlbUjrvV/N6cotuba71i2IIczo0dqmpZu9oSl2PlN6hYML22fidcqXZILwghyXULIy4lxyAgPz+Xg==
 
 next@12.0.7:
   version "12.0.7"

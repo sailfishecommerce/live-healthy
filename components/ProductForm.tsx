@@ -9,7 +9,6 @@ import {
   ProductOptionSelectBox,
 } from "./ProductView";
 import useProductOptions from "@/hooks/useProductOptions";
-import { useCart } from "@/hooks";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
 

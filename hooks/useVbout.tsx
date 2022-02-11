@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   addCartItemVboutType,
   addCategoryViewVboutType,
@@ -6,10 +7,9 @@ import {
   createVboutOrderType,
   updateVboutCartContentType,
 } from "@/types";
-import axios from "axios";
 
-export default function useVbout() {
-  function addNewUserToList(email: string) {
+
+  export function addNewUserToList(email: string) {
     const data: any = {
       email,
       status: "active",
@@ -22,7 +22,7 @@ export default function useVbout() {
     );
   }
 
-  function createVboutCart(content: createVboutContentType) {
+  export function createVboutCart(content: createVboutContentType) {
     const data = {
       uniqueid: content.id,
       cartid: content.cartId,
@@ -41,7 +41,7 @@ export default function useVbout() {
       .catch((error) => console.error("error createVboutCart", error));
   }
 
-  function updateVboutCart(content: updateVboutCartContentType) {
+  export function updateVboutCart(content: updateVboutCartContentType) {
     const data = {
       customer: content.email,
       uniqueid: content.id,
@@ -62,7 +62,7 @@ export default function useVbout() {
     );
   }
 
-  function addCartItemVbout(content: addCartItemVboutType) {
+  export function addCartItemVbout(content: addCartItemVboutType) {
     const data = {
       domain: "VBT-88360-6048",
       customer: content.email,
@@ -84,7 +84,7 @@ export default function useVbout() {
       .catch((error) => console.error("error addCartItemVbout", error));
   }
 
-  function removeVboutCart(cartid: string) {
+  export function removeVboutCart(cartid: string) {
     const data = {
       domain: "VBT-88360-6048",
       cartid,
@@ -100,7 +100,7 @@ export default function useVbout() {
     productId: string;
   };
 
-  function removeVboutCartItem(item: removeVboutCartType) {
+  export function removeVboutCartItem(item: removeVboutCartType) {
     const data = {
       domain: "VBT-88360-6048",
       cartid: item.cartId,
@@ -112,7 +112,7 @@ export default function useVbout() {
     );
   }
 
-  function createVboutOrder(item: createVboutOrderType) {
+  export function createVboutOrder(item: createVboutOrderType) {
     const data = {
       domain: "VBT-88360-6048",
       cartid: item.cartId,
@@ -138,7 +138,7 @@ export default function useVbout() {
       .catch((error) => console.error("error createVboutOrder", error));
   }
 
-  function addProductViewVbout(item: addProductViewVboutType) {
+  export function addProductViewVbout(item: addProductViewVboutType) {
     const data = {
       domain: "VBT-88360-6048",
       uniqueid: item.id,
@@ -159,7 +159,7 @@ export default function useVbout() {
       .catch((error) => console.error("error addProductViewVbout", error));
   }
 
-  function addCategoryViewVbout(item: addCategoryViewVboutType) {
+  export function addCategoryViewVbout(item: addCategoryViewVboutType) {
     const data = {
       domain: "VBT-88360-6048",
       uniqueid: item.id,
@@ -173,7 +173,7 @@ export default function useVbout() {
     );
   }
 
-  function sendBankTransfer(email: string, listid: string) {
+  export function sendBankTransfer(email: string, listid: string) {
     const data = {
       email,
       status: "active",
@@ -191,7 +191,7 @@ export default function useVbout() {
     query: string;
   };
 
-  function addProductSearch(content: addProductSearchType) {
+  export function addProductSearch(content: addProductSearchType) {
     const data = {
       domain: "VBT-88360-6048",
       uniqueid: content.id,
@@ -212,7 +212,7 @@ export default function useVbout() {
     categoryImage: string;
   };
 
-  function addCategoryView(content: addCategoryViewType) {
+  export function addCategoryView(content: addCategoryViewType) {
     const data = {
       domain: "VBT-88360-6048",
       uniqueid: content.id,
@@ -227,18 +227,3 @@ export default function useVbout() {
     );
   }
 
-  return {
-    addNewUserToList,
-    createVboutCart,
-    updateVboutCart,
-    addCartItemVbout,
-    addProductSearch,
-    removeVboutCart,
-    removeVboutCartItem,
-    addProductViewVbout,
-    createVboutOrder,
-    addCategoryViewVbout,
-    sendBankTransfer,
-    addCategoryView,
-  };
-}

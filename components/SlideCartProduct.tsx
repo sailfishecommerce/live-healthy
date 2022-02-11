@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CartControl } from "./CartElements";
 import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
-import useVbout from "@/hooks/useVbout";
+// import { removeVboutCartItem } from "@/hooks/useVbout";
 import useShoppingCart from "@/hooks/useShoppingCart";
 
 interface SlideCartProductProps {
@@ -14,7 +14,6 @@ interface SlideCartProductProps {
 export default function SlideCartProduct({
   item,
 }: SlideCartProductProps): JSX.Element {
-  const { removeVboutCartItem } = useVbout();
   const { dataStatus, removeCartItem } = useShoppingCart();
 
   dataStatus(removeCartItem, `${item.product.name} removed from cart`);

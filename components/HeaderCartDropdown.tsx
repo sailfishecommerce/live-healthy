@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { memo } from "react";
 
 import useCart from "@/hooks/useCart";
 import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
-import useVbout from "@/hooks/useVbout";
+// import { removeVboutCartItem } from "@/hooks/useVbout";
 import Image from "@/components/Image";
 import useShoppingCart from "@/hooks/useShoppingCart";
 
@@ -15,7 +13,6 @@ interface CartWidgetProps {
 }
 
 function CartWidget({ cart }: CartWidgetProps) {
-  const { removeVboutCartItem } = useVbout();
   const { dataStatus, removeCartItem } = useShoppingCart();
 
   dataStatus(removeCartItem, `${cart.product.name} removed from cart`);

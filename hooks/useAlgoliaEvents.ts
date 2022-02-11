@@ -3,13 +3,13 @@ import { useAppSelector } from "./useRedux";
 
 export default function useAlgoliaEvents() {
   const { userToken }: any = useAppSelector((state) => state.user);
-
-  aa("init", {
-    appId: `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
-    apiKey: `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`,
-    useCookie: false,
-  });
-
+  function initializeAlgolia() {
+    aa("init", {
+      appId: `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
+      apiKey: `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`,
+      useCookie: false,
+    });
+  }
   function clickedObjectIDsAfterSearch(
     insights: (
       arg0: string,
@@ -17,6 +17,7 @@ export default function useAlgoliaEvents() {
     ) => void,
     queryID: string
   ) {
+    initializeAlgolia();
     insights("clickedObjectIDsAfterSearch", {
       eventName: "Product Clicked after searching",
       userToken,
@@ -29,6 +30,7 @@ export default function useAlgoliaEvents() {
     objectIDs: string[],
     positions: number[]
   ) {
+    initializeAlgolia();
     aa("clickedObjectIDsAfterSearch", {
       userToken,
       eventName: "Product clicked after a search",
@@ -40,6 +42,7 @@ export default function useAlgoliaEvents() {
   }
 
   function itemViewed(eventName: string, objectIDs: string[] | any) {
+    initializeAlgolia();
     aa("viewedObjectIDs", {
       eventName,
       userToken,
@@ -49,6 +52,7 @@ export default function useAlgoliaEvents() {
   }
 
   function filterViewed(filters: string[]) {
+    initializeAlgolia();
     aa("viewedFilters", {
       eventName: "filter_viewed",
       userToken,
@@ -58,6 +62,7 @@ export default function useAlgoliaEvents() {
   }
 
   function filterClicked(filters: string[]) {
+    initializeAlgolia();
     aa("clickedFilters", {
       eventName: "filter_clicked",
       userToken,
@@ -67,6 +72,7 @@ export default function useAlgoliaEvents() {
   }
 
   function productAddedToCart(objectIDs: string[] | any) {
+    initializeAlgolia();
     aa("convertedObjectIDs", {
       eventName: "product_added_to_cart",
       userToken,
@@ -79,6 +85,7 @@ export default function useAlgoliaEvents() {
     queryID: string,
     objectIDs: string[] | any
   ) {
+    initializeAlgolia();
     aa("convertedObjectIDsAfterSearch", {
       userToken,
       index: "New_Livehealthy_products_index",

@@ -1,17 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-
 import footerBottomContent from "@/json/footer-bottom.json";
 import CurrencyLanguageDropdown from "@/components/CurrencyLanguageDropdown";
 import Image from "@/components/Image";
+import Logo from "./Logo";
 
-interface FooterBottomSectionProps {
-  bottomSectionBgColor: string;
-}
-
-export default function FooterBottomSection({
-  bottomSectionBgColor,
-}: FooterBottomSectionProps) {
+export default function FooterBottomSection() {
   return (
     <>
       <div className="footerBottom pt-5">
@@ -40,21 +32,7 @@ export default function FooterBottomSection({
           <div className="row pb-2">
             <div className="col-md-6 text-center text-md-start mb-4">
               <div className="text-nowrap mb-4 d-flex align-items-center">
-                <Link href="/" passHref>
-                  <a
-                    className="d-inline-block align-middle mt-n1 me-3"
-                    href="#"
-                  >
-                    <Image
-                      className="d-block"
-                      src="/logo.webp"
-                      width={200}
-                      height={70}
-                      alt="Bandicoot"
-                      loading="lazy"
-                    />
-                  </a>
-                </Link>
+                <Logo className="d-inline-block align-middle mt-n1 me-3" />
                 <CurrencyLanguageDropdown position="bottom" />
               </div>
               <div className="site-description">
@@ -102,12 +80,7 @@ export default function FooterBottomSection({
           </div>
           <div className="pb-4 fs-xs text-light opacity-50 text-center text-md-start">
             © All rights reserved. Made by{" "}
-            <a
-              className="text-light"
-              href="https://createx.studio/"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="text-light" href="#" target="_blank" rel="noreferrer">
               Bandicoot Studio
             </a>
           </div>
@@ -116,7 +89,7 @@ export default function FooterBottomSection({
       <style jsx>
         {`
           .footerBottom {
-            background-color: ${bottomSectionBgColor};
+            background-color: #2b3445;
           }
           .icon-text:hover i {
             transition: 0.9s;
