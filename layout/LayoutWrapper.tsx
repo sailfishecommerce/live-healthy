@@ -6,14 +6,14 @@ import Head from "next/head";
 import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import Reward from "@/components/Rewards";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import useLoading from "@/hooks/useLoading";
-import LayoutMetatag from "./LayoutMetatag";
 import useModal from "@/hooks/useModal";
 import displayAppModal from "@/lib/displayAppModal";
 import "react-toastify/dist/ReactToastify.css";
 
+const LayoutMetatag = dynamic(() => import("./LayoutMetatag"));
+const Reward = dynamic(() => import("@/components/Rewards"));
 const SlideCart = dynamic(() => import("../components/SlideCart"));
 const NextNProgress = dynamic(() => import("../components/Nprogress"));
 const LoadingBar = dynamic(() => import("../components/loadingBar"));

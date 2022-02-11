@@ -33,20 +33,6 @@ export default function Index({ products }: any) {
       <Banners />
       <ShopByBrand />
       <InfoCards />
-      <style jsx>
-        {`
-          @media (min-width: 800px) {
-            .reviewBadge {
-              width: 400px;
-            }
-          }
-          @media (max-width: 768px) {
-            .reviewBadge {
-              display: none;
-            }
-          }
-        `}
-      </style>
     </Applayout>
   );
 }

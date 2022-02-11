@@ -1,13 +1,17 @@
 import { useRouter } from "next/router";
-import React, { useState, useCallback } from "react";
+import dynamic from "next/dynamic";
+import { useState, useCallback } from "react";
 
 import { productType, productOptions } from "@/types";
 import {
-  ProductBoxTable,
   ProductOptionSelect,
   ProductQuantityCounter,
   ProductOptionSelectBox,
 } from "./ProductView";
+
+const ProductBoxTable = dynamic((): any =>
+  import("./ProductView").then((mod) => mod.ProductBoxTable)
+);
 import useProductOptions from "@/hooks/useProductOptions";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
@@ -23,7 +27,7 @@ export default function ProductForm({ product }: ProductFormType) {
   const { productAddedToCartAfterSearch, productAddedToCart } =
     useAlgoliaEvents();
   const queryID: any = router.query["query-id"];
-  const { dataStatus, addItemToCartModal } = useShoppingCart();
+  const { addItemToCartModal } = useShoppingCart();
 
   const { optionHandler, selectedOptions } = useProductOptions();
 

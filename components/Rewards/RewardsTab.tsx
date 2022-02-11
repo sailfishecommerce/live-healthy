@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
+
 import rewardContent from "@/json/reward.json";
-import RewardChat from "./RewardChat";
-import EarnRewards from "./RewardView";
+const RewardChat = dynamic(() => import("./RewardChat"));
+const EarnRewards = dynamic(() => import("./RewardView"));
 
 export default function rewardsTab(method: string) {
   switch (method) {

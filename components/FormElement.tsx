@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { FormikProps } from "formik";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const SelectCountries = dynamic(() => import("./SelectCountries"));
 const SearchLocationInput = dynamic(
@@ -170,7 +169,7 @@ export function Select({ content, formik }: SelectProps) {
 
 export function displayFormElement(
   content: any,
-  _formik: FormikProps<any>,
+  _formik: any,
   className?: string,
   withIcon?: string
 ) {
