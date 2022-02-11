@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 
 import Applayout from "@/layout/Applayout";
 import BloglistBanner from "@/components/BloglistBanner";
-import BlogListArticle from "@/components/BlogListArticle";
 import BloglistSidebar from "@/components/BloglistSidebar";
 
 const BlogSlider = dynamic(
@@ -12,6 +11,7 @@ const BlogSlider = dynamic(
     ssr: false,
   }
 );
+const BlogListArticle = dynamic(() => import("@/components/BlogListArticle"));
 
 export default function BlogListSidebar() {
   return (
