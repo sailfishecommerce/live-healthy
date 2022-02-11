@@ -50,8 +50,8 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
           <Image
             className="me-2"
             src="/img/flags/en.png"
-            width={20}
-            height={20}
+            width={40}
+            height={40}
             alt="en"
             layout="responsive"
           />

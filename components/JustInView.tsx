@@ -1,15 +1,22 @@
-import useInView from "react-cool-inview";
+import VisibilitySensor from "react-visibility-sensor";
 
 export default function JustInView({ children, section }: any) {
-  const { observe, inView } = useInView({
-    unobserveOnEnter: true,
-    onEnter: ({ unobserve }) => unobserve(),
-  });
-  console.log("inView", inView, "section", section);
-
+  function onChangeHandler(isVisible: boolean) {
+    console.log("Element is now %s", isVisible ? "visible" : "hidden");
+  }
   return (
-    <div ref={observe}  className="inviewContainer">
-      {inView && <>{children}</>}
-    </div>
+    <VisibilitySensor
+      active={true}
+      partialVisibility={true}
+      offset={{ top: 10 }}
+      minTopValue={100}
+      scrollCheck={true}
+      onChange={onChangeHandler}
+    >
+      {({ isVisible }) => {
+        console.log("isVisible", isVisible, "section",  section);
+        return isVisible ? <>{children}</> : <p>Hrllod</p>;
+      }}
+    </VisibilitySensor>
   );
 }

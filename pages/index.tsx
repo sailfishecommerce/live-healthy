@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import swell from "swell-node";
-import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import swell from "swell-node";
 
 import swellNodeInit from "@/lib/swellNode";
 import Applayout from "@/layout/Applayout";
@@ -14,6 +14,7 @@ const ShopByBrand = dynamic(() => import("@/components/ShopByBrand"));
 const Banners = dynamic(() => import("@/components/Banner"));
 const InfoCards = dynamic(() => import("@/components/InfoCards"));
 const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
+const Footer = dynamic(() => import("../components/Footer"));
 
 export default function Index({ products }: any) {
   const { generateUserToken, authorized } = useUserToken();
@@ -31,6 +32,7 @@ export default function Index({ products }: any) {
       <Banners />
       <ShopByBrand />
       <InfoCards />
+      <Footer />
     </Applayout>
   );
 }

@@ -102,7 +102,7 @@ export function FooterBottomFeatures() {
           transform: rotateY(180deg);
         }
         .text-primary.content-icon {
-          fontsize: 2.25rem;
+          font-size: 2.25rem;
         }
       `}</style>
     </div>

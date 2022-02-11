@@ -1,8 +1,5 @@
 import Link from "next/link";
 
-// () => categoryEvents(contentLink)
-// `/${contentLink.slug}`
-
 function FooterWidgetLink({
   groupedContent,
   onClickHandler,
@@ -38,13 +35,13 @@ export default function FooterLink({ content, multiple, onClickHandler }: any) {
   return (
     <div className="col-md-4 col-sm-6">
       {multiple ? (
-        content.group.map((groupedContent: any, index: number) => {
+        content.group.map((groupedContent: any, index: number) => (
           <FooterWidgetLink
             key={index}
             groupedContent={groupedContent}
             onClick={onClickHandler}
-          />;
-        })
+          />
+        ))
       ) : (
         <FooterWidgetLink
           groupedContent={content}

@@ -40,7 +40,7 @@ export function CartControl({ item }: cartControlProps) {
       <style jsx>
         {`
           .itemQuantity {
-            fontsize: 13px;
+            font-size: 13px;
           }
           .cartControl button {
             height: 30px;
