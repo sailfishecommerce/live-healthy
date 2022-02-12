@@ -30,7 +30,3 @@ export default function CreatePaymentIntentHandler(
     }
   }
 }
-
-// 856c9510dea0c7e8df49e0a5858aca0b
-//CZT5MA7JLJ
-// New_Livehealthy_products_index

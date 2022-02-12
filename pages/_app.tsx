@@ -33,6 +33,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         src="/js/smooth-scroll.js"
         strategy="beforeInteractive"
       />
+      <Script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js"
+        integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ=="
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+        referrerPolicy="no-referrer"
+      />
       <Script type="module" src="/js/theme.js" strategy="afterInteractive" />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
