@@ -38,6 +38,7 @@ export default function Applayout({
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
       <div id="01739a85-4698-4d4c-90d5-876048fba847"></div>
+      <Footer />
     </LayoutWrapper>
   );
 }
