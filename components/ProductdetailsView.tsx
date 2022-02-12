@@ -45,12 +45,20 @@ export default function ProductdetailsView({ product }: any) {
         </div>
         <ProductForm product={productToView} />
         <div
-          className="description"
+          className="description quickView-description"
           dangerouslySetInnerHTML={{
             __html: productToView["description"],
           }}
         />
       </div>
+      <style jsx>
+        {`
+          .description {
+            height: 350px;
+            overflow-y: auto;
+          }
+        `}
+      </style>
     </div>
   );
 }
