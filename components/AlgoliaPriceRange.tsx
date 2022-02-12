@@ -3,6 +3,7 @@ import { connectRange } from "react-instantsearch-dom";
 import { useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
 import Script from "next/script";
+import "nouislider/distribute/nouislider.css";
 
 export default function RangeSlider({
   min,
@@ -44,10 +45,6 @@ export default function RangeSlider({
 
   return (
     <>
-      <Script
-        src=" https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"
-        strategy="afterInteractive"
-      />
       <div className="widget mb-4 pb-4 border-bottom">
         <h3 className="widget-title">Price</h3>
         <Nouislider

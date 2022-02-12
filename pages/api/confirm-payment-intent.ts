@@ -34,6 +34,3 @@ export default function CreatePaymentIntentHandler(
     }
   }
 }
-
-
-// //div[@class='sub_div' and @data-slide='0' ]

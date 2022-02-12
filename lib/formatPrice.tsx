@@ -4,7 +4,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 
 export function formatPrice(price: number) {
   const productPrice = price?.toFixed(2);
-  return productPrice;
+  return numberWithCommas(productPrice);
 }
 
 interface formattedPriceProps {
@@ -61,4 +61,8 @@ export function HkdPrice({ price }: formattedPriceProps): JSX.Element {
       {formatPrice(price)}
     </div>
   );
+}
+
+function numberWithCommas(x: string) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

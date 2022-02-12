@@ -268,6 +268,17 @@ body::-webkit-scrollbar-thumb,
   border: 0px !important;
 }
 
+/* price slider */
+.noUi-handle {
+  margin-top: -5px !important;
+  height: 25px !important;
+  width: 25px !important;
+}
+
+.widget .noUi-horizontal {
+  height: 12px;
+}
+
 /* media query */
 @media (max-width: 768px) {
   .mobileInput button.ais-SearchBox-reset {

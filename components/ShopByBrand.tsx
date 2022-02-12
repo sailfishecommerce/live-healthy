@@ -25,8 +25,9 @@ function ShopByBrandComponent() {
             autoplay: true,
             perPage: 5,
             breakpoints: {
-              300: {
+              450: {
                 perPage: 2,
+                gap: "1rem",
               },
               600: {
                 perPage: 3,

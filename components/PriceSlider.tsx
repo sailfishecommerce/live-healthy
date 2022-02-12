@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
-import Nouislider from "nouislider-react";
-import Router, { useRouter } from "next/router";
+import Head from "next/head";
 import Script from "next/script";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
 
 interface PriceSliderProps {
   onChangeFilter: (e: any) => void;
@@ -24,7 +26,7 @@ export default function PriceSlider({ onChangeFilter }: PriceSliderProps) {
             ["price-min"]: encodeURI(priceMin),
             ["price-max"]: encodeURI(priceMax),
           };
-    Router.push({
+    router.push({
       query: routeQuery,
     });
   }
@@ -41,10 +43,6 @@ export default function PriceSlider({ onChangeFilter }: PriceSliderProps) {
   };
   return (
     <>
-      <Script
-        src=" https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"
-        strategy="afterInteractive"
-      />
       <div className="widget mb-4 pb-4 border-bottom">
         <h3 className="widget-title">Price</h3>
         <Nouislider
