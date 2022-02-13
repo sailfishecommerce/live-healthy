@@ -24,8 +24,8 @@ export default function CreatePaymentIntentHandler(
           return res.status(200).json(response.data);
         })
         .catch((error) => {
-          console.log("error CreatePaymentIntentHandler", error);
-          return res.status(400).json(error);
+          console.log("intentError", error.response.data);
+          return res.status(400).json(error.response.data.message);
         });
     }
   }

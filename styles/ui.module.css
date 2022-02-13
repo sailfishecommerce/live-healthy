@@ -2,6 +2,8 @@ header.header {
   height: 250px;
   max-height: 270px;
   min-height: 230px;
+  position: relative;
+  z-index: 1;
 }
 
 .uiElement:hover span div {

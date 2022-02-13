@@ -19,25 +19,25 @@ const CheckoutWelcomeBanner = dynamic(
 );
 
 export default function Checkout() {
-  const { generateAirwallexAccessToken } = useAirwallex();
+  // const { generateAirwallexAccessToken } = useAirwallex();
   const dispatch = useAppDispatch();
-  const { airwallex, airwallexPaymentIntent } = useAirwallex();
+  // const { airwallex, airwallexPaymentIntent } = useAirwallex();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
 
-  useEffect(() => {
-    generateAirwallexAccessToken();
-  }, []);
+  // useEffect(() => {
+  //   generateAirwallexAccessToken();
+  // }, []);
 
-  useEffect(() => {
-    const isClientSecretValid = clientSecretValidity(airwallex?.clientSecret);
-    if (isClientSecretValid) {
-      dispatch(updateClientSecretStatus(true));
-    } else {
-      dispatch(updateClientSecretStatus(false));
-      airwallexPaymentIntent();
-    }
-  }, [cart]);
+  // useEffect(() => {
+  //   const isClientSecretValid = clientSecretValidity(airwallex?.clientSecret);
+  //   if (isClientSecretValid) {
+  //     dispatch(updateClientSecretStatus(true));
+  //   } else {
+  //     dispatch(updateClientSecretStatus(false));
+  //     airwallexPaymentIntent();
+  //   }
+  // }, [cart]);
 
   return (
     <Applayout title="Checkout your order">

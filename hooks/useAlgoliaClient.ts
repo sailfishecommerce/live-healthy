@@ -21,16 +21,17 @@ export default function useAlgoliaClient() {
   const algoliasearchClient = {
     ...searchClient,
     search(requests: any) {
-      const reqlength = requests[0].params?.query.length;
-      setQueryLength(reqlength);
-      dispatch(updateQuery(requests[0].params?.query));
-      const searchContent = {
-        id: uuidv4(),
-        email: userDetail?.email ? userDetail?.email : "",
-        query: requests[0]?.params?.query,
-      };
-      reqlength > 0 && addProductSearch(searchContent);
-      if (requests.every(({ params }: paramsType): boolean => !params.query)) {
+      if (requests.every(({ params }: any) => !params.query)) {
+        const reqlength = requests[0].params?.query.length;
+        setQueryLength(reqlength);
+        dispatch(updateQuery(requests[0].params?.query));
+        const searchContent = {
+          id: uuidv4(),
+          email: userDetail?.email ? userDetail?.email : "",
+          query: requests[0]?.params?.query,
+        };
+        reqlength > 0 && addProductSearch(searchContent);
+
         return Promise.resolve({
           results: requests.map(() => ({
             hits: [],

@@ -1,15 +1,22 @@
-import useAirwallex from "@/hooks/useAirwallex";
 import { AirwallexDropin } from "@/components";
 import { useEffect } from "react";
+import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AirwallexPaymentMethod() {
-  const { airwallex } = useAirwallex();
+  const { clientSecret, paymentIntentId } = useAppSelector(
+    (state) => state.airwallex
+  );
 
   useEffect(() => {
-    if (airwallex.clientSecret === null && airwallex.paymentIntentId === null) {
-      console.log("airwallex not initialized");
+    if (paymentIntentId === null || clientSecret === null) {
     }
-  }, [airwallex]);
+  }, [clientSecret, paymentIntentId]);
+
+  // useEffect(() => {
+  //   if (airwallex.clientSecret === null && airwallex.paymentIntentId === null) {
+  //     console.log("airwallex not initialized");
+  //   }
+  // }, [airwallex]);
 
   return (
     <div className="accordion-item">
@@ -34,8 +41,8 @@ export default function AirwallexPaymentMethod() {
             to pay
           </p>
           <AirwallexDropin
-            intent_id={airwallex.paymentIntentId}
-            client_secret={airwallex.clientSecret}
+            intent_id={paymentIntentId}
+            client_secret={clientSecret}
           />
         </div>
       </div>
