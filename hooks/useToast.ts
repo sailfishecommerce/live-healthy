@@ -40,13 +40,16 @@ export default function useToast() {
   const toastId: any = useRef(null);
 
   const loadToast = () => {
-    toastId.current = toast.loading("Processing ...", {
-      position: "top-left",
-      closeButton: true,
-    });
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.loading("Processing ...", {
+        position: "top-left",
+        closeButton: true,
+        isLoading: true,
+      });
+    }
   };
 
-  const successToast = (text: string) =>
+  const successToast = (text: string) => {
     toast.update(toastId.current, {
       render: text,
       type: "success",
@@ -55,6 +58,7 @@ export default function useToast() {
       closeButton: true,
       autoClose: 5000,
     });
+  };
 
   const errorToast = (text: string) =>
     toast.update(toastId.current, {
