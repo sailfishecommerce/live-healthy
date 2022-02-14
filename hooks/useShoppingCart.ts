@@ -12,7 +12,6 @@ export default function useShoppingCart() {
   const updateCartItem = useUpdateCartItem();
 
   function loadingState(mutator: any, data: string) {
-    console.log("mutator", mutator);
     mutator.isLoading
       ? loadToast()
       : mutator.isError

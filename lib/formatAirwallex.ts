@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { cartType } from "@/types";
 
 export function formatIntentData(cart: any, paymentForm: any) {
@@ -9,7 +10,7 @@ export function formatIntentData(cart: any, paymentForm: any) {
     amount: cart.grandTotal,
     currency: cart.currency,
     merchant_order_id: cart.checkoutId,
-    request_id: cart.id,
+    request_id: uuidv4(),
     order: {
       products,
       shipping: {
