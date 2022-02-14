@@ -1,3 +1,4 @@
+
 import useCoupon from "@/hooks/useCoupon";
 import { Button } from "@/components/UIElement";
 import styles from "@/styles/ui.module.css";
@@ -10,9 +11,8 @@ interface cartControlProps {
 export function CartControl({ item }: cartControlProps) {
   const stepValue = item?.metadata?.attributes?.box ? 10 : 1;
   const minValue = item?.metadata?.attributes?.box ? 10 : 1;
-  const { dataStatus, updateCartItem } = useShoppingCart();
 
-  dataStatus(updateCartItem, `${item.product.name} updated`);
+  loadingState(updateCartItem, `${item.product.name} updated`);
 
   function updateItemQuantity(e: any) {
     updateCartItem.mutate({ product: item, quantity: e.target.value });

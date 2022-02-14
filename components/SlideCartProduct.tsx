@@ -14,9 +14,9 @@ interface SlideCartProductProps {
 export default function SlideCartProduct({
   item,
 }: SlideCartProductProps): JSX.Element {
-  const { dataStatus, removeCartItem } = useShoppingCart();
+  const { loadingState, removeCartItem } = useShoppingCart();
 
-  dataStatus(removeCartItem, `${item.product.name} removed from cart`);
+  loadingState(removeCartItem, `${item.product.name} removed from cart`);
 
   function removeItemFromCart() {
     removeCartItem.mutate(item);
@@ -35,7 +35,7 @@ export default function SlideCartProduct({
           onClick={removeItemFromCart}
           aria-label="remove"
         >
-          <span >&times;</span>
+          <span>&times;</span>
         </button>
         <div className="d-flex align-items-center">
           <Link href={`/products/${item.product.slug}`} passHref>

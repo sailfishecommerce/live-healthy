@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "react-query";
-import { useToast } from "@/hooks";
 import useSwellCart from "./useSwellCart";
 
 export default function useMutationAction() {
@@ -11,7 +10,6 @@ export default function useMutationAction() {
     addToCartModal,
     removeCartItem,
   } = useSwellCart();
-  const { errorToast, loadToast, successToast } = useToast();
 
   function useUpdateCartItem() {
     return useMutation(
@@ -43,16 +41,6 @@ export default function useMutationAction() {
     });
   }
 
-  function dataStatus(mutationKey: any, success: string, error?: string) {
-    const errorData = error ? error : mutationKey.error;
-
-    return mutationKey.status === "error"
-      ? errorToast(errorData)
-      : mutationKey.status === "loading"
-      ? loadToast()
-      : successToast(success);
-  }
-
   function useAddItemToCartModal() {
     return useMutation(
       ({ product, productQty, selectedOptions }: any) =>
@@ -69,7 +57,6 @@ export default function useMutationAction() {
     useUpdateCartItem,
     useAddItemToCart,
     useRemoveFromCart,
-    dataStatus,
     useAddItemToCartModal,
   };
 }

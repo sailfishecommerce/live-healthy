@@ -12,9 +12,9 @@ interface ProductProps {
 export default function ProductListForm({ product }: ProductProps) {
   const { productAddedToCart } = useAlgoliaEvents();
   const { optionHandler } = useProductOptions();
-  const { dataStatus, addItemToCart } = useShoppingCart();
+  const { loadingState, addItemToCart } = useShoppingCart();
 
-  dataStatus(addItemToCart, `${product.name} added to cart`);
+  loadingState(addItemToCart, `${product.name} added to cart`);
 
   function onSubmitHandler(e: any) {
     e.preventDefault();

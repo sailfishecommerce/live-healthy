@@ -127,9 +127,9 @@ export function ProductQuantityCounter({
   product,
 }: ProductQuantityCounterType) {
   const [itemQty, setItemQty] = useState(1);
-  const { dataStatus, addItemToCartModal } = useShoppingCart();
+  const { loadingState, addItemToCartModal } = useShoppingCart();
 
-  dataStatus(addItemToCartModal, `${product.name} updated`);
+  loadingState(addItemToCartModal, `${product.name} updated`);
 
   function updateCounter(type: "increment" | "decrement") {
     if (type === "increment") {

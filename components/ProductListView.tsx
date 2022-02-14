@@ -10,9 +10,9 @@ const ProductListQuickView = dynamic(() => import("./ProductListQuickView"));
 
 export default function ProductListView({ product }: any) {
   const { itemViewed } = useAlgoliaEvents();
-  const { dataStatus, addItemToCart } = useShoppingCart();
+  const { loadingState, addItemToCart } = useShoppingCart();
 
-  dataStatus(addItemToCart, `${product.name} added to cart`);
+  loadingState(addItemToCart, `${product.name} added to cart`);
 
   function productViewedHandler() {
     itemViewed("product_viewed", [product.objectID]);

@@ -1,24 +1,32 @@
+import { useToast } from ".";
 import useMutationAction from "./useMutationAction";
 
 export default function useShoppingCart() {
-  const {
-    useRemoveFromCart,
-    dataStatus,
-    useAddItemToCartModal,
-    useUpdateCartItem,
-  } = useMutationAction();
-
+  const { useRemoveFromCart, useAddItemToCartModal, useUpdateCartItem } =
+    useMutationAction();
+  const { loadToast, successToast, errorToast } = useToast();
   const { useAddItemToCart } = useMutationAction();
   const removeCartItem = useRemoveFromCart();
   const addItemToCart = useAddItemToCart();
   const addItemToCartModal = useAddItemToCartModal();
   const updateCartItem = useUpdateCartItem();
-  
+
+  function loadingState(mutator: any, data: string) {
+    console.log("mutator", mutator);
+    mutator.isLoading
+      ? loadToast()
+      : mutator.isError
+      ? errorToast("an error occured, please try again")
+      : mutator.isSuccess
+      ? successToast(data)
+      : null;
+  }
+
   return {
     addItemToCart,
-    dataStatus,
     removeCartItem,
     addItemToCartModal,
     updateCartItem,
+    loadingState,
   };
 }

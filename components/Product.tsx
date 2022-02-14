@@ -23,27 +23,6 @@ declare function tcjs(trigger: string, type: string, name: string): any;
 const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
   const { itemViewed } = useAlgoliaEvents();
   const [inHover, setHover] = useState(false);
-  // const { clickedProductAfterSearch, itemClicked, itemViewed } =
-  //   useAlgoliaEvents();
-
-  // function itemClickedAndViewed(objectIDs: string[], id: string[]) {
-  //   const itemId = objectIDs.length > 0 ? objectIDs : id;
-  //   itemClicked("product clicked", itemId);
-  //   itemViewed("product viewed", itemId);
-  // }
-
-  // function trackAlgoliaEvents(
-  //   queryID: string | any,
-  //   objectIDs: string[] | any,
-  //   position: number[] | any,
-  //   id: string[]
-  // ) {
-  //   algoliaEvent === "search"
-  //     ? clickedProductAfterSearch(queryID, objectIDs, position)
-  //     : algoliaEvent === "click"
-  //     ? itemClickedAndViewed(objectIDs, id)
-  //     : null;
-  // }
 
   function productViewHandler() {
     itemViewed("product_viewed", [product.objectID]);
@@ -83,17 +62,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           </button>
         </div>
         <Link href={linkURL} passHref>
-          <a
-            // onClick={() =>
-            //   trackAlgoliaEvents(
-            //     product?.__queryID,
-            //     [product.objectID],
-            //     [product.__position],
-            //     [product.id]
-            //   )
-            // }
-            className="productLink card-img-top d-block"
-          >
+          <a className="productLink card-img-top d-block">
             <div
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}

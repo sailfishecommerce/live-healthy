@@ -19,9 +19,7 @@ export default function ProductViewForm({
     return style;
   }, []);
 
-  const { dataStatus, addItemToCart } = useShoppingCart();
-
-  dataStatus(addItemToCart, `${product.name} added to cart`);
+  const { addItemToCart, loadingState } = useShoppingCart();
 
   function algoliaViewHandler() {
     algoliaQuickViewEvent(product);
@@ -32,6 +30,8 @@ export default function ProductViewForm({
     addItemToCart.mutate({ product, quantity: 1 });
     productAddedToCart([product.id]);
   }
+
+  loadingState(addItemToCart, `${product.name} added to cart`);
 
   return (
     <div className="card-body card-body-hidden">

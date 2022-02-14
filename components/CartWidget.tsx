@@ -10,9 +10,9 @@ interface CartWidgetProps {
 }
 
 export default function CartWidget({ cart }: CartWidgetProps) {
-  const { dataStatus, removeCartItem } = useShoppingCart();
+  const { loadingState, removeCartItem } = useShoppingCart();
 
-  dataStatus(removeCartItem, `${cart.product.name} removed from cart`);
+  loadingState(removeCartItem, `${cart.product.name} removed`);
 
   function removeItemFromCart() {
     removeCartItem.mutate(cart);

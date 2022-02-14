@@ -12,10 +12,10 @@ interface ProductProps {
 }
 
 export default function ProductListQuickView({ product }: ProductProps) {
-  const { dataStatus, addItemToCart } = useShoppingCart();
+  const { loadingState, addItemToCart } = useShoppingCart();
   const { algoliaQuickViewEvent } = useEvent();
 
-  dataStatus(addItemToCart, `${product.name} added to cart`);
+  loadingState(addItemToCart, `${product.name}  added to cart`);
 
   function quickViewHandler() {
     algoliaQuickViewEvent(product);
