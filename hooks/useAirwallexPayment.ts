@@ -1,10 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { formatIntentData } from "@/lib/formatAirwallex";
 import { useRouter } from "next/router";
 import { updatePaymentIntent } from "@/redux/airwallex-slice";
 import { useAppDispatch } from "@/redux/store";
+import { formatIntentData } from "@/lib/formatAirwallex";
 import { cartType } from "@/types";
 
 export default function useAirwallexPayment() {
@@ -31,6 +31,7 @@ export default function useAirwallexPayment() {
     const paymentDetails = formatIntentData(cart, paymentForm);
     createAccessToken()
       .then(({ data }) => {
+        console.log("data createAccessToken", data);
         createPaymentIntent({
           auth: data.token,
           paymentDetails,

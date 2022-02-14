@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
-import swell from "swell-node";
 
-import swellNodeInit from "@/lib/swellNode";
 import Applayout from "@/layout/Applayout";
 import useUserToken from "@/hooks/useUserToken";
 
@@ -15,7 +13,7 @@ const Banners = dynamic(() => import("@/components/Banner"));
 const InfoCards = dynamic(() => import("@/components/InfoCards"));
 const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 
-export default function Index({ products }: any) {
+export default function Index() {
   const { generateUserToken, authorized } = useUserToken();
 
   useEffect(() => {
@@ -26,24 +24,11 @@ export default function Index({ products }: any) {
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
       <Metatag />
       <Hero />
-      <TrendingProducts products={products} />
+      <TrendingProducts />
       <FeaturedCategory />
       <Banners />
       <ShopByBrand />
       <InfoCards />
     </Applayout>
   );
-}
-
-export async function getStaticProps() {
-  swellNodeInit();
-  const products: any = await swell.get("/products", {
-    where: { select_store: "livehealthy" },
-  });
-
-  return {
-    props: {
-      products: products.results,
-    },
-  };
 }
