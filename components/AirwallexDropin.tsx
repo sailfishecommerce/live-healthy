@@ -55,9 +55,6 @@ export default function AirwallexCard({
     }).then(() => {
       createElement("card" as ElementType)?.mount("airwallexCard");
     });
-    const cardAWX = getElement("card");
-
-    console.log("cardAWX", cardAWX);
 
     const onReady = (event: CustomEvent): void => {
       setElementShow(true);

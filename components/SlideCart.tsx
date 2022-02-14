@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from "next/router";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { displayCheckoutModalAction } from "@/redux/ui-slice";
@@ -10,7 +9,6 @@ import SlideCartProduct from "./SlideCartProduct";
 import styles from "@/styles/ui.module.css";
 import { useCart } from "@/hooks";
 import useAirwallexPayment from "@/hooks/useAirwallexPayment";
-import { updatePaymentIntent } from "@/redux/airwallex-slice";
 
 interface slideCartProps {
   toggle: () => void;
@@ -18,84 +16,19 @@ interface slideCartProps {
 
 export default function SlideCart(props: slideCartProps) {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const { paymentForm }: any = useAppSelector((state) => state.payment);
-  const { createAccessToken, createPaymentIntent } = useAirwallexPayment();
+  const { checkoutHandler, disableBtn } = useAirwallexPayment();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-
-  console.log("paymentForm", paymentForm);
 
   function toggleCheckoutModal() {
     dispatch(displayCheckoutModalAction());
     props.toggle();
   }
 
-  function formatProductsArray() {
-    let productArray: any[] = [];
-    cart?.items.map((item: any, index: number) => {
-      productArray[index] = {
-        desc: item.product?.metaTitle,
-        name: item.product.name,
-        quantity: item.quantity,
-        unit_price: item.price,
-        url: `https://www.livehealthy.hk/products/${item.product.slug}`,
-        sku: item?.product.sku,
-      };
-    });
-    return productArray;
-  }
-
-  function checkoutHandler() {
-    const products = formatProductsArray();
-    const street = paymentForm.address1
-      ? paymentForm.address1
-      : paymentForm.state;
+  function onCheckout() {
     toggleCheckoutModal();
-    createAccessToken().then(({ data }) => {
-      createPaymentIntent({
-        auth: data.token,
-        paymentDetails: {
-          amount: cart.grandTotal,
-          currency: cart.currency,
-          merchant_order_id: cart.checkoutId,
-          request_id: `${cart.id}-aa`,
-          order: {
-            products,
-            shipping: {
-              address: {
-                city: paymentForm.city,
-                country_code: paymentForm.country.toUpperCase(),
-                state: paymentForm.state,
-                postcode: paymentForm.zip,
-                street,
-              },
-              first_name: paymentForm.firstName,
-              last_name: paymentForm.lastName,
-            },
-          },
-          payment_method_options: {
-            card: {
-              risk_control: {
-                skip_risk_processing: false,
-                three_domain_secure_action: null,
-                three_ds_action: null,
-              },
-            },
-          },
-        },
-      })
-        .then(({ data }) => {
-          console.log("createPaymentIntent response", data);
-          dispatch(
-            updatePaymentIntent({
-              clientSecret: data.client_secret,
-              paymentIntentId: data.id,
-            })
-          );
-        })
-        .catch((error) => console.log("error", error.response.data));
-    });
+    checkoutHandler(cart, paymentForm);
   }
 
   const cartStyle = cart?.items?.length === 0 ? "justify-center" : "";
@@ -139,7 +72,8 @@ export default function SlideCart(props: slideCartProps) {
                 {/* <Link href="/checkout" passHref> */}
                 <button
                   aria-label="Proceed to Checkout"
-                  onClick={checkoutHandler}
+                  onClick={onCheckout}
+                  disabled={disableBtn}
                   className="btn btn-outline-primary d-block w-100 proceedBtn"
                   type="button"
                 >
@@ -182,7 +116,7 @@ export default function SlideCart(props: slideCartProps) {
             font-weight: bold;
           }
           .slidecart {
-            z-index: 200;
+            z-index: 2000;
             display: d-flex;
             position: fixed;
             right: 0;

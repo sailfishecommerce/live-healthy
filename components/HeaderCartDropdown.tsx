@@ -1,10 +1,11 @@
-import Link from "next/link";
 import { memo } from "react";
 
 import useCart from "@/hooks/useCart";
 import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
 import CartWidget from "./CartWidget";
+import useAirwallexPayment from "@/hooks/useAirwallexPayment";
+import { useAppSelector } from "@/hooks/useRedux";
 
 interface Props {
   cart: cartType;
@@ -12,6 +13,13 @@ interface Props {
 
 function HeaderCartDropdownComponent({ cart }: Props) {
   const { toggleCart } = useCart();
+  const { checkoutHandler, disableBtn } = useAirwallexPayment();
+  const { paymentForm }: any = useAppSelector((state) => state.payment);
+
+  function onCheckout() {
+    checkoutHandler(cart, paymentForm);
+  }
+
   return (
     <div className="dropdown-menu dropdown-menu-end">
       <div className="widget widget-cart px-3 pt-2 pb-3">
@@ -30,12 +38,14 @@ function HeaderCartDropdownComponent({ cart }: Props) {
             <i className="ci-arrow-right ms-1 me-n1"></i>
           </a>
         </div>
-        <Link href="/checkout" passHref>
-          <a className="btn btn-primary btn-sm d-block w-100">
-            <i className="ci-card me-2 fs-base align-middle"></i>
-            Checkout
-          </a>
-        </Link>
+        <button
+          onClick={onCheckout}
+          disabled={disableBtn}
+          className="btn btn-primary btn-sm d-block w-100"
+        >
+          <i className="ci-card me-2 fs-base align-middle"></i>
+          Checkout
+        </button>
       </div>
       <style jsx>
         {`
