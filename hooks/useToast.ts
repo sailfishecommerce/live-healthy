@@ -5,6 +5,7 @@ import useLoading from "@/hooks/useLoading";
 
 export default function useToast() {
   const { updateLoadingState } = useLoading();
+
   function isLoading(): ReactText {
     updateLoadingState();
     const toastId = toast.loading("Processing...", {
@@ -39,7 +40,7 @@ export default function useToast() {
 
   const toastId: any = useRef(null);
 
-  const loadToast = () => {
+  function loadToast() {
     if (!toast.isActive(toastId.current)) {
       toastId.current = toast.loading("Processing ...", {
         position: "top-left",
@@ -47,9 +48,9 @@ export default function useToast() {
         isLoading: true,
       });
     }
-  };
+  }
 
-  const successToast = (text: string) => {
+  function successToast(text: string) {
     toast.update(toastId.current, {
       render: text,
       type: "success",
@@ -58,9 +59,9 @@ export default function useToast() {
       closeButton: true,
       autoClose: 5000,
     });
-  };
+  }
 
-  const errorToast = (text: string) =>
+  function errorToast(text: string) {
     toast.update(toastId.current, {
       render: text,
       type: "error",
@@ -69,6 +70,7 @@ export default function useToast() {
       closeButton: true,
       autoClose: 5000,
     });
+  }
 
   return {
     isLoading,

@@ -169,7 +169,11 @@ export default function AirwallexCard({
 
   return (
     <div>
-      {!elementShow && <SpinnerRipple />}
+      {!elementShow && (
+        <div className="loader d-flex m-auto justify-content-center">
+          <SpinnerRipple />
+        </div>
+      )}
       {errorMessage.length > 0 && (
         <p
           className="alert bg-danger text-white text-center fw-bold"

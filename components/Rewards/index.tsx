@@ -21,7 +21,7 @@ export default function Reward() {
         {`
           .reward-widget {
             position: fixed;
-            z-index: 100;
+            z-index: 1000;
             right: 20px;
             bottom: 20px;
           }

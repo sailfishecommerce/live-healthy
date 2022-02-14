@@ -3,12 +3,9 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 import Applayout from "@/layout/Applayout";
-import useAirwallex from "@/hooks/useAirwallex";
 import CheckoutBanner from "@/components/CheckoutBanner";
-import { useAppDispatch } from "@/hooks/useRedux";
 import useCart from "@/hooks/useCart";
-import { clientSecretValidity } from "@/lib/airwallex-payment";
-import { updateClientSecretStatus } from "@/redux/airwallex-slice";
+import SpinnerRipple from "@/components/spinnerLoader";
 
 const DynamicCheckoutSidebar = dynamic(
   () => import("../components/CheckoutSidebar")
@@ -19,25 +16,8 @@ const CheckoutWelcomeBanner = dynamic(
 );
 
 export default function Checkout() {
-  // const { generateAirwallexAccessToken } = useAirwallex();
-  const dispatch = useAppDispatch();
-  // const { airwallex, airwallexPaymentIntent } = useAirwallex();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-
-  // useEffect(() => {
-  //   generateAirwallexAccessToken();
-  // }, []);
-
-  // useEffect(() => {
-  //   const isClientSecretValid = clientSecretValidity(airwallex?.clientSecret);
-  //   if (isClientSecretValid) {
-  //     dispatch(updateClientSecretStatus(true));
-  //   } else {
-  //     dispatch(updateClientSecretStatus(false));
-  //     airwallexPaymentIntent();
-  //   }
-  // }, [cart]);
 
   return (
     <Applayout title="Checkout your order">
@@ -48,7 +28,13 @@ export default function Checkout() {
             <CheckoutWelcomeBanner />
             <DynamicCheckoutForm />
           </section>
-          {cart && <DynamicCheckoutSidebar cart={cart} />}
+          {cart ? (
+            <DynamicCheckoutSidebar cart={cart} />
+          ) : (
+            <div className="loader d-flex col-lg-4 justify-content-center m-auto">
+              <SpinnerRipple />
+            </div>
+          )}
         </div>
       </div>
       <style jsx>{`
