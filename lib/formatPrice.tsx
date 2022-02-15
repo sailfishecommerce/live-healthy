@@ -35,7 +35,7 @@ function FormatCurrency({
     : price * selectedCurrency[0].rate;
 
   const productItemPrice = isProduct ? priceRate : price;
-  const itemPrice = Math.round(productItemPrice);
+  const itemPrice = formatPrice(productItemPrice);
   return (
     <>
       {currencySymbolFormatter(selectedCurrency[0])}
