@@ -9,14 +9,6 @@ import NavMenu from "./NavMenu";
 function NavTopComponent() {
   const largerDeviceWidth = useMediaQuery("(min-width:768px)");
 
-  function DispalySearchBar() {
-    return <>{largerDeviceWidth && <SearchBar />}</>;
-  }
-
-  const displaySearchBar = useCallback(<DispalySearchBar />, [
-    largerDeviceWidth,
-  ]);
-
   return (
     <>
       <div className="navbar navbar-expand-lg navbar-light">
