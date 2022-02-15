@@ -14,8 +14,9 @@ export function useStorePrice() {
     : [{ symbol: "$", rate: 1 }];
 
   const currentCurrencySymbol = currencySymbolFormatter(selectedCurrency[0]);
+
   const exchangePrice = (price: number) =>
-    currencies ? price * selectedCurrency[0].rate : price;
+    currencies ? price * selectedCurrency[0].rate : 0;
 
   function formatPrice(price: number) {
     const priceRate = price * selectedCurrency[0].rate;

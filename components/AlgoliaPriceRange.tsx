@@ -2,8 +2,9 @@
 import { connectRange } from "react-instantsearch-dom";
 import { useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+
 import { useStorePrice } from "@/hooks/useStorePrice";
+import "nouislider/distribute/nouislider.css";
 
 export default function RangeSlider({
   min,
@@ -12,10 +13,11 @@ export default function RangeSlider({
   canRefine,
   refine,
 }: any) {
-  const { currentCurrencySymbol, exchangePrice } =
-    useStorePrice();
+  const { currentCurrencySymbol, exchangePrice } = useStorePrice();
   const formattedMin = Number(exchangePrice(min));
   const formattedMax = Number(exchangePrice(max));
+
+  console.log("typeof formattedMax", typeof formattedMax);
 
   const [priceMin, setPriceMin] = useState(formattedMin);
   const [priceMax, setPriceMax] = useState(formattedMax);
@@ -67,8 +69,8 @@ export default function RangeSlider({
         <Nouislider
           step={10}
           range={{
-            min: formattedMin,
-            max: formattedMax,
+            min: min,
+            max: max,
           }}
           start={[formattedMin, formattedMax]}
           className="cz-range-slider-ui"

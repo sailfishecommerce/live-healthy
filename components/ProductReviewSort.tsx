@@ -1,4 +1,3 @@
-import React from "react";
 import productReview from "@/json/product-review.json";
 
 export default function ProductReviewSort() {

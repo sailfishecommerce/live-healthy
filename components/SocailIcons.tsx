@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function SocailIcons() {
   return (
     <div className="d-inline-block align-middle">
