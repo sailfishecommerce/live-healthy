@@ -63,6 +63,6 @@ export function HkdPrice({ price }: formattedPriceProps): JSX.Element {
   );
 }
 
-function numberWithCommas(x: string) {
+export function numberWithCommas(x: number | string) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

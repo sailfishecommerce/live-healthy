@@ -22,17 +22,19 @@ export default function ProductListQuickView({ product }: ProductProps) {
   }
 
   return (
-    <div className="card-body card-body-hidden">
-      <ProductListForm product={product} />
-      <div className="text-start">
-        <a
-          className="nav-link-style fs-ms"
-          onClick={quickViewHandler}
-          data-bs-toggle="quickViewModal"
-        >
-          <i className="ci-eye align-middle me-1"></i>
-          Quick view
-        </a>
+    <div className="row">
+      <div className="card-body card-body-hidden d-flex align-items-center justify-content-between px-5">
+        <ProductListForm product={product} />
+        <div className="text-start">
+          <a
+            className="nav-link-style fs-ms"
+            onClick={quickViewHandler}
+            data-bs-toggle="quickViewModal"
+          >
+            <i className="ci-eye align-middle me-1"></i>
+            Quick view
+          </a>
+        </div>
       </div>
     </div>
   );
