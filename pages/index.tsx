@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 import Applayout from "@/layout/Applayout";
 import useUserToken from "@/hooks/useUserToken";
-import { useLoading } from "@/hooks";
 
 const Hero = dynamic(() => import("@/components/Hero"));
 const Metatag = dynamic(() => import("@/components/Metatag"));
@@ -16,9 +15,6 @@ const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 
 export default function Index() {
   const { generateUserToken, authorized } = useUserToken();
-  const { updateLoadingState } = useLoading();
-
-  // updateLoadingState();
 
   useEffect(() => {
     generateUserToken();

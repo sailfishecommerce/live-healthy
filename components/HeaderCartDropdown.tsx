@@ -1,11 +1,11 @@
 import { memo } from "react";
+import Link from "next/link";
 
 import useCart from "@/hooks/useCart";
 import FormattedPrice from "@/lib/formatPrice";
 import { cartType } from "@/types";
 import CartWidget from "./CartWidget";
 import useAirwallexPayment from "@/hooks/useAirwallexPayment";
-import { useAppSelector } from "@/hooks/useRedux";
 
 interface Props {
   cart: cartType;
@@ -13,19 +13,16 @@ interface Props {
 
 function HeaderCartDropdownComponent({ cart }: Props) {
   const { toggleCart } = useCart();
-  const { checkoutHandler, disableBtn } = useAirwallexPayment();
-  const { paymentForm }: any = useAppSelector((state) => state.payment);
-
-  function onCheckout() {
-    checkoutHandler(cart, paymentForm);
-  }
+  const { disableBtn } = useAirwallexPayment();
 
   return (
     <div className="dropdown-menu dropdown-menu-end">
       <div className="widget widget-cart px-3 pt-2 pb-3">
-        {cart?.items.map((item: cartType, index: number) => (
-          <CartWidget key={`item.productId-${index}`} cart={item} />
-        ))}
+        <div className="product-group d-flex flex-column">
+          {cart?.items.map((item: cartType, index: number) => (
+            <CartWidget key={`item.productId-${index}`} cart={item} />
+          ))}
+        </div>
         <div className="d-flex flex-wrap justify-content-between align-items-center py-3">
           <div className="fs-sm me-2 py-2 align-items-baseline">
             <span className="text-muted">Subtotal:</span>
@@ -38,19 +35,25 @@ function HeaderCartDropdownComponent({ cart }: Props) {
             <i className="ci-arrow-right ms-1 me-n1"></i>
           </a>
         </div>
-        <button
-          onClick={onCheckout}
-          disabled={disableBtn}
-          className="btn btn-primary btn-sm d-block w-100"
-        >
-          <i className="ci-card me-2 fs-base align-middle"></i>
-          Checkout
-        </button>
+        <Link href="/checkout" passHref>
+          <button
+            disabled={disableBtn}
+            className="btn btn-primary btn-sm d-block w-100"
+          >
+            <i className="ci-card me-2 fs-base align-middle"></i>
+            Checkout
+          </button>
+        </Link>
       </div>
       <style jsx>
         {`
           .widget.widget-cart {
             width: 20rem;
+          }
+          .product-group {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: unset;
           }
         `}
       </style>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Formik } from "formik";
 
 import checkoutFormContent from "@/json/checkout-form.json";
@@ -8,6 +9,9 @@ import { AddressInputGroup } from "@/components";
 import { accordionButtonStyle } from "@/lib/single-Checkout";
 import { updatePaymentForm } from "@/redux/payment-slice";
 import useShippingPayment from "@/hooks/useShippingPayment";
+import useAirwallexPayment from "@/hooks/useAirwallexPayment";
+import { useCart } from "@/hooks";
+import { useEffect, useState } from "react";
 
 interface ShippingCheckoutFormProps {
   formStages: {
@@ -24,7 +28,25 @@ export default function ShippingCheckoutForm({
 }: ShippingCheckoutFormProps): JSX.Element {
   const accordion = accordionButtonStyle(formStages);
   const { formValues } = useShippingPayment();
+  const [checkoutUser, setCheckoutUser] = useState(false);
+  const [paymentformValues, setPaymentFormValues] = useState<any>(null);
+
   const dispatch = useAppDispatch();
+  const { useCartData } = useCart();
+  const { data: cart } = useCartData();
+
+  const { checkoutHandler } = useAirwallexPayment();
+
+  function onCheckout(paymentForm: any) {
+    checkoutHandler(cart, paymentForm);
+  }
+
+  useEffect(() => {
+    if (checkoutUser && paymentformValues !== null) {
+      onCheckout(paymentformValues);
+      setCheckoutUser(false);
+    }
+  }, [checkoutUser, onCheckout, paymentformValues]);
 
   return (
     <div className="accordion-item">
@@ -55,6 +77,8 @@ export default function ShippingCheckoutForm({
               });
               setSubmitting(false);
               dispatch(updatePaymentForm({ form: values, completed: true }));
+              setCheckoutUser(true);
+              setPaymentFormValues(values);
             }}
           >
             {(formik) => (

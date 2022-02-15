@@ -28,11 +28,12 @@ export default function useAirwallexPayment() {
   }
 
   function checkoutHandler(cart: cartType, paymentForm: any) {
+    console.log("cart checkoutHandler", cart, "paymentForm", paymentForm);
     const paymentDetails = formatIntentData(cart, paymentForm);
     createAccessToken()
       .then(({ data }) => {
         console.log("data createAccessToken", data);
-        createPaymentIntent({
+        return createPaymentIntent({
           auth: data.token,
           paymentDetails,
         });

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   createElement,
   loadAirwallex,
@@ -12,8 +11,6 @@ import { useRouter } from "next/router";
 
 import SpinnerRipple from "@/components/spinnerLoader";
 import { useToast } from "@/hooks";
-import { useAppSelector } from "@/hooks/useRedux";
-import useAirwallex from "@/hooks/useAirwallex";
 
 interface AirwallexDropinProps {
   intent_id: string | any;
@@ -28,9 +25,7 @@ export default function AirwallexCard({
   const [errorMessage, setErrorMessage] = useState("");
   const [inputErrorMessage, setInputErrorMessage] = useState(false);
 
-  const { confirmAirwallexPaymentIntent } = useAirwallex();
   const router = useRouter();
-  const { paymentForm }: any = useAppSelector((state) => state.payment);
 
   const { loadToast, successToast, errorToast } = useToast();
   console.log("intent_id", intent_id, "client_secret", client_secret);
@@ -106,36 +101,6 @@ export default function AirwallexCard({
     loadToast();
     const card: any = getElement("card");
 
-    console.log("cardcard", card);
-    confirmAirwallexPaymentIntent(
-      {
-        request_id: uuidv4(),
-        payment_method: {
-          type: "card",
-          card: {
-            name: `${paymentForm?.firstName} ${paymentForm?.lastName}`,
-            billing: {
-              email: paymentForm?.email,
-              first_name: paymentForm?.firstName,
-              last_name: paymentForm?.lastName,
-              address: {
-                city: paymentForm?.city,
-                postcode: paymentForm.zip,
-                state: paymentForm.state,
-                street: paymentForm.address1,
-                country_code: paymentForm.country.toUpperCase(),
-              },
-            },
-          },
-        },
-        payment_method_options: {
-          card: {
-            auto_capture: true,
-          },
-        },
-      },
-      intent_id
-    );
     confirmPaymentIntent({
       element: card,
       id: intent_id,

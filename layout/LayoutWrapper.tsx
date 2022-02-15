@@ -7,7 +7,6 @@ import useCart from "@/hooks/useCart";
 import useScroll from "@/hooks/useScroll";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal } from "@/redux/ui-slice";
-import useLoading from "@/hooks/useLoading";
 import useModal from "@/hooks/useModal";
 import displayAppModal from "@/lib/displayAppModal";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,11 +28,10 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   const { scroll } = useScroll();
   const UI = useAppSelector((state) => state.UI);
   const dispatch = useAppDispatch();
-  const { slideCart } = useAppSelector((state) => state.UI);
+  const { slideCart, loading: loadingState } = useAppSelector(
+    (state) => state.UI
+  );
   const { loading } = useAppSelector((state) => state.checkout);
-  const loadingData = useLoading();
-
-  const loadingState = loadingData.loading;
 
   const showPointer = scroll > 450 ? true : false;
 

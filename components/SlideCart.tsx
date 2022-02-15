@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/hooks/useRedux";
 import { displayCheckoutModalAction } from "@/redux/ui-slice";
 import { CartDiscount } from "./CartElements";
 import SlideCartNote from "./SlideCartNote";
@@ -16,19 +17,13 @@ interface slideCartProps {
 
 export default function SlideCart(props: slideCartProps) {
   const dispatch = useAppDispatch();
-  const { paymentForm }: any = useAppSelector((state) => state.payment);
-  const { checkoutHandler, disableBtn } = useAirwallexPayment();
+  const { disableBtn } = useAirwallexPayment();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
 
   function toggleCheckoutModal() {
     dispatch(displayCheckoutModalAction());
     props.toggle();
-  }
-
-  function onCheckout() {
-    toggleCheckoutModal();
-    checkoutHandler(cart, paymentForm);
   }
 
   const cartStyle = cart?.items?.length === 0 ? "justify-center" : "";
@@ -69,18 +64,18 @@ export default function SlideCart(props: slideCartProps) {
                   </h5>
                   <hr />
                 </div>
-                {/* <Link href="/checkout" passHref> */}
-                <button
-                  aria-label="Proceed to Checkout"
-                  onClick={onCheckout}
-                  disabled={disableBtn}
-                  className="btn btn-outline-primary d-block w-100 proceedBtn"
-                  type="button"
-                >
-                  <img alt="checkout icon" src="/icons/checkoutIcon.svg" />{" "}
-                  <span className="mx-2">PROCEED TO CHECKOUT</span>
-                </button>
-                {/* </Link> */}
+                <Link href="/checkout" passHref>
+                  <button
+                    aria-label="Proceed to Checkout"
+                    disabled={disableBtn}
+                    onClick={toggleCheckoutModal}
+                    className="btn btn-outline-primary d-block w-100 proceedBtn"
+                    type="button"
+                  >
+                    <img alt="checkout icon" src="/icons/checkoutIcon.svg" />{" "}
+                    <span className="mx-2">PROCEED TO CHECKOUT</span>
+                  </button>
+                </Link>
               </div>
             </div>
           ) : (
