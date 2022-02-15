@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import swellClientInit from "@/lib/config";
 import { useAppSelector } from "./useRedux";
 

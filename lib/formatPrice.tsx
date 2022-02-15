@@ -1,5 +1,4 @@
-import { currencySymbolFormatter } from "@/hooks/useCurrency";
-import useQueryData from "@/hooks/useQueryData";
+import { currencySymbolFormatter, useCurrencies } from "@/hooks/useCurrency";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export function formatPrice(price: number) {
@@ -13,52 +12,63 @@ interface formattedPriceProps {
   isProduct?: boolean;
 }
 
-export default function FormattedPrice({
+interface formatCurrencyProps extends formattedPriceProps {
+  currencies: any[];
+  currency: any;
+}
+
+function FormatCurrency({
   price,
   oldPrice,
   isProduct,
-}: formattedPriceProps): JSX.Element {
-  const currencies: any = useQueryData("currencies");
-  const { currency } = useAppSelector((state) => state.currencyLanguage);
+  currencies,
+  currency,
+}: formatCurrencyProps): JSX.Element {
+  const selectedCurrency = currencies?.filter(
+    (currencyP: { code: string }) => currencyP.code === currency
+  );
 
-  const selectedCurrency = currencies
-    ? currencies?.filter(
-        (currencyP: { code: string }) => currencyP.code === currency
-      )
-    : [{ symbol: "$", rate: 1 }];
-  const siteCurriences =
-    currencies !== undefined ? currencies : [{ symbol: "$", rate: 1 }];
-  const currencyRate =
-    currencies !== undefined ? currencies[1].rate : siteCurriences[0].rate;
+  const currencyRate = currencies[1].rate;
 
   const priceRate = oldPrice
     ? (price / currencyRate) * selectedCurrency[0].rate
     : price * selectedCurrency[0].rate;
 
   const productItemPrice = isProduct ? priceRate : price;
-
+  const itemPrice = Math.round(productItemPrice);
   return (
-    <div className="d-flex align-items-baseline">
-      {currencies ? currencySymbolFormatter(selectedCurrency[0]) : "HKD $"}
-      {formatPrice(productItemPrice)}
-    </div>
+    <>
+      {currencySymbolFormatter(selectedCurrency[0])}
+      {itemPrice}
+    </>
   );
 }
 
-export function HkdPrice({ price }: formattedPriceProps): JSX.Element {
-  const currencies: any = useQueryData("currencies");
+export default function FormattedPrice({
+  price,
+  oldPrice,
+  isProduct,
+}: formattedPriceProps): JSX.Element {
+  const [currencies, status] = useCurrencies();
   const { currency } = useAppSelector((state) => state.currencyLanguage);
 
-  const selectedCurrency = currencies
-    ? currencies.filter(
-        (currencyP: { code: string }) => currencyP.code === currency
-      )
-    : [{ symbol: "$", rate: 1 }];
+  console.log("currencies", currencies);
 
   return (
     <div className="d-flex align-items-baseline">
-      {currencies ? currencySymbolFormatter(selectedCurrency[0]) : "HKD $"}
-      {formatPrice(price)}
+      {status === "error" ? (
+        "unable to fetch price"
+      ) : status === "loading" ? (
+        "loading ..."
+      ) : (
+        <FormatCurrency
+          price={price}
+          oldPrice={oldPrice}
+          isProduct={isProduct}
+          currencies={currencies}
+          currency={currency}
+        />
+      )}
     </div>
   );
 }

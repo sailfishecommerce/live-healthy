@@ -11,7 +11,6 @@ interface Props {
   product: productType;
 }
 export default function ProductReviews({ product }: Props) {
-  console.log("product", product);
   return (
     <div className="border-top my-lg-3 py-5 w-100">
       <Script
