@@ -7,12 +7,6 @@ import { updateQuery } from "@/redux/algolia-slice";
 import { useAppSelector } from "@/hooks/useRedux";
 import { addProductSearch } from "@/hooks/useVbout";
 
-type paramsType = {
-  params: {
-    query: string;
-  };
-};
-
 export default function useAlgoliaClient() {
   const [querylength, setQueryLength] = useState(null);
   const dispatch = useAppDispatch();

@@ -6,7 +6,7 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 import VendorCategories from "./VendorCategories";
-import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
+import { AlgoliaView } from "./AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   category?: {
@@ -18,7 +18,7 @@ interface MarketplaceProps {
 
 export default function VendorView({ category, vendor }: MarketplaceProps) {
   return (
-    <AlgoliaInstantSearch>
+    <AlgoliaView>
       <Configure
         hitsPerPage={16}
         clickAnalytics
@@ -77,6 +77,6 @@ export default function VendorView({ category, vendor }: MarketplaceProps) {
           }
         `}
       </style>
-    </AlgoliaInstantSearch>
+    </AlgoliaView>
   );
 }

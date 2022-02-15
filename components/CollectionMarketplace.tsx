@@ -5,7 +5,7 @@ import Categories from "@/components/Categories";
 import ShopBannerToolbar from "@/components/ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 import CollectionCurrentRefinements from "./CollectionCurrentRefinement";
-import AlgoliaInstantSearch from "@/components/AlgoliaInstantSearch";
+import { AlgoliaView } from "@/components/AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   collection?: {
@@ -18,7 +18,7 @@ export default function CollectionMarketplace({
   collection,
 }: MarketplaceProps) {
   return (
-    <AlgoliaInstantSearch>
+    <AlgoliaView>
       <Configure
         hitsPerPage={15}
         clickAnalytics
@@ -64,6 +64,6 @@ export default function CollectionMarketplace({
           </section>
         </div>
       </div>
-    </AlgoliaInstantSearch>
+    </AlgoliaView>
   );
 }

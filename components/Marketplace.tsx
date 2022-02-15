@@ -6,7 +6,7 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
-import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
+import {AlgoliaView} from "./AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   category?: {
@@ -17,7 +17,7 @@ interface MarketplaceProps {
 
 export default function Marketplace({ category }: MarketplaceProps) {
   return (
-    <AlgoliaInstantSearch>
+    <AlgoliaView>
       <Configure
         hitsPerPage={16}
         clickAnalytics
@@ -63,6 +63,6 @@ export default function Marketplace({ category }: MarketplaceProps) {
           </section>
         </div>
       </div>
-    </AlgoliaInstantSearch>
+    </AlgoliaView>
   );
 }

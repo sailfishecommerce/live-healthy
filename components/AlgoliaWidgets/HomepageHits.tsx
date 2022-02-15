@@ -1,11 +1,11 @@
 import { Configure } from "react-instantsearch-dom";
 
 import { HitProduct } from "@/components/ProductHit";
-import AlgoliaInstantSearch from "../AlgoliaInstantSearch";
+import { AlgoliaView } from "../AlgoliaInstantSearch";
 
 export default function HomepageHits() {
   return (
-    <AlgoliaInstantSearch>
+    <AlgoliaView>
       <Configure
         hitsPerPage={6}
         clickAnalytics
@@ -16,6 +16,6 @@ export default function HomepageHits() {
         <h3 className="text-center mb-2">Trending Products</h3>
         <HitProduct />
       </section>
-    </AlgoliaInstantSearch>
+    </AlgoliaView>
   );
 }
