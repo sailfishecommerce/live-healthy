@@ -7,6 +7,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="preload"
+            as="style"
             href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"
             crossOrigin="true"
           />

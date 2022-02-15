@@ -3,7 +3,6 @@ import { connectRange } from "react-instantsearch-dom";
 import { useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
 
-import { useStorePrice } from "@/hooks/useStorePrice";
 import "nouislider/distribute/nouislider.css";
 
 export default function RangeSlider({
@@ -13,41 +12,23 @@ export default function RangeSlider({
   canRefine,
   refine,
 }: any) {
-  const { currentCurrencySymbol, exchangePrice } = useStorePrice();
-  const formattedMin = Number(exchangePrice(min));
-  const formattedMax = Number(exchangePrice(max));
-
-  console.log("typeof formattedMax", typeof formattedMax);
-
-  const [priceMin, setPriceMin] = useState(formattedMin);
-  const [priceMax, setPriceMax] = useState(formattedMax);
+  const [priceMin, setPriceMin] = useState(min);
+  const [priceMax, setPriceMax] = useState(max);
 
   useEffect(() => {
     if (canRefine) {
-      setPriceMin(exchangePrice(currentRefinement.min));
-      setPriceMax(exchangePrice(currentRefinement.max));
+      setPriceMin(currentRefinement.min);
+      setPriceMax(currentRefinement.max);
     }
-  }, [
-    exchangePrice(currentRefinement.min),
-    exchangePrice(currentRefinement.max),
-  ]);
+  }, [currentRefinement.min, currentRefinement.max]);
 
-  if (formattedMin === formattedMax) {
+  if (min === max) {
     return null;
   }
 
-  const onChange = ([formattedMin, formattedMax]: any) => {
-    console.log(
-      "currentRefinement-max",
-      exchangePrice(currentRefinement.max),
-      "formattedMax",
-      formattedMax
-    );
-    if (
-      exchangePrice(currentRefinement.min) !== formattedMin ||
-      exchangePrice(currentRefinement.max) !== formattedMax
-    ) {
-      refine({ formattedMin, formattedMax });
+  const onChange = ([min, max]: any) => {
+    if (currentRefinement.min !== min || currentRefinement.max !== max) {
+      refine({ min, max });
     }
   };
 
@@ -72,7 +53,7 @@ export default function RangeSlider({
             min: min,
             max: max,
           }}
-          start={[formattedMin, formattedMax]}
+          start={[min, max]}
           className="cz-range-slider-ui"
           pips={{ mode: "count", values: 5 }}
           connect
@@ -84,9 +65,7 @@ export default function RangeSlider({
           <div className="d-flex pb-1">
             <div className="w-50 pe-2 me-2">
               <div className="input-group input-group-sm">
-                <span className="input-group-text">
-                  {currentCurrencySymbol}{" "}
-                </span>
+                <span className="input-group-text">$ </span>
                 <input
                   className="form-control range-slider-value-min"
                   type="text"
@@ -96,9 +75,7 @@ export default function RangeSlider({
             </div>
             <div className="w-50 ps-2">
               <div className="input-group input-group-sm">
-                <span className="input-group-text">
-                  {currentCurrencySymbol}
-                </span>
+                <span className="input-group-text">$</span>
                 <input
                   className="form-control range-slider-value-max"
                   type="text"
