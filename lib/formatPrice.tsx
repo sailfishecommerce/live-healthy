@@ -52,8 +52,6 @@ export default function FormattedPrice({
   const [currencies, status] = useCurrencies();
   const { currency } = useAppSelector((state) => state.currencyLanguage);
 
-  console.log("currencies", currencies);
-
   return (
     <div className="d-flex align-items-baseline">
       {status === "error" ? (

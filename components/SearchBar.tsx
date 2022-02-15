@@ -11,6 +11,7 @@ const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
 export default function SearchBar() {
   const { querylength } = useAlgoliaClient();
+  console.log("querylength", querylength);
   const inputRef = useRef(null);
   const tabWidth = useMediaQuery("(max-width:768px)");
 

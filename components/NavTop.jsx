@@ -1,11 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, memo } from "react";
 import SearchBar from "@/components/SearchBar";
 import Logo from "@/components/Logo";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import NavMenu from "./NavMenu";
 
-export default function NavTop() {
+function NavTopComponent() {
   const largerDeviceWidth = useMediaQuery("(min-width:768px)");
+
+  function DispalySearchBar() {
+    return <>{largerDeviceWidth && <SearchBar />}</>;
+  }
+
+  const displaySearchBar = useCallback(<DispalySearchBar />, [
+    largerDeviceWidth,
+  ]);
 
   return (
     <>
@@ -28,3 +38,6 @@ export default function NavTop() {
     </>
   );
 }
+
+const NavTop = memo(NavTopComponent);
+export default NavTop;
