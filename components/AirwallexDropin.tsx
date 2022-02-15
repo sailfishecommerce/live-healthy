@@ -23,7 +23,6 @@ export default function AirwallexCard({
   const [elementShow, setElementShow] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [inputErrorMessage, setInputErrorMessage] = useState(false);
 
   const router = useRouter();
 
@@ -47,7 +46,7 @@ export default function AirwallexCard({
         },
       ],
     }).then(() => {
-      createElement("card" as ElementType)?.mount("airwallexCard");
+      createElement("card" as ElementType)?.mount("card");
     });
 
     const onReady = (event: CustomEvent): void => {
@@ -64,27 +63,11 @@ export default function AirwallexCard({
       setErrorMessage(error.message ?? JSON.stringify(error));
     };
 
-    // STEP #9: Add an event listener to get input focus status
-    const onFocus = (_event: CustomEvent) => {
-      setInputErrorMessage(false); // Example: clear input error message
-    };
-
-    // STEP #10: Add an event listener to show input error message when finish typing
-    const onBlur = (event: CustomEvent) => {
-      const { error } = event.detail;
-      setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
-    };
-
     window.addEventListener("onReady", onReady as EventListener);
     window.addEventListener("onError", onError as EventListener);
-    window.addEventListener("onBlur", onBlur as EventListener);
-    window.addEventListener("onFocus", onFocus as EventListener);
-
     return () => {
       window.removeEventListener("onReady", onReady as EventListener);
       window.removeEventListener("onError", onError as EventListener);
-      window.removeEventListener("onBlur", onBlur as EventListener);
-      window.removeEventListener("onFocus", onFocus as EventListener);
     };
   }, []);
 
@@ -98,31 +81,36 @@ export default function AirwallexCard({
     setIsSubmitting(true);
     loadToast();
     const card: any = getElement("card");
-
-    confirmPaymentIntent({
-      element: card,
-      id: intent_id,
-      client_secret,
-    })
-      .then((response) => {
-        console.log("response triggerConfirm", response);
-        setIsSubmitting(false);
-        successToast("Payment successful");
-        window.alert(
-          `Payment Intent confirmation was successful: ${JSON.stringify(
-            response
-          )}`
-        );
-        router.push("/checkout-complete");
+    if (card) {
+      confirmPaymentIntent({
+        element: card,
+        id: intent_id,
+        client_secret,
+        payment_method_options: {
+          card: {
+            auto_capture: true,
+          },
+        },
       })
-      .catch((error) => {
-        setIsSubmitting(false);
-        setErrorMessage(error.message ?? JSON.stringify(error));
-        console.error("There is an error", error);
-        errorToast(error);
-      });
+        .then((response) => {
+          console.log("response triggerConfirm", response);
+          setIsSubmitting(false);
+          successToast("Payment successful");
+          window.alert(
+            `Payment Intent confirmation was successful: ${JSON.stringify(
+              response
+            )}`
+          );
+          router.push("/checkout-complete");
+        })
+        .catch((error) => {
+          setIsSubmitting(false);
+          setErrorMessage(error.message ?? JSON.stringify(error));
+          console.error("There is an error", error);
+          errorToast(error);
+        });
+    }
   };
-
   const fieldContainerStyle = useMemo(
     () => ({
       display: elementShow ? "block" : "none",
@@ -146,7 +134,7 @@ export default function AirwallexCard({
         </p>
       )}
       <div className="field-container" style={fieldContainerStyle}>
-        <div id="airwallexCard" className="form-control" />
+        <div id="card" className="form-control" />
         <button
           className="btn btn-outline-primary d-flex m-auto mt-4 mb-2"
           onClick={triggerConfirm}
