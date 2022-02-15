@@ -32,7 +32,6 @@ export default function ProductCategory({
     setLoading(true);
     getProductsInACategory(slug)
       .then((response) => {
-        console.log("response getCategoryProduct", response);
         setCategoryProducts(response.results);
         setLoading(false);
       })

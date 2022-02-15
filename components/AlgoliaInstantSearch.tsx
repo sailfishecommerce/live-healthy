@@ -9,7 +9,7 @@ export default function AlgoliaInstantSearch({
 }: PropsWithChildren<{}>) {
   const { getAlgoliaClient } = useAlgoliaClient();
   const algoliasearchClient = getAlgoliaClient();
-  console.log("algoliasearchClient", algoliasearchClient);
+
   return (
     <InstantSearch
       indexName="New_Livehealthy_products_index"

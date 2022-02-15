@@ -28,7 +28,6 @@ export default function AirwallexCard({
   const router = useRouter();
 
   const { loadToast, successToast, errorToast } = useToast();
-  console.log("intent_id", intent_id, "client_secret", client_secret);
 
   useEffect(() => {
     if (errorMessage.length > 0) {
@@ -63,7 +62,6 @@ export default function AirwallexCard({
       setIsSubmitting(false);
       errorToast(error);
       setErrorMessage(error.message ?? JSON.stringify(error));
-      console.log("There is an error", error);
     };
 
     // STEP #9: Add an event listener to get input focus status

@@ -12,7 +12,6 @@ export default function AccountRecoveryform() {
   const { forgotPassword } = useAccount();
   const [recoveryStatus, setRecoveryStatus] = useState<null | stateType>(null);
   const { updateLoadingState } = useLoading();
-  console.log("recoveryStatus", recoveryStatus);
 
   return (
     <div className="card py-2 mt-4">
@@ -22,11 +21,9 @@ export default function AccountRecoveryform() {
         }}
         validationSchema={passwordRecoverySchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log("values", values);
           updateLoadingState();
           forgotPassword(values.email)
             .then((response) => {
-              console.log("response forgotPassword", response);
               updateLoadingState();
               setRecoveryStatus({
                 status: response,
@@ -35,7 +32,6 @@ export default function AccountRecoveryform() {
               resetForm();
             })
             .catch((error) => {
-              console.log("error forgotPassword", error);
               setRecoveryStatus({
                 status: error,
               });

@@ -31,8 +31,6 @@ export default function BankTransferPaymentMethod() {
       });
   }
 
-  console.log("bank", bank);
-
   return (
     <div className="accordion-item">
       <h3 className="accordion-header">

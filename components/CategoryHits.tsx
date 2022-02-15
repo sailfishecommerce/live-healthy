@@ -19,7 +19,6 @@ export default function CategoryHits({ hits }: Props) {
   //   const filterHits = hits.filter((fhits) => fhits?.images.length !== 0);
   const { productView } = useAppSelector((state) => state.shop);
 
-  console.log("data", data);
   return (
     <>
       {/* {filterHits && filterHits.length > 0 ? (
