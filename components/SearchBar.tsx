@@ -1,4 +1,3 @@
-import { InstantSearch } from "react-instantsearch-dom";
 import { SearchBox } from "react-instantsearch-dom";
 import { Configure } from "react-instantsearch-dom";
 import dynamic from "next/dynamic";
@@ -6,11 +5,12 @@ import { useRef, useEffect } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useAlgoliaClient from "@/hooks/useAlgoliaClient";
+import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
 
 const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
 export default function SearchBar() {
-  const { querylength, algoliasearchClient } = useAlgoliaClient();
+  const { querylength } = useAlgoliaClient();
   const inputRef = useRef(null);
   const tabWidth = useMediaQuery("(max-width:768px)");
 
@@ -26,10 +26,7 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <InstantSearch
-      indexName="New_Livehealthy_products_index"
-      searchClient={algoliasearchClient}
-    >
+    <AlgoliaInstantSearch>
       <Configure clickAnalytics distinct enablePersonalization />
       <div className="searchBox">
         <div className={inputContainerClassName}>
@@ -99,6 +96,6 @@ export default function SearchBar() {
           }
         `}
       </style>
-    </InstantSearch>
+    </AlgoliaInstantSearch>
   );
 }

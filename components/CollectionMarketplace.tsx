@@ -1,11 +1,11 @@
-import { InstantSearch, Configure } from "react-instantsearch-dom";
+import { Configure } from "react-instantsearch-dom";
 import Link from "next/link";
-import searchClient from "@/lib/algoliaConfig";
 
 import Categories from "@/components/Categories";
-import ShopBannerToolbar from "./ShopBannerToolbar";
+import ShopBannerToolbar from "@/components/ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 import CollectionCurrentRefinements from "./CollectionCurrentRefinement";
+import AlgoliaInstantSearch from "@/components/AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   collection?: {
@@ -18,10 +18,7 @@ export default function CollectionMarketplace({
   collection,
 }: MarketplaceProps) {
   return (
-    <InstantSearch
-      indexName="New_Livehealthy_products_index"
-      searchClient={searchClient}
-    >
+    <AlgoliaInstantSearch>
       <Configure
         hitsPerPage={15}
         clickAnalytics
@@ -67,6 +64,6 @@ export default function CollectionMarketplace({
           </section>
         </div>
       </div>
-    </InstantSearch>
+    </AlgoliaInstantSearch>
   );
 }

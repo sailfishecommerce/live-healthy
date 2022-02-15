@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { InstantSearch, Configure } from "react-instantsearch-dom";
+import { Configure } from "react-instantsearch-dom";
 import Link from "next/link";
-import searchClient from "@/lib/algoliaConfig";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
 import VendorCategories from "./VendorCategories";
+import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   category?: {
@@ -16,12 +16,9 @@ interface MarketplaceProps {
   vendor: any;
 }
 
-export default function VendorView({ category, vendor }: MarketplaceProps) {  
+export default function VendorView({ category, vendor }: MarketplaceProps) {
   return (
-    <InstantSearch
-      indexName="New_Livehealthy_products_index"
-      searchClient={searchClient}
-    >
+    <AlgoliaInstantSearch>
       <Configure
         hitsPerPage={16}
         clickAnalytics
@@ -80,6 +77,6 @@ export default function VendorView({ category, vendor }: MarketplaceProps) {
           }
         `}
       </style>
-    </InstantSearch>
+    </AlgoliaInstantSearch>
   );
 }

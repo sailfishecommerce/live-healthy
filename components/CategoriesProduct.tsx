@@ -1,12 +1,11 @@
 import { memo } from "react";
 import {
   Configure,
-  InstantSearch,
   connectRefinementList,
 } from "react-instantsearch-dom";
 
-import searchClient from "@/lib/algoliaConfig";
 import { HitProduct } from "@/components/ProductHit";
+import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
 
 interface Props {
   category: string;
@@ -22,10 +21,7 @@ function CategoryProducts({ category }: Props) {
   return (
     <section className="container pt-md-3 pb-0 mb-md-3 w-100">
       <h2 className="h3 text-start">{category} products</h2>
-      <InstantSearch
-        indexName="New_Livehealthy_products_index"
-        searchClient={searchClient}
-      >
+      <AlgoliaInstantSearch>
         <Configure
           hitsPerPage={3}
           clickAnalytics
@@ -37,7 +33,7 @@ function CategoryProducts({ category }: Props) {
           attribute="product_type"
         />
         <HitProduct />
-      </InstantSearch>
+      </AlgoliaInstantSearch>
       <style jsx>
         {`
           section.container h2 {
