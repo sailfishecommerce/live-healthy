@@ -15,7 +15,9 @@ export default function OrderTrackingBanner() {
                 </Link>
               </li>
               <li className="breadcrumb-item text-nowrap">
-                <a href="#">Shop</a>
+                <Link href="/shop" passHref>
+                  <a>Shop</a>
+                </Link>
               </li>
               <li
                 className="breadcrumb-item text-nowrap active"
@@ -28,8 +30,7 @@ export default function OrderTrackingBanner() {
         </div>
         <div className="order-lg-1 pe-lg-4 text-center text-lg-start">
           <h1 className="h3 text-light mb-0">
-            Tracking order:{" "}
-            <span className="h4 fw-normal text-light">34VB5540K83</span>
+            Track your order <span className="h4 fw-normal text-light"></span>
           </h1>
         </div>
       </div>

@@ -1,8 +1,12 @@
+import Link from "next/link";
+
 import Applayout from "@/layout/Applayout";
 import OrderTrackingBanner from "@/components/OrderTrackingBanner";
 import contentData from "@/json/order-tracking.json";
+import expectedOrderDate from "@/lib/formatOrderDate";
 
 export default function OrderTracking() {
+  contentData.group1[2].text = expectedOrderDate();
   return (
     <Applayout title="Track your order">
       <OrderTrackingBanner />
@@ -58,13 +62,9 @@ export default function OrderTracking() {
               Notify me when order is delivered
             </label>
           </div>
-          <a
-            className="btn btn-primary btn-sm mt-2"
-            href="#order-details"
-            data-bs-toggle="modal"
-          >
-            View Order Details
-          </a>
+          <Link href="/shop" passHref>
+            <a className="btn btn-primary btn-sm mt-2">To Continue Shopping</a>
+          </Link>
         </div>
       </div>
     </Applayout>
