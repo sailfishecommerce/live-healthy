@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 import Applayout from "@/layout/Applayout";

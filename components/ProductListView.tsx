@@ -29,12 +29,12 @@ export default function ProductListView({ product }: any) {
         <div className="d-flex justify-content-between">
           <div className="product-price d-flex align-items-baseline">
             <span className="text-accent">
-              <FormattedPrice price={product.price} />
+              <FormattedPrice price={product.price} isProduct />
             </span>
-            {product.origPrice && (
+            {product.hkd_compare_at_price && (
               <span className="small text-accent mx-2">
                 <del className="fs-sm text-muted">
-                  <FormattedPrice price={product.origPrice} />
+                  <FormattedPrice price={product.hkd_compare_at_price} />
                 </del>
               </span>
             )}

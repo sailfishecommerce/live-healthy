@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, memo } from "react";
+import { memo } from "react";
 import SearchBar from "@/components/SearchBar";
 import Logo from "@/components/Logo";
 

@@ -1,22 +1,10 @@
 import { AirwallexDropin } from "@/components";
-import { useEffect } from "react";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AirwallexPaymentMethod() {
   const { clientSecret, paymentIntentId } = useAppSelector(
     (state) => state.airwallex
   );
-
-  useEffect(() => {
-    if (paymentIntentId === null || clientSecret === null) {
-    }
-  }, [clientSecret, paymentIntentId]);
-
-  // useEffect(() => {
-  //   if (airwallex.clientSecret === null && airwallex.paymentIntentId === null) {
-  //     console.log("airwallex not initialized");
-  //   }
-  // }, [airwallex]);
 
   return (
     <div className="accordion-item">

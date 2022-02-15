@@ -24,6 +24,7 @@ export default function CheckoutPaymentMethod({
       toast.error("Please complete stage 1");
     }
   }
+  
 
   return (
     <div className="accordion-item">
