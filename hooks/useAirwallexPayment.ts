@@ -28,7 +28,6 @@ export default function useAirwallexPayment() {
   }
 
   function checkoutHandler(cart: cartType, paymentForm: any) {
-    console.log("cart checkoutHandler", cart, "paymentForm", paymentForm);
     const paymentDetails = formatIntentData(cart, paymentForm);
     createAccessToken()
       .then(({ data }) => {
@@ -51,7 +50,6 @@ export default function useAirwallexPayment() {
         console.log("error", error.response?.data);
         toast.error(error.response?.data?.message);
       });
-    router.push("/checkout");
   }
 
   return {

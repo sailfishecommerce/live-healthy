@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, memo } from "react";
 import {
   createElement,
   loadAirwallex,
@@ -16,7 +16,8 @@ interface AirwallexDropinProps {
   intent_id: string | any;
   client_secret: string | any;
 }
-export default function AirwallexCard({
+
+function AirwallexCardElement({
   intent_id,
   client_secret,
 }: AirwallexDropinProps) {
@@ -111,12 +112,8 @@ export default function AirwallexCard({
         });
     }
   };
-  const fieldContainerStyle = useMemo(
-    () => ({
-      display: elementShow ? "block" : "none",
-    }),
-    [elementShow]
-  );
+
+  const fieldContainerStyle = elementShow ? "block" : "none";
 
   return (
     <div>
@@ -133,7 +130,7 @@ export default function AirwallexCard({
           {errorMessage}
         </p>
       )}
-      <div className="field-container" style={fieldContainerStyle}>
+      <div className={`field-container ${fieldContainerStyle}`}>
         <div id="airwallexCard" className="form-control" />
         <button
           className="btn btn-outline-primary d-flex m-auto mt-4 mb-2"
@@ -144,6 +141,18 @@ export default function AirwallexCard({
           Submit
         </button>
       </div>
+      <style jsx>{`
+        .block {
+          display: block;
+        }
+        .none {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }
+
+const AirwallexCard = memo(AirwallexCardElement);
+
+export default AirwallexCard;

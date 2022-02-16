@@ -38,7 +38,10 @@ export default function ShippingCheckoutForm({
   const { checkoutHandler } = useAirwallexPayment();
 
   function onCheckout(paymentForm: any) {
+    console.log("A");
     checkoutHandler(cart, paymentForm);
+    console.log("B");
+    setCheckoutUser(false);
   }
 
   useEffect(() => {
@@ -46,7 +49,7 @@ export default function ShippingCheckoutForm({
       onCheckout(paymentformValues);
       setCheckoutUser(false);
     }
-  }, [checkoutUser, onCheckout, paymentformValues]);
+  }, [checkoutUser, paymentformValues]);
 
   return (
     <div className="accordion-item">

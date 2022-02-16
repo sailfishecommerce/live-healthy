@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { AirwallexDropin } from "@/components";
 import { useAppSelector } from "@/hooks/useRedux";
 
