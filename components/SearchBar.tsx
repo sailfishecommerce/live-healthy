@@ -1,18 +1,16 @@
 import { SearchBox } from "react-instantsearch-dom";
 import { Configure } from "react-instantsearch-dom";
 import dynamic from "next/dynamic";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
-import useAlgoliaClient from "@/hooks/useAlgoliaClient";
 import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
 
 const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
 export default function SearchBar() {
-  const { querylength } = useAlgoliaClient();
-  console.log("querylength", querylength);
-  const inputRef = useRef(null);
+  const [searching, setSearching] = useState(false);
+  const inputRef: any = useRef(null);
   const tabWidth = useMediaQuery("(max-width:768px)");
 
   const inputClassName = !tabWidth
@@ -26,6 +24,14 @@ export default function SearchBar() {
     searchInputRef.className = "form-control rounded-end pe-5";
   }, []);
 
+  function showSearchResult(e: any) {
+    console.log("e", e.currentTarget.value);
+    if (e.currentTarget.value.length <= 1) {
+      setSearching(true);
+    }
+    e.currentTarget.value.length === 0 && setSearching(false);
+  }
+
   return (
     <AlgoliaInstantSearch>
       <Configure clickAnalytics distinct enablePersonalization />
@@ -37,11 +43,12 @@ export default function SearchBar() {
             }}
             autoFocus={false}
             showLoadingIndicator
+            onChange={showSearchResult}
             inputRef={inputRef}
             className={inputClassName}
           />
         </div>
-        {querylength ? <SearchbarHits /> : ""}
+        {searching && <SearchbarHits />}
       </div>
       <style jsx>
         {`
