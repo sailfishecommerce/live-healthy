@@ -46,7 +46,7 @@ export default function AirwallexCard({
         },
       ],
     }).then(() => {
-      createElement("card" as ElementType)?.mount("card");
+      createElement("card" as ElementType)?.mount("airwallexCard");
     });
 
     const onReady = (event: CustomEvent): void => {
@@ -134,7 +134,7 @@ export default function AirwallexCard({
         </p>
       )}
       <div className="field-container" style={fieldContainerStyle}>
-        <div id="card" className="form-control" />
+        <div id="airwallexCard" className="form-control" />
         <button
           className="btn btn-outline-primary d-flex m-auto mt-4 mb-2"
           onClick={triggerConfirm}
