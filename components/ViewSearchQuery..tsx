@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 
 import Image from "@/components/Image";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
+import { useAppDispatch } from "@/redux/store";
+import { closeSearch, updateViewSearch } from "@/redux/algolia-slice";
 
 interface SearchHitsProps {
   hits: hitType[];
@@ -16,10 +18,13 @@ export default function ViewSearchQuery({ hits }: SearchHitsProps) {
   const formattedHit = hits.slice(0, 6);
   const { query } = useAppSelector((state) => state.algolia);
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { clickedProductAfterSearch } = useAlgoliaEvents();
 
   function viewHits() {
-    router.push({ pathname: "/search", query: { product: query } });
+    dispatch(updateViewSearch());
+    dispatch(closeSearch());
+    router.push({ pathname: "/search", query: { query } });
   }
 
   return (

@@ -39,8 +39,8 @@ export default function SearchPage() {
           <span className="fw-bold text-danger">
             {searchData.length} products
           </span>{" "}
-          found from{" "}
-          <span className="fw-bold text-danger">{query.product}</span> search{" "}
+          found from <span className="fw-bold text-danger">{query.query}</span>{" "}
+          search{" "}
         </h5>
         <div className="row pt-4 mx-n2">
           {rowVirtualizer.virtualItems.map((virtualRow) => (

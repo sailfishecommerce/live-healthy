@@ -5,12 +5,15 @@ import { useRef, useEffect, useState } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
+import { useAppDispatch } from "@/hooks/useRedux";
+import { updateQuery } from "@/redux/algolia-slice";
 
 const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
 export default function SearchBar() {
   const [searching, setSearching] = useState(false);
   const inputRef: any = useRef(null);
+  const dispatch = useAppDispatch();
   const tabWidth = useMediaQuery("(max-width:768px)");
 
   const inputClassName = !tabWidth
@@ -29,6 +32,7 @@ export default function SearchBar() {
     if (e.currentTarget.value.length <= 1) {
       setSearching(true);
     }
+    dispatch(updateQuery(e.target.value));
     e.currentTarget.value.length === 0 && setSearching(false);
   }
 
