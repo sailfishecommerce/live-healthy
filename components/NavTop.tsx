@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { memo } from "react";
 import SearchBar from "@/components/SearchBar";
 import Logo from "@/components/Logo";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import NavMenu from "./NavMenu";
 
-function NavTopComponent() {
+export default function NavTop() {
   const largerDeviceWidth = useMediaQuery("(min-width:768px)");
 
   return (
@@ -30,6 +28,3 @@ function NavTopComponent() {
     </>
   );
 }
-
-const NavTop = memo(NavTopComponent);
-export default NavTop;

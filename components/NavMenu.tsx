@@ -1,8 +1,9 @@
+import { memo } from "react";
+
 import useCart from "@/hooks/useCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
 import { useAuth } from "@/hooks";
-
 import useMediaQuery from "@/hooks/useMediaQuery";
 import {
   AuthorizedView,
@@ -11,7 +12,7 @@ import {
   NotAuthorizedView,
 } from "./NavElement";
 
-export default function NavMenu() {
+function NavMenuComponent() {
   const { useCartData } = useCart();
   const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
@@ -43,7 +44,6 @@ export default function NavMenu() {
       </div>
       <style jsx>
         {`
-         
           @media (max-width: 768px) {
             .navbar-toolbar {
               justify-content: space-between;
@@ -56,3 +56,7 @@ export default function NavMenu() {
     </>
   );
 }
+
+const NavMenu = memo(NavMenuComponent);
+
+export default NavMenu;

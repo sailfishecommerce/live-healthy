@@ -14,5 +14,3 @@ export default function Nav() {
     </nav>
   );
 }
-
-// Nav.whyDidYouRender = true;

@@ -1,7 +1,7 @@
 import { SearchBox } from "react-instantsearch-dom";
 import { Configure } from "react-instantsearch-dom";
 import dynamic from "next/dynamic";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, memo } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
@@ -10,7 +10,7 @@ import { updateQuery } from "@/redux/algolia-slice";
 
 const SearchbarHits = dynamic((): any => import("@/components/Searchbarhits"));
 
-export default function SearchBar() {
+function SearchBarComponent() {
   const [searching, setSearching] = useState(false);
   const inputRef: any = useRef(null);
   const dispatch = useAppDispatch();
@@ -28,7 +28,6 @@ export default function SearchBar() {
   }, []);
 
   function showSearchResult(e: any) {
-    console.log("e", e.currentTarget.value);
     if (e.currentTarget.value.length <= 1) {
       setSearching(true);
     }
@@ -111,3 +110,7 @@ export default function SearchBar() {
     </AlgoliaInstantSearch>
   );
 }
+
+const SearchBar = memo(SearchBarComponent);
+
+export default SearchBar;

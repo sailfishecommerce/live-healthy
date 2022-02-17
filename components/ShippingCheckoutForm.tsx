@@ -69,7 +69,7 @@ export default function ShippingCheckoutForm({
           <Formik
             initialValues={formValues}
             validationSchema={checkoutFormSchema}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, validateForm }) => {
               setFormStages({
                 ...formStages,
                 shippingForm: values,
@@ -79,6 +79,11 @@ export default function ShippingCheckoutForm({
               dispatch(updatePaymentForm({ form: values, completed: true }));
               setCheckoutUser(true);
               setPaymentFormValues(values);
+              validateForm(values)
+                .then((response) => {
+                  console.log("response values", response);
+                })
+                .catch((err) => console.log("err", err));
             }}
           >
             {(formik) => (
