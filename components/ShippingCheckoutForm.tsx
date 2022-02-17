@@ -38,16 +38,13 @@ export default function ShippingCheckoutForm({
   const { checkoutHandler } = useAirwallexPayment();
 
   function onCheckout(paymentForm: any) {
-    console.log("A");
     checkoutHandler(cart, paymentForm);
-    console.log("B");
     setCheckoutUser(false);
   }
 
   useEffect(() => {
     if (checkoutUser && paymentformValues !== null) {
       onCheckout(paymentformValues);
-      setCheckoutUser(false);
     }
   }, [checkoutUser, paymentformValues]);
 

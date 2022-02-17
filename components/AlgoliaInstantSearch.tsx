@@ -17,14 +17,11 @@ export default function AlgoliaInstantSearch({
   const dispatch = useAppDispatch();
   const { userDetail }: any = useAppSelector((state) => state.auth);
 
-  console.log("querylength", querylength);
-
   const algoliasearchClient = {
     ...searchClient,
     search(requests: any) {
       if (requests.every(({ params }: any) => !params.query)) {
         const reqlength = requests[0].params?.query.length;
-        console.log("reqlength", reqlength);
         setQueryLength(reqlength);
         dispatch(updateQuery(requests[0].params?.query));
         const searchContent = {
