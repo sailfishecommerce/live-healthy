@@ -37,7 +37,7 @@ export default function SearchPage() {
       <div ref={parentRef} className="container">
         <h5 className="text-center my-5">
           <span className="fw-bold text-danger">
-            {searchData.length} products
+           ({searchData.length}) products
           </span>{" "}
           found from <span className="fw-bold text-danger">{query.query}</span>{" "}
           search{" "}
