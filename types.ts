@@ -283,9 +283,8 @@ export type addProductViewVboutType = {
 
 export interface FormStagesType {
   formStages: {
-    stage1: boolean;
+    stage: number;
     shippingForm: null | any;
-    stage2: boolean;
   };
 }
 

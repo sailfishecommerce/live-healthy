@@ -1,14 +1,25 @@
 import { AirwallexDropin } from "@/components";
+import { useCart } from "@/hooks";
+import useAirwallexPayment from "@/hooks/useAirwallexPayment";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AirwallexPaymentMethod() {
+  const { useCartData } = useCart();
+  const { paymentForm }:any = useAppSelector((state) => state.payment);
+  const { data: cart } = useCartData();
+  const { checkoutHandler } = useAirwallexPayment();
+
+  function onCheckout() {
+    checkoutHandler(cart, paymentForm.form);
+  }
+
   const { clientSecret, paymentIntentId } = useAppSelector(
     (state) => state.airwallex
   );
 
   return (
     <div className="accordion-item">
-      <h3 className="accordion-header">
+      <h3 onClick={onCheckout} className="accordion-header">
         <a
           className="accordion-button collapsed"
           href="#paypal"

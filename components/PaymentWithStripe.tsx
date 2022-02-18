@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { useProcessPayment } from "@/hooks";
 import StripePaymentMethod from "./StripePaymentMethod";
-import { FormStagesType } from "@/types";
+import { useAppSelector } from "@/hooks/useRedux";
 
-export default function PaymentWithStripe({ formStages }: FormStagesType) {
+export default function PaymentWithStripe() {
+  const { paymentForm }:any = useAppSelector((state) => state.payment);
+
   const { makePayment, loadingState } = useProcessPayment();
 
   function makePaymentHandler() {
-    console.log("formStages.shippingForm", formStages.shippingForm);
-    makePayment(formStages.shippingForm)
+    console.log("formStages.shippingForm", paymentForm);
+    makePayment(paymentForm.form)
       .then((response) => console.log("makePayment", response))
       .catch((err) => console.error("error", err));
   }

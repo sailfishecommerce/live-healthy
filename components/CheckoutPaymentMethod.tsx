@@ -1,30 +1,23 @@
 import { toast } from "react-toastify";
 
 import { accordionButtonStyle } from "@/lib/single-Checkout";
+import { useAppSelector } from "@/hooks/useRedux";
 import BankTransferPaymentMethod from "./BankTransferPaymentMethod";
 import AirwallexPaymentMethod from "./AirwallexPaymentMethod";
 import PaymentWithStripe from "./PaymentWithStripe";
 
-interface CheckoutPaymentMethodProps {
-  formStages: {
-    stage1: boolean;
-    shippingForm: null | any;
-    stage2: boolean;
-  };
-}
 
-export default function CheckoutPaymentMethod({
-  formStages,
-}: CheckoutPaymentMethodProps) {
-  const accordion = accordionButtonStyle(formStages);
+export default function CheckoutPaymentMethod() {
+  const { stage } = useAppSelector((state) => state.payment);
+
+  const accordion = accordionButtonStyle(stage);
 
   function paymentHandler(e: any) {
     e.preventDefault();
-    if (!formStages.stage1) {
+    if (stage === 1) {
       toast.error("Please complete stage 1");
     }
   }
-  
 
   return (
     <div className="accordion-item">
@@ -47,7 +40,7 @@ export default function CheckoutPaymentMethod({
         <div className="">
           <div className="accordion-body">
             <div className="accordion mb-2" id="payment-method">
-              <PaymentWithStripe formStages={formStages} />
+              <PaymentWithStripe />
               <AirwallexPaymentMethod />
               <BankTransferPaymentMethod />
             </div>

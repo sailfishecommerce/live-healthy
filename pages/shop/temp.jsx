@@ -14,7 +14,9 @@ const createURL = (state) => {
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.product_type.length === 0;
+    state.refinementList.product_type.length === 0 &&
+    state.menu &&
+    !state.menu?.categories;
 
   if (isDefaultRoute) {
     return "";
@@ -30,7 +32,7 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
 
-  if (state.refinementList?.product_type) {
+  if (state.refinementList.product_type) {
     queryParameters.product_types =
       state.refinementList.product_type.map(encodeURIComponent);
   }
@@ -72,7 +74,7 @@ const urlToSearchState = (location) => {
     query: decodeURIComponent(query),
     page,
     refinementList: {
-      product_type: allProductTypes.map(decodeURIComponent),
+      product_typproduct_typee: allProductTypes.map(decodeURIComponent),
     },
   };
 };
@@ -86,7 +88,7 @@ class TempPage extends React.Component {
 
   state = {
     searchState: urlToSearchState(this.props.searchState),
-    lastRouter: this.props.router,
+    lastRouter: searchStateToURL(this.props.router),
   };
 
   static async getInitialProps({ asPath }) {
@@ -119,9 +121,7 @@ class TempPage extends React.Component {
     this.debouncedSetState = setTimeout(() => {
       const href = searchStateToURL(searchState);
 
-      this.props.router.push(href, href, {
-        shallow: true,
-      });
+      this.props.router.push(href, href);
     }, updateAfter);
 
     this.setState({ searchState });

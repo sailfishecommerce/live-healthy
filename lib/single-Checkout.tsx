@@ -1,18 +1,18 @@
-export const accordionButtonStyle = (formStages: { stage1: any }) => {
+export const accordionButtonStyle = (stage: number) => {
   const accordion = {
-    href: formStages.stage1 ? "#payment" : "nill",
-    headClassName: formStages.stage1
-      ? "accordion-button"
-      : "accordion-button collapsed",
-    bodyClassName: formStages.stage1
-      ? "accordion-collapse collapse show"
-      : "accordion-collapse collapse",
-    shippingBody: formStages.stage1
-      ? "accordion-collapse collapse"
-      : "accordion-collapse collapse show",
-    shippingHead: formStages.stage1
-      ? "accordion-button collapsed"
-      : "accordion-button",
+    href: stage === 2 ? "#payment" : "nill",
+    headClassName:
+      stage === 2 ? "accordion-button" : "accordion-button collapsed",
+    bodyClassName:
+      stage === 2
+        ? "accordion-collapse collapse show"
+        : "accordion-collapse collapse",
+    shippingBody:
+      stage === 2
+        ? "accordion-collapse collapse"
+        : "accordion-collapse collapse show",
+    shippingHead:
+      stage === 2 ? "accordion-button collapsed" : "accordion-button",
   };
   return accordion;
 };

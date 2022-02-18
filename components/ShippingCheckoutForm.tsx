@@ -1,52 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { Formik } from "formik";
 
 import checkoutFormContent from "@/json/checkout-form.json";
 import { checkoutFormSchema } from "./CheckoutFormSchema";
 import { displayFormElement } from "./FormElement";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { AddressInputGroup } from "@/components";
 import { accordionButtonStyle } from "@/lib/single-Checkout";
-import { updatePaymentForm } from "@/redux/payment-slice";
+import { updateFormStage, updatePaymentForm } from "@/redux/payment-slice";
 import useShippingPayment from "@/hooks/useShippingPayment";
-import useAirwallexPayment from "@/hooks/useAirwallexPayment";
-import { useCart } from "@/hooks";
-import { useEffect, useState } from "react";
 
-interface ShippingCheckoutFormProps {
-  formStages: {
-    stage1: boolean;
-    shippingForm: null | any;
-    stage2: boolean;
-  };
-  setFormStages: any;
-}
-
-export default function ShippingCheckoutForm({
-  formStages,
-  setFormStages,
-}: ShippingCheckoutFormProps): JSX.Element {
-  const accordion = accordionButtonStyle(formStages);
+export default function ShippingCheckoutForm(): JSX.Element {
+  const { stage } = useAppSelector((state) => state.payment);
+  const accordion = accordionButtonStyle(stage);
   const { formValues } = useShippingPayment();
-  const [checkoutUser, setCheckoutUser] = useState(false);
-  const [paymentformValues, setPaymentFormValues] = useState<any>(null);
 
   const dispatch = useAppDispatch();
-  const { useCartData } = useCart();
-  const { data: cart } = useCartData();
-
-  const { checkoutHandler } = useAirwallexPayment();
-
-  function onCheckout(paymentForm: any) {
-    checkoutHandler(cart, paymentForm);
-    setCheckoutUser(false);
-  }
-
-  useEffect(() => {
-    if (checkoutUser && paymentformValues !== null) {
-      onCheckout(paymentformValues);
-    }
-  }, [checkoutUser, paymentformValues]);
 
   return (
     <div className="accordion-item">
@@ -69,21 +39,10 @@ export default function ShippingCheckoutForm({
           <Formik
             initialValues={formValues}
             validationSchema={checkoutFormSchema}
-            onSubmit={(values, { setSubmitting, validateForm }) => {
-              setFormStages({
-                ...formStages,
-                shippingForm: values,
-                stage1: true,
-              });
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch(updateFormStage(2));
               setSubmitting(false);
-              dispatch(updatePaymentForm({ form: values, completed: true }));
-              setCheckoutUser(true);
-              setPaymentFormValues(values);
-              validateForm(values)
-                .then((response) => {
-                  console.log("response values", response);
-                })
-                .catch((err) => console.log("err", err));
+              dispatch(updatePaymentForm({ form: values, completed: true }));            
             }}
           >
             {(formik) => (
