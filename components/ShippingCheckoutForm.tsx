@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
 import { Formik } from "formik";
 
 import checkoutFormContent from "@/json/checkout-form.json";
@@ -15,7 +14,6 @@ export default function ShippingCheckoutForm(): JSX.Element {
   const { stage } = useAppSelector((state) => state.payment);
   const accordion = accordionButtonStyle(stage);
   const { formValues } = useShippingPayment();
-
   const dispatch = useAppDispatch();
 
   return (

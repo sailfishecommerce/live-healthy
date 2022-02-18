@@ -20,6 +20,7 @@ const paymentSlice = createSlice({
     submittedOrder: null,
     isShippingFormCompleted: false,
     stage: 1,
+    proceedPayment: false,
   },
   reducers: {
     updatePaymentMethod(state: stateType, action: PayloadAction<string>) {
@@ -52,6 +53,9 @@ const paymentSlice = createSlice({
     updateFormStage(state, action) {
       state.stage = action.payload;
     },
+    updatePaymentStatus(state) {
+      state.proceedPayment = !state.proceedPayment;
+    },
   },
 });
 
@@ -64,5 +68,6 @@ export const {
   updateSubmittedOrder,
   resetProductReview,
   updateFormStage,
+  updatePaymentStatus,
 } = paymentSlice.actions;
 export default paymentSlice.reducer;

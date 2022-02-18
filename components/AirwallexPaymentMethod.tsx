@@ -5,12 +5,12 @@ import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AirwallexPaymentMethod() {
   const { useCartData } = useCart();
-  const { paymentForm }:any = useAppSelector((state) => state.payment);
+  const { paymentForm }: any = useAppSelector((state) => state.payment);
   const { data: cart } = useCartData();
   const { checkoutHandler } = useAirwallexPayment();
 
   function onCheckout() {
-    checkoutHandler(cart, paymentForm.form);
+    checkoutHandler(cart, paymentForm);
   }
 
   const { clientSecret, paymentIntentId } = useAppSelector(

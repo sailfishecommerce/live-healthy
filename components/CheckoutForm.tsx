@@ -6,7 +6,7 @@ function CheckoutFormComponent() {
   return (
     <div className="accordion mb-3" id="shipping-form">
       <ShippingCheckoutForm />
-      <CheckoutPaymentMethod  />
+      <CheckoutPaymentMethod />
     </div>
   );
 }

@@ -18,6 +18,7 @@ export default function useStripeElement() {
           placeholder: "Credit Card Number",
           showIcon: true,
           iconStyle: "solid",
+          hidePostalCode: true,
         },
       },
     });

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useRef, MutableRefObject } from "react";
 
 import useStripeElement from "@/hooks/useStripeElement";

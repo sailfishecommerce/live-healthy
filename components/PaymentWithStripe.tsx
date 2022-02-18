@@ -4,13 +4,13 @@ import StripePaymentMethod from "./StripePaymentMethod";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export default function PaymentWithStripe() {
-  const { paymentForm }:any = useAppSelector((state) => state.payment);
-
+  const { paymentForm } = useAppSelector((state) => state.payment);
+  console.log("paymentForm", paymentForm);
   const { makePayment, loadingState } = useProcessPayment();
 
   function makePaymentHandler() {
     console.log("formStages.shippingForm", paymentForm);
-    makePayment(paymentForm.form)
+    makePayment(paymentForm)
       .then((response) => console.log("makePayment", response))
       .catch((err) => console.error("error", err));
   }
