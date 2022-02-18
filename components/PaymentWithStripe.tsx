@@ -2,17 +2,25 @@
 import { useProcessPayment } from "@/hooks";
 import StripePaymentMethod from "./StripePaymentMethod";
 import { useAppSelector } from "@/hooks/useRedux";
+import { useState } from "react";
 
 export default function PaymentWithStripe() {
   const { paymentForm } = useAppSelector((state) => state.payment);
-  console.log("paymentForm", paymentForm);
-  const { makePayment, loadingState } = useProcessPayment();
+  const [loadingState, setLoadingState] = useState(false);
+  const { makePayment } = useProcessPayment();
 
   function makePaymentHandler() {
     console.log("formStages.shippingForm", paymentForm);
+    setLoadingState(true);
     makePayment(paymentForm)
-      .then((response) => console.log("makePayment", response))
-      .catch((err) => console.error("error", err));
+      .then((response) => {
+        setLoadingState(false);
+        console.log("makePayment", response);
+      })
+      .catch((err) => {
+        setLoadingState(false);
+        console.error("error", err);
+      });
   }
 
   return (
@@ -38,10 +46,7 @@ export default function PaymentWithStripe() {
               alt="Cerdit Cards"
             />
           </p>
-          <StripePaymentMethod
-            loading={loadingState}
-            makePaymentHandler={makePaymentHandler}
-          />
+          <StripePaymentMethod />
         </div>
       </div>
     </div>

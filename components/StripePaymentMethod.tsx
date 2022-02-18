@@ -1,9 +1,13 @@
-import { useRef, MutableRefObject } from "react";
+import { toast } from "react-toastify";
+import { useRef, MutableRefObject, useEffect, useState } from "react";
+import swellClientInit from "@/lib/config";
 
 import useStripeElement from "@/hooks/useStripeElement";
 import { Button } from "@/components/UIElement";
 import SpinnerRipple from "@/components/spinnerLoader";
 import styles from "@/styles/ui.module.css";
+import { useAppSelector } from "@/hooks/useRedux";
+import { useProcessPayment } from "@/hooks";
 
 interface PaymentInputType {
   inputRef: MutableRefObject<null>;
@@ -17,18 +21,18 @@ function PaymentInput({ inputRef }: PaymentInputType): JSX.Element {
   );
 }
 
-interface StripePaymentMethodType {
-  makePaymentHandler: () => void;
-  loading: boolean;
-}
-
-export default function StripePaymentMethod({
-  makePaymentHandler,
-  loading,
-}: StripePaymentMethodType) {
+export default function StripePaymentMethod() {
   useStripeElement();
+  const { paymentForm }: any = useAppSelector((state) => state.payment);
   const inputRef = useRef(null);
   const disableButton = inputRef === null ? true : false;
+  console.log("paymentForm", paymentForm);
+
+  const { makePayment, loadingState } = useProcessPayment();
+
+  function makePaymentHandler() {
+    makePayment(paymentForm);
+  }
 
   return (
     <div className="row px-0 d-flex flex-column">
@@ -38,11 +42,12 @@ export default function StripePaymentMethod({
       <PaymentInput inputRef={inputRef} />
       <div className="col-4 mx-auto mt-3">
         <Button
-          onClick={makePaymentHandler}
           disable={disableButton}
           className={`${styles.uiElement} btn-outline-primary d-block w-100 mt-0`}
           text="Submit"
-          loading={loading}
+          onClick={makePaymentHandler}
+          type="submit"
+          loading={loadingState}
         />
       </div>
       <style jsx>
@@ -50,7 +55,6 @@ export default function StripePaymentMethod({
           button.btn {
             position: relative;
           }
-
           .loading {
             margin-left: 35px;
           }

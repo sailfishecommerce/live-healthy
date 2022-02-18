@@ -63,15 +63,18 @@ export default function useProcessPayment() {
                     .catch((error) => {
                       console.log("error submitUserOrder", error);
                       hasError(loading, error?.message);
+                      setLoadingState(false);
                     });
                 })
                 .catch((error) => {
                   console.log("updateUserBillingInfo error", error);
                   hasError(loading, error?.message);
+                  setLoadingState(false);
                 });
             })
             .catch((error) => {
               hasError(loading, error?.message);
+              setLoadingState(false);
             });
         } else {
           hasError(loading, tokenPaymentResponse?.message);
@@ -81,6 +84,7 @@ export default function useProcessPayment() {
       .catch((err) => {
         console.log("error makePayment", err);
         hasError(loading, err?.message);
+        setLoadingState(false);
       });
   }
 
