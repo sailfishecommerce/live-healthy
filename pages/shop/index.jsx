@@ -11,7 +11,7 @@ import styles from "@/styles/shop.module.css";
 
 const updateAfter = 700;
 
-const createURL = (state) => `?${qs.stringify(state)}`;
+// const createURL = (state) => `?${qs.stringify(state)}`;
 
 const pathToSearchState = (path) =>
   path.includes("?") ? qs.parse(path.substring(path.indexOf("?") + 1)) : {};
@@ -32,51 +32,42 @@ const DEFAULT_PROPS = {
 //   return slug.split("-").map(decodeURIComponent).join(" ");
 // }
 
-// const createURL = (state) => {
-//   const isDefaultRoute =
-//     !state.query &&
-//     state.page === 1 &&
-//     state.refinementList &&
-//     state.refinementList?.vendor.length === 0 &&
-//     state.refinementList?.tags.length === 0 &&
-//     state?.menu &&
-//     !state.menu?.product_type;
+const createURL = (state) => {
+  const isDefaultRoute =
+    !state.query &&
+    state.page === 1 &&
+    state.refinementList &&
+    state.refinementList.vendor?.length === 0 &&
+    state.menu &&
+    !state.menu?.categories;
 
-//   const categoryPath = state.menu?.product_type
-//     ? `${getCategorySlug(state.menu.product_type)}/`
-//     : "";
+  if (isDefaultRoute) {
+    return "";
+  }
 
-//   const queryParameters = {};
+  const categoryPath = state.menu?.categories
+    ? `${getCategorySlug(state.menu?.categories)}/`
+    : "";
+  const queryParameters = {};
 
-//   if (state.query) {
-//     queryParameters.query = encodeURIComponent(state.query);
-//   }
+  if (state.query) {
+    queryParameters.query = encodeURIComponent(state.query);
+  }
+  if (state.page !== 1) {
+    queryParameters.page = state.page;
+  }
+  if (state.refinementList.vendor) {
+    queryParameters.vendors =
+      state.refinementList.vendor.map(encodeURIComponent);
+  }
 
-//   if (state.page !== 1) {
-//     queryParameters.page = state.page;
-//   }
+  const queryString = qs.stringify(queryParameters, {
+    addQueryPrefix: true,
+    arrayFormat: "repeat",
+  });
 
-//   if (state.refinementList.vendor) {
-//     queryParameters.vendor = [state.refinementList.vendor].map(
-//       encodeURIComponent
-//     );
-//   }
-
-//   if (state.refinementList.tags) {
-//     queryParameters.tags = [state.refinementList.tags].map(encodeURIComponent);
-//   }
-
-//   const queryString = qs.stringify(queryParameters, {
-//     addQueryPrefix: true,
-//     arrayFormat: "repeat",
-//   });
-
-//   if (isDefaultRoute) {
-//     return "";
-//   }
-
-//   return `shop${categoryPath}${queryString}`;
-// };
+  return `/search/${categoryPath}${queryString}`;
+};
 
 // const searchStateToURL = (searchState) => {
 //   console.log("searchState", searchState);
