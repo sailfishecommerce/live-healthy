@@ -28,7 +28,7 @@ export function NavToggler() {
   );
 }
 
-export function AuthorizedView({
+export function NotAuthorizedView({
   toggleAuthModalHandler,
 }: AuthorizedViewProps) {
   return (
@@ -59,34 +59,52 @@ export function AuthorizedView({
   );
 }
 
-interface NotAuthorizedViewProps {
+interface authorizedViewProps {
   userLogout: () => void;
   userDetail: {
-    name: string;
+    firstName: string;
+    lastName: string;
   };
 }
 
-export function NotAuthorizedView({
+export function AuthorizedView({
   userLogout,
   userDetail,
-}: NotAuthorizedViewProps) {
+}: authorizedViewProps) {
   return (
-    <a
-      onClick={userLogout}
-      href="#"
-      className="navbar-tool cursor-pointer ms-1 ms-lg-5 me-n1 me-lg-2"
-    >
-      <span className="navbar-tool-tooltip">Logout</span>
+    <div className="d-flex items-center ms-5 me-0">
       <div className="navbar-tool-icon-box">
-        <i className="navbar-tool-icon ci-user me-5"></i>
+        <i className="navbar-tool-icon ci-user"></i>
       </div>
-      <div className="navbar-tool-text ms-n3">
-        <small className="d-flex flex-column me-3">
-          <span>Hello,</span> <span>{userDetail.name}</span>
-        </small>
-        <p className="logout mb-0">Logout</p>
+      <div className="text d-flex flex-column">
+        <a className="navbar-tool cursor-pointer ms-1 me-n1 me-lg-2">
+          <span className="navbar-tool-tooltip">
+            Welcome {userDetail.firstName}
+          </span>
+          <div className="navbar-tool-text ms-n3">
+            <small className="d-flex flex-column me-3">
+              <span>Hello,</span>{" "}
+              <span className="fs-sm text-accent fw-bold">
+                {`${userDetail.lastName} ${userDetail.firstName}`}{" "}
+              </span>
+            </small>
+          </div>
+        </a>
+        <a
+          onClick={userLogout}
+          href="#"
+          className="navbar-tool logout-user cursor-pointer ms-1 me-n1 me-lg-2"
+        >
+          <span className="navbar-tool-tooltip">Logout</span>
+          <p className="logout mb-0 fs-xs">Logout</p>
+        </a>
       </div>
-    </a>
+      <style jsx>{`
+        .logout-user p:hover {
+          color: red;
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -106,7 +124,7 @@ export function NavbarDropdown({
 }: NavbarDropdownProps) {
   return (
     <>
-      <div className="navbar-tool dropdown ms-3">
+      <div className="navbar-tool dropdown ms-1">
         <a
           onClick={toggleSlideCartMobile}
           className="navbar-tool-icon-box bg-secondary dropdown-toggle"

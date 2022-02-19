@@ -4,11 +4,9 @@ import Script from "next/script";
 import dynamic from "next/dynamic";
 
 import LayoutWrapper from "./LayoutWrapper";
-import useLoading from "@/hooks/useLoading";
 
 const Header = dynamic(() => import("../components/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
-const LoadingBar = dynamic(() => import("../components/loadingBar"));
 
 interface Applayout {
   title: string;

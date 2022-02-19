@@ -81,6 +81,19 @@ export default function useSwellCart() {
   async function applyGiftCode(code: string) {
     return await swell.cart.applyCoupon(code);
   }
+
+  async function updateCartAccount(details: {
+    email: string;
+    password: string;
+  }) {
+    await swell.cart.update({
+      account: {
+        email: details.email,
+        email_optin: true,
+        password: details.password,
+      },
+    });
+  }
   return {
     getACart,
     addToCart,
@@ -94,5 +107,6 @@ export default function useSwellCart() {
     applyGiftCode,
     updateCartBilling,
     addToCartModal,
+    updateCartAccount,
   };
 }

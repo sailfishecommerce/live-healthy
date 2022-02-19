@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 import Applayout from "@/layout/Applayout";
 import useUserToken from "@/hooks/useUserToken";
+import { useQuery } from "react-query";
+import { useAccount } from "@/hooks";
 
 const Hero = dynamic(() => import("@/components/Hero"));
 const Metatag = dynamic(() => import("@/components/Metatag"));
@@ -14,11 +16,16 @@ const InfoCards = dynamic(() => import("@/components/InfoCards"));
 const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 
 export default function Index() {
-  const { generateUserToken, authorized } = useUserToken();
+  const { getUserAccount } = useAccount();
+  const { data: userDetails, status } = useQuery("getAccount", getUserAccount);
+
+  const { generateUserToken } = useUserToken();
 
   useEffect(() => {
-    generateUserToken();
-  }, [authorized]);
+    if (status === "success") {
+      generateUserToken(userDetails);
+    }
+  }, [status]);
 
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">

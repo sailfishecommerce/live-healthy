@@ -39,7 +39,7 @@ export default function SigninForm() {
           ))}
           <div className="mb-3 d-flex flex-wrap justify-content-between">
             <Link href="/account-password-recovery" passHref>
-              <a onClick={toggleAuthmodal} className="fs-sm">
+              <a onClick={toggleAuthmodal} className="fs-sm text-danger">
                 Forgot password?
               </a>
             </Link>

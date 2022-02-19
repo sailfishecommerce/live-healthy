@@ -1,6 +1,4 @@
-import { toast } from "react-toastify";
-import { useRef, MutableRefObject, useEffect, useState } from "react";
-import swellClientInit from "@/lib/config";
+import { useRef, MutableRefObject } from "react";
 
 import useStripeElement from "@/hooks/useStripeElement";
 import { Button } from "@/components/UIElement";

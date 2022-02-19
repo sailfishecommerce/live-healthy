@@ -1,9 +1,10 @@
 import { memo } from "react";
+import { useQuery } from "react-query";
 
 import useCart from "@/hooks/useCart";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
-import { useAuth } from "@/hooks";
+import { useAccount, useAuth } from "@/hooks";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import {
   AuthorizedView,
@@ -14,10 +15,13 @@ import {
 
 function NavMenuComponent() {
   const { useCartData } = useCart();
-  const { authorized, userDetail }: any = useAppSelector((state) => state.auth);
   const { userLogout } = useAuth();
+  const { getUserAccount } = useAccount();
+  const { data: userDetails, status } = useQuery("userdetails", getUserAccount);
   const dispatch = useAppDispatch();
   const tabWidth = useMediaQuery("(max-width:768px)");
+
+  console.log("data userDetails", userDetails);
 
   const { data: cart } = useCartData();
 
@@ -32,10 +36,14 @@ function NavMenuComponent() {
     <>
       <div className="navbar-toolbar d-flex flex-shrink-0 align-items-center">
         <NavToggler />
-        {!authorized ? (
-          <AuthorizedView toggleAuthModalHandler={toggleAuthModalHandler} />
+        {status === "error" ? (
+          "unable to fetch user details"
+        ) : status === "loading" ? (
+          "loading..."
+        ) : userDetails !== null ? (
+          <AuthorizedView userLogout={userLogout} userDetail={userDetails} />
         ) : (
-          <NotAuthorizedView userLogout={userLogout} userDetail={userDetail} />
+          <NotAuthorizedView toggleAuthModalHandler={toggleAuthModalHandler} />
         )}
         <NavbarDropdown
           cart={cart}

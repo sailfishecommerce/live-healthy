@@ -1,28 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-import { useProcessPayment } from "@/hooks";
+import Image from "next/image";
 import StripePaymentMethod from "./StripePaymentMethod";
-import { useAppSelector } from "@/hooks/useRedux";
-import { useState } from "react";
 
 export default function PaymentWithStripe() {
-  const { paymentForm } = useAppSelector((state) => state.payment);
-  const [loadingState, setLoadingState] = useState(false);
-  const { makePayment } = useProcessPayment();
-
-  function makePaymentHandler() {
-    console.log("formStages.shippingForm", paymentForm);
-    setLoadingState(true);
-    makePayment(paymentForm)
-      .then((response) => {
-        setLoadingState(false);
-        console.log("makePayment", response);
-      })
-      .catch((err) => {
-        setLoadingState(false);
-        console.error("error", err);
-      });
-  }
-
   return (
     <div className="accordion-item">
       <h3 className="accordion-header">
@@ -37,18 +16,30 @@ export default function PaymentWithStripe() {
         data-bs-parent="#payment-method"
       >
         <div className="accordion-body">
-          <p className="fs-sm">
-            We accept following credit cards:&nbsp;&nbsp;
-            <img
-              className="d-inline-block align-middle"
-              src="/img/cards.png"
-              width="187"
-              alt="Cerdit Cards"
-            />
-          </p>
+          <div className="body-title d-flex align-items-center justify-content-between mb-2">
+            <p className="fs-sm mb-0">
+              We accept following credit cards:&nbsp;&nbsp;
+            </p>
+            <div className="image-container">
+              <Image
+                className="d-inline-block align-middle"
+                src="/img/cards.png"
+                width={150}
+                height={30}
+                alt="Cerdit Cards"
+                layout="responsive"
+              />
+            </div>
+          </div>
           <StripePaymentMethod />
         </div>
       </div>
+      <style jsx>{`
+        .image-container {
+          height: 30px;
+          width: 150px;
+        }
+      `}</style>
     </div>
   );
 }

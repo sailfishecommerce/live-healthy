@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/store";
 import { useRouter } from "next/router";
 
@@ -20,10 +21,20 @@ export default function useProcessPayment() {
   const { getACart } = useSwellCart();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-  const { updateUserBillingInfo, createUserAddresstAtCheckout } = useAccount();
+  const {
+    updateUserBillingInfo,
+    createUserAddresstAtCheckout,
+    getUserAccount,
+  } = useAccount();
   const dispatch = useAppDispatch();
   const [loadingState, setLoadingState] = useState(false);
   const { isLoading, isSuccessful, hasError } = useToast();
+
+  useEffect(() => {
+    getUserAccount()
+      .then((response) => console.log("user account", response))
+      .catch((error) => console.log("useraccount-error", error));
+  }, []);
 
   function processPayment(data: any, loading: any) {
     function vboutOrder(order: any) {

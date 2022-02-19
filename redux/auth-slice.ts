@@ -1,9 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type userDetailType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
 type authSliceStateType = {
   loading: null | string | boolean;
   authorized: boolean;
-  userDetail: any;
+  userDetail: userDetailType;
   error: null | boolean;
 };
 
@@ -23,7 +29,10 @@ const authSlice = createSlice({
     authRequest(state: authSliceStateType, action: PayloadAction<string>) {
       state.loading = action.payload;
     },
-    authorizeUser(state: authSliceStateType, action: PayloadAction<string>) {
+    authorizeUser(
+      state: authSliceStateType,
+      action: PayloadAction<userDetailType>
+    ) {
       state.loading = false;
       state.authorized = true;
       state.userDetail = action.payload;

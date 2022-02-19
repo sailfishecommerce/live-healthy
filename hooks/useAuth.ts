@@ -5,8 +5,10 @@ import { toggleAuthModal } from "@/redux/ui-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { authorizeError, authorizeUser, logout } from "@/redux/auth-slice";
 import { addNewUserToList } from "./useVbout";
+import { useQueryClient } from "react-query";
 
 export default function useAuth() {
+  const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
 
@@ -66,6 +68,7 @@ export default function useAuth() {
         if (response?.success) {
           dispatch(logout());
           isSuccessful(toastId, "logout successful");
+          queryClient.invalidateQueries("userdetails");
         } else {
           hasError(toastId, "unable to logout user");
         }
