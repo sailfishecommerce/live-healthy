@@ -18,8 +18,6 @@ export default function Applayout({
   children,
   title,
 }: PropsWithChildren<Applayout>) {
-  const { loading } = useLoading();
-
   return (
     <LayoutWrapper>
       <Script
@@ -33,7 +31,6 @@ export default function Applayout({
       <Head>
         <title>{title} | Sailfish e-commerce online store </title>
       </Head>
-      {loading && <LoadingBar />}
       <Header />
       {children}
       <div id="4420c1ed-e3a7-47c2-b6a2-2d7386a819da"></div>
