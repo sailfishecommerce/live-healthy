@@ -36,9 +36,9 @@ interface SelectProps {
   formik: any;
 }
 
-export function Input({ content, formik, className, withIcon }: Props) {
+export function Input({ content, formik, className }: Props) {
   const [showPassword, setShowPassword] = useState(false);
-
+  console.log("formik-inptu", formik);
   function passwordVisibilityHandler() {
     setShowPassword(!showPassword);
   }

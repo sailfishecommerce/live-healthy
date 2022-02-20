@@ -15,7 +15,6 @@ export default function ShippingCheckoutForm(): JSX.Element {
   const accordion = accordionButtonStyle(stage);
   const { formValues } = useShippingPayment();
   const dispatch = useAppDispatch();
-
   return (
     <div className="accordion-item">
       <h2 className="h6 pt-1 pb-3 mb-3 accordion-header">
@@ -35,16 +34,18 @@ export default function ShippingCheckoutForm(): JSX.Element {
       >
         <div className="accordion-body">
           <Formik
+            enableReinitialize
             initialValues={formValues}
             validationSchema={checkoutFormSchema}
             onSubmit={(values, { setSubmitting }) => {
               dispatch(updateFormStage(2));
               setSubmitting(false);
-              dispatch(updatePaymentForm({ form: values, completed: true }));            
+              dispatch(updatePaymentForm({ form: values, completed: true }));
             }}
           >
             {(formik) => (
               <form onSubmit={formik.handleSubmit}>
+                {console.log("formik-formik", formik)}
                 <div>
                   {checkoutFormContent.personalDetails.content.map(
                     (formRow, index) => (

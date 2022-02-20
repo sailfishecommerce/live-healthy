@@ -1,26 +1,31 @@
-import { useAppSelector } from "@/hooks/useRedux";
+import { useAccount } from "@/hooks";
+import { useQuery } from "react-query";
 
 export default function CheckoutWelcomeBanner() {
-  const { userDetail, authorized } = useAppSelector((state) => state.auth);
+  const { getUserAccount } = useAccount();
+
+  const { data: userDetails, status } = useQuery("getAccount", getUserAccount);
+
   return (
     <div className="mt-5 d-sm-flex justify-content-between align-items-center bg-secondary p-4 rounded-3 mb-grid-gutter">
-      <div className="d-flex align-items-center">
-        {authorized ? (
-          <span className="fw-bold text-decoration-underline">
-            Hello {userDetail.firstName}
-          </span>
-        ) : (
-          <span className="guest fw-bold text-decoration-underline">
-            Hello Guest, Thanks for choosing Sailfish.
-          </span>
-        )}
-        <div className="ps-3">
-          <h3 className="fs-base mb-0">
-            {userDetail?.firstName} {userDetail?.lastName}
-          </h3>
-          <span className="text-accent fs-sm">{userDetail?.email}</span>
+      {status === "error" ? (
+        "unable to fetch user data"
+      ) : status === "loading" ? (
+        "loading ..."
+      ) : (
+        <div className="d-flex align-items-center">
+          {userDetails !== null ? (
+            <span className="fw-bold ">
+              Hello <span className="text-accent">{userDetails.firstName}</span>
+              , Thanks for choosing Sailfish.
+            </span>
+          ) : (
+            <span className="guest fw-bold text-decoration-underline">
+              Hello Guest, Thanks for choosing Sailfish.
+            </span>
+          )}
         </div>
-      </div>
+      )}
     </div>
   );
 }

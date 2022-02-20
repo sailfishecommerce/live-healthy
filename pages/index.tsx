@@ -18,7 +18,6 @@ const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 export default function Index() {
   const { getUserAccount } = useAccount();
   const { data: userDetails, status } = useQuery("getAccount", getUserAccount);
-
   const { generateUserToken } = useUserToken();
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { memo } from "react";
 import { useQuery } from "react-query";
 
 import useCart from "@/hooks/useCart";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/hooks/useRedux";
 import { toggleAuthModal, toggleSlideCart } from "@/redux/ui-slice";
 import { useAccount, useAuth } from "@/hooks";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -20,8 +20,6 @@ function NavMenuComponent() {
   const { data: userDetails, status } = useQuery("userdetails", getUserAccount);
   const dispatch = useAppDispatch();
   const tabWidth = useMediaQuery("(max-width:768px)");
-
-  console.log("data userDetails", userDetails);
 
   const { data: cart } = useCartData();
 

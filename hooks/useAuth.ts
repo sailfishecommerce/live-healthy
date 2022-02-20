@@ -1,11 +1,11 @@
-import useAccount from "@/hooks/useAccount";
+import { useQueryClient } from "react-query";
 
+import useAccount from "@/hooks/useAccount";
 import useToast from "./useToast";
 import { toggleAuthModal } from "@/redux/ui-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { authorizeError, authorizeUser, logout } from "@/redux/auth-slice";
 import { addNewUserToList } from "./useVbout";
-import { useQueryClient } from "react-query";
 
 export default function useAuth() {
   const queryClient = useQueryClient();
@@ -21,10 +21,10 @@ export default function useAuth() {
       .then((response) => {
         if (response) {
           isSuccessful(toastId, `Welcome back, ${values.email}`);
-
           formik.resetForm();
           formik.setSubmitting(false);
           dispatch(authorizeUser(response));
+          queryClient.invalidateQueries("userdetails");
           !notModal && dispatch(toggleAuthModal());
         } else {
           hasError(toastId, "login not successful");
@@ -48,8 +48,9 @@ export default function useAuth() {
         } else {
           isSuccessful(toastId, `${values.email}, sign up successful`);
           dispatch(authorizeUser(response));
+          console.log("response createUserAccount", response);
           formik.resetForm();
-
+          queryClient.invalidateQueries("userdetails");
           !notModal && dispatch(toggleAuthModal());
         }
         formik.setSubmitting(false);

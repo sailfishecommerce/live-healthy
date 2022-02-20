@@ -1,15 +1,16 @@
 import { useMutation, useQueryClient } from "react-query";
 import useSwellCart from "./useSwellCart";
 
+import { addNewUserToList } from "./useVbout";
+import useToast from "@/hooks/useToast";
+import useAccount from "@/hooks/useAccount";
+
 export default function useMutationAction() {
+  const { isLoading, isSuccessful, hasError } = useToast();
+  const { createUserAccount } = useAccount();
   const queryClient = useQueryClient();
-  const {
-    updateCartItemQuantity,
-    applyGiftCode,
-    addToCart,
-    addToCartModal,
-    removeCartItem,
-  } = useSwellCart();
+  const { updateCartItemQuantity, addToCart, addToCartModal, removeCartItem } =
+    useSwellCart();
 
   function useUpdateCartItem() {
     return useMutation(
