@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {  useState } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "@/redux/store";
 import { useRouter } from "next/router";
 
@@ -32,6 +32,10 @@ export default function useProcessPayment() {
   const [loadingState, setLoadingState] = useState(false);
   const { isLoading, isSuccessful, hasError } = useToast();
 
+  console.log("cart-cart", cart);
+
+  console.log("userDetail-userDetail", userDetail);
+
   function processPayment(data: any, loading: any) {
     function vboutOrder(order: any) {
       return createVboutOrder(vboutOrderData(cart, order));
@@ -42,10 +46,7 @@ export default function useProcessPayment() {
         console.log("tokenPaymentResponse", tokenPaymentResponse);
         if (!tokenPaymentResponse?.code) {
           getACart()
-            .then((response) => {
-              if (response.guest && userDetail) {
-                updateCartAccountID(userDetail.id);
-              }
+            .then((response) => {             
               console.log("response makePayment", response);
               updateUserBillingInfo(data, response.billing.card?.token)
                 .then((response) => {
@@ -99,7 +100,6 @@ export default function useProcessPayment() {
   }
 
   async function makePayment(data: any) {
-    console.log("cart.accountId", cart?.accountId, "cart", cart);
     const loading = isLoading();
     getUserDetails()
       .then((response) => {

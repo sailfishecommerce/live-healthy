@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 export default function CheckoutWelcomeBanner() {
   const { getUserAccount } = useAccount();
 
-  const { data: userDetails, status } = useQuery("getAccount", getUserAccount);
+  const { data: userDetails, status } = useQuery("userdetails", getUserAccount);
 
   return (
     <div className="mt-5 d-sm-flex justify-content-between align-items-center bg-secondary p-4 rounded-3 mb-grid-gutter">

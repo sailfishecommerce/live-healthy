@@ -4,9 +4,10 @@ import useSwellCart from "./useSwellCart";
 import { addNewUserToList } from "./useVbout";
 import useToast from "@/hooks/useToast";
 import useAccount from "@/hooks/useAccount";
+import { toast } from "react-toastify";
 
 export default function useMutationAction() {
-  const { emptyCart } = useSwellCart();
+  const { emptyCart, deleteCart } = useSwellCart();
   const queryClient = useQueryClient();
   const { updateCartItemQuantity, addToCart, addToCartModal, removeCartItem } =
     useSwellCart();
@@ -57,8 +58,22 @@ export default function useMutationAction() {
     return useMutation(emptyCart, {
       onSuccess: (data) => {
         console.log("cleared cart", data);
-          queryClient.invalidateQueries("cart");
+        queryClient.invalidateQueries("cart");
+        toast.success("cart cleared");
+      },
+    });
+  }
 
+  function useDeleteCart() {
+    return useMutation(deleteCart, {
+      onSuccess: (data) => {
+        console.log("delete cart result success", data);
+        queryClient.invalidateQueries("cart");
+        toast.success("cart deleted");
+
+      },
+      onError: (data) => {
+        console.log("delete cart result error", data);
       },
     });
   }
@@ -69,5 +84,6 @@ export default function useMutationAction() {
     useRemoveFromCart,
     useEmptyCart,
     useAddItemToCartModal,
+    useDeleteCart,
   };
 }

@@ -1,5 +1,6 @@
 import swellClientInit from "@/lib/config";
 import { cartDetailsType, productOptionType, productType } from "@/types";
+import axios from "axios";
 
 export default function useSwellCart() {
   const { swell, initializeSwell } = swellClientInit();
@@ -61,6 +62,12 @@ export default function useSwellCart() {
     return await swell.cart.submitOrder();
   }
 
+  async function deleteCart(cartId: string) {
+    return await axios.post("/api/cart/delete", {
+      id: cartId,
+    });
+  }
+
   async function updateCartBilling(cartDetails: cartDetailsType) {
     return await swell.cart.update({
       billing: {
@@ -93,6 +100,9 @@ export default function useSwellCart() {
   async function updateCartAccountID(account_id: string) {
     await swell.cart.update({ account_id });
   }
+  async function updateCart(account: any) {
+    await swell.cart.update(account);
+  }
 
   return {
     getACart,
@@ -105,9 +115,11 @@ export default function useSwellCart() {
     recoverCart,
     submitOrder,
     applyGiftCode,
+    deleteCart,
     updateCartBilling,
     addToCartModal,
     updateCartAccount,
     updateCartAccountID,
+    updateCart,
   };
 }

@@ -11,6 +11,7 @@ import useModal from "@/hooks/useModal";
 import displayAppModal from "@/lib/displayAppModal";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const LayoutMetatag = dynamic(() => import("./LayoutMetatag"));
 const Reward = dynamic(() => import("@/components/Rewards"));
 const SlideCart = dynamic(() => import("../components/SlideCart"));
@@ -23,7 +24,7 @@ const QuickViewModal = dynamic(
 );
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
-  const { toggleCart, useCartData } = useCart();
+  const { toggleCart } = useCart();
   const { modal, onHideModal } = useModal();
   const { scroll } = useScroll();
   const UI = useAppSelector((state) => state.UI);
@@ -33,15 +34,12 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   );
   const { loading } = useAppSelector((state) => state.checkout);
 
+
   const showPointer = scroll > 450 ? true : false;
 
   function toggleAuthModalHandler() {
     dispatch(toggleAuthModal());
   }
-
-  // const { data: cart } = useCartData();
-
-  // console.log("cart LayoutWrapper", cart);
 
   return (
     <div>

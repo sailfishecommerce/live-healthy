@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from "next/dynamic";
+import { useQuery } from "react-query";
 
+import { useAccount } from "@/hooks";
 import Applayout from "@/layout/Applayout";
 import CheckoutBanner from "@/components/CheckoutBanner";
 import useCart from "@/hooks/useCart";
@@ -15,9 +17,11 @@ const CheckoutWelcomeBanner = dynamic(
 );
 
 export default function Checkout() {
+  const { getUserAccount } = useAccount();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-
+  const { data } = useQuery("userDetails", getUserAccount);
+  console.log("data-getUserAccount", data, "cart", cart);
   return (
     <Applayout title="Checkout your order">
       <CheckoutBanner title="Checkout" breadcrumb="Checkout" />

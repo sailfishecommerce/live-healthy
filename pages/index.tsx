@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from "next/dynamic";
+import { useQuery } from "react-query";
 import { useEffect } from "react";
 
 import Applayout from "@/layout/Applayout";
 import useUserToken from "@/hooks/useUserToken";
-import { useQuery } from "react-query";
 import { useAccount } from "@/hooks";
 
 const Hero = dynamic(() => import("@/components/Hero"));
@@ -17,8 +17,9 @@ const FeaturedCategory = dynamic(() => import("@/components/FeaturedCategory"));
 
 export default function Index() {
   const { getUserAccount } = useAccount();
-  const { data: userDetails, status } = useQuery("getAccount", getUserAccount);
+  const { data: userDetails, status } = useQuery("userdetails", getUserAccount);
   const { generateUserToken } = useUserToken();
+  
 
   useEffect(() => {
     if (status === "success") {

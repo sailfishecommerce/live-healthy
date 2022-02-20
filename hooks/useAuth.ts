@@ -6,12 +6,13 @@ import { toggleAuthModal } from "@/redux/ui-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { authorizeError, authorizeUser, logout } from "@/redux/auth-slice";
 import { addNewUserToList } from "./useVbout";
+import useSwellCart from "./useSwellCart";
 
 export default function useAuth() {
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
-
+  const { updateCart } = useSwellCart();
   const { loginUser, logoutUser, signedUserDetails, createUserAccount } =
     useAccount();
 
@@ -22,9 +23,11 @@ export default function useAuth() {
         if (response) {
           isSuccessful(toastId, `Welcome back, ${values.email}`);
           formik.resetForm();
-          formik.setSubmitting(false);
+          console.log("login response", response);
+          formik.setSubmitting(false);          
           dispatch(authorizeUser(response));
           queryClient.invalidateQueries("userdetails");
+          queryClient.invalidateQueries("cart");
           !notModal && dispatch(toggleAuthModal());
         } else {
           hasError(toastId, "login not successful");
@@ -70,6 +73,7 @@ export default function useAuth() {
           dispatch(logout());
           isSuccessful(toastId, "logout successful");
           queryClient.invalidateQueries("userdetails");
+          queryClient.invalidateQueries("cart");
         } else {
           hasError(toastId, "unable to logout user");
         }

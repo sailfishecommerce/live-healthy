@@ -5,8 +5,8 @@ import styles from "@/styles/ui.module.css";
 import useShoppingCart from "@/hooks/useShoppingCart";
 import { updateStoreCartItem } from "@/redux/store-cart-slice";
 import useSwellCart from "@/hooks/useSwellCart";
-import { useQueryClient } from "react-query";
 import useMutationAction from "@/hooks/useMutationAction";
+import { useCart } from "@/hooks";
 
 interface cartControlProps {
   item: any;
@@ -73,13 +73,17 @@ export function CartControl({ item }: cartControlProps) {
 }
 
 export function ClearCart() {
-  const { useEmptyCart } = useMutationAction();
-  const emptyCart = useEmptyCart();
+  const {  useDeleteCart } = useMutationAction();
+  const deleteCart = useDeleteCart();
+  const { useCartData } = useCart();
+  const { data: cart } = useCartData();
+
+  console.log("cart", cart);
 
   return (
     <div className="d-flex mt-4 mb-0">
       <button
-        onClick={() => emptyCart.mutate()}
+        onClick={() => deleteCart.mutate(cart.id)}
         className="btn-link m-auto justify-content-center d-flex align-items-center remove"
       >
         <MdOutlineDelete fontSize={25} className="mx-2" />

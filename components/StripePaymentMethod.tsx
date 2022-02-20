@@ -23,7 +23,6 @@ export default function StripePaymentMethod() {
   useStripeElement();
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const inputRef = useRef(null);
-  const disableButton = inputRef === null ? true : false;
 
   const { makePayment, loadingState } = useProcessPayment();
 
@@ -39,7 +38,7 @@ export default function StripePaymentMethod() {
       <PaymentInput inputRef={inputRef} />
       <div className="col-4 mx-auto mt-3">
         <Button
-          disable={disableButton}
+          disable={loadingState}
           className={`${styles.uiElement} btn-outline-primary d-block w-100 mt-0`}
           text="Submit"
           onClick={makePaymentHandler}
