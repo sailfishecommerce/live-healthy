@@ -1,6 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import Image from "next/image";
-import { memo } from "react";
+import { memo, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateCurrency } from "@/redux/currency-language-slice";
@@ -16,10 +16,17 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
   const { selectCurrencies } = useCurrency();
+  const [showDropdown, setShowDropdown] = useState(false);
   const [currencies, status] = useCurrencies();
+
+  console.log("showDropdown", showDropdown);
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
+
+  function dropdownHandler(value: boolean) {
+    setShowDropdown(value);
+  }
 
   function selectCurrency(e: any): any {
     const loading = isLoading();
@@ -59,20 +66,18 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
         {`En / ${currency}`}
       </Dropdown.Toggle>
       <Dropdown.Menu className={styles.dropdownMenu}>
-        <Dropdown.Item>
-          <select
-            onChange={selectCurrency}
-            className="form-select form-select-sm"
-          >
-            <option>Select Currency</option>
-            {currencies &&
-              currencies?.map((currency: any) => (
-                <option key={currency.code} value={currency.code}>
-                  {currency.symbol} {currency.code}
-                </option>
-              ))}
-          </select>
-        </Dropdown.Item>
+        <select className="form-select form-select-sm">
+          {currencies &&
+            currencies?.map((currency: any) => (
+              <option
+                onClick={selectCurrency}
+                key={currency.code}
+                value={currency.code}
+              >
+                {currency.symbol} {currency.code}
+              </option>
+            ))}
+        </select>
       </Dropdown.Menu>
     </Dropdown>
   );

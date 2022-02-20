@@ -1,8 +1,8 @@
+import { findResultsState } from "react-instantsearch-dom/server";
 import isEqual from "react-fast-compare";
 import { Component } from "react";
 import { withRouter } from "next/router";
 import qs from "qs";
-import { findResultsState } from "react-instantsearch-dom/server";
 
 import searchClient from "@/lib/algoliaConfig";
 import Applayout from "@/layout/Applayout";
@@ -10,8 +10,6 @@ import MarketplaceTemp from "@/components/MarketplaceTemp";
 import styles from "@/styles/shop.module.css";
 
 const updateAfter = 700;
-
-// const createURL = (state) => `?${qs.stringify(state)}`;
 
 const pathToSearchState = (path) =>
   path.includes("?") ? qs.parse(path.substring(path.indexOf("?") + 1)) : {};
@@ -23,14 +21,6 @@ const DEFAULT_PROPS = {
   searchClient,
   indexName: "New_Livehealthy_products_index",
 };
-
-// function getCategorySlug(name) {
-//   return name.split(" ").map(encodeURIComponent).join("-");
-// }
-
-// function getCategoryName(slug) {
-//   return slug.split("-").map(decodeURIComponent).join(" ");
-// }
 
 const createURL = (state) => {
   const isDefaultRoute =
@@ -68,43 +58,6 @@ const createURL = (state) => {
 
   return `/search/${categoryPath}${queryString}`;
 };
-
-// const searchStateToURL = (searchState) => {
-//   console.log("searchState", searchState);
-//   const searchValue = searchState ? createURL(searchState) : "";
-//   return searchValue;
-// };
-
-// const urlToSearchState = (location) => {
-//   console.log("location", location);
-//   const pathnameMatches = location.pathname?.match(/shop\/(.*?)\/?$/);
-//   const category = getCategoryName(
-//     (pathnameMatches && pathnameMatches[1]) || ""
-//   );
-//   const {
-//     query = "",
-//     page = 1,
-//     vendors = [],
-//     tags = [],
-//   } = qs.parse(location?.search?.slice(1));
-//   // `qs` does not return an array when there's a single value.
-//   const allVendors = Array.isArray(vendors)
-//     ? vendors
-//     : [vendors].filter(Boolean);
-//   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
-//   console.log("allVendors", allVendors, "allTags", allTags);
-//   return {
-//     query: decodeURIComponent(query),
-//     page,
-//     menu: {
-//       product_type: decodeURIComponent(category),
-//     },
-//     refinementList: {
-//       vendor: allVendors.map(decodeURIComponent),
-//       tags: allTags.map(decodeURIComponent),
-//     },
-//   };
-// };
 
 class Shop extends Component {
   state = {

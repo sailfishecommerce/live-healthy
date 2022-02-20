@@ -1,9 +1,9 @@
+import {findResultsState} from "react-instantsearch-dom/server";
 import isEqual from "react-fast-compare";
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 import qs from "qs";
-import { findResultsState } from "react-instantsearch-dom/server";
 import SearchTest from "@/components/searchTest";
 import searchClient from "@/lib/algoliaConfig";
 
@@ -79,7 +79,7 @@ const urlToSearchState = (location) => {
   };
 };
 
-class TempPage extends React.Component {
+class TempPage extends Component {
   static propTypes = {
     router: PropTypes.object.isRequired,
     resultsState: PropTypes.object,

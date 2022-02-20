@@ -70,10 +70,10 @@ export default function useMutationAction() {
         console.log("delete cart result success", data);
         queryClient.invalidateQueries("cart");
         toast.success("cart deleted");
-
       },
       onError: (data) => {
         console.log("delete cart result error", data);
+        toast.error("error deleting cart");
       },
     });
   }

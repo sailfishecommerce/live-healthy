@@ -13,29 +13,6 @@ export default function Topbar() {
   return (
     <div className="topbar topbar-dark">
       <div className="container">
-        <Dropdown
-          className={`${styles.dropdown} topbar-text dropdown d-md-none`}
-        >
-          <Dropdown.Toggle className="topbar-link dropdown-toggle">
-            Useful links
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu">
-            <Dropdown.Item>
-              <a className="dropdown-item" href="tel:00331697720">
-                <i className="ci-support text-muted me-2"></i>
-                00123-456-789
-              </a>
-            </Dropdown.Item>
-            <li>
-              <Link href="/order-tracking" passHref>
-                <a className="dropdown-item">
-                  <i className="ci-location text-muted me-2"></i>
-                  Order tracking
-                </a>
-              </Link>
-            </li>
-          </Dropdown.Menu>
-        </Dropdown>
         <div className="topbar-text text-nowrap d-none d-md-inline-block">
           <i className="ci-support"></i>
           <span className="text-muted me-1">Support</span>
