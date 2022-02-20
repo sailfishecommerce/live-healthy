@@ -24,7 +24,6 @@ export default function StripePaymentMethod() {
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const inputRef = useRef(null);
   const disableButton = inputRef === null ? true : false;
-  console.log("paymentForm", paymentForm);
 
   const { makePayment, loadingState } = useProcessPayment();
 

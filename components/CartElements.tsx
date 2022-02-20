@@ -1,8 +1,12 @@
+import { MdOutlineDelete } from "react-icons/md";
 import useCoupon from "@/hooks/useCoupon";
 import { Button } from "@/components/UIElement";
 import styles from "@/styles/ui.module.css";
 import useShoppingCart from "@/hooks/useShoppingCart";
 import { updateStoreCartItem } from "@/redux/store-cart-slice";
+import useSwellCart from "@/hooks/useSwellCart";
+import { useQueryClient } from "react-query";
+import useMutationAction from "@/hooks/useMutationAction";
 
 interface cartControlProps {
   item: any;
@@ -61,6 +65,31 @@ export function CartControl({ item }: cartControlProps) {
           }
           #itemQuantity {
             width: 80px;
+          }
+        `}
+      </style>
+    </div>
+  );
+}
+
+export function ClearCart() {
+  const { useEmptyCart } = useMutationAction();
+  const emptyCart = useEmptyCart();
+
+  return (
+    <div className="d-flex mt-4 mb-0">
+      <button
+        onClick={() => emptyCart.mutate()}
+        className="btn-link m-auto justify-content-center d-flex align-items-center remove"
+      >
+        <MdOutlineDelete fontSize={25} className="mx-2" />
+        <p className="mb-0">Clear Cart</p>
+      </button>
+      <style jsx>
+        {`
+          .remove:hover {
+            color: red;
+            text-decoration: underline;
           }
         `}
       </style>

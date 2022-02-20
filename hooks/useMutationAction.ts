@@ -6,8 +6,7 @@ import useToast from "@/hooks/useToast";
 import useAccount from "@/hooks/useAccount";
 
 export default function useMutationAction() {
-  const { isLoading, isSuccessful, hasError } = useToast();
-  const { createUserAccount } = useAccount();
+  const { emptyCart } = useSwellCart();
   const queryClient = useQueryClient();
   const { updateCartItemQuantity, addToCart, addToCartModal, removeCartItem } =
     useSwellCart();
@@ -54,10 +53,21 @@ export default function useMutationAction() {
     );
   }
 
+  function useEmptyCart() {
+    return useMutation(emptyCart, {
+      onSuccess: (data) => {
+        console.log("cleared cart", data);
+          queryClient.invalidateQueries("cart");
+
+      },
+    });
+  }
+
   return {
     useUpdateCartItem,
     useAddItemToCart,
     useRemoveFromCart,
+    useEmptyCart,
     useAddItemToCartModal,
   };
 }

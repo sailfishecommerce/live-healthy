@@ -23,7 +23,7 @@ const QuickViewModal = dynamic(
 );
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
-  const { toggleCart } = useCart();
+  const { toggleCart, useCartData } = useCart();
   const { modal, onHideModal } = useModal();
   const { scroll } = useScroll();
   const UI = useAppSelector((state) => state.UI);
@@ -38,6 +38,10 @@ export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {
   function toggleAuthModalHandler() {
     dispatch(toggleAuthModal());
   }
+
+  // const { data: cart } = useCartData();
+
+  // console.log("cart LayoutWrapper", cart);
 
   return (
     <div>

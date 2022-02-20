@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { useAppDispatch } from "@/hooks/useRedux";
 import { displayCheckoutModalAction } from "@/redux/ui-slice";
-import { CartDiscount } from "./CartElements";
+import { CartDiscount, ClearCart } from "./CartElements";
 import SlideCartNote from "./SlideCartNote";
 import FormattedPrice from "@/lib/formatPrice";
 import SlideCartProduct from "./SlideCartProduct";
@@ -55,6 +55,7 @@ export default function SlideCart(props: slideCartProps) {
               </div>
               <div className="cart-footer bg-white px-4">
                 <CartDiscount cartItem={0} />
+                <ClearCart />
                 <div className="mt-6">
                   <h5 className="mt-5 mb-2 subtotal d-flex align-items-center">
                     Subtotal:{" "}

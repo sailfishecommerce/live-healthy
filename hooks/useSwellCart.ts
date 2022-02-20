@@ -82,18 +82,18 @@ export default function useSwellCart() {
     return await swell.cart.applyCoupon(code);
   }
 
-  async function updateCartAccount(details: {
+  async function updateCartAccount(account: {
     email: string;
-    password: string;
+    email_optin?: boolean;
+    password?: string;
   }) {
-    await swell.cart.update({
-      account: {
-        email: details.email,
-        email_optin: true,
-        password: details.password,
-      },
-    });
+    await swell.cart.update(account);
   }
+
+  async function updateCartAccountID(account_id: string) {
+    await swell.cart.update({ account_id });
+  }
+
   return {
     getACart,
     addToCart,
@@ -108,5 +108,6 @@ export default function useSwellCart() {
     updateCartBilling,
     addToCartModal,
     updateCartAccount,
+    updateCartAccountID,
   };
 }

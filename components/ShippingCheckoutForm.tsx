@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Formik } from "formik";
 
 import checkoutFormContent from "@/json/checkout-form.json";
@@ -45,7 +44,6 @@ export default function ShippingCheckoutForm(): JSX.Element {
           >
             {(formik) => (
               <form onSubmit={formik.handleSubmit}>
-                {console.log("formik-formik", formik)}
                 <div>
                   {checkoutFormContent.personalDetails.content.map(
                     (formRow, index) => (

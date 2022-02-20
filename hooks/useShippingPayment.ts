@@ -4,8 +4,7 @@ import { useAccount } from ".";
 
 export default function useShippingPayment() {
   const { getUserAccount } = useAccount();
-
-  const { data: userDetail, status } = useQuery("getAccount", getUserAccount);
+  const { data: userDetail, status } = useQuery("userdetails", getUserAccount);
   const { paymentForm }: any = useAppSelector((state) => state.payment);
 
   function formatFormValues(field: string) {
