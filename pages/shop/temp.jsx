@@ -32,7 +32,7 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
 
-  if (state.refinementList.product_type) {
+  if (state.refinementList?.product_type) {
     queryParameters.product_types =
       state.refinementList.product_type.map(encodeURIComponent);
   }

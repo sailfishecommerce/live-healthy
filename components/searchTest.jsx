@@ -5,6 +5,8 @@ import { Configure } from "react-instantsearch-dom";
 import { Highlight } from "react-instantsearch-dom";
 import { Pagination } from "react-instantsearch-dom";
 import { InstantSearch } from "react-instantsearch-dom";
+import { SearchBox } from "react-instantsearch-dom";
+import { Hits } from "react-instantsearch-dom";
 
 const HitComponent = ({ hit }) => (
   <div className="hit">
