@@ -10,6 +10,8 @@ export default function BankTransferPaymentMethod() {
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const { isLoading, hasError, isSuccessful } = useToast();
 
+  console.log("bank", bank);
+
   function setBankHandler(e: any) {
     setBank(e.target.value);
   }
