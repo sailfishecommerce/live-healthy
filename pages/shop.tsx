@@ -8,7 +8,7 @@ import searchClient from "@/lib/algoliaConfig";
 
 const DEBOUNCE_TIME = 700;
 
-const createURL = (state) => {
+const createURL = (state: any) => {
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
@@ -25,7 +25,7 @@ const createURL = (state) => {
   const categoryPath = state.menu.product_type
     ? `${encodeURIComponent(state.menu.product_type)}/`
     : "";
-  const queryParameters = {};
+  const queryParameters: any = {};
 
   if (state.query) {
     queryParameters.query = encodeURIComponent(state.query);
@@ -49,12 +49,12 @@ const createURL = (state) => {
   return `/shop?search/${categoryPath}${queryString}`;
 };
 
-const searchStateToUrl = (searchState) => {
+const searchStateToUrl = (searchState: any) => {
   console.log("searchState", searchState);
   return searchState ? createURL(searchState) : "";
 };
 
-const urlToSearchState = (location) => {
+const urlToSearchState = (location: string) => {
   const pathnameMatches = location.match(/search\/(.*?)\/?$/);
   const validPathName = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
   const validCategory =
@@ -71,7 +71,12 @@ const urlToSearchState = (location) => {
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
 
-  const { query = "", page = 1, vendor = [], tags = [] } = qs.parse(queryValue);
+  const {
+    query = "",
+    page = 1,
+    vendor = [],
+    tags = [],
+  }: any = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   console.log("qs.parse(location)", qs.parse(location));
 
@@ -93,13 +98,13 @@ const urlToSearchState = (location) => {
   };
 };
 
-const App = () => {
+export default function Shop() {
   const router = useRouter();
   const { asPath } = router;
-  const [searchState, setSearchState] = useState(urlToSearchState(asPath));
-  const debouncedSetStateRef = useRef(null);
+  const [searchState, setSearchState] = useState<any>(urlToSearchState(asPath));
+  const debouncedSetStateRef: any = useRef(null);
 
-  const onSearchStateChange = (updatedSearchState) => {
+  const onSearchStateChange = (updatedSearchState: string) => {
     console.log("updatedSearchState", updatedSearchState);
     clearTimeout(debouncedSetStateRef.current);
     const href = searchStateToUrl(updatedSearchState);
@@ -117,10 +122,7 @@ const App = () => {
   }, [asPath]);
 
   return (
-    <Applayout
-      title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers"
-      local
-    >
+    <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
       <ShopView
         searchClient={searchClient}
         indexName="New_Livehealthy_products_index"
@@ -130,6 +132,4 @@ const App = () => {
       />
     </Applayout>
   );
-};
-
-export default App;
+}

@@ -10,8 +10,8 @@ import InfiniteProductHits from "./InfiniteHits";
 
 interface ShopViewProps {
   searchState: any;
-  onSearchStateChange: () => void;
-  createURL: () => void;
+  onSearchStateChange: (updatedSearchState: string) => void;
+  createURL: (state: any) => void;
   indexName: string;
   searchClient: any;
 }

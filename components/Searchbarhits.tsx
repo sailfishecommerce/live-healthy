@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { connectHits } from "react-instantsearch-dom";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { hitType } from "@/types";
 
 import ViewSearchQuery from "./ViewSearchQuery.";
@@ -23,6 +23,6 @@ function SearchHits({ hits }: SearchHitsProps) {
   }, [viewSearch]);
   return <>{hits.length === 0 ? "" : <ViewSearchQuery hits={hits} />}</>;
 }
-const SearchbarHits = connectHits(SearchHits);
+const SearchbarHits = memo(connectHits(SearchHits));
 
 export default SearchbarHits;

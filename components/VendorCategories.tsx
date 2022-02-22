@@ -1,7 +1,6 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
-import { VendorRefinementList } from "./AttributeRefinementList";
+import AttributeRefinementList from "./AttributeRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
-import { TagsRefinementList } from "./TagsRefinementList";
 import { SingleVendorRefinementList } from "./SingleVendorRefinementList";
 
 interface props {
@@ -19,7 +18,7 @@ export default function VendorCategories({ vendorView }: props) {
           <h2 className="h5 mb-0">Filters</h2>
           <button
             className="btn-close ms-auto"
-            type="button"            
+            type="button"
             data-bs-dismiss="offcanvas"
             aria-label="close"
           ></button>
@@ -33,18 +32,20 @@ export default function VendorCategories({ vendorView }: props) {
               attribute="vendor"
             />
           ) : (
-            <VendorRefinementList
+            <AttributeRefinementList
               showMoreLimit={100}
               showMore={true}
               searchable={true}
               attribute="vendor"
+              title="Vendor"
             />
           )}
-          <TagsRefinementList
+          <AttributeRefinementList
             showMoreLimit={100}
             showMore={true}
             searchable={true}
             attribute="tags"
+            title="Tags"
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
