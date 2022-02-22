@@ -1,5 +1,5 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
-import { VendorRefinementList } from "./VendorRefinementList";
+import AttributeRefinementList from "./AttributeRefinementList";
 import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import MarketplaceCategoryMenu from "./MarketplaceCategoryMenu";
@@ -39,17 +39,19 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
               attribute="product_type"
             />
           )}
-          <VendorRefinementList
+          <AttributeRefinementList
             showMoreLimit={100}
             showMore={true}
             searchable={true}
             attribute="vendor"
+            title="Vendor"
           />
-          <TagsRefinementList
+          <AttributeRefinementList
             showMoreLimit={100}
             showMore={true}
             searchable={true}
             attribute="tags"
+            title="Tags"
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />

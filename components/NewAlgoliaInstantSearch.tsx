@@ -9,17 +9,12 @@ import { updateQuery } from "@/redux/algolia-slice";
 
 const DEBOUNCE_TIME = 700;
 
-const DEFAULT_PROPS = {
-  searchClient,
-  indexName: "New_Livehealthy_products_index",
-};
-
 const createURL = (state: any, route: string) => {
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.vendor.length === 0 &&
+    state.refinementList.vendors.length === 0 &&
     state.refinementList.tags.length === 0 &&
     state.menu &&
     !state.menu.product_type;
@@ -40,7 +35,7 @@ const createURL = (state: any, route: string) => {
     queryParameters.page = state.page;
   }
   if (state.refinementList.vendor) {
-    queryParameters.vendor =
+    queryParameters.vendors =
       state.refinementList.vendor.map(encodeURIComponent);
   }
   if (state.refinementList.tags) {
@@ -56,15 +51,21 @@ const createURL = (state: any, route: string) => {
 };
 
 const searchStateToUrl = (searchState: any, route: string) => {
-  console.log("searchState", searchState);
+  console.log("NewAl searchState", searchState);
   return searchState ? createURL(searchState, route) : "";
 };
 
 const urlToSearchState = (location: any) => {
   const pathnameMatches = location.match(/search\/(.*?)\/?$/);
   const validPathName = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
-  const validCategory = !validPathName.includes("page") ? validPathName : "";
+  const validCategory =
+    !validPathName.includes("page") &&
+    !validPathName.includes("vendor") &&
+    !validPathName.includes("tags")
+      ? validPathName
+      : "";
   const category = decodeURIComponent(validCategory);
+  console.log("category", category);
 
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
@@ -72,13 +73,15 @@ const urlToSearchState = (location: any) => {
   const {
     query = "",
     page,
-    vendor = [],
+    vendors = [],
     tags = [],
   }: any = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allVendors = Array.isArray(vendor) ? vendor : [vendor].filter(Boolean);
+  const allVendors = Array.isArray(vendors)
+    ? vendors
+    : [vendors].filter(Boolean);
   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
@@ -88,7 +91,7 @@ const urlToSearchState = (location: any) => {
       product_type: decodeURIComponent(category),
     },
     refinementList: {
-      vendor: allVendors.map(decodeURIComponent),
+      vendors: allVendors.map(decodeURIComponent),
       tags: allTags.map(decodeURIComponent),
     },
   };
@@ -136,18 +139,13 @@ export default function NewAlgoliaInstantSearch({
     setSearchState(updatedSearchState);
   };
 
-  useEffect(() => {
-    setSearchState(urlToSearchState(asPath));
-  }, [asPath]);
-
   return (
     <InstantSearch
-      {...DEFAULT_PROPS}
       indexName="New_Livehealthy_products_index"
       searchClient={algoliasearchClient}
-      searchState={searchState}
-      onSearchStateChange={onSearchStateChange}
-      createURL={createURL}
+      // searchState={searchState}
+      // onSearchStateChange={onSearchStateChange}
+      // createURL={createURL}
     >
       {children}
     </InstantSearch>

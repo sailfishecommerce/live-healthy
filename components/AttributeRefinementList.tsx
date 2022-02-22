@@ -2,12 +2,13 @@
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
-export function VendorList({
+export function AttributeList({
   items,
   isFromSearch,
   refine,
   searchForItems,
   createURL,
+  title,
 }: any) {
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
@@ -18,9 +19,11 @@ export function VendorList({
     refine(item.value);
   }
 
+  const selectedVendor = (item: boolean) => (item ? "fw-bold text-danger" : "");
+
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
-      <h3 className="widget-title">Vendors</h3>
+      <h3 className="widget-title">{title}</h3>
       <div className="input-group input-group-sm mb-2">
         <input
           className="widget-filter-search form-control rounded-end"
@@ -36,15 +39,15 @@ export function VendorList({
             (item: {
               label: string;
               count: number;
-              slug: string;
               value: string;
+              isRefined: boolean;
             }) => (
               <div key={item.label} className="accordion-item">
                 <h3 className="text-sm">
                   <a
                     href={createURL(item.value)}
                     onClick={(e) => refineSearch(e, item)}
-                    className="cat-link"
+                    className={`cat-link ${selectedVendor(item.isRefined)}`}
                   >
                     {isFromSearch ? (
                       <Highlight attribute="label" hit={item} />
@@ -103,4 +106,5 @@ export function VendorList({
   );
 }
 
-export const VendorRefinementList = connectRefinementList(VendorList);
+const AttributeRefinementList: any = connectRefinementList(AttributeList);
+export default AttributeRefinementList;

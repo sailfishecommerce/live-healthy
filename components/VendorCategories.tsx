@@ -1,5 +1,5 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
-import { VendorRefinementList } from "./VendorRefinementList";
+import { VendorRefinementList } from "./AttributeRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import { TagsRefinementList } from "./TagsRefinementList";
 import { SingleVendorRefinementList } from "./SingleVendorRefinementList";

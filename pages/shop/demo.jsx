@@ -34,7 +34,7 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
   if (state.refinementList.vendor) {
-    queryParameters.vendors =
+    queryParameters.vendor =
       state.refinementList.vendor.map(encodeURIComponent);
   }
   if (state.refinementList.tags) {
@@ -66,10 +66,6 @@ const urlToSearchState = (location) => {
   const category = decodeURIComponent(validCategory);
   console.log("category", category);
 
-  console.log(
-    "/shop/demo?search/?vendor=Swisse&vendor=Sukin",
-    qs.parse("/shop/demo?search/?vendor=Swisse&vendor=Sukin")
-  );
   console.log("location", location);
 
   const queryValue = location ? location.split("/?")[1] : "";
@@ -78,7 +74,7 @@ const urlToSearchState = (location) => {
   const {
     query = "",
     page = 1,
-    vendors = [],
+    vendor = [],
     tags = [],
   } = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
@@ -86,9 +82,9 @@ const urlToSearchState = (location) => {
 
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allVendors = Array.isArray(vendors)
-    ? vendors
-    : [vendors].filter(Boolean);
+  const allVendors = Array.isArray(vendor)
+    ? vendor
+    : [vendor].filter(Boolean);
   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
@@ -106,12 +102,13 @@ const urlToSearchState = (location) => {
 
 const App = () => {
   const router = useRouter();
-  console.log("router", router);
   const { asPath } = router;
   const [searchState, setSearchState] = useState(urlToSearchState(asPath));
   const debouncedSetStateRef = useRef(null);
+
   const onSearchStateChange = (updatedSearchState) => {
     clearTimeout(debouncedSetStateRef.current);
+
     const href = searchStateToUrl(updatedSearchState);
     console.log("href", href);
     debouncedSetStateRef.current = setTimeout(() => {
