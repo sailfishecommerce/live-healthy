@@ -1,40 +1,83 @@
-import {findResultsState} from "react-instantsearch-dom/server";
-import isEqual from "react-fast-compare";
-import { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "next/router";
+import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
+import { ClearRefinements } from "react-instantsearch-dom";
+import { RefinementList } from "react-instantsearch-dom";
+import { Panel } from "react-instantsearch-dom";
+import { Menu } from "react-instantsearch-dom";
+import { Highlight } from "react-instantsearch-dom";
+import { Pagination } from "react-instantsearch-dom";
+import { InstantSearch } from "react-instantsearch-dom";
+import { SearchBox } from "react-instantsearch-dom";
+import { Hits } from "react-instantsearch-dom";
+import algoliasearch from "algoliasearch";
 import qs from "qs";
-import SearchTest from "@/components/searchTest";
-import searchClient from "@/lib/algoliaConfig";
+import PropTypes from "prop-types";
 
-const updateAfter = 700;
+const DEBOUNCE_TIME = 700;
+const searchClient = algoliasearch(
+  "latency",
+  "6be0576ff61c053d5f9a3225e2a90f76"
+);
+
+const encodedCategories = {
+  Cameras: "Cameras & Camcorders",
+  Cars: "Car Electronics & GPS",
+  Phones: "Cell Phones",
+  TV: "TV & Home Theater",
+};
+
+const decodedCategories = Object.keys(encodedCategories).reduce((acc, key) => {
+  const newKey = encodedCategories[key];
+  const newValue = key;
+
+  return {
+    ...acc,
+    [newKey]: newValue,
+  };
+}, {});
+
+function getCategorySlug(name) {
+  const encodedName = decodedCategories[name] || name;
+
+  return encodedName.split(" ").map(encodeURIComponent).join("+");
+}
+
+// Returns a name from the category slug.
+// The "+" are replaced by spaces and other
+// characters are decoded.
+function getCategoryName(slug) {
+  const decodedSlug = encodedCategories[slug] || slug;
+
+  return decodedSlug.split("+").map(decodeURIComponent).join(" ");
+}
 
 const createURL = (state) => {
+  console.log("createURL-state", state);
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.product_type.length === 0 &&
+    state.refinementList.brand.length === 0 &&
     state.menu &&
-    !state.menu?.categories;
+    !state.menu.categories;
 
   if (isDefaultRoute) {
     return "";
   }
 
+  const categoryPath = state.menu.categories
+    ? `${getCategorySlug(state.menu.categories)}/`
+    : "";
   const queryParameters = {};
 
   if (state.query) {
     queryParameters.query = encodeURIComponent(state.query);
   }
-
   if (state.page !== 1) {
     queryParameters.page = state.page;
   }
-
-  if (state.refinementList?.product_type) {
-    queryParameters.product_types =
-      state.refinementList.product_type.map(encodeURIComponent);
+  if (state.refinementList.brand) {
+    queryParameters.brands = state.refinementList.brand.map(encodeURIComponent);
   }
 
   const queryString = qs.stringify(queryParameters, {
@@ -42,107 +85,109 @@ const createURL = (state) => {
     arrayFormat: "repeat",
   });
 
-  console.log("state", state);
-  return `${queryString}`;
+  return `/demo?search/${categoryPath}${queryString}`;
 };
 
-const pathToSearchState = (path) =>
-  path.includes("?") ? qs.parse(path.substring(path.indexOf("?") + 1)) : {};
-
-const searchStateToURL = (searchState) =>
-  searchState ? createURL(searchState) : "";
-
-const DEFAULT_PROPS = {
-  searchClient,
-  indexName: "New_Livehealthy_products_index",
+const searchStateToUrl = (searchState) => {
+  console.log("searchState", searchState);
+  return searchState ? createURL(searchState) : "";
 };
 
 const urlToSearchState = (location) => {
-  console.log("location", location);
+  const pathnameMatches = location.match(/search\/(.*?)\/?$/);
+  const categoryPath = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
+  const category = getCategoryName(categoryPath);
+  console.log("category", category);
 
-  const locationString =
-    Object.keys(location).length >= 1 ? `query=${location.query}` : "";
-  const { query = "", page = 1, product_types = [] } = qs.parse(locationString);
+  const queryValue = location ? location.split("/?")[1] : "";
+  console.log("queryValue", queryValue);
+
+  const { query = "", page = 1, brands = [] } = qs.parse(queryValue);
+  console.log("qs.parse(queryValue)", qs.parse(queryValue));
+  // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allProductTypes = Array.isArray(product_types)
-    ? product_types
-    : [product_types].filter(Boolean);
-
-  console.log("allProductTypes", allProductTypes);
+  const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
 
   return {
     query: decodeURIComponent(query),
     page,
+    menu: {
+      categories: decodeURIComponent(category),
+    },
     refinementList: {
-      product_typproduct_typee: allProductTypes.map(decodeURIComponent),
+      brand: allBrands.map(decodeURIComponent),
     },
   };
 };
 
-class TempPage extends Component {
-  static propTypes = {
-    router: PropTypes.object.isRequired,
-    resultsState: PropTypes.object,
-    searchState: PropTypes.object,
+const Hit = ({ hit }) => (
+  <div>
+    <Highlight attribute="name" hit={hit} />
+  </div>
+);
+
+Hit.propTypes = {
+  hit: PropTypes.object.isRequired,
+};
+
+const App = () => {
+  const router = useRouter();
+  const { pathname, query: queryData, asPath } = router;
+  console.log("router", router);
+  const [searchState, setSearchState] = useState(urlToSearchState(asPath));
+  const debouncedSetStateRef = useRef(null);
+  const onSearchStateChange = (updatedSearchState) => {
+    clearTimeout(debouncedSetStateRef.current);
+    const href = searchStateToUrl(updatedSearchState);
+    console.log("href", href);
+    debouncedSetStateRef.current = setTimeout(() => {
+      router.push(href, href, {
+        shallow: true,
+      });
+    }, DEBOUNCE_TIME);
+
+    setSearchState(updatedSearchState);
   };
 
-  state = {
-    searchState: urlToSearchState(this.props.searchState),
-    lastRouter: searchStateToURL(this.props.router),
-  };
+  useEffect(() => {
+    setSearchState(urlToSearchState(asPath));
+  }, []);
 
-  static async getInitialProps({ asPath }) {
-    const searchState = pathToSearchState(asPath);
-    const resultsState = await findResultsState(SearchTest, {
-      ...DEFAULT_PROPS,
-      searchState,
-    });
+  return (
+    <div className="container">
+      <InstantSearch
+        searchClient={searchClient}
+        indexName="instant_search"
+        searchState={searchState}
+        onSearchStateChange={onSearchStateChange}
+        createURL={createURL}
+      >
+        <div className="search-panel">
+          <div className="search-panel__filters">
+            <ClearRefinements />
 
-    return {
-      resultsState,
-      searchState,
-    };
-  }
+            <Panel header="Category">
+              <Menu attribute="categories" />
+            </Panel>
 
-  static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state.lastRouter, props.router)) {
-      return {
-        searchState: pathToSearchState(props.router.asPath),
-        lastRouter: props.router,
-      };
-    }
+            <Panel header="Brands">
+              <RefinementList attribute="brand" />
+            </Panel>
+          </div>
 
-    return null;
-  }
+          <div className="search-panel__results">
+            <SearchBox className="searchbox" placeholder="Search" />
 
-  onSearchStateChange = (searchState) => {
-    clearTimeout(this.debouncedSetState);
+            <Hits hitComponent={Hit} />
 
-    this.debouncedSetState = setTimeout(() => {
-      const href = searchStateToURL(searchState);
+            <div className="pagination">
+              <Pagination />
+            </div>
+          </div>
+        </div>
+      </InstantSearch>
+    </div>
+  );
+};
 
-      this.props.router.push(href, href);
-    }, updateAfter);
-
-    this.setState({ searchState });
-  };
-
-  render() {
-    console.log("this.props.searchState", this.props.searchState);
-    console.log("this.props.router", this.props.router);
-
-    return (
-      <div>
-        <SearchTest
-          {...DEFAULT_PROPS}
-          searchState={this.state.searchState}
-          resultsState={this.props.resultsState}
-          onSearchStateChange={this.onSearchStateChange}
-          createURL={createURL}
-        />
-      </div>
-    );
-  }
-}
-
-export default withRouter(TempPage);
+export default App;
