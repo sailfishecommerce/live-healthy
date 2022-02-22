@@ -2,7 +2,7 @@ import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { VendorRefinementList } from "./VendorRefinementList";
 import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
-import { MarketplaceCategoriesRefinementList } from "./MarketplaceCategoryMenu";
+import MarketplaceCategoryMenu from "./MarketplaceCategoryMenu";
 import { TagsRefinementList } from "./TagsRefinementList";
 
 interface CategoriesProps {
@@ -23,11 +23,11 @@ export default function Categories({ categoryMarketplace }: CategoriesProps) {
             type="button"
             data-bs-dismiss="offcanvas"
             aria-label="close"
-          ></button> 
+          ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
           {categoryMarketplace ? (
-            <MarketplaceCategoriesRefinementList
+            <MarketplaceCategoryMenu
               searchable={true}
               attribute="product_type"
             />

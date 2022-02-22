@@ -11,9 +11,10 @@ export function TagsList({
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
-  function refineSearch(item: any) {
+
+  function refineSearch(e: any, item: any) {
+    e.preventDefault();
     refine(item.value);
-    createURL(item.value);
   }
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
@@ -34,7 +35,7 @@ export function TagsList({
               <h3 className="text-sm">
                 <a
                   href={createURL(item.value)}
-                  onClick={() => refineSearch(item)}
+                  onClick={(e) => refineSearch(e, item)}
                   className="cat-link"
                 >
                   {isFromSearch ? (

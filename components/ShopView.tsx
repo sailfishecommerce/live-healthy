@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { InstantSearch } from "react-instantsearch-dom";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { Configure } from "react-instantsearch-dom";
-import { useEffect, useState } from "react";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import ShopViewCategories from "@/components/ShopViewCategories";
@@ -12,49 +10,26 @@ import InfiniteProductHits from "./InfiniteHits";
 
 interface ShopViewProps {
   searchState: any;
-  resultsState: any;
   onSearchStateChange: () => void;
   createURL: () => void;
   indexName: string;
   searchClient: any;
-  onSearchParameters: () => void;
-  category?: {
-    name: string;
-    slug: string;
-  };
 }
 
-export default function ShopView(
-  props: any,
-  {
-    category,
-    searchState,
-    resultsState,
-    onSearchStateChange,
-    createURL,
-    indexName,
-    onSearchParameters,
-    searchClient,
-  }: ShopViewProps
-) {
-  const [loadPageStatus, setLoadPageStatus] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (router?.isReady) {
-      setLoadPageStatus(true);
-    }
-  }, [router?.isReady]);
+export default function ShopView({
+  searchState,
+  onSearchStateChange,
+  createURL,
+  indexName,
+  searchClient,
+}: ShopViewProps) {
   return (
     <InstantSearch
       indexName={indexName}
       searchClient={searchClient}
-      resultsState={resultsState}
       onSearchStateChange={onSearchStateChange}
       searchState={searchState}
       createURL={createURL}
-      onSearchParameters={onSearchParameters}
-      {...props}
     >
       <Configure
         hitsPerPage={9}
@@ -73,13 +48,7 @@ export default function ShopView(
                     <a className="text-nowrap">Home</a>
                   </Link>
                 </li>
-                {category ? (
-                  <li className="breadcrumb-item text-nowrap">
-                    {category?.name}
-                  </li>
-                ) : (
-                  <li className="breadcrumb-item text-nowrap active">Shop</li>
-                )}
+                <li className="breadcrumb-item text-nowrap active">Shop</li>
               </ol>
             </nav>
           </div>
@@ -89,12 +58,10 @@ export default function ShopView(
         <div className="row">
           <ShopViewCategories />
           <section className="col-lg-9">
-            {loadPageStatus && <ShopBannerToolbar />}
+            <ShopBannerToolbar />
             <div>
               <div className="row mx-n2 mb-5">
-                {loadPageStatus && (
-                  <InfiniteProductHits minHitsPerPage={9} animation={true} />
-                )}
+                <InfiniteProductHits minHitsPerPage={9} animation={true} />
               </div>
               <hr className="mb-2" />
             </div>

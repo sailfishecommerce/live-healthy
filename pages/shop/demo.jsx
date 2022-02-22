@@ -8,11 +8,6 @@ import searchClient from "@/lib/algoliaConfig";
 
 const DEBOUNCE_TIME = 700;
 
-const DEFAULT_PROPS = {
-  searchClient,
-  indexName: "New_Livehealthy_products_index",
-};
-
 const createURL = (state) => {
   const isDefaultRoute =
     !state.query &&
@@ -39,7 +34,7 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
   if (state.refinementList.vendor) {
-    queryParameters.vendor =
+    queryParameters.vendors =
       state.refinementList.vendor.map(encodeURIComponent);
   }
   if (state.refinementList.tags) {
@@ -60,21 +55,40 @@ const searchStateToUrl = (searchState) => {
 };
 
 const urlToSearchState = (location) => {
-  const pathnameMatches = location.match(/product_type\/(.*?)\/?$/);
-  const categoryPath = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
-  const category = decodeURIComponent(categoryPath);
+  const pathnameMatches = location.match(/search\/(.*?)\/?$/);
+  const validPathName = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
+  const validCategory =
+    !validPathName.includes("page") &&
+    !validPathName.includes("vendor") &&
+    !validPathName.includes("tags")
+      ? validPathName
+      : "";
+  const category = decodeURIComponent(validCategory);
   console.log("category", category);
 
+  console.log(
+    "/shop/demo?search/?vendor=Swisse&vendor=Sukin",
+    qs.parse("/shop/demo?search/?vendor=Swisse&vendor=Sukin")
+  );
   console.log("location", location);
 
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
 
-  const { query = "", page = 1, vendor = [], tags = [] } = qs.parse(queryValue);
+  const {
+    query = "",
+    page = 1,
+    vendors = [],
+    tags = [],
+  } = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
+  console.log("qs.parse(location)", qs.parse(location));
+
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allVendors = Array.isArray(vendor) ? vendor : [vendor].filter(Boolean);
+  const allVendors = Array.isArray(vendors)
+    ? vendors
+    : [vendors].filter(Boolean);
   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
@@ -119,7 +133,6 @@ const App = () => {
       local
     >
       <ShopView
-        {...DEFAULT_PROPS}
         searchClient={searchClient}
         indexName="New_Livehealthy_products_index"
         searchState={searchState}

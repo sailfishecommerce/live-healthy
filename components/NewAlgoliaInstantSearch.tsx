@@ -62,8 +62,9 @@ const searchStateToUrl = (searchState: any, route: string) => {
 
 const urlToSearchState = (location: any) => {
   const pathnameMatches = location.match(/search\/(.*?)\/?$/);
-  const category = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
-  console.log("category", category);
+  const validPathName = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
+  const validCategory = !validPathName.includes("page") ? validPathName : "";
+  const category = decodeURIComponent(validCategory);
 
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
@@ -77,9 +78,7 @@ const urlToSearchState = (location: any) => {
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allVendors = Array.isArray(vendor)
-    ? vendor
-    : [vendor].filter(Boolean);
+  const allVendors = Array.isArray(vendor) ? vendor : [vendor].filter(Boolean);
   const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
