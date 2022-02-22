@@ -29,10 +29,14 @@ export function TagsList({
       </div>
       <div className="accordion mt-n1" id="shop-categories">
         {items.length > 0 ? (
-          items.map((item: { label: string; count: number }) => (
+          items.map((item: { label: string; value: string; count: number }) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a onClick={() => refineSearch(item)} className="cat-link">
+                <a
+                  href={createURL(item.value)}
+                  onClick={() => refineSearch(item)}
+                  className="cat-link"
+                >
                   {isFromSearch ? (
                     <Highlight attribute="label" hit={item} />
                   ) : (

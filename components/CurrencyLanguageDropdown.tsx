@@ -19,7 +19,6 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [currencies, status] = useCurrencies();
 
-  console.log("showDropdown", showDropdown);
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";

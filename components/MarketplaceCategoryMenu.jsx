@@ -1,39 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { Highlight, connectRefinementList } from "react-instantsearch-dom";
-import LoadCategorySidebar from "@/components/CategorySidebarLoader";
-import { useRouter } from "next/router";
+import { Highlight } from "react-instantsearch-dom";
+import { connectMenu } from "react-instantsearch-dom";
 
-const categories = {
-  "personal-care": "Personal Care",
-  medicines: "Medicines",
-  beauty: "Beauty",
-  "medical-aids": "Medical Aids",
-  "hair-colours": "Hair Colours",
-  "veterinary-and-pet-care": "Veterinary and Pet Care",
-  confectionery: "Confectionery",
-  health: "Health",
-};
+import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function CategoriesList({
   items,
   isFromSearch,
   refine,
+  createURL,
   searchForItems,
 }) {
-  const { query } = useRouter();
-  const queryString = query.slug;
-  const selectedCategory = categories[queryString];
-
-  const filteredItem = items.filter((item) => item.label === selectedCategory);
-
   function searchItems(e) {
     searchForItems(e.currentTarget.value);
   }
 
-  useEffect(() => {
-    refine([selectedCategory]);
-  }, []);
+  function refineSearch(e, item) {
+    e.preventDefault();
+    refine(item.value);
+  }
 
   return (
     <div className="widget widget-categories mb-4 pb-0 border-bottom">
@@ -49,10 +34,14 @@ export function CategoriesList({
       </div>
       <div className="accordion mt-n1" id="shop-categories">
         {items.length > 0 ? (
-          filteredItem.map((item) => (
+          items.map((item) => (
             <div key={item.label} className="accordion-item">
               <h3 className="text-sm">
-                <a className="cat-link">
+                <a
+                  href={createURL(item.value)}
+                  onClick={(e) => refineSearch(e, item)}
+                  className="cat-link"
+                >
                   {isFromSearch ? (
                     <Highlight attribute="label" hit={item} />
                   ) : (
@@ -107,5 +96,6 @@ export function CategoriesList({
   );
 }
 
-export const MarketplaceCategoriesRefinementList =
-  connectRefinementList(CategoriesList);
+const MarketplaceCategoryMenu = connectMenu(CategoriesList);
+
+export default MarketplaceCategoryMenu;

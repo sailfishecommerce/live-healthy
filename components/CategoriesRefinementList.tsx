@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Highlight, connectMenu } from "react-instantsearch-dom";
+import { Highlight } from "react-instantsearch-dom";
+import { connectMenu } from "react-instantsearch-dom";
+
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
 
@@ -20,7 +22,7 @@ export function CategoriesList({
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
- 
+
   return (
     <div className="widget widget-categories mb-4 pb-0 border-bottom">
       <h3 className="widget-title">Product Type</h3>

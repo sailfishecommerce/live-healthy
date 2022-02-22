@@ -2,7 +2,7 @@ import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { VendorRefinementList } from "./VendorRefinementList";
 import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
-import { MarketplaceCategoriesRefinementList } from "./MarketplaceCategoryRefinementList";
+import { MarketplaceCategoriesRefinementList } from "./MarketplaceCategoryMenu";
 import { TagsRefinementList } from "./TagsRefinementList";
 
 interface CategoriesProps {

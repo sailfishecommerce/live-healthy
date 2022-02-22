@@ -1,17 +1,11 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import { VendorRefinementList } from "./VendorRefinementList";
-import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
-import { MarketplaceCategoriesRefinementList } from "./MarketplaceCategoryRefinementList";
+import MarketplaceCategoryMenu  from "./MarketplaceCategoryMenu";
 import { TagsRefinementList } from "./TagsRefinementList";
 
-interface CategoriesProps {
-  categoryMarketplace?: boolean;
-}
 
-export default function ShopViewCategories({
-  categoryMarketplace,
-}: CategoriesProps) {
+export default function ShopViewCategories() {
   return (
     <aside className="col-lg-3">
       <div
@@ -28,7 +22,7 @@ export default function ShopViewCategories({
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <MarketplaceCategoriesRefinementList
+          <MarketplaceCategoryMenu
             searchable={true}
             attribute="product_type"
             showMoreLimit={100}

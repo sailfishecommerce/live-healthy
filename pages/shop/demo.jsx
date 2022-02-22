@@ -13,54 +13,22 @@ const DEFAULT_PROPS = {
   indexName: "New_Livehealthy_products_index",
 };
 
-const encodedCategories = {
-  Cameras: "Cameras & Camcorders",
-  Cars: "Car Electronics & GPS",
-  Phones: "Cell Phones",
-  TV: "TV & Home Theater",
-};
-
-const decodedCategories = Object.keys(encodedCategories).reduce((acc, key) => {
-  const newKey = encodedCategories[key];
-  const newValue = key;
-
-  return {
-    ...acc,
-    [newKey]: newValue,
-  };
-}, {});
-
-function getCategorySlug(name) {
-  const encodedName = decodedCategories[name] || name;
-
-  return encodedName.split(" ").map(encodeURIComponent).join("+");
-}
-
-// Returns a name from the category slug.
-// The "+" are replaced by spaces and other
-// characters are decoded.
-function getCategoryName(slug) {
-  const decodedSlug = encodedCategories[slug] || slug;
-
-  return decodedSlug.split("+").map(decodeURIComponent).join(" ");
-}
-
 const createURL = (state) => {
-  console.log("createURL-state", state);
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.brand.length === 0 &&
+    state.refinementList.vendor.length === 0 &&
+    state.refinementList.tags.length === 0 &&
     state.menu &&
-    !state.menu.categories;
+    !state.menu.product_type;
 
   if (isDefaultRoute) {
     return "";
   }
 
-  const categoryPath = state.menu.categories
-    ? `${getCategorySlug(state.menu.categories)}/`
+  const categoryPath = state.menu.product_type
+    ? `${encodeURIComponent(state.menu.product_type)}/`
     : "";
   const queryParameters = {};
 
@@ -71,7 +39,11 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
   if (state.refinementList.brand) {
-    queryParameters.brands = state.refinementList.brand.map(encodeURIComponent);
+    queryParameters.vendors =
+      state.refinementList.vendor.map(encodeURIComponent);
+  }
+  if (state.refinementList.tags) {
+    queryParameters.tags = state.refinementList.tags.map(encodeURIComponent);
   }
 
   const queryString = qs.stringify(queryParameters, {
@@ -90,26 +62,35 @@ const searchStateToUrl = (searchState) => {
 const urlToSearchState = (location) => {
   const pathnameMatches = location.match(/search\/(.*?)\/?$/);
   const categoryPath = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
-  const category = getCategoryName(categoryPath);
+  const category = decodeURIComponent(categoryPath);
   console.log("category", category);
 
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
 
-  const { query = "", page = 1, brands = [] } = qs.parse(queryValue);
+  const {
+    query = "",
+    page = 1,
+    vendors = [],
+    tags = [],
+  } = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
+  const allVendors = Array.isArray(vendors)
+    ? vendors
+    : [vendors].filter(Boolean);
+  const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
     query: decodeURIComponent(query),
     page,
     menu: {
-      categories: decodeURIComponent(category),
+      product_type: decodeURIComponent(category),
     },
     refinementList: {
-      brand: allBrands.map(decodeURIComponent),
+      vendor: allVendors.map(decodeURIComponent),
+      tags: allTags.map(decodeURIComponent),
     },
   };
 };

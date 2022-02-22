@@ -5,6 +5,8 @@ import { useRef, useEffect, useState, memo } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AlgoliaInstantSearch from "./AlgoliaInstantSearch";
+import NewAlgoliaInstantSearch from "./NewAlgoliaInstantSearch";
+
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateQuery } from "@/redux/algolia-slice";
 
@@ -36,23 +38,25 @@ function SearchBarComponent() {
   }
 
   return (
-    <AlgoliaInstantSearch>
-      <Configure clickAnalytics distinct enablePersonalization />
-      <div className="searchBox">
-        <div className={inputContainerClassName}>
-          <SearchBox
-            translations={{
-              placeholder: "Search for products...",
-            }}
-            autoFocus={false}
-            showLoadingIndicator
-            onChange={showSearchResult}
-            inputRef={inputRef}
-            className={inputClassName}
-          />
+    <>
+      <NewAlgoliaInstantSearch>
+        <Configure clickAnalytics distinct enablePersonalization />
+        <div className="searchBox">
+          <div className={inputContainerClassName}>
+            <SearchBox
+              translations={{
+                placeholder: "Search for products...",
+              }}
+              autoFocus={false}
+              showLoadingIndicator
+              onChange={showSearchResult}
+              inputRef={inputRef}
+              className={inputClassName}
+            />
+          </div>
+          {searching && <SearchbarHits />}
         </div>
-        {searching && <SearchbarHits />}
-      </div>
+      </NewAlgoliaInstantSearch>
       <style jsx>
         {`
           .searchBox {
@@ -107,7 +111,7 @@ function SearchBarComponent() {
           }
         `}
       </style>
-    </AlgoliaInstantSearch>
+    </>
   );
 }
 
