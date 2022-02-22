@@ -3,7 +3,6 @@ import AttributeRefinementList from "./AttributeRefinementList";
 import { CategoriesRefinementList } from "./CategoriesRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import MarketplaceCategoryMenu from "./MarketplaceCategoryMenu";
-import { TagsRefinementList } from "./TagsRefinementList";
 
 interface CategoriesProps {
   categoryMarketplace?: boolean;

@@ -143,9 +143,9 @@ export default function NewAlgoliaInstantSearch({
     <InstantSearch
       indexName="New_Livehealthy_products_index"
       searchClient={algoliasearchClient}
-      // searchState={searchState}
-      // onSearchStateChange={onSearchStateChange}
-      // createURL={createURL}
+      searchState={searchState}
+      onSearchStateChange={onSearchStateChange}
+      createURL={createURL}
     >
       {children}
     </InstantSearch>

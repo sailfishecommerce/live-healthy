@@ -1,5 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
+import { memo } from "react";
+
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function AttributeList({
@@ -106,5 +107,5 @@ export function AttributeList({
   );
 }
 
-const AttributeRefinementList: any = connectRefinementList(AttributeList);
+const AttributeRefinementList: any = memo(connectRefinementList(AttributeList));
 export default AttributeRefinementList;

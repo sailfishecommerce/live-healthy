@@ -1,42 +1,29 @@
-import { findResultsState } from "react-instantsearch-dom/server";
-import isEqual from "react-fast-compare";
-import { Component } from "react";
-import { withRouter } from "next/router";
+import { useRouter } from "next/router";
 import qs from "qs";
+import { useEffect, useRef, useState } from "react";
 
-import searchClient from "@/lib/algoliaConfig";
 import Applayout from "@/layout/Applayout";
-import MarketplaceTemp from "@/components/MarketplaceTemp";
-import styles from "@/styles/shop.module.css";
+import ShopView from "@/components/ShopView";
+import searchClient from "@/lib/algoliaConfig";
 
-const updateAfter = 700;
-
-const pathToSearchState = (path) =>
-  path.includes("?") ? qs.parse(path.substring(path.indexOf("?") + 1)) : {};
-
-const searchStateToURL = (searchState) =>
-  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
-
-const DEFAULT_PROPS = {
-  searchClient,
-  indexName: "New_Livehealthy_products_index",
-};
+const DEBOUNCE_TIME = 700;
 
 const createURL = (state) => {
   const isDefaultRoute =
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.vendor?.length === 0 &&
+    state.refinementList.vendor.length === 0 &&
+    state.refinementList.tags.length === 0 &&
     state.menu &&
-    !state.menu?.categories;
+    !state.menu.product_type;
 
   if (isDefaultRoute) {
     return "";
   }
 
-  const categoryPath = state.menu?.categories
-    ? `${getCategorySlug(state.menu?.categories)}/`
+  const categoryPath = state.menu.product_type
+    ? `${encodeURIComponent(state.menu.product_type)}/`
     : "";
   const queryParameters = {};
 
@@ -47,8 +34,11 @@ const createURL = (state) => {
     queryParameters.page = state.page;
   }
   if (state.refinementList.vendor) {
-    queryParameters.vendors =
+    queryParameters.vendor =
       state.refinementList.vendor.map(encodeURIComponent);
+  }
+  if (state.refinementList.tags) {
+    queryParameters.tags = state.refinementList.tags.map(encodeURIComponent);
   }
 
   const queryString = qs.stringify(queryParameters, {
@@ -56,83 +46,90 @@ const createURL = (state) => {
     arrayFormat: "repeat",
   });
 
-  return `/search/${categoryPath}${queryString}`;
+  return `/shop?search/${categoryPath}${queryString}`;
 };
 
-class Shop extends Component {
-  state = {
-    searchState: this.props.searchState,
-    lastRouter: this.props.router,
+const searchStateToUrl = (searchState) => {
+  console.log("searchState", searchState);
+  return searchState ? createURL(searchState) : "";
+};
+
+const urlToSearchState = (location) => {
+  const pathnameMatches = location.match(/search\/(.*?)\/?$/);
+  const validPathName = pathnameMatches ? pathnameMatches[0].split("/")[1] : "";
+  const validCategory =
+    !validPathName.includes("page") &&
+    !validPathName.includes("vendor") &&
+    !validPathName.includes("tags")
+      ? validPathName
+      : "";
+  const category = decodeURIComponent(validCategory);
+  console.log("category", category);
+
+  console.log("location", location);
+
+  const queryValue = location ? location.split("/?")[1] : "";
+  console.log("queryValue", queryValue);
+
+  const { query = "", page = 1, vendor = [], tags = [] } = qs.parse(queryValue);
+  console.log("qs.parse(queryValue)", qs.parse(queryValue));
+  console.log("qs.parse(location)", qs.parse(location));
+
+  // location.search.slice(1));
+  // `qs` does not return an array when there's a single value.
+  const allVendors = Array.isArray(vendor) ? vendor : [vendor].filter(Boolean);
+  const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
+
+  return {
+    query: decodeURIComponent(query),
+    page,
+    menu: {
+      product_type: decodeURIComponent(category),
+    },
+    refinementList: {
+      vendor: allVendors.map(decodeURIComponent),
+      tags: allTags.map(decodeURIComponent),
+    },
   };
+};
 
-  static async getInitialProps({ asPath }) {
-    const searchState = pathToSearchState(asPath);
-    console.log("asPath", asPath, "searchState", searchState);
-    const resultsState = await findResultsState(MarketplaceTemp, {
-      ...DEFAULT_PROPS,
-      searchState,
-    });
+const App = () => {
+  const router = useRouter();
+  const { asPath } = router;
+  const [searchState, setSearchState] = useState(urlToSearchState(asPath));
+  const debouncedSetStateRef = useRef(null);
 
-    return {
-      resultsState,
-      searchState,
-    };
-  }
-  static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state.lastRouter, props.router)) {
-      return {
-        searchState: pathToSearchState(props.router.asPath),
-        lastRouter: props.router,
-      };
-    }
-
-    return null;
-  }
-
-  onSearchStateChange = (searchState) => {
-    console.log("searchState", searchState);
-    console.log("this?.state?.searchState", this.state);
-    clearTimeout(this.debouncedSetState);
-
-    const searchStateValue = {
-      searchState: {
-        ...searchState,
-        ...this.state.searchState,
-      },
-    };
-
-    console.log("searchStateValuesearchStateValue", searchStateValue);
-
-    this.debouncedSetState = setTimeout(() => {
-      const href = searchStateToURL(searchState);
-
-      this.props.router.push(href, href, {
+  const onSearchStateChange = (updatedSearchState) => {
+    console.log("updatedSearchState", updatedSearchState);
+    clearTimeout(debouncedSetStateRef.current);
+    const href = searchStateToUrl(updatedSearchState);
+    debouncedSetStateRef.current = setTimeout(() => {
+      router.push(href, href, {
         shallow: true,
       });
-    }, updateAfter);
+    }, DEBOUNCE_TIME);
 
-    this.setState({ searchState });
+    setSearchState(updatedSearchState);
   };
-  render() {
-    console.log("this.state", this.state);
 
-    return (
-      <Applayout
-        title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers"
-        local
-      >
-        <div className={styles.shop}>
-          <MarketplaceTemp
-            {...DEFAULT_PROPS}
-            searchState={this.props.searchState}
-            resultsState={this.props.resultsState}
-            onSearchStateChange={this.onSearchStateChange}
-            createURL={createURL}
-          />
-        </div>
-      </Applayout>
-    );
-  }
-}
+  useEffect(() => {
+    setSearchState(urlToSearchState(asPath));
+  }, [asPath]);
 
-export default withRouter(Shop);
+  return (
+    <Applayout
+      title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers"
+      local
+    >
+      <ShopView
+        searchClient={searchClient}
+        indexName="New_Livehealthy_products_index"
+        searchState={searchState}
+        onSearchStateChange={onSearchStateChange}
+        createURL={createURL}
+      />
+    </Applayout>
+  );
+};
+
+export default App;

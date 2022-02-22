@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Highlight } from "react-instantsearch-dom";
 import { connectMenu } from "react-instantsearch-dom";
+import { memo } from "react";
 
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
@@ -96,6 +96,6 @@ export function CategoriesList({
   );
 }
 
-const MarketplaceCategoryMenu = connectMenu(CategoriesList);
+const MarketplaceCategoryMenu = memo(connectMenu(CategoriesList));
 
 export default MarketplaceCategoryMenu;
