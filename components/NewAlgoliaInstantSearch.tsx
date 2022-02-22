@@ -19,15 +19,18 @@ const createURL = (state: any, route: string) => {
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.brand.length === 0 &&
+    state.refinementList.vendor.length === 0 &&
+    state.refinementList.tags.length === 0 &&
     state.menu &&
-    !state.menu.categories;
+    !state.menu.product_type;
 
   if (isDefaultRoute) {
     return "";
   }
 
-  const categoryPath = state.menu.categories ? `${state.menu.categories}/` : "";
+  const categoryPath = state.menu.product_type
+    ? `${encodeURIComponent(state.menu.product_type)}/`
+    : "";
   const queryParameters: any = {};
 
   if (state.query) {
@@ -36,8 +39,12 @@ const createURL = (state: any, route: string) => {
   if (state.page !== 1) {
     queryParameters.page = state.page;
   }
-  if (state.refinementList.brand) {
-    queryParameters.brands = state.refinementList.brand.map(encodeURIComponent);
+  if (state.refinementList.vendor) {
+    queryParameters.vendor =
+      state.refinementList.vendor.map(encodeURIComponent);
+  }
+  if (state.refinementList.tags) {
+    queryParameters.tags = state.refinementList.tags.map(encodeURIComponent);
   }
 
   const queryString = qs.stringify(queryParameters, {
@@ -61,20 +68,29 @@ const urlToSearchState = (location: any) => {
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
 
-  const { query = "", page = 1, brands = [] }: any = qs.parse(queryValue);
+  const {
+    query = "",
+    page,
+    vendor = [],
+    tags = [],
+  }: any = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
-  const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
+  const allVendors = Array.isArray(vendor)
+    ? vendor
+    : [vendor].filter(Boolean);
+  const allTags = Array.isArray(tags) ? tags : [tags].filter(Boolean);
 
   return {
     query: decodeURIComponent(query),
     page,
     menu: {
-      categories: decodeURIComponent(category),
+      product_type: decodeURIComponent(category),
     },
     refinementList: {
-      brand: allBrands.map(decodeURIComponent),
+      vendor: allVendors.map(decodeURIComponent),
+      tags: allTags.map(decodeURIComponent),
     },
   };
 };

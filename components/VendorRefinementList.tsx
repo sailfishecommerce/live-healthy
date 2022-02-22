@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
-import { useRouter } from "next/router";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
 
 export function VendorList({
@@ -11,20 +9,9 @@ export function VendorList({
   searchForItems,
   createURL,
 }: any) {
-  const router = useRouter();
-  const vendorQuery = router?.query["vendor"];
-
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
-
-  console.log("vendorQuery");
-
-  useEffect(() => {
-    if (vendorQuery) {
-      refine(vendorQuery);
-    }
-  }, [vendorQuery]);
 
   function refineSearch(e: any, item: any) {
     e.preventDefault();
