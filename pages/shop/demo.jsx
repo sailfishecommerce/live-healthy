@@ -1,23 +1,17 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { ClearRefinements } from "react-instantsearch-dom";
-import { RefinementList } from "react-instantsearch-dom";
-import { Panel } from "react-instantsearch-dom";
-import { Menu } from "react-instantsearch-dom";
-import { Highlight } from "react-instantsearch-dom";
-import { Pagination } from "react-instantsearch-dom";
-import { InstantSearch } from "react-instantsearch-dom";
-import { SearchBox } from "react-instantsearch-dom";
-import { Hits } from "react-instantsearch-dom";
-import algoliasearch from "algoliasearch";
 import qs from "qs";
-import PropTypes from "prop-types";
+
+import Applayout from "@/layout/Applayout";
+import ShopView from "@/components/ShopView";
+import searchClient from "@/lib/algoliaConfig";
 
 const DEBOUNCE_TIME = 700;
-const searchClient = algoliasearch(
-  "latency",
-  "6be0576ff61c053d5f9a3225e2a90f76"
-);
+
+const DEFAULT_PROPS = {
+  searchClient,
+  indexName: "New_Livehealthy_products_index",
+};
 
 const encodedCategories = {
   Cameras: "Cameras & Camcorders",
@@ -85,7 +79,7 @@ const createURL = (state) => {
     arrayFormat: "repeat",
   });
 
-  return `/demo?search/${categoryPath}${queryString}`;
+  return `/shop/demo?search/${categoryPath}${queryString}`;
 };
 
 const searchStateToUrl = (searchState) => {
@@ -120,20 +114,9 @@ const urlToSearchState = (location) => {
   };
 };
 
-const Hit = ({ hit }) => (
-  <div>
-    <Highlight attribute="name" hit={hit} />
-  </div>
-);
-
-Hit.propTypes = {
-  hit: PropTypes.object.isRequired,
-};
-
 const App = () => {
   const router = useRouter();
-  const { pathname, query: queryData, asPath } = router;
-  console.log("router", router);
+  const { asPath } = router;
   const [searchState, setSearchState] = useState(urlToSearchState(asPath));
   const debouncedSetStateRef = useRef(null);
   const onSearchStateChange = (updatedSearchState) => {
@@ -151,42 +134,22 @@ const App = () => {
 
   useEffect(() => {
     setSearchState(urlToSearchState(asPath));
-  }, []);
+  }, [asPath]);
 
   return (
-    <div className="container">
-      <InstantSearch
+    <Applayout
+      title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers"
+      local
+    >
+      <ShopView
+        {...DEFAULT_PROPS}
         searchClient={searchClient}
-        indexName="instant_search"
+        indexName="New_Livehealthy_products_index"
         searchState={searchState}
         onSearchStateChange={onSearchStateChange}
         createURL={createURL}
-      >
-        <div className="search-panel">
-          <div className="search-panel__filters">
-            <ClearRefinements />
-
-            <Panel header="Category">
-              <Menu attribute="categories" />
-            </Panel>
-
-            <Panel header="Brands">
-              <RefinementList attribute="brand" />
-            </Panel>
-          </div>
-
-          <div className="search-panel__results">
-            <SearchBox className="searchbox" placeholder="Search" />
-
-            <Hits hitComponent={Hit} />
-
-            <div className="pagination">
-              <Pagination />
-            </div>
-          </div>
-        </div>
-      </InstantSearch>
-    </div>
+      />
+    </Applayout>
   );
 };
 
