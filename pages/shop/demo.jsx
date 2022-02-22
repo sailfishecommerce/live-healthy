@@ -68,12 +68,7 @@ const urlToSearchState = (location) => {
   const queryValue = location ? location.split("/?")[1] : "";
   console.log("queryValue", queryValue);
 
-  const {
-    query = "",
-    page = 1,
-    vendors = [],
-    tags = [],
-  } = qs.parse(queryValue);
+  const { query = "", page, vendors = [], tags = [] } = qs.parse(queryValue);
   console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
@@ -97,6 +92,7 @@ const urlToSearchState = (location) => {
 
 const App = () => {
   const router = useRouter();
+  console.log("router", router);
   const { asPath } = router;
   const [searchState, setSearchState] = useState(urlToSearchState(asPath));
   const debouncedSetStateRef = useRef(null);
