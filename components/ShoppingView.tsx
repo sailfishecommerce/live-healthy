@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { InstantSearch } from "react-instantsearch-dom";
 import Link from "next/link";
 import { Configure } from "react-instantsearch-dom";
+import { memo } from "react";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import ShopViewCategories from "@/components/ShopViewCategories";
@@ -18,7 +18,7 @@ interface ShopViewProps {
   indexName: string;
 }
 
-export default function ShopView(
+function ShopViewComponent(
   props: any,
   {
     searchState,
@@ -83,3 +83,5 @@ export default function ShopView(
     </InstantSearch>
   );
 }
+const ShopView = memo(ShopViewComponent);
+export default ShopView;

@@ -1,10 +1,10 @@
 import { findResultsState } from "react-instantsearch-dom/server";
 import { withRouter } from "next/router";
+import algoliasearch from "algoliasearch/lite";
+import qs from "qs";
 import isEqual from "react-fast-compare";
 import { Component } from "react";
-import qs from "qs";
 
-import searchClient from "@/lib/algoliaConfig";
 import ShoppingView from "@/components/ShoppingView";
 import Applayout from "@/layout/Applayout";
 
@@ -13,6 +13,11 @@ const updateAfter = 700;
 function getCategorySlug(name) {
   return name.split(" ").map(encodeURIComponent).join("+");
 }
+
+const searchClient = algoliasearch(
+  `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
+  `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`
+);
 
 function getCategoryName(slug) {
   return slug.split("+").map(decodeURIComponent).join(" ");
@@ -56,7 +61,7 @@ const createURL = (state) => {
     addQueryPrefix: true,
     arrayFormat: "repeat",
   });
-  return `search/${categoryPath}${queryString}`;
+  return `/search/${categoryPath}${queryString}`;
 };
 
 const pathToSearchState = (location) => {
@@ -106,6 +111,7 @@ class Shopping extends Component {
   };
 
   static async getInitialProps({ asPath }) {
+    console.log("called-getInitialProps");
     const searchState = pathToSearchState(asPath);
     const resultsState = await findResultsState(ShoppingView, {
       ...DEFAULT_PROPS,
@@ -118,18 +124,21 @@ class Shopping extends Component {
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state.lastRouter, props.router)) {
-      return {
-        searchState: pathToSearchState(props.router.asPath),
-        lastRouter: props.router,
-      };
-    }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log("called-getDerivedStateFromProps");
+  //   if (!isEqual(state.lastRouter, props.router)) {
+  //     return {
+  //       searchState: pathToSearchState(props.router.asPath),
+  //       lastRouter: props.router,
+  //     };
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   onSearchStateChange = (searchState) => {
+    console.log("searchState", searchState);
+    console.log("called-onSearchStateChange");
     clearTimeout(this.debouncedSetState);
 
     this.debouncedSetState = setTimeout(() => {
@@ -144,7 +153,9 @@ class Shopping extends Component {
   };
 
   render() {
-    console.log("this.state.searchState", this.state.searchState);
+    console.log("this.state", this.state);
+    console.log("this.props", this.props);
+
     return (
       <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
         <ShoppingView
