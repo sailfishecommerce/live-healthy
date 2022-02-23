@@ -10,9 +10,9 @@ export type productType = {
       text: string;
     }[];
   };
-  __queryID?: string;
-  __position?: number;
-  objectID?: string;
+  __queryID?: any;
+  __position?: any;
+  objectID?: any;
   vendor: string;
   product_image?: string;
   product_images: { link: string; alt: string }[];

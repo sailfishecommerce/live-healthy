@@ -5,14 +5,19 @@ import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
 import useProductOptions from "@/hooks/useProductOptions";
 import useEvent from "@/hooks/useEvent";
+import { useAppDispatch } from "@/redux/store";
+import { quickViewModal } from "@/redux/ui-slice";
 
 export default function ProductViewForm({
   product,
+  algoliaEvent,
   forCategory,
 }: ProductProps) {
   const { optionHandler } = useProductOptions();
   const categoryStyle = forCategory ? "d-flex flex-column" : "d-flex";
-  const { productAddedToCart } = useAlgoliaEvents();
+  const { productAddedToCart, convertedItemAfterSearch } = useAlgoliaEvents();
+  const dispatch = useAppDispatch();
+
   const { algoliaQuickViewEvent } = useEvent();
   const formOptionBg = useCallback((name: string) => {
     const style = { backgroundColor: name.toLowerCase() };
@@ -22,13 +27,28 @@ export default function ProductViewForm({
   const { addItemToCart, loadingState } = useShoppingCart();
 
   function algoliaViewHandler() {
-    algoliaQuickViewEvent(product);
+    dispatch(quickViewModal(product));
+    if (algoliaEvent) {
+      convertedItemAfterSearch("quick_view_after_search", product.__queryID, [
+        product.objectID,
+      ]);
+    } else {
+      algoliaQuickViewEvent(product);
+    }
   }
 
   function onSubmitHandler(e: any) {
     e.preventDefault();
     addItemToCart.mutate({ product, quantity: 1 });
-    productAddedToCart([product.id]);
+    if (algoliaEvent) {
+      convertedItemAfterSearch(
+        "product_added_to_cart_after_search",
+        product.__queryID,
+        [product.objectID]
+      );
+    } else {
+      productAddedToCart([product.id]);
+    }
   }
 
   loadingState(addItemToCart, `${product.name} added to cart`);

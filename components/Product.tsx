@@ -21,7 +21,7 @@ const DynamicProductMetatags = dynamic(
 declare function tcjs(trigger: string, type: string, name: string): any;
 
 const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
-  const { itemViewed } = useAlgoliaEvents();
+  const { itemViewed, clickedItemAfterSearch } = useAlgoliaEvents();
   const [inHover, setHover] = useState(false);
 
   function productViewHandler() {
@@ -39,6 +39,16 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
     inHover && product.images.length > 1
       ? product.images[1]?.file?.url
       : product.images[0]?.file?.url;
+
+  function algoliaClickedProductAfterSearch() {
+    if (algoliaEvent)
+      clickedItemAfterSearch(
+        product.__queryID,
+        [product.objectID],
+        [product.__position],
+        'product clicked after search'
+      );
+  }
 
   return (
     <div className="col-md-4 col-6 mb-3 mb-lg-4 p-0 p-md-1 product">
@@ -62,7 +72,10 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           </button>
         </div>
         <Link href={linkURL} passHref>
-          <a className="productLink card-img-top d-block">
+          <a
+            onClick={algoliaClickedProductAfterSearch}
+            className="productLink card-img-top d-block"
+          >
             <div
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
@@ -97,7 +110,11 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
           <ProductPriceView product={product} />
         </div>
         {!mobileView && (
-          <DynamicProductViewForm product={product} forCategory={forCategory} />
+          <DynamicProductViewForm
+            product={product}
+            algoliaEvent={algoliaEvent}
+            forCategory={forCategory}
+          />
         )}
       </div>
       <hr className="d-sm-none" />

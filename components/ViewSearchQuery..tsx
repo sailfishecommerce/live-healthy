@@ -19,7 +19,7 @@ export default function ViewSearchQuery({ hits }: SearchHitsProps) {
   const { query } = useAppSelector((state) => state.algolia);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { clickedProductAfterSearch } = useAlgoliaEvents();
+  const { clickedItemAfterSearch } = useAlgoliaEvents();
 
   function viewHits() {
     dispatch(updateViewSearch());
@@ -54,10 +54,11 @@ export default function ViewSearchQuery({ hits }: SearchHitsProps) {
                   >
                     <a
                       onClick={() =>
-                        clickedProductAfterSearch(
+                        clickedItemAfterSearch(
                           hit.__queryID,
                           [hit.objectID],
-                          [hit.__position]
+                          [hit.__position],
+                          "product clicked after a search"
                         )
                       }
                       className="hit d-flex align-items-center my-0 py-1"

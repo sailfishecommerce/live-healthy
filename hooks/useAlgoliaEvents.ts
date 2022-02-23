@@ -10,36 +10,6 @@ export default function useAlgoliaEvents() {
       useCookie: false,
     });
   }
-  function clickedObjectIDsAfterSearch(
-    insights: (
-      arg0: string,
-      arg1: { eventName: string; userToken: string; queryID: string }
-    ) => void,
-    queryID: string
-  ) {
-    initializeAlgolia();
-    insights("clickedObjectIDsAfterSearch", {
-      eventName: "Product Clicked after searching",
-      userToken,
-      queryID,
-    });
-  }
-
-  function clickedProductAfterSearch(
-    queryID: string,
-    objectIDs: string[],
-    positions: number[]
-  ) {
-    initializeAlgolia();
-    aa("clickedObjectIDsAfterSearch", {
-      userToken,
-      eventName: "Product clicked after a search",
-      index: "New_Livehealthy_products_index",
-      queryID,
-      objectIDs,
-      positions,
-    });
-  }
 
   function itemViewed(eventName: string, objectIDs: string[] | any) {
     initializeAlgolia();
@@ -81,21 +51,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  function productAddedToCartAfterSearch(
-    queryID: string,
-    objectIDs: string[] | any
-  ) {
+  function clickedItem(eventName: string, objectIDs: string[]) {
     initializeAlgolia();
-    aa("convertedObjectIDsAfterSearch", {
-      userToken,
-      index: "New_Livehealthy_products_index",
-      eventName: "product_added_to_cart_after_search",
-      queryID,
-      objectIDs,
-    });
-  }
-
-  function itemClicked(eventName: string, objectIDs: string[]) {
     aa("clickedObjectIDs", {
       eventName,
       userToken,
@@ -104,14 +61,47 @@ export default function useAlgoliaEvents() {
     });
   }
 
+  function convertedItemAfterSearch(
+    eventName: string,
+    queryID: string,
+    objectIDs: string[]
+  ) {
+    initializeAlgolia();
+    aa("convertedObjectIDsAfterSearch", {
+      eventName,
+      userToken,
+      index: "New_Livehealthy_products_index",
+      queryID,
+      objectIDs,
+    });
+  }
+
+  function clickedItemAfterSearch(
+    queryID: string,
+    objectIDs: string[],
+    positions: number[],
+    eventName: string
+  ) {
+    initializeAlgolia();
+    aa("clickedObjectIDsAfterSearch", {
+      index: "New_Livehealthy_products_index",
+      userToken,
+      eventName,
+      queryID,
+      objectIDs,
+      positions,
+    });
+  }
+
   return {
-    clickedObjectIDsAfterSearch,
     filterViewed,
     filterClicked,
     productAddedToCart,
-    itemClicked,
-    productAddedToCartAfterSearch,
+    clickedItem,
     itemViewed,
-    clickedProductAfterSearch,
+    convertedItemAfterSearch,
+    clickedItemAfterSearch,
   };
 }
+
+// "Product clicked after a search",

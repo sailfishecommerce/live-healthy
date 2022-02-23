@@ -31,8 +31,7 @@ const quantityArr = [10, 20, 30, 40, 50];
 
 export default function ProductForm({ product }: ProductFormType) {
   const router = useRouter();
-  const { productAddedToCartAfterSearch, productAddedToCart } =
-    useAlgoliaEvents();
+  const { convertedItemAfterSearch, productAddedToCart } = useAlgoliaEvents();
   const queryID: any = router.query["query-id"];
   const { addItemToCartModal } = useShoppingCart();
 
@@ -49,7 +48,11 @@ export default function ProductForm({ product }: ProductFormType) {
     const itemId =
       product.objectID !== undefined ? [product.objectID] : [product.id];
     return queryID
-      ? productAddedToCartAfterSearch(queryID, [product.objectID])
+      ? convertedItemAfterSearch(
+          "product_added_to_cart_after_search",
+          queryID,
+          [product.objectID]
+        )
       : productAddedToCart(itemId);
   }
 
