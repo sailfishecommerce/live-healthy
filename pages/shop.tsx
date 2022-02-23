@@ -126,10 +126,6 @@ export default function Shop() {
     setSearchState(updatedSearchState);
   };
 
-  useEffect(() => {
-    setSearchState(urlToSearchState(asPath));
-  }, [asPath]);
-
   return (
     <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
       <ShopView

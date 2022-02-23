@@ -126,6 +126,10 @@ class Shopping extends Component {
 
   // static getDerivedStateFromProps(props, state) {
   //   console.log("called-getDerivedStateFromProps");
+  //   console.log(
+  //     "isEqual(state.lastRouter, props.router)",
+  //     !isEqual(state.lastRouter, props.router)
+  //   );
   //   if (!isEqual(state.lastRouter, props.router)) {
   //     return {
   //       searchState: pathToSearchState(props.router.asPath),

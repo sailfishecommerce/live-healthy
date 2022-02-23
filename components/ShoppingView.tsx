@@ -1,7 +1,6 @@
 import { InstantSearch } from "react-instantsearch-dom";
 import Link from "next/link";
 import { Configure } from "react-instantsearch-dom";
-import { memo } from "react";
 
 import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import ShopViewCategories from "@/components/ShopViewCategories";
@@ -18,7 +17,7 @@ interface ShopViewProps {
   indexName: string;
 }
 
-function ShopViewComponent(
+export default function ShoppingView(
   props: any,
   {
     searchState,
@@ -83,5 +82,3 @@ function ShopViewComponent(
     </InstantSearch>
   );
 }
-const ShopView = memo(ShopViewComponent);
-export default ShopView;
