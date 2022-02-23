@@ -60,7 +60,8 @@ const urlToSearchState = (location: string) => {
   const validCategory =
     !validPathName.includes("page") &&
     !validPathName.includes("vendor") &&
-    !validPathName.includes("tags")
+    !validPathName.includes("tags") &&
+    !validPathName.includes("query")
       ? validPathName
       : "";
   const category = decodeURIComponent(validCategory);
