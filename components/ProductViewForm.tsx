@@ -24,11 +24,13 @@ export default function ProductViewForm({
     return style;
   }, []);
 
+  console.log("algoliaEvent", algoliaEvent);
+
   const { addItemToCart, loadingState } = useShoppingCart();
 
   function algoliaViewHandler() {
     dispatch(quickViewModal(product));
-    if (algoliaEvent) {
+    if (algoliaEvent === "search") {
       convertedItemAfterSearch("quick_view_after_search", product.__queryID, [
         product.objectID,
       ]);
@@ -40,7 +42,7 @@ export default function ProductViewForm({
   function onSubmitHandler(e: any) {
     e.preventDefault();
     addItemToCart.mutate({ product, quantity: 1 });
-    if (algoliaEvent) {
+    if (algoliaEvent === "search") {
       convertedItemAfterSearch(
         "product_added_to_cart_after_search",
         product.__queryID,

@@ -13,19 +13,21 @@ export default function ProductOverview({ pageProduct }: ProductOverviewProps) {
   console.log("pageProducts", pageProduct);
 
   useEffect(() => {
-    algoliaClientRecommend
-      .getRelatedProducts([
-        {
-          indexName: "New_Livehealthy_products_index",
-          objectID: pageProduct.ObjectID,
-        },
-      ])
-      .then(({ results }) => {
-        console.log(results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (pageProduct.objectID) {
+      algoliaClientRecommend
+        .getRelatedProducts([
+          {
+            indexName: "New_Livehealthy_products_index",
+            objectID: pageProduct.objectID,
+          },
+        ])
+        .then(({ results }) => {
+          console.log(results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
