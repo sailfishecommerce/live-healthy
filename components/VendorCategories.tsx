@@ -2,6 +2,7 @@ import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import AttributeRefinementList from "./AttributeRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import { SingleVendorRefinementList } from "./SingleVendorRefinementList";
+import { TagsRefinementList } from "./TagsRefinementList";
 
 interface props {
   vendorView: boolean;
@@ -40,13 +41,19 @@ export default function VendorCategories({ vendorView }: props) {
               title="Vendor"
             />
           )}
-          <AttributeRefinementList
+          <TagsRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="tags"
+          />
+          {/* <AttributeRefinementList
             showMoreLimit={100}
             showMore={true}
             searchable={true}
             attribute="tags"
             title="Tags"
-          />
+          /> */}
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
         </div>
