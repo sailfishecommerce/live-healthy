@@ -17,19 +17,14 @@ export function SingleVendorList({
   createURL,
 }: any) {
   const { pathname }: any = useRouter();
-
-  // const formattedVendor: any = replaceHypenWithSpace(query.slug);
-  // console.log("formattedVendor", formattedVendor);
-  // const vendor = formattedVendor ? toTitleCase(formattedVendor) : null;
-
   console.log("items", items);
 
-  // useEffect(() => {
-  //   refine([vendor]);
-  // }, []);
+  const selectedVendor = (item: string) => {
+    console.log("item selectedVendor", item);
+    console.log("item pathname", pathname);
 
-  const selectedVendor = (item: boolean) =>
     pathname.includes(item) ? "fw-bold text-danger" : "";
+  };
 
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
@@ -68,7 +63,7 @@ export function SingleVendorList({
                     )}`}
                     passHref
                   >
-                    <a className={`cat-link ${selectedVendor(item.isRefined)}`}>
+                    <a className={`cat-link ${selectedVendor(item.label)}`}>
                       {isFromSearch ? (
                         <Highlight attribute="label" hit={item} />
                       ) : (
@@ -94,7 +89,6 @@ export function SingleVendorList({
           a.cat-link {
             font-size: 0.9375rem;
             color: #4b566b;
-            font-weight: bold;
           }
           a:hover {
             color: #fe696a;
