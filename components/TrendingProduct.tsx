@@ -12,8 +12,6 @@ function TrendingProductsCatalog() {
   const { liveHealthyProduct, liveHealthyProductStatus } =
     useLiveHealthyProduct();
 
-  console.log("liveHealthyProduct", liveHealthyProduct);
-
   function updateProductSize(productData: any[]) {
     const productSize = mobileView ? productData.slice(0, 14) : productData;
     return productSize;

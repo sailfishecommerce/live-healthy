@@ -6,6 +6,3 @@ export { default as useAxios } from "./useAxios";
 export { default as useProcessPayment } from "./useProcessPayment";
 export { default as useCart } from "./useCart";
 export { default as usePayment } from "./usePayment";
-
-
-
