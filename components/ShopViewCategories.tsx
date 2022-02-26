@@ -1,5 +1,7 @@
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import AttributeRefinementList from "./AttributeRefinementList";
+import { TagsRefinementList } from "./TagsRefinementList";
+import { SingleVendorRefinementList } from "./SingleVendorRefinementList";
 import { RatingsList } from "./RatingsRefinementList";
 import MarketplaceCategoryMenu from "./MarketplaceCategoryMenu";
 
@@ -26,6 +28,13 @@ export default function ShopViewCategories() {
             showMoreLimit={100}
             showMore={true}
           />
+          <SingleVendorRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="tags"
+          />
+          {/* 
           <AttributeRefinementList
             showMoreLimit={100}
             showMore={true}
@@ -33,12 +42,19 @@ export default function ShopViewCategories() {
             attribute="vendor"
             title="Vendor"
           />
-          <AttributeRefinementList
-            showMoreLimit={100}
+           <AttributeRefinementList
+             showMoreLimit={100}
             showMore={true}
             searchable={true}
             attribute="tags"
             title="Tags"
+          />
+           */}
+          <TagsRefinementList
+            showMoreLimit={100}
+            showMore={true}
+            searchable={true}
+            attribute="tags"
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />

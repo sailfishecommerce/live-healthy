@@ -1,9 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
-import { useRouter } from "next/router";
-import toTitleCase, { replaceHypenWithSpace } from "@/lib/formatString";
+import toTitleCase, {
+  replaceHypenWithSpace,
+  replaceSpaceWithHypen,
+} from "@/lib/formatString";
 
 export function SingleVendorList({
   items,
@@ -12,32 +16,78 @@ export function SingleVendorList({
   searchForItems,
   createURL,
 }: any) {
-  const { query }: any = useRouter();
+  const { pathname }: any = useRouter();
 
-  const formattedVendor: any = replaceHypenWithSpace(query.slug);
-  const vendor = toTitleCase(formattedVendor);
+  // const formattedVendor: any = replaceHypenWithSpace(query.slug);
+  // console.log("formattedVendor", formattedVendor);
+  // const vendor = formattedVendor ? toTitleCase(formattedVendor) : null;
 
-  useEffect(() => {
-    refine([vendor]);
-  }, []);
+  console.log("items", items);
+
+  // useEffect(() => {
+  //   refine([vendor]);
+  // }, []);
+
+  const selectedVendor = (item: boolean) =>
+    pathname.includes(item) ? "fw-bold text-danger" : "";
 
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
   }
-  function refineSearch(item: any) {
-    createURL(item.value);
+  function refineSearch(e: any, item: any) {
+    e.preventDefault();
     refine(item.value);
   }
 
   return (
     <div className="widget widget-categories mb-4 pb-4 border-bottom">
       <h3 className="widget-title">Vendors</h3>
+      <div className="input-group input-group-sm mb-2">
+        <input
+          className="widget-filter-search form-control rounded-end"
+          type="text"
+          onChange={searchItems}
+          placeholder="Search"
+        />
+        <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
+      </div>
       <div className="accordion mt-n1" id="shop-categories">
-        <div className="accordion-item">
-          <h3 className="text-sm">
-            <a className="cat-link">{vendor}</a>
-          </h3>
-        </div>
+        {items.length > 0 ? (
+          items.map(
+            (item: {
+              label: string;
+              count: number;
+              value: string;
+              isRefined: boolean;
+            }) => (
+              <div key={item.label} className="accordion-item">
+                <h3 className="text-sm">
+                  <Link
+                    href={`/collections/vendors/${replaceSpaceWithHypen(
+                      item.label
+                    )}`}
+                    passHref
+                  >
+                    <a className={`cat-link ${selectedVendor(item.isRefined)}`}>
+                      {isFromSearch ? (
+                        <Highlight attribute="label" hit={item} />
+                      ) : (
+                        <>
+                          {item.label}
+                          <span className="mx-2 badge bg-danger">
+                            {item.count}
+                          </span>
+                        </>
+                      )}
+                    </a>
+                  </Link>
+                </h3>
+              </div>
+            )
+          )
+        ) : (
+          <LoadCategorySidebar />
+        )}
       </div>
       <style jsx>
         {`
