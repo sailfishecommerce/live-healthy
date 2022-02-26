@@ -16,7 +16,7 @@ export function SingleVendorList({
   console.log("items", items);
 
   const { asPath } = useRouter();
-  const vendor = asPath.split("/vendor/")[0];
+  const vendor = asPath.includes("/vendor") && asPath.split("/vendor/")[1];
 
   console.log("vendor", vendor);
 
