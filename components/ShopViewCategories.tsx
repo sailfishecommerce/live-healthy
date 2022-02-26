@@ -32,7 +32,7 @@ export default function ShopViewCategories() {
             showMoreLimit={100}
             showMore={true}
             searchable={true}
-            attribute="tags"
+            attribute="vendor"
           />
           {/* 
           <AttributeRefinementList
