@@ -252,18 +252,21 @@ li.ais-Hits-item:hover a h6 {
 
 /* style scrollbar */
 body::-webkit-scrollbar,
+.products-list::-webkit-scrollbar,
 .product-gallery-thumblist::-webkit-scrollbar,
 .quickView-description::-webkit-scrollbar {
   width: 1em;
 }
 
 body::-webkit-scrollbar-track,
+.products-list::-webkit-scrollbar-track,
 .product-gallery-thumblist::-webkit-scrollbar-track,
 .quickView-description::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 body::-webkit-scrollbar-thumb,
+.products-list::-webkit-scrollbar-thumb,
 .product-gallery-thumblist::-webkit-scrollbar-thumb,
 .quickView-description::-webkit-scrollbar-thumb {
   background-color: darkgrey;

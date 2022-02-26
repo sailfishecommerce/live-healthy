@@ -48,13 +48,15 @@ export default function CheckoutSidebar({ cart }: CheckoutSidebarProps) {
         <div className="py-2 px-xl-2">
           <div className="widget mb-3">
             <h2 className="widget-title text-center">Order summary</h2>
-            {cart &&
-              cart.items.map((item: itemType, index: number) => (
-                <OrderSummaryItem
-                  key={`${item.productId}-${index}}`}
-                  item={item}
-                />
-              ))}
+            <div className="products-list d-flex flex-column">
+              {cart &&
+                cart.items.map((item: itemType, index: number) => (
+                  <OrderSummaryItem
+                    key={`${item.productId}-${index}}`}
+                    item={item}
+                  />
+                ))}
+            </div>
           </div>
           {cart && (
             <ul className="list-unstyled fs-sm pb-2 border-bottom">
@@ -110,6 +112,14 @@ export default function CheckoutSidebar({ cart }: CheckoutSidebarProps) {
           </form>
         </div>
       </div>
+      <style jsx>
+        {`
+          .products-list {
+            overflow: auto;
+            height: 450px;
+          }
+        `}
+      </style>
     </aside>
   );
 }
