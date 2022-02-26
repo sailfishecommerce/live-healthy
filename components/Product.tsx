@@ -41,7 +41,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       : product.images[0]?.file?.url;
 
   function algoliaClickedProductAfterSearch() {
-    if (algoliaEvent) {
+    if (algoliaEvent === "search") {
       clickedItemAfterSearch(
         product.__queryID,
         [product.objectID],
