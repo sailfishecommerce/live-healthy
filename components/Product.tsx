@@ -36,7 +36,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       : `/products/${product.slug}`;
 
   const productImage =
-    inHover && product.images.length > 1
+    inHover && product.images?.length > 1
       ? product.images[1]?.file?.url
       : product.images[0]?.file?.url;
 

@@ -1,7 +1,7 @@
 import { SearchBox } from "react-instantsearch-dom";
 import { Configure } from "react-instantsearch-dom";
 import dynamic from "next/dynamic";
-import { useRef, useEffect, useState, memo, PropsWithChildren } from "react";
+import { useRef, useEffect, useState, memo } from "react";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import NewAlgoliaInstantSearch from "./NewAlgoliaInstantSearch";

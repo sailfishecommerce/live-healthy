@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import qs from "qs";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import Applayout from "@/layout/Applayout";
 import ShopView from "@/components/ShopView";

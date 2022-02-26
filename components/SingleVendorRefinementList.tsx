@@ -12,13 +12,13 @@ export function SingleVendorList({
   refine,
   searchForItems,
 }: any) {
-  const { pathname }: any = useRouter();
-  console.log("items", items);
+  const { pathname, asPath }: any = useRouter();
+  const router = useRouter();
 
-  const { asPath } = useRouter();
   const vendor = asPath.includes("/vendor") && asPath.split("/vendor/")[1];
-
   console.log("vendor", vendor);
+  console.log("asPath", asPath);
+  console.log("router", router);
 
   useEffect(() => {
     if (vendor) {

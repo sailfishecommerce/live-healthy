@@ -1,13 +1,6 @@
 import Link from "next/link";
 import Image from "@/components/Image";
 
-interface CategoryBannerProps {
-  controls: {
-    navigationNextRef: any;
-    navigationPrevRef: any;
-  };
-}
-
 export default function CategoryBanner() {
   return (
     <div className="col-md-5">
