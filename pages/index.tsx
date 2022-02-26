@@ -19,7 +19,6 @@ export default function Index() {
   const { getUserAccount } = useAccount();
   const { data: userDetails, status } = useQuery("userdetails", getUserAccount);
   const { generateUserToken } = useUserToken();
-  
 
   useEffect(() => {
     if (status === "success") {
