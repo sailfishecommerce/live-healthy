@@ -4,34 +4,36 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Highlight, connectRefinementList } from "react-instantsearch-dom";
 import LoadCategorySidebar from "@/components/CategorySidebarLoader";
-import toTitleCase, {
-  replaceHypenWithSpace,
-  replaceSpaceWithHypen,
-} from "@/lib/formatString";
+import { replaceSpaceWithHypen } from "@/lib/formatString";
 
 export function SingleVendorList({
   items,
   isFromSearch,
   refine,
   searchForItems,
-  createURL,
 }: any) {
   const { pathname }: any = useRouter();
   console.log("items", items);
 
+  const { asPath } = useRouter();
+  const vendor = asPath.split("/vendor/")[0];
+
+  console.log("vendor", vendor);
+
+  useEffect(() => {
+    if (vendor) {
+      refine(vendor);
+    }
+  }, []);
+
   const selectedVendor = (item: string) => {
     console.log("item selectedVendor", item);
     console.log("item pathname", pathname);
-
     pathname.includes(item) ? "fw-bold text-danger" : "";
   };
 
   function searchItems(e: any) {
     searchForItems(e.currentTarget.value);
-  }
-  function refineSearch(e: any, item: any) {
-    e.preventDefault();
-    refine(item.value);
   }
 
   return (
@@ -121,5 +123,5 @@ export function SingleVendorList({
   );
 }
 
-export const SingleVendorRefinementList =
+export const SingleVendorRefinementList: any =
   connectRefinementList(SingleVendorList);
