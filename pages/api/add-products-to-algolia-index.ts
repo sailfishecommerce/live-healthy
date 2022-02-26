@@ -11,8 +11,6 @@ export default function AddProductToAlgoliaIndiceHandler(
   );
   const index = client.initIndex("New_Livehealthy_products_index");
 
-  console.log("req.method", req.method, "req.body", req.body);
-
   switch (req.method) {
     case "POST": {
       index
@@ -20,11 +18,9 @@ export default function AddProductToAlgoliaIndiceHandler(
           autoGenerateObjectIDIfNotExist: true,
         })
         .then((response) => {
-          console.log("response algolia", response);
           return res.status(200).json(response);
         })
         .catch((error) => {
-          console.log("error algolia", error);
           return res.status(400).json(error);
         });
     }

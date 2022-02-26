@@ -20,7 +20,6 @@ export default function useCart() {
     return applyGiftCode(code)
       .then((response) => {
         isSuccessful(loading, response?.message);
-        console.log("response", response);
         return response;
       })
       .catch((error) => {

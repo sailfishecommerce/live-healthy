@@ -27,10 +27,10 @@ export default function uploadImageHander(
               width: info.width,
               height: info.height,
             };
-            console.log("thenUmage", imageData);
+
             return imageData;
           })
-          .catch((error: any) => console.log("error", error));
+          .catch((error: any) => console.error(error));
       });
   }
 
@@ -39,7 +39,7 @@ export default function uploadImageHander(
       displayImageData(
         "http://host-62-113-119-20.hosted-by-vdsina.ru/Pictures/nature-s-way-beauty-rosehip-40-gummies_1.jpg",
         "Product one"
-      ).then((data) => console.log("imageData", data));
+      );
     }
   }
 }

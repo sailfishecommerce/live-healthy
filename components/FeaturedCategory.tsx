@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CategoryBanner from "./CategoryBanner";
-import JustInView from "@/components/JustInView";
 import CategoriesCarousel from "./Carousel/CategoriesCarousel";
 
 export default function FeaturedCategory() {

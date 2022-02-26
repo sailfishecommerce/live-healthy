@@ -60,7 +60,6 @@ const createURL = (state) => {
 };
 
 const pathToSearchState = (location) => {
-  console.log("location", location);
   const locationSplitted = location ? location.split("/?")[1] : "";
   const searchPath = locationSplitted
     ? locationSplitted.split("/search")[1]
@@ -100,7 +99,6 @@ const DEFAULT_PROPS = {
 };
 
 export default function ShopNow(props) {
-  console.log("props", props);
   const router = useRouter();
   const [searchState, setSearchState] = useState(props.searchState);
   const [lastRouter, setlastRouter] = useState(router);

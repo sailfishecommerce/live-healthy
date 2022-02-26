@@ -8,7 +8,6 @@ var liveHealthyIndex = instantsearch({
 
 const renderRefinementList = (renderOptions, isFirstRender) => {
   const { items } = renderOptions;
-  console.log("items", items);
   return items;
 };
 

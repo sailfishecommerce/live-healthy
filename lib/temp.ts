@@ -14,8 +14,7 @@ export default async function createSwellProductHandler(
   switch (req.method) {
     case "POST": {
       return await swell
-        .post("/products",
-         {
+        .post("/products", {
           name: product["#productname"],
           price: product["cwh-price"],
           active: true,
@@ -119,10 +118,8 @@ export default async function createSwellProductHandler(
             },
           ],
           brand: product["cwh-brand"],
-        }
-        )
+        })
         .then((response: any) => {
-          console.log("response createSwellProductHandler", response);
           return res.status(200).json(response);
         })
         .catch((error: any) => {

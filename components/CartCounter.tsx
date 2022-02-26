@@ -41,8 +41,6 @@ export function CartCounter({ counterType }: any) {
     setSelectedQty(e.target.value);
   }
 
-  console.log("cartType", counterType, "selectedQty", selectedQty);
-
   function updateCounter(type: "increment" | "decrement") {
     if (type === "increment") {
       setItemQty(itemQty + 1);
@@ -152,8 +150,6 @@ export function SelectProductOption({ product }: SelectProductOptionProps) {
       })
     );
   }
-
-  console.log("productSpec", productSpec);
 
   return (
     <div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from "react";
 
 export default function useInfiniteScroll(products: []) {
@@ -8,7 +9,6 @@ export default function useInfiniteScroll(products: []) {
   const loader = useRef(null);
 
   function handleObserver(entities: any) {
-    console.log("entities", entities);
     const target = entities[0];
     if (target.isIntersecting) {
       setCurrentViewIndex(productCount);

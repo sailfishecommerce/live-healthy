@@ -44,7 +44,6 @@ export default function ProductForm({ product }: ProductFormType) {
   }
 
   function algoliaEvent() {
-    console.log("algoliaEvent working");
     const itemId =
       product.objectID !== undefined ? [product.objectID] : [product.id];
     return queryID

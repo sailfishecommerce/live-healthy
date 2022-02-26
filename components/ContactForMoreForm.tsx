@@ -29,7 +29,6 @@ export default function ContactForMoreForm({ setStage }: any): JSX.Element {
       }}
       validationSchema={contactForMore}
       onSubmit={(values, { setSubmitting }) => {
-        console.log("values", values);
         alert(JSON.stringify(values));
         setStage(1);
       }}

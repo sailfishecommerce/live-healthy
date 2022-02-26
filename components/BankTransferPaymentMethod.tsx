@@ -10,8 +10,6 @@ export default function BankTransferPaymentMethod() {
   const { paymentForm }: any = useAppSelector((state) => state.payment);
   const { isLoading, hasError, isSuccessful } = useToast();
 
-  console.log("bank", bank);
-
   function setBankHandler(e: any) {
     setBank(e.target.value);
   }
@@ -21,14 +19,13 @@ export default function BankTransferPaymentMethod() {
     const loading = isLoading();
     sendBankTransfer(paymentForm?.email, bank)
       .then((response) => {
-        console.log("response sendBankTransfer", response);
         isSuccessful(
           loading,
           `An email has been sent to ${paymentForm?.email}`
         );
       })
       .catch((error) => {
-        console.error("error sendBankTransfer", error);
+        // console.error("error sendBankTransfer", error);
         hasError(loading, "an error occured");
       });
   }

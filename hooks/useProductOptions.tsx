@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { updateProductOption } from "@/redux/product-slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 
@@ -13,7 +13,7 @@ export default function useProductOptions() {
     const existingOptionIndex = selectedOptions.findIndex(
       (option) => option.name === e.target.name
     );
-    console.log("optionValue", optionValue);
+
     if (existingOptionIndex !== -1) {
       let copiedOptions = selectedOptions;
       copiedOptions[existingOptionIndex] = optionValue;
@@ -32,7 +32,7 @@ export default function useProductOptions() {
     const existingOptionIndex = selectedOptions.findIndex(
       (option) => option.name === e.target.name
     );
-    console.log("optionValue", optionValue);
+
     if (existingOptionIndex !== -1) {
       let copiedOptions = selectedOptions;
       copiedOptions[existingOptionIndex] = optionValue;

@@ -16,8 +16,6 @@ export default function SearchPage() {
   const router = useRouter();
   const { query } = router;
 
-  console.log("searchData", searchData);
-
   const rowVirtualizer = useVirtual({
     size: searchData.length,
     parentRef,
@@ -37,7 +35,7 @@ export default function SearchPage() {
       <div ref={parentRef} className="container">
         <h5 className="text-center my-5">
           <span className="fw-bold text-danger">
-           ({searchData.length}) products
+            ({searchData.length}) products
           </span>{" "}
           found from <span className="fw-bold text-danger">{query.query}</span>{" "}
           search{" "}

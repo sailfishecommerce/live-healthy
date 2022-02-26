@@ -37,7 +37,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       .catch((error) => {
         hasError(loading, "an error occured, please try again");
         dispatch(updateCurrency("USD"));
-        console.error("error", error);
+        // console.error("error", error);
       });
   }
 

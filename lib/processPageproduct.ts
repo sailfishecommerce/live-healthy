@@ -25,9 +25,7 @@ export default async function fetchAllSwellProducts() {
         return productsDataArray;
       })
       .then((response: any) => response)
-      .catch((err: any) => {
-        console.log("error", err);
-      });
+      .catch((err: any) => {});
   });
 
   return productData;

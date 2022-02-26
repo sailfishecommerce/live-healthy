@@ -7,7 +7,6 @@ export default function MobileCategoryList() {
   const [categories, status] = useCategoryData();
   const selectedFooterCategory = useMarketplaceCategory();
   const livehealthyCategories = (category: []) => category.slice(12);
-  console.log("categories", categories);
 
   return (
     <ul className="dropdown-menu ms-3 mb-3 widget-list d-flex flex-column">

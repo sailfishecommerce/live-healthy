@@ -73,27 +73,24 @@ export function CartControl({ item }: cartControlProps) {
 }
 
 export function ClearCart() {
-  const {  useDeleteCart } = useMutationAction();
+  const { useDeleteCart } = useMutationAction();
   const deleteCart = useDeleteCart();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-
-  console.log("cart", cart);
 
   return (
     <div className="d-flex mt-4 mb-0">
       <button
         onClick={() => deleteCart.mutate(cart.id)}
-        className="btn-link m-auto justify-content-center d-flex align-items-center remove"
+        className="btn-link btn-danger rounded-2 px-2 py-1 m-auto justify-content-center d-flex align-items-center remove"
       >
-        <MdOutlineDelete fontSize={25} className="mx-2" />
+        <MdOutlineDelete fontSize={25} className="mr-2" />
         <p className="mb-0">Clear Cart</p>
       </button>
       <style jsx>
         {`
           .remove:hover {
             color: red;
-            text-decoration: underline;
           }
         `}
       </style>

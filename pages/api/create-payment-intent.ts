@@ -5,7 +5,6 @@ export default function CreatePaymentIntentHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("req.body", req.body);
   switch (req.method) {
     case "POST": {
       axios
@@ -20,11 +19,9 @@ export default function CreatePaymentIntentHandler(
           }
         )
         .then((response) => {
-          console.log("responseresponse ", response.data);
           return res.status(200).json(response.data);
         })
         .catch((error) => {
-          console.log("intentError", error.response.data);
           return res.status(400).json(error.response.data.message);
         });
     }

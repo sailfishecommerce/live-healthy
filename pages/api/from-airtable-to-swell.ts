@@ -2,8 +2,8 @@ import swell from "swell-node";
 import Airtable from "airtable";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import toShopifyProductModel from "../../lib/toShopifyProductModel";
-import formattedUrlArray from "../../lib/useFormatProductImage";
+import toShopifyProductModel from "@/lib/toShopifyProductModel";
+import formattedUrlArray from "@/lib/useFormatProductImage";
 
 const base = new Airtable({
   apiKey: `${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
@@ -67,7 +67,6 @@ export default async function createSwellProductHandler(
                   }
                 });
               } catch (e) {
-                console.log("error inside each page", e);
                 return res.status(400).send(e);
               }
               fetchNextPage();
@@ -79,7 +78,6 @@ export default async function createSwellProductHandler(
                 reject();
                 return res.status(400).send(err);
               } else {
-                console.log("All products uploaded successfully");
                 resolve();
                 return res.status(200).send({ status: "ok" });
               }

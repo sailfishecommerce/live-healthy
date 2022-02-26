@@ -36,7 +36,7 @@ async function formatProductImage(url: string, name: string, index: number) {
           };
           return imageData;
         })
-        .catch((error: any) => console.log("error", error))
+        .catch((error: any) => console.error("error", error))
     );
 }
 

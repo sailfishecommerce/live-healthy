@@ -58,7 +58,6 @@ const createURL = (state: any) => {
 };
 
 const searchStateToUrl = (searchState: any) => {
-  console.log("searchState", searchState);
   return searchState ? createURL(searchState) : "";
 };
 
@@ -72,12 +71,7 @@ const urlToSearchState = (location: any) => {
 
   const attributePath = location ? location.slice("2").split("?")[1] : "";
 
-  console.log("category", category);
-
-  console.log("location", location);
-
   const queryValue = location ? location.split("/?")[1] : "";
-  console.log("queryValue", queryValue);
 
   const {
     query = "",
@@ -85,8 +79,6 @@ const urlToSearchState = (location: any) => {
     vendor = [],
     tags = [],
   }: any = qs.parse(attributePath);
-  console.log("qs.parse(queryValue)", qs.parse(attributePath));
-  console.log("qs.parse(location)", qs.parse(attributePath));
 
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
@@ -113,7 +105,6 @@ export default function Shop() {
   const debouncedSetStateRef: any = useRef(null);
 
   const onSearchStateChange = (updatedSearchState: string) => {
-    console.log("updatedSearchState", updatedSearchState);
     clearTimeout(debouncedSetStateRef.current);
     const href = searchStateToUrl(updatedSearchState);
 

@@ -65,7 +65,6 @@ const createURL = (state) => {
 };
 
 const pathToSearchState = (location) => {
-  console.log("location", location);
   const locationSplitted = location ? location.split("/?")[1] : "";
   const searchPath = locationSplitted
     ? locationSplitted.split("/search")[1]
@@ -111,7 +110,6 @@ class Shopping extends Component {
   };
 
   static async getInitialProps({ asPath }) {
-    console.log("called-getInitialProps");
     const searchState = pathToSearchState(asPath);
     const resultsState = await findResultsState(ShoppingView, {
       ...DEFAULT_PROPS,
@@ -125,8 +123,8 @@ class Shopping extends Component {
   }
 
   // static getDerivedStateFromProps(props, state) {
-  //   console.log("called-getDerivedStateFromProps");
-  //   console.log(
+  //
+  //
   //     "isEqual(state.lastRouter, props.router)",
   //     !isEqual(state.lastRouter, props.router)
   //   );
@@ -141,8 +139,6 @@ class Shopping extends Component {
   // }
 
   onSearchStateChange = (searchState) => {
-    console.log("searchState", searchState);
-    console.log("called-onSearchStateChange");
     clearTimeout(this.debouncedSetState);
 
     this.debouncedSetState = setTimeout(() => {
@@ -157,9 +153,6 @@ class Shopping extends Component {
   };
 
   render() {
-    console.log("this.state", this.state);
-    console.log("this.props", this.props);
-
     return (
       <Applayout title="Shop for quality imported products from Australia. Choose from over 10,000 genuine health, personal care, confectionery, beauty and baby care products. Get vitamins, health and food supplements, cosmetics, confectionery, quit smoking aids, hair colours, baby food and much more. Owned & operated by HK'ers">
         <ShoppingView

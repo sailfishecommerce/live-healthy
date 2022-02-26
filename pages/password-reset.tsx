@@ -14,8 +14,6 @@ export default function AccountPasswordRecovery() {
   const searchParams = router.query;
   const key: string | any = searchParams.key;
 
-  console.log("key", key);
-
   return (
     <Applayout title="Reset your password">
       <div className="container py-4 py-lg-5 my-4">
@@ -36,7 +34,6 @@ export default function AccountPasswordRecovery() {
                   const loading = isLoading();
                   recoverPassword(values.newPassword, key)
                     .then((response) => {
-                      console.log("response", response);
                       if (response?.success) {
                         isSuccessful(loading, "Password reset successful");
                         router.push("/my-account");
@@ -45,7 +42,6 @@ export default function AccountPasswordRecovery() {
                       }
                     })
                     .catch((err) => {
-                      console.log("err", err);
                       hasError(loading, "error resetting password");
                     });
                   resetForm();

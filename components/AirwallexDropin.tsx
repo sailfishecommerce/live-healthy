@@ -53,12 +53,10 @@ function AirwallexCardElement({
     const onReady = (event: CustomEvent): void => {
       setElementShow(true);
       getElement("card")?.focus();
-      console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };
 
     const onError = (event: CustomEvent): void => {
       const { error } = event.detail;
-      console.log("onError", error);
       setIsSubmitting(false);
       errorToast(error);
       setErrorMessage(error.message ?? JSON.stringify(error));
@@ -94,7 +92,6 @@ function AirwallexCardElement({
         },
       })
         .then((response) => {
-          console.log("response triggerConfirm", response);
           setIsSubmitting(false);
           successToast("Payment successful");
           window.alert(
@@ -107,7 +104,7 @@ function AirwallexCardElement({
         .catch((error) => {
           setIsSubmitting(false);
           setErrorMessage(error.message ?? JSON.stringify(error));
-          console.error("There is an error", error);
+          // console.error("There is an error", error);
           errorToast(error);
         });
     }

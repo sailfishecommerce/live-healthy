@@ -21,7 +21,7 @@ export default function Checkout() {
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
   const { data } = useQuery("userDetails", getUserAccount);
-  console.log("data-getUserAccount", data, "cart", cart);
+
   return (
     <Applayout title="Checkout your order">
       <CheckoutBanner title="Checkout" breadcrumb="Checkout" />

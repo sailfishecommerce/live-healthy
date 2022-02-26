@@ -1,6 +1,6 @@
 import swell from "swell-node";
 import type { NextApiRequest, NextApiResponse } from "next";
-import swellNodeInit from "../../lib/swellNode";
+import swellNodeInit from "@/lib/swellNode";
 
 export default async function fetchProductsHandler(
   req: NextApiRequest,
@@ -19,9 +19,7 @@ export default async function fetchProductsHandler(
         .then((response: any) => {
           return res.status(200).send(response.results);
         })
-        .catch((error: any) => {
-          console.log("error", error);
-        });
+        .catch((error: any) => {});
     }
   }
 }

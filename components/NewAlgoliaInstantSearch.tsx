@@ -51,7 +51,6 @@ const createURL = (state: any, route: string) => {
 };
 
 const searchStateToUrl = (searchState: any, route: string) => {
-  console.log("NewAl searchState", searchState);
   return searchState ? createURL(searchState, route) : "";
 };
 
@@ -65,10 +64,8 @@ const urlToSearchState = (location: any) => {
       ? validPathName
       : "";
   const category = decodeURIComponent(validCategory);
-  console.log("category", category);
 
   const queryValue = location ? location.split("/?")[1] : "";
-  console.log("queryValue", queryValue);
 
   const {
     query = "",
@@ -76,7 +73,6 @@ const urlToSearchState = (location: any) => {
     vendors = [],
     tags = [],
   }: any = qs.parse(queryValue);
-  console.log("qs.parse(queryValue)", qs.parse(queryValue));
   // location.search.slice(1));
   // `qs` does not return an array when there's a single value.
   const allVendors = Array.isArray(vendors)
@@ -129,7 +125,6 @@ export default function NewAlgoliaInstantSearch({
   const onSearchStateChange = (updatedSearchState: string) => {
     clearTimeout(debouncedSetStateRef.current);
     const href = searchStateToUrl(updatedSearchState, pathname);
-    console.log("href", href);
     debouncedSetStateRef.current = setTimeout(() => {
       router.push(href, href, {
         shallow: true,

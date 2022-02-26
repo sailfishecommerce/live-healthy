@@ -14,11 +14,8 @@ export function SingleVendorList({
 }: any) {
   const { query }: any = useRouter();
 
-  console.log("query", query);
   const formattedVendor: any = replaceHypenWithSpace(query.slug);
   const vendor = toTitleCase(formattedVendor);
-
-  console.log("vendor", vendor);
 
   useEffect(() => {
     refine([vendor]);

@@ -14,18 +14,14 @@ export default function useAlgoliaIndex() {
   function addProductToAlgoliaIndex() {
     axios
       .post("/api/add-products-to-algolia-index", data?.results)
-      .then((response) => {
-        console.log("response addProductToAlgoliaIndex", response);
-      })
+      .then((response) => {})
       .catch((error) => console.error("error addProductToAlgoliaIndex", error));
   }
 
   function addCategoriesToAlgoliaIndex() {
     axios
       .post("/api/add-products-to-algolia-index", categories?.results)
-      .then((response) => {
-        console.log("response addProductToAlgoliaIndex", response);
-      })
+      .then((response) => {})
       .catch((error) => console.error("error addProductToAlgoliaIndex", error));
   }
 

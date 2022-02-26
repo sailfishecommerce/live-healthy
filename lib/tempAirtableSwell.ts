@@ -25,7 +25,6 @@ export default async function createSwellProductHandler(
         .eachPage(
           function page(records, fetchNextPage) {
             try {
-              console.log("records", records);
               records.forEach(function (record) {
                 const recordData = {
                   id: record.id,
@@ -38,16 +37,12 @@ export default async function createSwellProductHandler(
                 JSON.stringify(productArray),
                 (err: any) => {
                   if (err) {
-                    console.log("Error writing file", err);
                     throw err;
                   } else {
-                    console.log("Successfully wrote file");
                   }
                 }
               );
-            } catch (e) {
-              console.log("error inside each page", e);
-            }
+            } catch (e) {}
             fetchNextPage();
             // res.status(200).json({ status: "ok" });
           },

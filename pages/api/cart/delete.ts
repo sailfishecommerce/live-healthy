@@ -1,6 +1,6 @@
 import swell from "swell-node";
 import type { NextApiRequest, NextApiResponse } from "next";
-import swellNodeInit from "../../../lib/swellNode";
+import swellNodeInit from "@/lib/swellNode";
 
 export default async function fetchProductsHandler(
   req: NextApiRequest,
@@ -15,7 +15,6 @@ export default async function fetchProductsHandler(
           id: req.body.id,
         })
         .then((response: any) => {
-          console.log("retrieved cart", response);
           return res.status(200).send(response?.results);
         })
         .catch((err: any) => {
