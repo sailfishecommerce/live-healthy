@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { QueryClient, useQuery } from "react-query";
 import swellClientInit from "@/lib/config";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useAppSelector } from "./useRedux";
 
 export default function useCurrency() {
@@ -46,13 +46,11 @@ export function useCurrencies() {
   const [currencyList, setCurrencyList] = useState<any>(null);
   const { listEnabledCurrencies } = useCurrency();
 
-  useEffect(() => {
-    if (currencyList === null) {
-      getCurrencies(listEnabledCurrencies)
-        .then((response) => setCurrencyList(response))
-        .catch((error) => setCurrencyList(error));
-    }
-  }, []);
+  if (currencyList === null) {
+    getCurrencies(listEnabledCurrencies)
+      .then((response) => setCurrencyList(response))
+      .catch((error) => setCurrencyList(error));
+  }
 
   return { currencyList };
 }
