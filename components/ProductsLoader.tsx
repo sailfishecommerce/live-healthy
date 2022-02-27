@@ -26,7 +26,7 @@ export function ProductLoader(props: any) {
   );
 }
 
-export function PriceLoader(props: any) {
+export function LineLoader(props: any) {
   const loaderStyle = useMemo(() => ({ width: "100%" }), []);
 
   return (
@@ -37,7 +37,7 @@ export function PriceLoader(props: any) {
       backgroundColor="#e3d9d9"
       className="mx-2"
       foregroundColor="#ada4a4"
-      title="loading price..."
+      title="loading ..."
       animate
       {...props}
     >

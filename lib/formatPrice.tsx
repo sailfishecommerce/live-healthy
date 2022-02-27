@@ -1,5 +1,5 @@
 import { currencySymbolFormatter, useCurrencies } from "@/hooks/useCurrency";
-import { PriceLoader } from "@/components/ProductsLoader";
+import { LineLoader } from "@/components/ProductsLoader";
 
 import { useAppSelector } from "@/hooks/useRedux";
 export function formatPrice(price: number) {
@@ -58,7 +58,7 @@ export default function FormattedPrice({
       {currencyList === undefined ? (
         "unable to fetch price"
       ) : currencyList === null ? (
-        <PriceLoader />
+        <LineLoader />
       ) : (
         <FormatCurrency
           price={price}

@@ -12,6 +12,7 @@ import {
   NavToggler,
   NotAuthorizedView,
 } from "./NavElement";
+import { LineLoader } from "./ProductsLoader";
 
 function NavMenuComponent() {
   const { useCartData } = useCart();
@@ -37,7 +38,7 @@ function NavMenuComponent() {
         {status === "error" ? (
           "unable to fetch user details"
         ) : status === "loading" ? (
-          "loading..."
+          <LineLoader />
         ) : userDetails !== null ? (
           <AuthorizedView userLogout={userLogout} userDetail={userDetails} />
         ) : (
