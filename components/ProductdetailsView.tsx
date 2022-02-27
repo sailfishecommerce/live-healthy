@@ -31,8 +31,7 @@ export default function ProductdetailsView({ product }: any) {
               <del className="small text-accent fs-ms">
                 <FormattedPrice
                   price={productToView.hkd_compare_at_price}
-                  oldPrice
-                  isProduct
+                  oldPrice                  
                 />
               </del>
             )}

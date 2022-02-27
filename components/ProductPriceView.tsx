@@ -12,11 +12,7 @@ export default function ProductPriceView({ product }: any) {
         {product.hkd_compare_at_price > 0 && (
           <li className="m-0">
             <del className={`small text-accent fs-xs ${styles.oldPrice} `}>
-              <FormattedPrice
-                price={product.hkd_compare_at_price}
-                oldPrice
-                isProduct
-              />
+              <FormattedPrice price={product.hkd_compare_at_price} oldPrice />
             </del>
           </li>
         )}

@@ -40,7 +40,7 @@ function OrderdetailsItem({ item }: OrderdetailsItemProps) {
             Khaki
           </div>
           <div className="fs-lg text-accent pt-2">
-            <FormattedPrice price={item.price} />
+            <FormattedPrice price={item.price} isProduct />
           </div>
         </div>
       </div>

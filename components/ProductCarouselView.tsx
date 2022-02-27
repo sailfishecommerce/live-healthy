@@ -39,7 +39,7 @@ export default function ProductCarouselView({ product }: ProductCarouselView) {
           <div className="d-flex justify-content-between">
             <div className="product-price">
               <span className="text-accent">
-                <FormattedPrice price={product.price} />
+                <FormattedPrice price={product.price} isProduct />
               </span>
             </div>
             <div className="star-rating">

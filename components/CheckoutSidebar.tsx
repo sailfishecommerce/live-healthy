@@ -30,7 +30,7 @@ function OrderSummaryItem({ item }: any) {
         </h6>
         <div className="widget-product-meta d-flex align-items-baseline">
           <span className="text-accent me-2">
-            <FormattedPrice price={item.price} />
+            <FormattedPrice price={item.price} isProduct />
           </span>
           <span className="text-muted">x {item.quantity}</span>
         </div>
@@ -63,25 +63,25 @@ export default function CheckoutSidebar({ cart }: CheckoutSidebarProps) {
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Subtotal:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.subTotal} />
+                  <FormattedPrice price={cart.subTotal} isProduct />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Shipping:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.shipmentTotal} />
+                  <FormattedPrice price={cart.shipmentTotal} isProduct />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Taxes:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.taxTotal} />
+                  <FormattedPrice price={cart.taxTotal} isProduct />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Discount:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.discountTotal} />
+                  <FormattedPrice price={cart.discountTotal} isProduct />
                 </span>
               </li>
             </ul>

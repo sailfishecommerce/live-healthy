@@ -34,7 +34,7 @@ export default function ProductListView({ product }: any) {
             {product.hkd_compare_at_price && (
               <span className="small text-accent mx-2">
                 <del className="fs-sm text-muted">
-                  <FormattedPrice price={product.hkd_compare_at_price} />
+                  <FormattedPrice price={product.hkd_compare_at_price} oldPrice />
                 </del>
               </span>
             )}

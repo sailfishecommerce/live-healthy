@@ -45,11 +45,15 @@ export default function WishlistItem({ content }: Props) {
               {content.size}
             </div>
           )}
-          <FormattedPrice price={content.price} />
+          <FormattedPrice price={content.price} isProduct />
         </div>
       </div>
       <div className="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-        <button aria-label="Remove" className="btn btn-outline-danger btn-sm" type="button">
+        <button
+          aria-label="Remove"
+          className="btn btn-outline-danger btn-sm"
+          type="button"
+        >
           <i className="ci-trash me-2"></i>Remove
         </button>
       </div>

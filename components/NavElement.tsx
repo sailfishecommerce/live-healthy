@@ -138,9 +138,9 @@ export function NavbarDropdown({
           <small>My Cart</small>
           <a className="navbar-tool-text">
             {cart?.grandTotal ? (
-              <FormattedPrice price={cart?.grandTotal} />
+              <FormattedPrice price={cart?.grandTotal} isProduct />
             ) : (
-              <FormattedPrice price={0} />
+              <FormattedPrice price={0} isProduct />
             )}
           </a>
         </div>

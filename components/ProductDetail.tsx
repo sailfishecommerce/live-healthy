@@ -54,8 +54,7 @@ export default function ProductDetail({ product }: Props) {
                 <del>
                   <FormattedPrice
                     price={product.hkd_compare_at_price}
-                    oldPrice
-                    isProduct
+                    oldPrice                    
                   />
                 </del>
               </span>

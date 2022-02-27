@@ -60,7 +60,11 @@ export default function SlideCart(props: slideCartProps) {
                   <h5 className="mt-5 mb-2 subtotal d-flex align-items-center">
                     Subtotal:{" "}
                     <span className="mx-2">
-                      {cart ? <FormattedPrice price={cart.subTotal} /> : "0.00"}
+                      {cart ? (
+                        <FormattedPrice price={cart.subTotal} isProduct />
+                      ) : (
+                        "0.00"
+                      )}
                     </span>
                   </h5>
                   <hr />

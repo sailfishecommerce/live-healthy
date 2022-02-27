@@ -16,30 +16,30 @@ export default function CheckoutReviewSidebar({
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Subtotal:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.subTotal} />
+                <FormattedPrice price={cart.subTotal} isProduct />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Shipping:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.shipmentTotal} />
+                <FormattedPrice price={cart.shipmentTotal} isProduct />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Taxes:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.taxTotal} />
+                <FormattedPrice price={cart.taxTotal} isProduct />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Discount:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.discountTotal} />
+                <FormattedPrice price={cart.discountTotal} isProduct />
               </span>
             </li>
           </ul>
           <h3 className="fw-normal text-center my-4">
-            <FormattedPrice price={cart.grandTotal} />$
+            <FormattedPrice price={cart.grandTotal} isProduct />$
           </h3>
           <form className="needs-validation" method="post" noValidate>
             <div className="mb-3">
@@ -52,7 +52,7 @@ export default function CheckoutReviewSidebar({
               <div className="invalid-feedback">Please provide promo code.</div>
             </div>
             <button
-            aria-label="Apply Promo code"
+              aria-label="Apply Promo code"
               className="btn btn-outline-primary d-block w-100"
               type="button"
             >
