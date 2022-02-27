@@ -47,7 +47,7 @@ export default function ExistingUserNotificationModal({
           Hello, thanks for shopping with us
         </h6>
         <Image
-          src="/shopping-bag.png"
+          src="/shopping-bag.webp"
           alt="shopping bag"
           height={40}
           width={40}

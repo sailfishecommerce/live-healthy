@@ -65,6 +65,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
           onChange={selectCurrency}
           className="form-select form-select-sm"
         >
+          <option>Select currency</option>
           {currencyList &&
             currencyList?.map((currency: any) => (
               <option key={currency.code} value={currency.code}>
