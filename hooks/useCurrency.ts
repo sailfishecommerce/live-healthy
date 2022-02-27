@@ -1,5 +1,7 @@
-import { useQuery } from "react-query";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { QueryClient, useQuery } from "react-query";
 import swellClientInit from "@/lib/config";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "./useRedux";
 
 export default function useCurrency() {
@@ -41,13 +43,28 @@ export function currencySymbolFormatter(currency: {
 }
 
 export function useCurrencies() {
+  const [currencyList, setCurrencyList] = useState<any>(null);
   const { listEnabledCurrencies } = useCurrency();
-  const { data: currencies, status } = useQuery(
-    "currencies",
-    listEnabledCurrencies,
-    {
-      staleTime: Infinity,
+
+  useEffect(() => {
+    if (currencyList === null) {
+      getCurrencies(listEnabledCurrencies)
+        .then((response) => setCurrencyList(response))
+        .catch((error) => setCurrencyList(error));
     }
-  );
-  return [currencies, status];
+  }, []);
+
+  return { currencyList };
+}
+
+export async function getCurrencies(listEnabledCurrencies: any) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  });
+
+  return await queryClient.fetchQuery("currencies", listEnabledCurrencies);
 }

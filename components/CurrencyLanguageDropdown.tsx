@@ -15,10 +15,9 @@ interface Props {
 function CurrencyLanguageDropdownComponent({ position }: Props) {
   const dispatch = useAppDispatch();
   const { isLoading, isSuccessful, hasError } = useToast();
+  const { currencyList } = useCurrencies();
   const { selectCurrencies } = useCurrency();
   const [showDropdown, setShowDropdown] = useState(false);
-  const [currencies, status] = useCurrencies();
-
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
@@ -41,9 +40,9 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       });
   }
 
-  return status === "error" ? (
+  return currencyList === undefined ? (
     <p>unable to load currencies</p>
-  ) : status === "loading" ? (
+  ) : currencyList === null ? (
     <p>loading currencies...</p>
   ) : (
     <Dropdown
@@ -66,8 +65,8 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       </Dropdown.Toggle>
       <Dropdown.Menu className={styles.dropdownMenu}>
         <select className="form-select form-select-sm">
-          {currencies &&
-            currencies?.map((currency: any) => (
+          {currencyList &&
+            currencyList?.map((currency: any) => (
               <option
                 onClick={selectCurrency}
                 key={currency.code}

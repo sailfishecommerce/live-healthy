@@ -50,21 +50,21 @@ export default function FormattedPrice({
   oldPrice,
   isProduct,
 }: formattedPriceProps): JSX.Element {
-  const [currencies, status] = useCurrencies();
+  const { currencyList } = useCurrencies();
   const { currency } = useAppSelector((state) => state.currencyLanguage);
 
   return (
     <div className="d-flex align-items-baseline">
-      {status === "error" ? (
+      {currencyList === undefined ? (
         "unable to fetch price"
-      ) : status === "loading" ? (
+      ) : currencyList === null ? (
         <PriceLoader />
       ) : (
         <FormatCurrency
           price={price}
           oldPrice={oldPrice}
           isProduct={isProduct}
-          currencies={currencies}
+          currencies={currencyList}
           currency={currency}
         />
       )}

@@ -37,7 +37,7 @@ export function PriceLoader(props: any) {
       backgroundColor="#e3d9d9"
       className="mx-2"
       foregroundColor="#ada4a4"
-      title="loading product..."
+      title="loading price..."
       animate
       {...props}
     >

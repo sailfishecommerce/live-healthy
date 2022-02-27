@@ -9,7 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Script from "next/script";
 import type { AppProps } from "next/app";
 
-// import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import store from "@/redux/store";
 import "@/styles/globals.css";
@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <PersistGate loading={null} persistor={persistor}>
             <Component {...pageProps} />
           </PersistGate>
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Provider>
     </div>
