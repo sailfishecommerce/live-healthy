@@ -38,7 +38,7 @@ function NavMenuComponent() {
         {status === "error" ? (
           "unable to fetch user details"
         ) : status === "loading" ? (
-          <LineLoader />
+          "loading ..."
         ) : userDetails !== null ? (
           <AuthorizedView userLogout={userLogout} userDetail={userDetails} />
         ) : (
