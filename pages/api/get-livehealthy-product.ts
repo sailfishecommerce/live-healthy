@@ -20,7 +20,7 @@ export default async function fetchProductFromLiveHealthStore(
           return res.status(200).json(response.results);
         })
         .catch((error: any) => {
-          console.error("error", error);
+          console.error("error", error.message);
           return res.status(400).json(error);
         });
     }

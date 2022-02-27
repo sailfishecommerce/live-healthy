@@ -49,13 +49,10 @@ export default function ProductDetail({ product }: Props) {
             <span className="h3 fw-normal text-accent me-1">
               <FormattedPrice price={product.price} isProduct />
             </span>
-            {product.hkd_compare_at_price > 0 && (
+            {product.rrp && (
               <span className="h5 fw-normal text-accent mx-2">
                 <del>
-                  <FormattedPrice
-                    price={product.hkd_compare_at_price}
-                    oldPrice                    
-                  />
+                  <FormattedPrice price={product.rrp} isProduct />
                 </del>
               </span>
             )}

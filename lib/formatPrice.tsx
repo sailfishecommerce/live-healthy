@@ -8,8 +8,7 @@ export function formatPrice(price: number) {
 }
 
 interface formattedPriceProps {
-  price: number;
-  oldPrice?: boolean;
+  price: string | number;
   isProduct?: boolean;
 }
 
@@ -20,7 +19,6 @@ interface formatCurrencyProps extends formattedPriceProps {
 
 function FormatCurrency({
   price,
-  oldPrice,
   isProduct,
   currencies,
   currency,
@@ -28,14 +26,17 @@ function FormatCurrency({
   const selectedCurrency = currencies?.filter(
     (currencyP: { code: string }) => currencyP.code === currency
   );
+  const nPrice = Number(price);
+  const priceRate = nPrice * selectedCurrency[0].rate;
 
-  const currencyRate = currencies[1].rate;
+  console.log(
+    "price",
+    price,
+    "selectedCurrency[0].rate",
+    selectedCurrency[0].rate
+  );
 
-  const priceRate = oldPrice
-    ? (price / currencyRate) * selectedCurrency[0].rate
-    : price * selectedCurrency[0].rate;
-
-  const productItemPrice = isProduct ? priceRate : price;
+  const productItemPrice = isProduct ? priceRate : nPrice;
   const itemPrice = formatPrice(productItemPrice);
   return (
     <>
@@ -47,7 +48,6 @@ function FormatCurrency({
 
 export default function FormattedPrice({
   price,
-  oldPrice,
   isProduct,
 }: formattedPriceProps): JSX.Element {
   const { currencyList } = useCurrencies();
@@ -62,7 +62,6 @@ export default function FormattedPrice({
       ) : (
         <FormatCurrency
           price={price}
-          oldPrice={oldPrice}
           isProduct={isProduct}
           currencies={currencyList}
           currency={currency}

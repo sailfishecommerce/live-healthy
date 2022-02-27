@@ -35,6 +35,7 @@ export type productType = {
   origPrice?: number;
   slug: string;
   review_rating?: number;
+  rrp?: string;
   price: number;
   colorOption?: string[];
   sizeOption?: string[];

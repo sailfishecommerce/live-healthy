@@ -58,7 +58,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       <DynamicProductMetatags product={product} />
       <div className="card product-card p-1 p-md-2">
         <div className="d-flex justify-content-between">
-          {product.hkd_compare_at_price > 0 && (
+          {product.rrp && (
             <div className="discount-price mt-2">
               {discountPrice(product)} %
             </div>

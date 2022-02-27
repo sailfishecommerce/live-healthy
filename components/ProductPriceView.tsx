@@ -3,17 +3,16 @@ import styles from "@/styles/ui.module.css";
 import RatingStar from "./RatingStar";
 
 export default function ProductPriceView({ product }: any) {
-  console.log("product", product);
   return (
     <div className="d-flex justify-content-between">
       <ul className="product-price d-flex flex-column align-items-baseline">
         <li className={`text-accent fs-sm fs-lg ${styles.price}`}>
           <FormattedPrice price={product.price} isProduct />
         </li>
-        {product.hkd_compare_at_price > 0 && (
+        {product.rrp && (
           <li className="m-0">
             <del className={`small text-accent fs-xs ${styles.oldPrice} `}>
-              <FormattedPrice price={product.hkd_compare_at_price} oldPrice />
+              <FormattedPrice price={product.rrp} isProduct />
             </del>
           </li>
         )}

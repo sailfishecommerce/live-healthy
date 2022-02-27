@@ -31,10 +31,10 @@ export default function ProductListView({ product }: any) {
             <span className="text-accent">
               <FormattedPrice price={product.price} isProduct />
             </span>
-            {product.hkd_compare_at_price && (
+            {product.rrp && (
               <span className="small text-accent mx-2">
                 <del className="fs-sm text-muted">
-                  <FormattedPrice price={product.hkd_compare_at_price} oldPrice />
+                  <FormattedPrice price={product.rrp} isProduct />
                 </del>
               </span>
             )}

@@ -6,7 +6,6 @@ import discountPrice from "@/lib/discountPrice";
 
 export default function ProductdetailsView({ product }: any) {
   const { productToView } = product;
-
   return (
     <div className="col-lg-5 pt-4 pt-lg-0">
       <div className="product-details ms-auto pb-3">
@@ -27,16 +26,13 @@ export default function ProductdetailsView({ product }: any) {
             <div className="text-accent me-2 fs-lg">
               <FormattedPrice price={productToView.price} isProduct />
             </div>
-            {productToView.hkd_compare_at_price > 0 && (
+            {product.rrp && (
               <del className="small text-accent fs-ms">
-                <FormattedPrice
-                  price={productToView.hkd_compare_at_price}
-                  oldPrice                  
-                />
+                <FormattedPrice price={product.rrp} isProduct />
               </del>
             )}
           </div>
-          {productToView.hkd_compare_at_price > 0 && (
+          {Number(product.rrp) > 0 && (
             <div className="percentage">{`${discountPrice(
               productToView
             )} %`}</div>
