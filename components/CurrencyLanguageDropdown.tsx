@@ -1,13 +1,12 @@
 import { Dropdown } from "react-bootstrap";
 import Image from "next/image";
-import { memo, useState } from "react";
+import { memo } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateCurrency } from "@/redux/currency-language-slice";
 import useCurrency, { useCurrencies } from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
 import styles from "@/styles/Dropdown.module.css";
-import { LineLoader } from "./ProductsLoader";
 
 interface Props {
   position?: string;
@@ -18,8 +17,6 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   const { isLoading, isSuccessful, hasError } = useToast();
   const { currencyList } = useCurrencies();
   const { selectCurrencies } = useCurrency();
-
-  console.log("currencyList", currencyList);
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
@@ -40,7 +37,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   return currencyList === undefined ? (
     <p>unable to load currencies</p>
   ) : currencyList === null ? (
-    <LineLoader />
+    <p>loading...</p>
   ) : (
     <Dropdown
       className={`${styles.dropdown} ${footerStyle} topbar-text dropdown disable-autohide`}
