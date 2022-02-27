@@ -1,6 +1,7 @@
 import { Dropdown } from "react-bootstrap";
 import Image from "next/image";
 import { memo } from "react";
+import { useQueryClient } from "react-query";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateCurrency } from "@/redux/currency-language-slice";
@@ -14,6 +15,7 @@ interface Props {
 
 function CurrencyLanguageDropdownComponent({ position }: Props) {
   const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
   const { isLoading, isSuccessful, hasError } = useToast();
   const { currencyList } = useCurrencies();
   const { selectCurrencies } = useCurrency();
@@ -25,6 +27,8 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
     const loading = isLoading();
     return selectCurrencies(e.target.value)
       .then((response) => {
+        queryClient.invalidateQueries("cart");
+        queryClient.invalidateQueries("fetchLiveHealthyProducts");
         isSuccessful(loading, `${response.currency} selected`);
         dispatch(updateCurrency(response.currency));
       })

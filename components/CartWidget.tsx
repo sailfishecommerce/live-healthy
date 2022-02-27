@@ -51,7 +51,7 @@ export default function CartWidget({ cart }: CartWidgetProps) {
           </h6>
           <div className="widget-product-meta d-flex align-items-baseline">
             <span className="text-accent me-2">
-              <FormattedPrice price={cart?.price} isProduct />
+              <FormattedPrice price={cart?.price} />
             </span>
             <span className="text-muted">x {cart.quantity}</span>
           </div>

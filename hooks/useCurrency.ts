@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { QueryClient, useQuery } from "react-query";
 import swellClientInit from "@/lib/config";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppSelector } from "./useRedux";
 
 export default function useCurrency() {

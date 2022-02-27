@@ -63,12 +63,12 @@ export default function SlideCartProduct({
             <div className="d-flex align-items-center my-2">
               <div className="widget-product-meta d-flex align-items-center">
                 <span className="text-accent me-2">
-                  <FormattedPrice price={item.price} isProduct />
+                  <FormattedPrice price={item.price} />
                 </span>
                 <span className="text-muted">x {item.quantity}</span>
                 <span className="mx-1">= </span>
                 <span className="text-accent me-2">
-                  <FormattedPrice price={item.priceTotal} isProduct />
+                  <FormattedPrice price={item.priceTotal} />
                 </span>
               </div>
             </div>

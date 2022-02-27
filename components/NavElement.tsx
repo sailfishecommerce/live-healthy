@@ -122,6 +122,7 @@ export function NavbarDropdown({
   toggleSlideCartMobile,
   cart,
 }: NavbarDropdownProps) {
+  console.log("cart", cart);
   return (
     <>
       <div className="navbar-tool dropdown ms-1">
@@ -138,9 +139,9 @@ export function NavbarDropdown({
           <small>My Cart</small>
           <a className="navbar-tool-text">
             {cart?.grandTotal ? (
-              <FormattedPrice price={cart?.grandTotal} isProduct />
+              <FormattedPrice price={cart?.grandTotal} />
             ) : (
-              <FormattedPrice price={0} isProduct />
+              <FormattedPrice price={0}  />
             )}
           </a>
         </div>

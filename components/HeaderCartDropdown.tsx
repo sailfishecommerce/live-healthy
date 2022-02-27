@@ -27,7 +27,7 @@ function HeaderCartDropdownComponent({ cart }: Props) {
           <div className="fs-sm me-2 py-2 align-items-baseline">
             <span className="text-muted">Subtotal:</span>
             <span className="text-accent fs-base ms-1">
-              <FormattedPrice price={cart?.subTotal} isProduct />
+              <FormattedPrice price={cart?.subTotal} />
             </span>
           </div>
           <a onClick={toggleCart} className="btn btn-outline-secondary btn-sm">

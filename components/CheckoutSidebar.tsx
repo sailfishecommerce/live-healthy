@@ -30,7 +30,7 @@ function OrderSummaryItem({ item }: any) {
         </h6>
         <div className="widget-product-meta d-flex align-items-baseline">
           <span className="text-accent me-2">
-            <FormattedPrice price={item.price} isProduct />
+            <FormattedPrice price={item.price}  />
           </span>
           <span className="text-muted">x {item.quantity}</span>
         </div>
@@ -63,32 +63,32 @@ export default function CheckoutSidebar({ cart }: CheckoutSidebarProps) {
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Subtotal:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.subTotal} isProduct />
+                  <FormattedPrice price={cart.subTotal}  />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Shipping:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.shipmentTotal} isProduct />
+                  <FormattedPrice price={cart.shipmentTotal}  />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Taxes:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.taxTotal} isProduct />
+                  <FormattedPrice price={cart.taxTotal}  />
                 </span>
               </li>
               <li className="d-flex justify-content-between align-items-center">
                 <span className="me-2">Discount:</span>
                 <span className="text-end">
-                  <FormattedPrice price={cart.discountTotal} isProduct />
+                  <FormattedPrice price={cart.discountTotal}  />
                 </span>
               </li>
             </ul>
           )}
           {cart && (
             <h3 className="fw-normal text-center my-4">
-              <FormattedPrice price={cart.grandTotal} />
+              <FormattedPrice price={cart.grandTotal}  />
             </h3>
           )}
           <form onSubmit={onSubmitCoupon} className="needs-validation">

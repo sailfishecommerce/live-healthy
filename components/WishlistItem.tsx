@@ -45,7 +45,7 @@ export default function WishlistItem({ content }: Props) {
               {content.size}
             </div>
           )}
-          <FormattedPrice price={content.price} isProduct />
+          <FormattedPrice price={content.price} />
         </div>
       </div>
       <div className="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">

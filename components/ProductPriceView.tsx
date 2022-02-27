@@ -3,6 +3,7 @@ import styles from "@/styles/ui.module.css";
 import RatingStar from "./RatingStar";
 
 export default function ProductPriceView({ product }: any) {
+  console.log("product", product);
   return (
     <div className="d-flex justify-content-between">
       <ul className="product-price d-flex flex-column align-items-baseline">
