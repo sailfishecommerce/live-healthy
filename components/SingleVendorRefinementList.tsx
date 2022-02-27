@@ -16,9 +16,9 @@ export function SingleVendorList({
   const router = useRouter();
 
   const vendor = asPath.includes("/vendor") && asPath.split("/vendor/")[1];
-  console.log("vendor", vendor);
-  console.log("asPath", asPath);
-  console.log("router", router);
+  // console.log("vendor", vendor);
+  // console.log("asPath", asPath);
+  // console.log("router", router);
 
   useEffect(() => {
     if (vendor) {
@@ -27,8 +27,8 @@ export function SingleVendorList({
   }, []);
 
   const selectedVendor = (item: string) => {
-    console.log("item selectedVendor", item);
-    console.log("item pathname", pathname);
+    // console.log("item selectedVendor", item);
+    // console.log("item pathname", pathname);
     pathname.includes(item) ? "fw-bold text-danger" : "";
   };
 

@@ -41,17 +41,17 @@ export default async function createSwellProductHandler(
                             .then((response: any) => {
                               if (!response?.errors) {
                                 count = count + 1;
-                                console.log(
-                                  "count",
-                                  count,
-                                  "createSwellProductHandler"
-                                );
+                                // console.log(
+                                //   "count",
+                                //   count,
+                                //   "createSwellProductHandler"
+                                // );
                               } else {
-                                console.log(
-                                  "count",
-                                  count,
-                                  response?.errors.slug.message
-                                );
+                                // console.log(
+                                //   "count",
+                                //   count,
+                                //   response?.errors.slug.message
+                                // );
                               }
                             })
                             .catch((error: any) => {

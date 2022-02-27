@@ -29,12 +29,12 @@ function FormatCurrency({
   const nPrice = Number(price);
   const priceRate = nPrice * selectedCurrency[0].rate;
 
-  console.log(
-    "price",
-    price,
-    "selectedCurrency[0].rate",
-    selectedCurrency[0].rate
-  );
+  // console.log(
+  //   "price",
+  //   price,
+  //   "selectedCurrency[0].rate",
+  //   selectedCurrency[0].rate
+  // );
 
   const productItemPrice = isProduct ? priceRate : nPrice;
   const itemPrice = formatPrice(productItemPrice);

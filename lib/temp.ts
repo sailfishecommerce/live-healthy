@@ -123,7 +123,7 @@ export default async function createSwellProductHandler(
           return res.status(200).json(response);
         })
         .catch((error: any) => {
-          console.error("error createSwellProductHandler", error);
+          // console.error("error createSwellProductHandler", error);
           return res.status(400).json(error);
         });
     }

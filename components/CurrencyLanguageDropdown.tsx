@@ -28,7 +28,6 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
     return selectCurrencies(e.target.value)
       .then((response) => {
         queryClient.invalidateQueries("cart");
-        queryClient.invalidateQueries("fetchLiveHealthyProducts");
         isSuccessful(loading, `${response.currency} selected`);
         dispatch(updateCurrency(response.currency));
       })
