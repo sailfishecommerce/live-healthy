@@ -26,6 +26,26 @@ export function ProductLoader(props: any) {
   );
 }
 
+export function PriceLoader(props: any) {
+  const loaderStyle = useMemo(() => ({ width: "100%" }), []);
+
+  return (
+    <ContentLoader
+      speed={2}
+      viewBox="0 0 25 2"
+      style={loaderStyle}
+      backgroundColor="#e3d9d9"
+      className="mx-2"
+      foregroundColor="#ada4a4"
+      title="loading product..."
+      animate
+      {...props}
+    >
+      <rect x="0" y="0px" rx="0" ry="0" width="10" height="1" />
+    </ContentLoader>
+  );
+}
+
 export default function LoadProducts() {
   const tabWidth = useMediaQuery("(max-width:768px)");
   const mediumTabWidth = useMediaQuery("(max-width:700px)");

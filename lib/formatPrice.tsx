@@ -1,6 +1,7 @@
 import { currencySymbolFormatter, useCurrencies } from "@/hooks/useCurrency";
-import { useAppSelector } from "@/hooks/useRedux";
+import { PriceLoader } from "@/components/ProductsLoader";
 
+import { useAppSelector } from "@/hooks/useRedux";
 export function formatPrice(price: number) {
   const productPrice = price?.toFixed(2);
   return numberWithCommas(productPrice);
@@ -57,7 +58,7 @@ export default function FormattedPrice({
       {status === "error" ? (
         "unable to fetch price"
       ) : status === "loading" ? (
-        "loading ..."
+        <PriceLoader />
       ) : (
         <FormatCurrency
           price={price}
