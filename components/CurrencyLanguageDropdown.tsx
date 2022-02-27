@@ -7,6 +7,7 @@ import { updateCurrency } from "@/redux/currency-language-slice";
 import useCurrency, { useCurrencies } from "@/hooks/useCurrency";
 import { useToast } from "@/hooks";
 import styles from "@/styles/Dropdown.module.css";
+import { LineLoader } from "./ProductsLoader";
 
 interface Props {
   position?: string;
@@ -17,16 +18,13 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
   const { isLoading, isSuccessful, hasError } = useToast();
   const { currencyList } = useCurrencies();
   const { selectCurrencies } = useCurrency();
-  const [showDropdown, setShowDropdown] = useState(false);
+
+  console.log("currencyList", currencyList);
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
   const footerStyle = position === "bottom" ? styles.bottom : "";
 
-  function dropdownHandler(value: boolean) {
-    setShowDropdown(value);
-  }
-
-  function selectCurrency(e: any): any {
+  function selectCurrency(e: any) {
     const loading = isLoading();
     return selectCurrencies(e.target.value)
       .then((response) => {
@@ -36,14 +34,13 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
       .catch((error) => {
         hasError(loading, "an error occured, please try again");
         dispatch(updateCurrency("USD"));
-        // console.error("error", error);
       });
   }
 
   return currencyList === undefined ? (
     <p>unable to load currencies</p>
   ) : currencyList === null ? (
-    <p>loading currencies...</p>
+    <LineLoader />
   ) : (
     <Dropdown
       className={`${styles.dropdown} ${footerStyle} topbar-text dropdown disable-autohide`}
@@ -64,14 +61,13 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
         {`En / ${currency}`}
       </Dropdown.Toggle>
       <Dropdown.Menu className={styles.dropdownMenu}>
-        <select className="form-select form-select-sm">
+        <select
+          onChange={selectCurrency}
+          className="form-select form-select-sm"
+        >
           {currencyList &&
             currencyList?.map((currency: any) => (
-              <option
-                onClick={selectCurrency}
-                key={currency.code}
-                value={currency.code}
-              >
+              <option key={currency.code} value={currency.code}>
                 {currency.symbol} {currency.code}
               </option>
             ))}
