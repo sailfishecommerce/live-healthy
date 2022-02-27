@@ -14,7 +14,7 @@ export default function AlgoliaInstantSearch({
   const algoliasearchClient = {
     ...searchClient,
     search(requests: any) {
-      if (requests.every(({ params }: any) => !params.query.length)) {
+      if (requests.every(({ params }: any) => !params?.query?.length)) {
         dispatch(updateQuery(requests[0].params?.query));
 
         return Promise.resolve({

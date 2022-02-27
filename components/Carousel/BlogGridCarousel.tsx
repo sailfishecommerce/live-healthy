@@ -61,7 +61,7 @@ export default function BlogGridCarousel() {
                       {category}
                     </a>
                   ))}
-                  {content.category.length > 1 ? "," : ""}
+                  {content.category?.length > 1 ? "," : ""}
                 </div>
               </div>
             </article>

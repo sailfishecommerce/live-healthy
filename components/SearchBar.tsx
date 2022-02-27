@@ -29,11 +29,11 @@ function SearchBarComponent() {
   }, []);
 
   function showSearchResult(e: any) {
-    if (e.currentTarget.value.length <= 1) {
+    if (e.currentTarget.value?.length <= 1) {
       setSearching(true);
     }
     dispatch(updateQuery(e.target.value));
-    e.currentTarget.value.length === 0 && setSearching(false);
+    e.currentTarget.value?.length === 0 && setSearching(false);
   }
 
   return (

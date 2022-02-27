@@ -35,7 +35,7 @@ export function AttributeList({
         <i className="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
       </div>
       <div className="accordion mt-n1" id="shop-categories">
-        {items.length > 0 ? (
+        {items?.length > 0 ? (
           items.map(
             (item: {
               label: string;

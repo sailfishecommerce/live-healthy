@@ -144,7 +144,7 @@ export function NavbarDropdown({
             )}
           </a>
         </div>
-        {cart?.items.length > 0 && <HeaderCartDropdown cart={cart} />}
+        {cart?.items?.length > 0 && <HeaderCartDropdown cart={cart} />}
       </div>
       <style jsx>
         {`
