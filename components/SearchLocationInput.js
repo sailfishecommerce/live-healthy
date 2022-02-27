@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, memo } from "react";
 import { updateUserAddress } from "@/redux/payment-slice";
 import { useAppDispatch } from "@/redux/store";
 
@@ -82,7 +82,7 @@ async function handlePlaceSelect(updateQuery, dispatch) {
   );
 }
 
-export default function SearchLocationInput({ formik }) {
+function SearchLocationInputComponent({ formik }) {
   const autoCompleteRef = useRef(null);
   const countryCode = formik.values.country;
   const dispatch = useAppDispatch();
@@ -131,3 +131,7 @@ export default function SearchLocationInput({ formik }) {
     </div>
   );
 }
+
+const SearchLocationInput = memo(SearchLocationInputComponent);
+
+export default SearchLocationInput;
