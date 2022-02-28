@@ -116,7 +116,7 @@ export default function CheckoutSidebar({ cart }: CheckoutSidebarProps) {
         {`
           .products-list {
             overflow: auto;
-            max-height: 450px;
+            max-height: 470px;
           }
         `}
       </style>
