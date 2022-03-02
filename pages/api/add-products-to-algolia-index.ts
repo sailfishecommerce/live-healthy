@@ -1,3 +1,4 @@
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import algoliasearch from "algoliasearch";
 
@@ -11,6 +12,8 @@ export default function AddProductToAlgoliaIndiceHandler(
   );
   const index = client.initIndex("New_Livehealthy_products_index");
 
+  let hits: any[] = [];
+
   switch (req.method) {
     case "POST": {
       index
@@ -22,6 +25,28 @@ export default function AddProductToAlgoliaIndiceHandler(
         })
         .catch((error) => {
           return res.status(400).json(error);
+        });
+    }
+    case "GET": {
+      index
+        .browseObjects({
+          batch: (objects) =>
+            objects.map((object) => {
+              hits = hits.concat(object.objectID);
+              return hits;
+            }),
+        })
+        .then(() => {
+          console.log("Finished! We got %d hits", hits.length);
+          fs.writeFile(
+            "./browse.json",
+            JSON.stringify(hits, null, 2),
+            "utf-8",
+            (err) => {
+              if (err) throw err;
+              console.log("Your index was successfully exported!");
+            }
+          );
         });
     }
   }
