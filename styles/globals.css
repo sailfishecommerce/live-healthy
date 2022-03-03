@@ -367,6 +367,21 @@ span.ais-Menu-label {
   font-family: "Rubik", sans-serif;
 }
 
+/* product description */
+.container.productDescription h6 {
+  margin-bottom: 0px !important;
+}
+
+.container.productDescription h2 {
+  margin-bottom: 0px !important;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.productInfo p {
+  margin-bottom: 6px;
+}
+
 /* media query */
 @media (max-width: 768px) {
   .mobileInput button.ais-SearchBox-reset {

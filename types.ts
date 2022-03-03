@@ -373,6 +373,7 @@ export interface ProductProps {
   product: productType;
   forCategory?: boolean;
   algoliaEvent?: "search" | "click" | "filter";
+  slider?: boolean
 }
 
 export type typeModal =

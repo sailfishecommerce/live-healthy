@@ -12,7 +12,7 @@ import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import ProductPriceView from "./ProductPriceView";
 
 const DynamicProductViewForm = dynamic(
-  () => import("../components/ProductViewForm")
+  () => import("@/components/ProductViewForm")
 );
 
 const DynamicProductMetatags = dynamic(
@@ -20,7 +20,12 @@ const DynamicProductMetatags = dynamic(
 );
 declare function tcjs(trigger: string, type: string, name: string): any;
 
-const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
+const MProduct = ({
+  product,
+  forCategory,
+  algoliaEvent,
+  slider,
+}: ProductProps) => {
   const { itemViewed, clickedItemAfterSearch } = useAlgoliaEvents();
   const [inHover, setHover] = useState(false);
 
@@ -40,6 +45,10 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
       ? product.images[1]?.file?.url
       : product.images[0]?.file?.url;
 
+  const imageAlt = product.image_alt_text
+    ? product.image_alt_text[0]
+    : product.name;
+
   function algoliaClickedProductAfterSearch() {
     if (algoliaEvent === "search") {
       clickedItemAfterSearch(
@@ -53,8 +62,10 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
     }
   }
 
+  const productClass = slider ? "col-md-4 col-6 mb-3 mb-lg-4" : "col-12";
+
   return (
-    <div className="col-md-4 col-6 mb-3 mb-lg-4 p-0 p-md-1 product">
+    <div className={`${productClass} p-0 p-md-1 product`}>
       <DynamicProductMetatags product={product} />
       <div className="card product-card p-1 p-md-2">
         <div className="d-flex justify-content-between">
@@ -88,7 +99,7 @@ const MProduct = ({ product, forCategory, algoliaEvent }: ProductProps) => {
                 height={300}
                 width={300}
                 src={productImage}
-                alt={product?.image_alt_text[0]}
+                alt={imageAlt}
                 placeholder="blur"
                 blurDataURL={productImage}
                 loading="lazy"
