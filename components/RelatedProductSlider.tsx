@@ -37,7 +37,7 @@ export default function RelatedProductSlider({
         >
           {relatedProducts.map((item, index: number) => (
             <SplideSlide key={index}>
-              <Product product={item} />
+              <Product product={item} slider />
             </SplideSlide>
           ))}
         </Splide>

@@ -62,7 +62,7 @@ const MProduct = ({
     }
   }
 
-  const productClass = slider ? "col-md-4 col-6 mb-3 mb-lg-4" : "col-12";
+  const productClass = slider ? "col-12" : "col-md-4 col-6 mb-3 mb-lg-4";
 
   return (
     <div className={`${productClass} p-0 p-md-1 product`}>
