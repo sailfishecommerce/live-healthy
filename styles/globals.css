@@ -383,6 +383,11 @@ span.ais-Menu-label {
 }
 
 /* media query */
+@media (min-width: 768px) {
+  .related-products ul#splide02-list {
+    min-height: 480px;
+  }
+}
 @media (max-width: 768px) {
   .mobileInput button.ais-SearchBox-reset {
     right: 20px;

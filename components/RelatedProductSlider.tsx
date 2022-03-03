@@ -1,8 +1,4 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import Link from "next/link";
-
-import Image from "@/components/Image";
-import FormattedPrice from "@/lib/formatPrice";
 import Product from "@/components/Product";
 
 import "@splidejs/splide/dist/css/splide.min.css";
@@ -15,7 +11,7 @@ export default function RelatedProductSlider({
   relatedProducts,
 }: RelatedProductSliderProps) {
   return (
-    <div className="container">
+    <div className="container related-products mb-5">
       <div className="row">
         <h4 className="text-center mb-4">Related Products</h4>
         <Splide
@@ -23,6 +19,20 @@ export default function RelatedProductSlider({
             autoplay: true,
             perPage: 5,
             type: "loop",
+            breakpoints: {
+              450: {
+                perPage: 2,
+                gap: "1rem",
+              },
+              600: {
+                perPage: 3,
+                gap: "1.5rem",
+              },
+              1200: {
+                perPage: 4,
+                gap: "2.5rem",
+              },
+            },
           }}
         >
           {relatedProducts.map((item, index: number) => (
