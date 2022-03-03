@@ -4,7 +4,7 @@ import { RatingsList } from "./RatingsRefinementList";
 import CustomRefinementList from "@/components/CustomRefinementList";
 
 interface Props {
-  collection: string;
+  collection?: string;
 }
 
 export default function Categories({ collection }: Props) {
@@ -24,11 +24,13 @@ export default function Categories({ collection }: Props) {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <CustomMenu
-            attribute="product_type"
-            title="Product Type"
-            defaultRefinement={[collection]}
-          />
+          {collection && (
+            <CustomMenu
+              attribute="product_type"
+              title="Product Type"
+              defaultRefinement={[collection]}
+            />
+          )}
           <CustomRefinementList attribute="vendor" title="Vendors" />
           <CustomRefinementList attribute="tags" title="Tags" />
           <CustomRangeSlider attribute="price" />
