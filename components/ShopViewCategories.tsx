@@ -1,10 +1,7 @@
-import { RefinementList, Menu } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
-import AttributeRefinementList from "./AttributeRefinementList";
-import { TagsRefinementList } from "./TagsRefinementList";
-import { SingleVendorRefinementList } from "./SingleVendorRefinementList";
+import CustomRefinementList from "@/components/CustomRefinementList";
+import CustomMenu from "@/components/CustomMenu";
 import { RatingsList } from "./RatingsRefinementList";
-import MarketplaceCategoryMenu from "./MarketplaceCategoryMenu";
 
 export default function ShopViewCategories() {
   return (
@@ -23,41 +20,16 @@ export default function ShopViewCategories() {
           ></button>
         </div>
         <div className="refinementList offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <h3>Product Type</h3>
-          <Menu
-            searchable={true}
-            attribute="product_type"
-            showMoreLimit={100}
-          />
-          <h5>Vendors </h5>
-          <RefinementList
-            searchable={true}
+          <CustomMenu attribute="product_type" title="Product Type" />
+          <CustomRefinementList
             attribute="vendor"
-            showMoreLimit={100}
-            showMore={true}
+            title="Vendors"
+            className="vendor"
           />
-          {/* 
-          <AttributeRefinementList
-            showMoreLimit={100}
-            showMore={true}
-            searchable={true}
-            attribute="vendor"
-            title="Vendor"
-          />
-           <AttributeRefinementList
-             showMoreLimit={100}
-            showMore={true}
-            searchable={true}
+          <CustomRefinementList
             attribute="tags"
+            className="tags"
             title="Tags"
-          />
-           */}
-          <h5>Tags </h5>
-          <RefinementList
-            searchable={true}
-            attribute="tags"
-            showMoreLimit={100}
-            showMore={true}
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
