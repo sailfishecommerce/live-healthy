@@ -6,7 +6,7 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import Categories from "@/components/Categories";
 import ShopBannerToolbar from "./ShopBannerToolbar";
 import InfiniteProductHits from "./InfiniteHits";
-import {AlgoliaView} from "./AlgoliaInstantSearch";
+import { AlgoliaView } from "./AlgoliaInstantSearch";
 
 interface MarketplaceProps {
   category?: {

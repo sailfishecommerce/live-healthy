@@ -21,16 +21,8 @@ export default function ShopViewCategories() {
         </div>
         <div className="refinementList offcanvas-body py-grid-gutter px-lg-grid-gutter">
           <CustomMenu attribute="product_type" title="Product Type" />
-          <CustomRefinementList
-            attribute="vendor"
-            title="Vendors"
-            className="vendor"
-          />
-          <CustomRefinementList
-            attribute="tags"
-            className="tags"
-            title="Tags"
-          />
+          <CustomRefinementList attribute="vendor" title="Vendors" />
+          <CustomRefinementList attribute="tags" title="Tags" />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
         </div>
