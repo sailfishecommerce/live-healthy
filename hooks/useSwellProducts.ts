@@ -34,6 +34,12 @@ export default function useSwellProducts() {
     });
   }
 
+  async function getProductsInCategory(category: string) {
+    return await swell.products.list({
+      category,
+    });
+  }
+
   async function getAllAttributes() {
     return await swell.attributes.list({
       limit: 25,
@@ -41,7 +47,13 @@ export default function useSwellProducts() {
     });
   }
 
-  return { listProducts, allProducts, filterProducts, getAllAttributes };
+  return {
+    listProducts,
+    allProducts,
+    filterProducts,
+    getAllAttributes,
+    getProductsInCategory,
+  };
 }
 
 export function useLiveHealthyProduct(): any {
