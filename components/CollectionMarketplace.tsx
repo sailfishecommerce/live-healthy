@@ -8,7 +8,7 @@ import AlgoliaCurrentRefinement from "@/components/AlgoliaCurrentRefinement";
 import { AlgoliaView } from "@/components/AlgoliaInstantSearch";
 
 interface MarketplaceProps {
-  collection?: {
+  collection: {
     name: string;
     slug: string;
   };
@@ -52,7 +52,7 @@ export default function CollectionMarketplace({
       </div>
       <div className="container pb-5 mb-2 mb-md-4">
         <div className="row">
-          <Categories />
+          <Categories collection={collection?.name} />
           <section className="col-lg-9">
             <ShopBannerToolbar />
             <div>

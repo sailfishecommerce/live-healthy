@@ -3,7 +3,11 @@ import CustomMenu from "@/components/CustomMenu";
 import { RatingsList } from "./RatingsRefinementList";
 import CustomRefinementList from "@/components/CustomRefinementList";
 
-export default function Categories() {
+interface Props {
+  collection: string;
+}
+
+export default function Categories({ collection }: Props) {
   return (
     <aside className="col-lg-3">
       <div
@@ -20,7 +24,11 @@ export default function Categories() {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <CustomMenu attribute="product_type" title="Product Type" />
+          <CustomMenu
+            attribute="product_type"
+            title="Product Type"
+            defaultRefinement={[collection]}
+          />
           <CustomRefinementList attribute="vendor" title="Vendors" />
           <CustomRefinementList attribute="tags" title="Tags" />
           <CustomRangeSlider attribute="price" />

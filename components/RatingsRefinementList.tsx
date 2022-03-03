@@ -2,11 +2,7 @@ import { connectRefinementList } from "react-instantsearch-dom";
 
 import RatingStar from "./RatingStar";
 
-export default function RatingsRefinementList({
-  items,
-  refine,
-  createURL,
-}: any) {
+export default function RatingsRefinementList({ items, refine }: any) {
   function refineSearch(item: any) {
     refine(item.value);
   }
@@ -20,7 +16,6 @@ export default function RatingsRefinementList({
         >
           <a
             onClick={() => refineSearch(item)}
-            href={createURL(item.label)}
             className="btn btn-link m-0 p-0"
           >
             <RatingStar rate={item.label} />

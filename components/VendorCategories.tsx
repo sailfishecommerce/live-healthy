@@ -3,10 +3,10 @@ import { RatingsList } from "./RatingsRefinementList";
 import CustomRefinementList from "@/components/CustomRefinementList";
 
 interface props {
-  vendorView: boolean;
+  vendor: string;
 }
 
-export default function VendorCategories({ vendorView }: props) {
+export default function VendorCategories({ vendor }: props) {
   return (
     <aside className="col-lg-3">
       <div
@@ -23,7 +23,11 @@ export default function VendorCategories({ vendorView }: props) {
           ></button>
         </div>
         <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <CustomRefinementList attribute="vendor" title="Vendor" />
+          <CustomRefinementList
+            attribute="vendor"
+            title="Vendor"
+            defaultRefinement={[vendor]}
+          />
           <CustomRefinementList attribute="tags" title="Tags" />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />
