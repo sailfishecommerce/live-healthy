@@ -20,6 +20,7 @@ export default function RatingsRefinementList({
         >
           <a
             onClick={() => refineSearch(item)}
+            href={createURL(item.label)}
             className="btn btn-link m-0 p-0"
           >
             <RatingStar rate={item.label} />

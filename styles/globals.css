@@ -352,9 +352,19 @@ input.ais-SearchBox-input {
   width: 100%;
 }
 
+input.ais-SearchBox-input:focus-visible {
+  outline: 1px solid red;
+}
+
 .ais-RefinementList-searchBox,
 .ais-Menu-searchBox {
   margin-bottom: 10px;
+}
+
+span.ais-Menu-label {
+  font-weight: normal;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
 }
 
 /* media query */
