@@ -35,7 +35,7 @@ function CategoryDropdownList({ category, categories }: Props) {
               onClick={() => linkHandler(category)}
               className="categoryImg d-flex flex-column overflow-hidden rounded-3 mb-3"
             >
-              <img src={category.images[0].file.url} alt={category.name} />
+              <img src={category?.images[0].file.url} alt={category.name} />
               <h6 className="fs-base my-2">{category.name}</h6>
             </a>
           </Link>

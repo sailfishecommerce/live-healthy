@@ -25,7 +25,6 @@ export default function Index() {
       generateUserToken(userDetails);
     }
   }, [status]);
-  
 
   return (
     <Applayout title="Live healthy Store - Quality Australian Products - Free Shipping to HK">
