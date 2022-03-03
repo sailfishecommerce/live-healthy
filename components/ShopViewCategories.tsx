@@ -1,3 +1,4 @@
+import { RefinementList, Menu } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./AlgoliaPriceRange";
 import AttributeRefinementList from "./AttributeRefinementList";
 import { TagsRefinementList } from "./TagsRefinementList";
@@ -9,7 +10,7 @@ export default function ShopViewCategories() {
   return (
     <aside className="col-lg-3">
       <div
-        className="categoryCanvas offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
+        className="ShopViewCategories categoryCanvas offcanvas offcanvas-collapse bg-white w-100 rounded-3 shadow-lg py-1"
         id="shop-sidebar"
       >
         <div className="offcanvas-header align-items-center shadow-sm">
@@ -21,18 +22,19 @@ export default function ShopViewCategories() {
             aria-label="close"
           ></button>
         </div>
-        <div className="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-          <MarketplaceCategoryMenu
+        <div className="refinementList offcanvas-body py-grid-gutter px-lg-grid-gutter">
+          <h3>Product Type</h3>
+          <Menu
             searchable={true}
             attribute="product_type"
             showMoreLimit={100}
-            showMore={true}
           />
-          <SingleVendorRefinementList
-            showMoreLimit={100}
-            showMore={true}
+          <h5>Vendors </h5>
+          <RefinementList
             searchable={true}
             attribute="vendor"
+            showMoreLimit={100}
+            showMore={true}
           />
           {/* 
           <AttributeRefinementList
@@ -50,11 +52,12 @@ export default function ShopViewCategories() {
             title="Tags"
           />
            */}
-          <TagsRefinementList
-            showMoreLimit={100}
-            showMore={true}
+          <h5>Tags </h5>
+          <RefinementList
             searchable={true}
             attribute="tags"
+            showMoreLimit={100}
+            showMore={true}
           />
           <CustomRangeSlider attribute="price" />
           <RatingsList attribute="rating" />

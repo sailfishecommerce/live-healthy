@@ -28,8 +28,8 @@ const createURL = (state) => {
     !state.query &&
     state.page === 1 &&
     state.refinementList &&
-    state.refinementList.vendor.length === 0 &&
-    state.refinementList.tags.length === 0 &&
+    state.refinementList?.vendor.length === 0 &&
+    state.refinementList?.tags?.length === 0 &&
     state.menu &&
     !state.menu.product_type;
 
