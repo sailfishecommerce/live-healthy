@@ -14,13 +14,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LayoutMetatag = dynamic(() => import("./LayoutMetatag"));
 const Reward = dynamic(() => import("@/components/Rewards"));
-const SlideCart = dynamic(() => import("../components/SlideCart"));
-const NextNProgress = dynamic(() => import("../components/Nprogress"));
-const LoadingBar = dynamic(() => import("../components/loadingBar"));
-const SpinnerOverlay = dynamic(() => import("../components/SpinnerOverlay"));
-const AuthModal = dynamic(() => import("../components/modal/AuthModal"));
+const SlideCart = dynamic(() => import("@/components/SlideCart"));
+const NextNProgress = dynamic(() => import("@/components/Nprogress"));
+const LoadingBar = dynamic(() => import("@/components/loadingBar"));
+const SpinnerOverlay = dynamic(() => import("@/components/SpinnerOverlay"));
+const AuthModal = dynamic(() => import("@/components/modal/AuthModal"));
 const QuickViewModal = dynamic(
-  () => import("../components/modal/QuickViewModal")
+  () => import("@/components/modal/QuickViewModal")
 );
 
 export default function LayoutWrapper({ children }: PropsWithChildren<{}>) {

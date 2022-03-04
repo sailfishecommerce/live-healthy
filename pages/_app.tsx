@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-page-custom-font */
 // import "../lib/wdyr";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -13,6 +14,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import store from "@/redux/store";
 import "@/styles/globals.css";
+import "@/styles/theme.min.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -29,18 +31,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Script
-        type="module"
-        src="/js/smooth-scroll.js"
-        strategy="beforeInteractive"
-      />
-      <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js"
         integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ=="
         crossOrigin="anonymous"
         strategy="afterInteractive"
         referrerPolicy="no-referrer"
       />
-      <Script type="module" src="/js/theme.js" strategy="afterInteractive" />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PersistGate loading={null} persistor={persistor}>
