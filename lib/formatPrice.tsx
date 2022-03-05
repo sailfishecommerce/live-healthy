@@ -1,7 +1,7 @@
 import { currencySymbolFormatter, useCurrencies } from "@/hooks/useCurrency";
 import { LineLoader } from "@/components/ProductsLoader";
-
 import { useAppSelector } from "@/hooks/useRedux";
+
 export function formatPrice(price: number) {
   const productPrice = price?.toFixed(2);
   return numberWithCommas(productPrice);
@@ -28,13 +28,6 @@ function FormatCurrency({
   );
   const nPrice = Number(price);
   const priceRate = nPrice * selectedCurrency[0].rate;
-
-  // console.log(
-  //   "price",
-  //   price,
-  //   "selectedCurrency[0].rate",
-  //   selectedCurrency[0].rate
-  // );
 
   const productItemPrice = isProduct ? priceRate : nPrice;
   const itemPrice = formatPrice(productItemPrice);
