@@ -1,5 +1,5 @@
 import { currencySymbolFormatter } from "@/hooks/useCurrency";
-import { formatPrice } from "@/lib/formatPrice";
+import { formatPrice } from "@/components/price/FormattedPrice";
 
 interface formatCurrencyProps {
   price: string | number;

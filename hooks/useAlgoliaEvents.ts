@@ -1,11 +1,9 @@
+import aa from "search-insights";
 import { useAppSelector } from "./useRedux";
 
 export default function useAlgoliaEvents() {
   const { userToken }: any = useAppSelector((state) => state.user);
-
-  const searchInsight = async () => (await import("search-insights")).default;
-
-  async function initializeAlgolia(aa: any) {
+  function initializeAlgolia() {
     aa("init", {
       appId: `${process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID}`,
       apiKey: `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`,
@@ -13,9 +11,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function itemViewed(eventName: string, objectIDs: string[] | any) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+  function itemViewed(eventName: string, objectIDs: string[] | any) {
+    initializeAlgolia();
     aa("viewedObjectIDs", {
       eventName,
       userToken,
@@ -24,9 +21,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function filterViewed(filters: string[]) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+  function filterViewed(filters: string[]) {
+    initializeAlgolia();
     aa("viewedFilters", {
       eventName: "filter_viewed",
       userToken,
@@ -35,9 +31,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function filterClicked(filters: string[]) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+  function filterClicked(filters: string[]) {
+    initializeAlgolia();
     aa("clickedFilters", {
       eventName: "filter_clicked",
       userToken,
@@ -46,9 +41,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function productAddedToCart(objectIDs: string[] | any) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+  function productAddedToCart(objectIDs: string[] | any) {
+    initializeAlgolia();
     aa("convertedObjectIDs", {
       eventName: "product_added_to_cart",
       userToken,
@@ -57,9 +51,8 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function clickedItem(eventName: string, objectIDs: string[]) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+  function clickedItem(eventName: string, objectIDs: string[]) {
+    initializeAlgolia();
     aa("clickedObjectIDs", {
       eventName,
       userToken,
@@ -68,13 +61,12 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function convertedItemAfterSearch(
+  function convertedItemAfterSearch(
     eventName: string,
     queryID: string,
     objectIDs: string[]
   ) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+    initializeAlgolia();
     aa("convertedObjectIDsAfterSearch", {
       eventName,
       userToken,
@@ -84,14 +76,13 @@ export default function useAlgoliaEvents() {
     });
   }
 
-  async function clickedItemAfterSearch(
+  function clickedItemAfterSearch(
     queryID: string,
     objectIDs: string[],
     positions: number[],
     eventName: string
   ) {
-    const aa = await searchInsight();
-    initializeAlgolia(aa);
+    initializeAlgolia();
     aa("clickedObjectIDsAfterSearch", {
       index: "New_Livehealthy_products_index",
       userToken,

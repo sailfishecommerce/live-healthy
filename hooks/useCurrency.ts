@@ -1,27 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { QueryClient } from "react-query";
-import { useEffect, useState } from "react";
-
-import { useAppSelector } from "@/hooks/useRedux";
-import useSwell from "@/hooks/useSwell";
+import { QueryClient, useQuery } from "react-query";
+import swellClientInit from "@/lib/config";
+import { useCallback, useEffect, useState } from "react";
+import { useAppSelector } from "./useRedux";
 
 export default function useCurrency() {
-  const { swellInit } = useSwell();
+  const { swell, initializeSwell } = swellClientInit();
+  initializeSwell();
 
   const { currency } = useAppSelector((state) => state.currencyLanguage);
 
   async function listEnabledCurrencies() {
-    const { swell } = await swellInit();
     return await swell.currency.list();
   }
 
   async function selectCurrencies(currency: string) {
-    const { swell } = await swellInit();
     return await swell.currency.select(currency);
   }
 
   async function getSelectedCurrencies() {
-    const { swell } = await swellInit();
     return await swell.currency.selected();
   }
 
@@ -49,13 +46,11 @@ export function useCurrencies() {
   const [currencyList, setCurrencyList] = useState<any>(null);
   const { listEnabledCurrencies } = useCurrency();
 
-  useEffect(() => {
-    if (currencyList === null) {
-      getCurrencies(listEnabledCurrencies)
-        .then((response) => setCurrencyList(response))
-        .catch((error) => setCurrencyList(error));
-    }
-  }, []);
+  if (currencyList === null) {
+    getCurrencies(listEnabledCurrencies)
+      .then((response) => setCurrencyList(response))
+      .catch((error) => setCurrencyList(error));
+  }
 
   return { currencyList };
 }

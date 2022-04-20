@@ -6,5 +6,6 @@ declare module "aos";
 declare module "react-dom";
 declare module "imagemin";
 declare module "imagemin-webp";
-declare module "plasmicapp/loader-nextjs";
+declare module "plasmicapp/loader-next";
 
+declare module "nprogress";

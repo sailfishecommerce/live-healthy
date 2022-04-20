@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { ShareProductLink } from "@/components/ProductView";
 import { productType } from "@/types";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 import Rating from "./Rating";
 import ProductForm from "./ProductForm";
 import { replaceSpaceWithHypen } from "@/lib/formatString";

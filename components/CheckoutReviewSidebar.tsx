@@ -1,5 +1,5 @@
 import { cartType } from "@/types";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 
 interface CheckoutReviewSidebarProps {
   cart: cartType;
@@ -16,7 +16,7 @@ export default function CheckoutReviewSidebar({
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Subtotal:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.subTotal}  />
+                <FormattedPrice price={cart.subTotal} />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
@@ -28,18 +28,18 @@ export default function CheckoutReviewSidebar({
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Taxes:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.taxTotal}  />
+                <FormattedPrice price={cart.taxTotal} />
               </span>
             </li>
             <li className="d-flex justify-content-between align-items-center">
               <span className="me-2">Discount:</span>
               <span className="text-end">
-                <FormattedPrice price={cart.discountTotal}  />
+                <FormattedPrice price={cart.discountTotal} />
               </span>
             </li>
           </ul>
           <h3 className="fw-normal text-center my-4">
-            <FormattedPrice price={cart.grandTotal}  />$
+            <FormattedPrice price={cart.grandTotal} />$
           </h3>
           <form className="needs-validation" method="post" noValidate>
             <div className="mb-3">

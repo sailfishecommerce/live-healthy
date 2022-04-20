@@ -1,4 +1,4 @@
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 import styles from "@/styles/ui.module.css";
 import RatingStar from "./RatingStar";
 

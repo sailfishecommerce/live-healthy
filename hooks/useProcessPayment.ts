@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/store";
 import { useRouter } from "next/router";
@@ -10,6 +11,7 @@ import { updateCart } from "@/redux/cart-slice";
 import { createVboutOrder } from "@/hooks/useVbout";
 import useModal from "@/hooks/useModal";
 import { vboutOrderData } from "@/lib/vbout";
+import { useQuery } from "react-query";
 
 export default function useProcessPayment() {
   const router = useRouter();
@@ -17,11 +19,16 @@ export default function useProcessPayment() {
   const { getUserDetails } = useAuth();
   const { onShowModal } = useModal();
 
-  const { getACart } = useSwellCart();
+  const { getACart, updateCartAccountID } = useSwellCart();
   const { useCartData } = useCart();
   const { data: cart } = useCartData();
-  const { updateUserBillingInfo, createUserAddresstAtCheckout } = useAccount();
+  const {
+    updateUserBillingInfo,
+    createUserAddresstAtCheckout,
+    getUserAccount,
+  } = useAccount();
   const dispatch = useAppDispatch();
+  const { data: userDetail, status } = useQuery("userdetails", getUserAccount);
   const [loadingState, setLoadingState] = useState(false);
   const { isLoading, isSuccessful, hasError } = useToast();
 
@@ -32,17 +39,13 @@ export default function useProcessPayment() {
     setLoadingState(true);
     tokenizePayment()
       .then((tokenPaymentResponse) => {
-        console.log("tokenPaymentResponse", tokenPaymentResponse);
         if (!tokenPaymentResponse?.code) {
           getACart()
             .then((response) => {
-              console.log("response makePayment", response);
               updateUserBillingInfo(data, response.billing.card?.token)
                 .then((response) => {
-                  console.log("response userBilling", response);
                   submitUserOrder()
                     .then((response: any) => {
-                      console.log("submitOrder", response);
                       if (response.paid) {
                         setLoadingState(false);
                         dispatch(sendProductReview(true));
@@ -61,13 +64,11 @@ export default function useProcessPayment() {
                       return response;
                     })
                     .catch((error) => {
-                      console.log("error submitUserOrder", error);
                       hasError(loading, error?.message);
                       setLoadingState(false);
                     });
                 })
                 .catch((error) => {
-                  console.log("updateUserBillingInfo error", error);
                   hasError(loading, error?.message);
                   setLoadingState(false);
                 });
@@ -82,7 +83,6 @@ export default function useProcessPayment() {
         }
       })
       .catch((err) => {
-        console.log("error makePayment", err);
         hasError(loading, err?.message);
         setLoadingState(false);
       });
@@ -92,12 +92,9 @@ export default function useProcessPayment() {
     const loading = isLoading();
     getUserDetails()
       .then((response) => {
-        console.log("response getUserDetails", response);
         if (response === null) {
-          console.log("data createUserAddresstAtCheckout", data);
           createUserAddresstAtCheckout(data)
             .then((response) => {
-              console.log("createUserAddresstAtCheckout", response);
               if (response !== null && response?.email?.code === "UNIQUE") {
                 hasError(
                   loading,
@@ -112,7 +109,6 @@ export default function useProcessPayment() {
               }
             })
             .catch((err) => {
-              console.log("err createUserAddresstAtCheckout", err);
               hasError(loading, err?.message);
             });
         } else {
@@ -120,7 +116,6 @@ export default function useProcessPayment() {
         }
       })
       .catch((error) => {
-        console.log("get user details", error);
         hasError(loading, error?.message);
       });
   }

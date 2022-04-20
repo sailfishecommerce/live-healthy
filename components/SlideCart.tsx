@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { displayCheckoutModalAction } from "@/redux/ui-slice";
 import { CartDiscount, ClearCart } from "./CartElements";
 import SlideCartNote from "./SlideCartNote";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 import SlideCartProduct from "./SlideCartProduct";
 import styles from "@/styles/ui.module.css";
 import { useCart } from "@/hooks";

@@ -17,4 +17,3 @@ export default function useMediaQuery(query: string) {
 
   return matches;
 }
-

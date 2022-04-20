@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { cartType, itemType } from "@/types";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 
 interface OrderdetailsProps {
   cart: cartType;
@@ -40,7 +40,7 @@ function OrderdetailsItem({ item }: OrderdetailsItemProps) {
             Khaki
           </div>
           <div className="fs-lg text-accent pt-2">
-            <FormattedPrice price={item.price}  />
+            <FormattedPrice price={item.price} />
           </div>
         </div>
       </div>

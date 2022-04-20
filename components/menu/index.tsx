@@ -1,15 +1,9 @@
-import dynamic from "next/dynamic";
-
 import PrimaryMenu from "@/components/menu/PrimaryMenu";
 import SecondaryMenu from "@/components/menu/SecondaryMenu";
 import { useMediaQuery } from "@/hooks";
 import useNav from "@/hooks/useNav";
-import Container from "@/layouts/Container";
+import Container from "@/layout/Container";
 import MobileSearchbar from "@/components/search/MobileSearchbar";
-
-const DynamicMobileSlideMenu = dynamic(
-  () => import("@/components/menu/MobileSlideMenu")
-);
 
 export default function Menu() {
   const mobileWidth = useMediaQuery("(max-width:768px)");

@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { Button } from "@/components/UIElement";
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 import { cartType, itemType } from "@/types";
 import useCoupon from "@/hooks/useCoupon";
 

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import FormattedPrice from "@/lib/formatPrice";
+import FormattedPrice from "@/components/price/FormattedPrice";
 import Link from "next/link";
 
 interface Props {
