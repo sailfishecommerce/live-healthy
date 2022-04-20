@@ -7,6 +7,7 @@ const productSlice = createSlice({
     product: null,
     productOption: [],
     isRequiredOptionsSelected: null,
+    activeProduct: null,
   },
   reducers: {
     updateProduct(state, action: PayloadAction<any>) {
@@ -21,6 +22,9 @@ const productSlice = createSlice({
     updateRequiredOption(state, action) {
       state.isRequiredOptionsSelected = action.payload;
     },
+    updateActiveProduct(state, action) {
+      state.activeProduct = action.payload;
+    },
   },
 });
 
@@ -29,5 +33,6 @@ export const {
   addProduct,
   updateProductOption,
   updateRequiredOption,
+  updateActiveProduct,
 } = productSlice.actions;
 export default productSlice.reducer;

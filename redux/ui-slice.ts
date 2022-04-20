@@ -3,10 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const uiSlice = createSlice({
   name: "UI",
   initialState: {
-    slideCart: false,
+    slideTab: null,
     sidebarRight: false,
     loading: false,
+    mobileMenu: false,
     modal: false,
+    showNav: false,
+    showMobileSearch: false,
     authModal: "AUTHFORM",
     displayModal: {
       active: false,
@@ -22,8 +25,13 @@ const uiSlice = createSlice({
     },
   },
   reducers: {
-    toggleSlideCart(state) {
-      state.slideCart = !state.slideCart;
+    toggleSlideTab(state, action) {
+      state.slideTab = action.payload;
+    },
+    updateSearchView(state) {
+      if (!state.mobileMenu) {
+        state.showMobileSearch = !state.showMobileSearch;
+      }
     },
     toggleSidebarRight(state) {
       state.sidebarRight = !state.sidebarRight;
@@ -50,6 +58,12 @@ const uiSlice = createSlice({
     toggleAuthModal(state) {
       state.displayAuthModal = !state.displayAuthModal;
     },
+    updateMobileMenu(state) {
+      state.mobileMenu = !state.mobileMenu;
+    },
+    toggleNav(state) {
+      state.showNav = !state.showNav;
+    },
     toggleAppModal(state, action) {
       state.displayModal.type = action.payload.type;
       if (state.displayModal.type) {
@@ -65,15 +79,18 @@ const uiSlice = createSlice({
 });
 
 export const {
-  toggleSlideCart,
+  toggleNav,
+  toggleSlideTab,
   toggleSidebarRight,
   toggleModal,
   authModalForm,
   updateLoadingAction,
   quickViewModal,
+  updateSearchView,
   toggleAuthModal,
   toggleAppModal,
   checkoutModal,
+  updateMobileMenu,
   displayCheckoutModalAction,
 } = uiSlice.actions;
 
