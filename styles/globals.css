@@ -381,6 +381,11 @@ span.ais-Menu-label {
 }
 
 /* media query */
+@media (min-width: 1000px) {
+  .tm-ferret-widget-wrapper {
+    width: 80% !important;
+  }
+}
 @media (min-width: 768px) {
   .related-products ul#splide02-list {
     min-height: 480px;

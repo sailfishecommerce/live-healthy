@@ -10,6 +10,7 @@ import useNav from "@/hooks/useNav";
 const DynamicMobileSlideMenu = dynamic(
   () => import("@/components/menu/MobileSlideMenu")
 );
+
 export default function Header() {
   const [showNoticebar, setShowNoticebar] = useState(true);
   const toggleNoticebar = () => setShowNoticebar(!showNoticebar);
