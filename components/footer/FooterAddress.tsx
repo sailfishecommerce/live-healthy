@@ -1,6 +1,6 @@
 import { FaWhatsapp } from "react-icons/fa";
 
-import Logo from "@/components/logo";
+import Logo from "@/components/logo/";
 import SocialIcons from "@/components/icons/SocialIcons";
 
 export default function FooterAddress() {

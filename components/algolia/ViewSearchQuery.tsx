@@ -4,7 +4,7 @@ import { hitType } from "@/types";
 import { useAppSelector } from "@/hooks/useRedux";
 import { useRouter } from "next/router";
 
-import Image from "@/components/image";
+import Image from "@/components/Image";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import { useAppDispatch } from "@/redux/store";
 import { closeSearch, updateViewSearch } from "@/redux/algolia-slice";

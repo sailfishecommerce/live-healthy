@@ -1,21 +1,17 @@
-import { initPlasmicLoader } from "plasmicapp/loader-nextjs";
-import Header from "@/plasmicComponent/Header";
-import HomepageSlider from "@/plasmicComponent/HomepageSlider";
-import PopularCategories from "./components/PopularCategories";
-import Footer from "./components/Footer";
-import TrendingProducts from "./components/TrendingProducts";
-import Banners from "./components/Banner";
-import ShopByBrand, { Brand } from "./components/ShopByBrands";
-import InfoCards from "./components/InfoCards";
-import FeaturedCategory from "./components/FeaturedCategory";
+import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 import Error404 from "./components/404Error";
-import ProductBanner from "./components/ProductBanner";
-import ProductDescription from "./components/ProductDescription";
-import ProductGalleryDetails from "./components/ProductGalleryDetails";
-import ProductReviews from "./components/ProductReviews";
-import PopularCategory from "./components/PopularCategory";
-import ProductOverview from "./components/ProductOverview";
-import Checkout from "./components/Checkout";
+import ProductBanner from "./components/banners/ProductBanner";
+import ShippingBanner from "./components/banners/ShippingBanner";
+import Footer from "./components/footer/";
+import Header from "./components/header";
+import ProductReview from "./components/product/ProductReview";
+import ProductDetail from "./components/ProductDetail";
+import ProductReviews from "./components/reviews/ProductReviews";
+import BestSellerSlider from "./components/slider/BestSellerSlider";
+import HomepageSlider from "./components/slider/HomepageSlider";
+import ProductSlider from "./components/slider/ProductSlider";
+import ProductTabSlider from "./components/slider/ProductTabSlider";
+import Values from "./components/values";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -160,36 +156,13 @@ PLASMIC.registerComponent(Footer, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(TrendingProducts, {
+PLASMIC.registerComponent(ProductSlider, {
   name: "Trending Products",
   props: {},
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(PopularCategories, {
-  name: "Popular Categories",
-  props: {
-    children: "slot",
-  },
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(PopularCategory, {
-  name: "Popular Category",
-  props: {
-    categoryImg: {
-      displayName: "Category Image",
-      type: "slot",
-    },
-    categoryName: {
-      displayName: "Category Name",
-      type: "string",
-    },
-  },
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(Banners, {
+PLASMIC.registerComponent(ProductBanner, {
   name: "Ads Banner",
   props: {
     banner1Title: {
@@ -216,7 +189,7 @@ PLASMIC.registerComponent(Banners, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(Brand, {
+PLASMIC.registerComponent(ShippingBanner, {
   name: "Brand",
   props: {
     brand: {
@@ -226,7 +199,7 @@ PLASMIC.registerComponent(Brand, {
   },
 });
 
-PLASMIC.registerComponent(ShopByBrand, {
+PLASMIC.registerComponent(ProductReview, {
   name: "Shop by brand",
   props: {
     children: "slot",
@@ -234,7 +207,7 @@ PLASMIC.registerComponent(ShopByBrand, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(InfoCards, {
+PLASMIC.registerComponent(ProductReviews, {
   name: "Info Card",
   props: {
     section1Title: {
@@ -271,8 +244,8 @@ PLASMIC.registerComponent(InfoCards, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(FeaturedCategory, {
-  name: "Featured Category",
+PLASMIC.registerComponent(Values, {
+  name: "Values",
   props: {
     categoryImg: {
       displayName: "Category Banner Image",
@@ -303,38 +276,20 @@ PLASMIC.registerComponent(Error404, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(ProductBanner, {
-  name: "Product Banner",
-  props: {},
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(ProductDescription, {
+PLASMIC.registerComponent(ProductDetail, {
   name: "Product Description",
   props: {},
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(ProductGalleryDetails, {
-  name: "Product Gallery Details",
+PLASMIC.registerComponent(ProductTabSlider, {
+  name: "Product Tab Slider",
   props: {},
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(ProductReviews, {
-  name: "Product Review",
-  props: {},
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(ProductOverview, {
-  name: "Product Overview",
-  props: {},
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(Checkout, {
-  name: "Checkout component",
+PLASMIC.registerComponent(BestSellerSlider, {
+  name: "BestSeller Slider",
   props: {},
   isDefaultExport: true,
 });

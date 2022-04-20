@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { PropsWithChildren } from "react";
 
-import Footer from "@/json/footer-1.json"
+import Footer from "@/components/footer/";
 import Header from "@/components/header/";
 import LayoutWrapper from "@/layout/LayoutWrapper";
 

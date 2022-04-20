@@ -1,4 +1,4 @@
-import Logo from "@/components/logo";
+import Logo from "@/components/logo/";
 import MenuLinks from "@/components/menu/MenuLinks";
 import { useMediaQuery } from "@/hooks";
 import MobilePrimaryMenu from "@/components/menu/MobilePrimaryMenu";

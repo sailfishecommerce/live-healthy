@@ -1,11 +1,11 @@
 import { useState } from "react";
+import dynamic from "next/dynamic";
 
 import { useMediaQuery } from "@/hooks";
 import Noticebar from "@/components/alerts/Noticebar";
-import Menu from "@/components/menu";
+import Menu from "@/components/menu/";
 import useNavStyle from "@/hooks/useNavStyle";
 import useNav from "@/hooks/useNav";
-import dynamic from "next/dynamic";
 
 const DynamicMobileSlideMenu = dynamic(
   () => import("@/components/menu/MobileSlideMenu")
