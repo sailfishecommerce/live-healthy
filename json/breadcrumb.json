@@ -1,0 +1,14 @@
+{
+  "product": [
+    { "name": "Homepage", "link": "/" },
+    { "name": "All", "link": "#products" }
+  ],
+  "account": [
+    { "name": "Homepage", "link": "/" },
+    { "name": "Account", "link": null, "active": true }
+  ],
+  "blog": [
+    { "name": "Homepage", "link": "/" },
+    { "name": "Live Healthy Content Page", "link": null, "active": true }
+  ]
+}

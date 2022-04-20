@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
-import { toast } from "react-toastify";
 import useSwellCart from "./useSwellCart";
+
+import { addNewUserToList } from "./useVbout";
+import useToast from "@/hooks/useToast";
+import useAccount from "@/hooks/useAccount";
+import { toast } from "react-toastify";
 
 export default function useMutationAction() {
   const { emptyCart, deleteCart } = useSwellCart();
@@ -61,14 +65,11 @@ export default function useMutationAction() {
 
   function useDeleteCart() {
     return useMutation(deleteCart, {
-      onSuccess: (data, status) => {
-        //
-        //
+      onSuccess: (data) => {
         queryClient.invalidateQueries("cart");
         toast.success("cart deleted");
       },
       onError: (data) => {
-        //
         toast.error("error deleting cart");
       },
     });

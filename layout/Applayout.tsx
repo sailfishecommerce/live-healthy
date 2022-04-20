@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 
 import LayoutWrapper from "./LayoutWrapper";
 
-const Header = dynamic(() => import("../components/Header"));
-const Footer = dynamic(() => import("../components/Footer"));
+const Header = dynamic(() => import("@/components/Header"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 interface Applayout {
   title: string;

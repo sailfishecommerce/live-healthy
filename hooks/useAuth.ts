@@ -23,8 +23,7 @@ export default function useAuth() {
         if (response) {
           isSuccessful(toastId, `Welcome back, ${values.email}`);
           formik.resetForm();
-
-          formik.setSubmitting(false);
+          formik.setSubmitting(false);          
           dispatch(authorizeUser(response));
           queryClient.invalidateQueries("userdetails");
           queryClient.invalidateQueries("cart");

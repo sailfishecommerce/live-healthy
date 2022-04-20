@@ -10,6 +10,7 @@ export default function useCheckout() {
   const { loading, checkout } = useAppSelector((state) => state.checkout);
 
   function updateCheckoutHandler(CheckoutStage: checkoutStageProcess) {
+    console.log("CheckoutStage", CheckoutStage);
     dispatch(updateCheckoutProcess(CheckoutStage));
   }
 

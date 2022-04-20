@@ -1,16 +1,17 @@
-import swellClientInit from "@/lib/config";
-import { cartDetailsType, productOptionType, productType } from "@/types";
+import { productOptionType, productType } from "@/types";
 import axios from "axios";
+import useSwell from "@/hooks/useSwell";
 
 export default function useSwellCart() {
-  const { swell, initializeSwell } = swellClientInit();
-  initializeSwell();
+  const { swellInit } = useSwell();
 
   async function getACart() {
+    const { swell } = await swellInit();
     return await swell.cart.get();
   }
 
   async function addToCart(product: productType, quantity: number) {
+    const { swell } = await swellInit();
     return await swell.cart.addItem({
       product_id: product.id,
       quantity,
@@ -22,6 +23,7 @@ export default function useSwellCart() {
     productQuantity: any,
     productOptions: productOptionType
   ) {
+    const { swell } = await swellInit();
     return await swell.cart.addItem({
       product_id: product.id,
       quantity: productQuantity,
@@ -30,6 +32,7 @@ export default function useSwellCart() {
   }
 
   async function updateCartItem(product: any) {
+    const { swell } = await swellInit();
     return await swell.cart.updateItem(product.id, product.updateData);
   }
 
@@ -37,28 +40,24 @@ export default function useSwellCart() {
     product: productType,
     quantity: number
   ) {
+    const { swell } = await swellInit();
     return await swell.cart.updateItem(product.id, {
       quantity,
     });
   }
 
-  async function updateAllCartItem(data: any[]) {
-    return await swell.cart.setItems(data);
-  }
-
   async function removeCartItem(product: { id: string }) {
+    const { swell } = await swellInit();
     return await swell.cart.removeItem(product.id);
   }
 
   async function emptyCart() {
+    const { swell } = await swellInit();
     return await swell.cart.setItems([]);
   }
 
-  async function recoverCart(checkoutId: string) {
-    return await swell.cart.recover(checkoutId);
-  }
-
   async function submitOrder() {
+    const { swell } = await swellInit();
     return await swell.cart.submitOrder();
   }
 
@@ -68,39 +67,17 @@ export default function useSwellCart() {
     });
   }
 
-  async function updateCartBilling(cartDetails: cartDetailsType) {
-    return await swell.cart.update({
-      billing: {
-        name: cartDetails.name,
-        address1: cartDetails.address1,
-        address2: cartDetails.address2,
-        city: cartDetails.city,
-        state: cartDetails.state,
-        zip: cartDetails.zip,
-        country: cartDetails.country,
-        card: {
-          token: cartDetails.token,
-        },
-      },
-    });
-  }
-
   async function applyGiftCode(code: string) {
+    const { swell } = await swellInit();
     return await swell.cart.applyCoupon(code);
   }
 
-  async function updateCartAccount(account: {
-    email: string;
-    email_optin?: boolean;
-    password?: string;
-  }) {
-    await swell.cart.update(account);
-  }
-
   async function updateCartAccountID(account_id: string) {
+    const { swell } = await swellInit();
     await swell.cart.update({ account_id });
   }
   async function updateCart(account: any) {
+    const { swell } = await swellInit();
     await swell.cart.update(account);
   }
 
@@ -108,17 +85,13 @@ export default function useSwellCart() {
     getACart,
     addToCart,
     updateCartItem,
-    updateAllCartItem,
     removeCartItem,
     updateCartItemQuantity,
     emptyCart,
-    recoverCart,
     submitOrder,
     applyGiftCode,
     deleteCart,
-    updateCartBilling,
     addToCartModal,
-    updateCartAccount,
     updateCartAccountID,
     updateCart,
   };
