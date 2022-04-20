@@ -1,7 +1,7 @@
 import { currencySymbolFormatter } from "@/hooks/useCurrency";
 import useQueryData from "@/hooks/useQueryData";
 import { useAppSelector } from "@/hooks/useRedux";
-import { numberWithCommas } from "@/components/price/FormattedPrice";
+import { numberWithCommas } from "@/lib/formatPrice";
 
 export function useStorePrice() {
   const { currency } = useAppSelector((state) => state.currencyLanguage);
