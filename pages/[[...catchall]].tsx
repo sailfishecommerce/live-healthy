@@ -55,6 +55,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: pages.map((page) => ({
       params: { catchall: page.path.substring(1).split("/") },
     })),
-    fallback: "blocking",
+    fallback: false,
   };
 };
