@@ -16,9 +16,9 @@ import Values from "./components/values";
 export const PLASMIC = initPlasmicLoader({
   projects: [
     {
-      id: "tGwoJ9KcwcpWFHzyfNigDT",
+      id: "66VbGm9b15WKJ87v7sQuGU",
       token:
-        "58CqhvkLVWvcwlaaGvqZ8IiNIJDDnVkuHcQkjqjccAdNOvvskIwaMjlwDREXFbOSc77MCiVYfSpylKvg",
+        "S5yanTB19i7QRbGa3hNUnewYQBOvMxrnyJEJNQEyKgG4YjtlEeaFJpkMzZuOxnl8uZk0jbN3IFlTdtZeA",
     },
   ],
   preview: true,
