@@ -1,5 +1,4 @@
 import { useMediaQuery } from "@/hooks";
-import Image from "next/image";
 
 export default function ShippingBanner() {
   const mobileWidth = useMediaQuery("(max-width:768px)");
@@ -26,7 +25,6 @@ export default function ShippingBanner() {
         className="flex items-center justify-center mx-auto"
         height={imageDimension.height}
         width={imageDimension.width}
-        layout="responsive"
       />
     </section>
   );

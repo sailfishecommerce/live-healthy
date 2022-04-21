@@ -1,5 +1,4 @@
 import { Dropdown } from "react-bootstrap";
-import Image from "next/image";
 import { memo } from "react";
 import { useQueryClient } from "react-query";
 
@@ -55,7 +54,6 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
             width={40}
             height={40}
             alt="en"
-            layout="responsive"
           />
         </div>
         {`En / ${currency}`}

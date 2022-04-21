@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 interface valuecardProps {
   content: {
     icon: string;
@@ -23,7 +21,6 @@ export default function ValueCard({ content }: valuecardProps) {
             alt={content.title}
             height={100}
             width={100}
-            layout="responsive"
           />
         </div>
         <h3 className="font-medium text-xl my-2">{content.title}</h3>

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import blogContent from "@/json/blog.json";
 
 export default function BlogContent() {
@@ -13,7 +11,6 @@ export default function BlogContent() {
           width={500}
           alt={content.title}
           className="rounded-xl mb-8"
-          layout="responsive"
         />
         <hr />
         <div className="text">
@@ -70,7 +67,6 @@ export default function BlogContent() {
               width={500}
               alt={content.section3.banner}
               className="rounded-xl"
-              layout="responsive"
             />
           </div>
         </ul>

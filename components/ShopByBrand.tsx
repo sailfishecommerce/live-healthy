@@ -3,7 +3,6 @@ import { memo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
-import Image from "@/components/Image";
 import brands from "@/json/brand.json";
 import styles from "@/styles/ShopByBrandCarousel.module.css";
 import "@splidejs/splide/dist/css/splide.min.css";
@@ -53,7 +52,6 @@ function ShopByBrandComponent() {
                       alt={brand.name}
                       height={imageSize.height}
                       width={imageSize.width}
-                      layout="responsive"
                     />
                   </div>
                 </a>

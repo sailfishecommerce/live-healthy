@@ -33,7 +33,6 @@ export default function ProductBanner() {
           height={bannerDimension.height}
           width={bannerDimension.width}
           alt="skin care"
-          layout="responsive"
         />
       </div>
       <div className="product-group w-full md:w-2/6 ml-0 md:ml-4">

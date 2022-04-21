@@ -27,7 +27,6 @@ export default function Banners() {
               alt="Shop Converse"
               height={bannerSize.height}
               width={bannerSize.width}
-              layout="responsive"
             />
           </div>
         </div>

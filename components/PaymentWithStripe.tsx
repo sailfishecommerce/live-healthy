@@ -1,4 +1,3 @@
-import Image from "next/image";
 import StripePaymentMethod from "./StripePaymentMethod";
 
 export default function PaymentWithStripe() {
@@ -27,7 +26,6 @@ export default function PaymentWithStripe() {
                 width={150}
                 height={30}
                 alt="Cerdit Cards"
-                layout="responsive"
               />
             </div>
           </div>
