@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import Ratings from "@/components/reviews/Ratings";
 
@@ -17,12 +16,11 @@ export default function UserChoiceCard({ choice }: Props) {
     <div className="border border-gray-200 mr-8 p-4 flex flex-col rounded-xl justify-center items-center">
       {choice.img && (
         <div className="imagewrapper mb-2 border-b pb-4">
-          <Image
+          <img
             src={choice.img}
             alt={choice.username}
             height={250}
             width={250}
-            blurDataURL={choice.img}
           />
         </div>
       )}

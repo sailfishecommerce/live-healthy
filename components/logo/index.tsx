@@ -9,7 +9,7 @@ export default function Logo({ className }: LogoProps) {
   return (
     <Link href="/" passHref>
       <a title="welcome to live healthy" className={className}>
-        <Image
+        <img
           src="/logo.webp"
           alt="logo"
           height={50}

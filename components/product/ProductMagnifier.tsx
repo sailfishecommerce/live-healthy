@@ -94,7 +94,7 @@ export default function ProductMagnifier({ product }: ProductProps) {
             key={index}
             aria-label={product.image_alt_text[index]}
           >
-            <Image
+            <img
               height={imageView.height}
               width={imageView.width}
               src={image.file.url}

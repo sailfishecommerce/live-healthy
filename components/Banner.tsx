@@ -21,7 +21,7 @@ export default function Banners() {
                 Shop Now
               </a>
             </div>
-            <Image
+            <img
               className="d-block ms-auto"
               src="/img/shop/catalog/banner.webp"
               alt="Shop Converse"

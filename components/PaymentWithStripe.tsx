@@ -21,7 +21,7 @@ export default function PaymentWithStripe() {
               We accept following credit cards:&nbsp;&nbsp;
             </p>
             <div className="image-container">
-              <Image
+              <img
                 className="d-inline-block align-middle"
                 src="/img/cards.png"
                 width={150}

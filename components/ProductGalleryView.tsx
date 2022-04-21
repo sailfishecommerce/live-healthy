@@ -83,7 +83,7 @@ export default function ProductGalleryView({ product }: Props) {
             onClick={() => updateActiveImage(index)}
             key={index}
           >
-            <Image
+            <img
               height={100}
               width={100}
               src={image.file.url}

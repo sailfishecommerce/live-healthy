@@ -12,7 +12,7 @@ export default function MenuLinks({ cart }: any) {
   return (
     <>
       <div className="hidden md:flex items-center">
-        <Image
+        <img
           src="/whatsappIcon.png"
           alt="cart"
           title="contact us on whatsapp"
@@ -32,7 +32,7 @@ export default function MenuLinks({ cart }: any) {
           onClick={() => updateSlideTab("SLIDING-CART")}
           className="cart-icon relative"
         >
-          <Image
+          <img
             src="/cartIcon.png"
             alt="cart"
             title="cart"

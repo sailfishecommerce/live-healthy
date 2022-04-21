@@ -5,7 +5,6 @@ import { hitType } from "@/types";
 import { useAppSelector } from "@/hooks/useRedux";
 import { useRouter } from "next/router";
 
-import Image from "@/components/Image";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import { useAppDispatch } from "@/redux/store";
 import { closeSearch, updateViewSearch } from "@/redux/algolia-slice";
@@ -64,14 +63,13 @@ export default function ViewSearchQuery({ hits }: SearchHitsProps) {
                       className="hit d-flex align-items-center my-0 py-1"
                     >
                       <div className="hit-image">
-                        <Image
+                        <img
                           src={hit.images[0]?.file?.url}
                           alt={hit.name}
                           className="productImage"
                           height={70}
                           width={100}
                           placeholder="blur"
-                          blurDataURL={hit.images[0]?.file?.url}
                           loading="lazy"
                         />
                       </div>

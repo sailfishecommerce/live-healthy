@@ -1,7 +1,6 @@
 import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
-import Image from "@/components/Image";
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
 
 interface PopularCategoryProps {
@@ -30,17 +29,14 @@ export default function PopularCategory({ category }: PopularCategoryProps) {
           onClick={() => selectedFooterCategory(category.name)}
           className="imgLink d-flex flex-column text-center text-decoration-none"
         >
-          <Image
+          <img
             height={size.height}
             width={size.width}
             src={category.images[0].file.url}
             alt={category.name}
             placeholder="blur"
-            blurDataURL={category.images[0].file.url}
             loading="lazy"
             className="d-block rounded mx-1 mb-3"
-            layout="responsive"
-            size="true"
           />
           <h3 className="fs-base pt-1 mb-0">{category.name}</h3>
         </a>

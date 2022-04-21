@@ -19,7 +19,7 @@ export default function CategoryBanner() {
         <Link href="/shop" passHref>
           <a className="d-none d-md-block mt-auto">
             <div className="d-block w-100">
-              <Image
+              <img
                 className="categoryBanner"
                 src="/img/shop/featured_category_image.webp"
                 alt="category banner"

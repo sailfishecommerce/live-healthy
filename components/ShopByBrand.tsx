@@ -48,7 +48,7 @@ function ShopByBrandComponent() {
                   href="#"
                 >
                   <div className="brandContainer d-flex justify-content-center align-items-center mx-auto">
-                    <Image
+                    <img
                       src={brand.img}
                       alt={brand.name}
                       height={imageSize.height}

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Image from "next/image";
 import Link from "next/link";
 
 import useMarketplaceCategory from "@/hooks/useMarketplaceCategory";
@@ -39,15 +38,13 @@ export default function Category({ category }: CategoryProps): JSX.Element {
               onClick={() => selectedFooterCategory(category.name)}
               className="card-img-top d-block overflow-hidden"
             >
-              <Image
+              <img
                 height={300}
                 width={400}
                 className="categoryImg"
                 src={category.images[0].file.url}
                 alt={category.name}
-                blurDataURL={category.images[0].file.url}
                 loading="lazy"
-                layout="responsive"
               />
             </a>
           </Link>

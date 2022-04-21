@@ -43,7 +43,7 @@ export default function ProductPriceView({ product }: any) {
             <div className="row flex items-center w-full justify-between">
               <div className="rounded-full border lg:w-1/5 w-1/2 flex items-center justify-center px-1 my-2 py-1">
                 <div className="w-1/5 flex items-center">
-                  <Image
+                  <img
                     src="/check-icon-green.png"
                     alt="many in stock"
                     height={20}

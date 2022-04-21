@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { ProductProps } from "@/types";
@@ -42,12 +41,11 @@ export default function Product({
         title={product.name}
       >
         <div className={`${productImageClassName} image-wrapper`}>
-          <Image
+          <img
             src={product.images[0].file.url}
             alt={product.name}
             height={imageSize.height}
             width={imageSize.width}
-            blurDataURL={product.images[0].file.url}
           />
         </div>
         <div className={`${isRowText} text`}>

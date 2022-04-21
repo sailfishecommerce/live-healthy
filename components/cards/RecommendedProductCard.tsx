@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { ProductProps } from "@/types";
@@ -33,13 +32,12 @@ export default function RecommendedProductCard({
         title={product.name}
       >
         <div className={`${productImageClassName} mx-auto image-wrapper`}>
-          <Image
+          <img
             src={product.images[0].file.url}
             alt={product.name}
             height={imageSize.height}
             width={imageSize.width}
             className="rounded-xl"
-            blurDataURL={product.images[0].file.url}
           />
         </div>
         <div className="text">
@@ -52,7 +50,7 @@ export default function RecommendedProductCard({
               type="button"
               className="add-to-cart w-1/4 justify-center text-white px-2 py-1 flex items-center rounded-md"
             >
-              <Image
+              <img
                 src="/cart-white-icon.png"
                 alt="cart"
                 height={20}
@@ -69,7 +67,6 @@ export default function RecommendedProductCard({
             .add-to-cart:hover {
               background-color: var(--mountain-mist);
             }
-            
           `}
         </style>
       </a>

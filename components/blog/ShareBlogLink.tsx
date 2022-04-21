@@ -14,7 +14,7 @@ export default function ShareBlogLink() {
   return (
     <div className="row flex items-center justify-between w-full mb-8">
       <div className="author flex items-center">
-        <Image src="/arabella-small.webp" alt="author" height={50} width={50} />
+        <img src="/arabella-small.webp" alt="author" height={50} width={50} />
         <div className="content ml-3">
           <h6 className="font-bold mb text-sm">Arabella Noakes</h6>
           <p className="font-medium text-xs flex items-center">

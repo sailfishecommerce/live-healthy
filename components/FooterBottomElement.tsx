@@ -22,7 +22,7 @@ export function FooterBottomSocials() {
         ))}
       </div>
       <div className="imgContainer">
-        <Image
+        <img
           className="d-inline-block"
           src="/img/cards-alt.webp"
           width={200}

@@ -18,7 +18,7 @@ export default function ValueCard({ content }: valuecardProps) {
         className="value-card w-11/12 rounded-3xl p-6 flex flex-col h-48 hover:opacity-80"
       >
         <div className="w-2/12 w-1/12">
-          <Image
+          <img
             src={content.icon}
             alt={content.title}
             height={100}

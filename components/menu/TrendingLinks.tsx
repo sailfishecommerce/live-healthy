@@ -16,14 +16,16 @@ export const TrendLink = ({ trendingItem }: TrendLinkProps) => (
   <li title={trendingItem.name} className="trending-item mr-4">
     <Link href={trendingItem.link} passHref>
       <a className="trending flex flex-col items-start md:items-center">
-        <Image
+        <img
           src={trendingItem.image}
           height={120}
           width={180}
           className="hover:scale-105"
           alt={trendingItem.name}
         />
-        <p className="text-center font-light mt-2 font-medium">{trendingItem.name}</p>
+        <p className="text-center font-light mt-2 font-medium">
+          {trendingItem.name}
+        </p>
       </a>
     </Link>
   </li>

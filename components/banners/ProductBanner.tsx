@@ -28,7 +28,7 @@ export default function ProductBanner() {
   return (
     <div className="container mx-auto justify-between px-4 md:px-0 flex flex-col md:flex-row items-start h-1/2">
       <div className="banner w-full md:w-4/5">
-        <Image
+        <img
           src={bannerImage}
           height={bannerDimension.height}
           width={bannerDimension.width}

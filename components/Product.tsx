@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState, memo } from "react";
 import dynamic from "next/dynamic";
 
-import Image from "@/components/Image";
 import { ProductProps } from "@/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { replaceSpaceWithHypen } from "@/lib/formatString";
@@ -95,13 +94,12 @@ const MProduct = ({
               onMouseLeave={() => setHover(false)}
               className="productImage"
             >
-              <Image
+              <img
                 height={300}
                 width={300}
                 src={productImage}
                 alt={imageAlt}
                 placeholder="blur"
-                blurDataURL={productImage}
                 loading="lazy"
               />
             </div>

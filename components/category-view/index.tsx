@@ -4,7 +4,7 @@ export default function CategoryView() {
   return (
     <div>
       <div className="category-image w-4/5">
-        <Image
+        <img
           src="/category-image.webp"
           height={800}
           width={1000}

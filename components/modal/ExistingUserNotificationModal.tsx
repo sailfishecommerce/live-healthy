@@ -46,7 +46,7 @@ export default function ExistingUserNotificationModal({
         <h6 className="text-center mb-0 me-1">
           Hello, thanks for shopping with us
         </h6>
-        <Image
+        <img
           src="/shopping-bag.webp"
           alt="shopping bag"
           height={40}

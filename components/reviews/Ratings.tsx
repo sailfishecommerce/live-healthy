@@ -12,7 +12,7 @@ export default function Ratings({ ratings }: Props) {
   return (
     <div className="star-group flex items-center">
       {filledStarsArray.map((_, index) => (
-        <Image
+        <img
           src="/filled-star.png"
           key={index}
           className="mx-1"

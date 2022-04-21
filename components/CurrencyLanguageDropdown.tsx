@@ -49,7 +49,7 @@ function CurrencyLanguageDropdownComponent({ position }: Props) {
         className={`${styles.dropdownToggle} topbar-link dropdown-toggle`}
       >
         <div className={styles.imageContainer}>
-          <Image
+          <img
             className="me-2"
             src="/img/flags/en.png"
             width={40}

@@ -1,5 +1,4 @@
 import { productType } from "@/types";
-import Image from "next/image";
 
 interface Props {
   product: productType;
@@ -13,13 +12,12 @@ export default function ProductTabCard({ product }: Props) {
         className="producttab-card flex p-2 md:p-4 justify-between items-center rounded-xl bg-light-gray mr-8"
       >
         <div className="image-wrapper flex flex-col w-1/2 md:w-1/3">
-          <Image
+          <img
             src={product.images[0].file.url}
             alt={product.name}
             height={200}
             width={200}
             className="bg-white flex rounded-lg"
-            blurDataURL={product.images[0].file.url}
           />
           <button
             type="button"

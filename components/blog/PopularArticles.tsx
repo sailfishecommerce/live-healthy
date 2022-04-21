@@ -12,7 +12,7 @@ export default function PopularArticles() {
             key={index}
             className="flex items-center my-4 hover:bg-gray-100 hover:rounded-md"
           >
-            <Image
+            <img
               src={item.thumbnailImg}
               alt={item.thumbnailImg}
               height={100}

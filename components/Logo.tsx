@@ -11,7 +11,7 @@ export default function Logo({ className }: LogoProps) {
     <>
       <Link href="/" passHref>
         <a className={className}>
-          <Image src="/logo.webp" alt="Bandicoot" height={70} width={200} />
+          <img src="/logo.webp" alt="Bandicoot" height={70} width={200} />
         </a>
       </Link>
     </>

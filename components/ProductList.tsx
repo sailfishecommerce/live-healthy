@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import Image from "@/components/Image";
 import { productType } from "@/types";
 import useAlgoliaEvents from "@/hooks/useAlgoliaEvents";
 import useShoppingCart from "@/hooks/useShoppingCart";
@@ -36,7 +35,7 @@ export default function ProductList({ product }: ProductProps) {
       <div className="d-sm-flex align-items-center">
         <Link href={`/products/${product.slug}`} passHref>
           <a onClick={productViewedHandler} className="product-list-thumb">
-            <Image
+            <img
               height={300}
               width={300}
               src={product.images[0]?.file?.url}
@@ -47,7 +46,6 @@ export default function ProductList({ product }: ProductProps) {
               }
               className="productImage"
               placeholder="blur"
-              blurDataURL={product.images[0]?.file?.url}
               loading="lazy"
             />
           </a>

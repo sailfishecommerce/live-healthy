@@ -7,7 +7,7 @@ export default function BlogContent() {
   return (
     <section className="content">
       <div className="row flex flex-col">
-        <Image
+        <img
           src={content.section1.banner}
           height={250}
           width={500}
@@ -64,7 +64,7 @@ export default function BlogContent() {
           </span>
           <div className="video-review w-full mb-8">
             <h2 className="font-bold text-xl mb-4">Video review</h2>
-            <Image
+            <img
               src={content.section3.banner}
               height={200}
               width={500}
