@@ -1,5 +1,4 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { memo, useState } from "react";
 
@@ -36,10 +35,10 @@ function HomepageSliderComponent() {
               <div className="image order-1 md:order-2 w-full md:w-3/4">
                 <img
                   src={content.image}
-                  height={500}
-                  width={1300}
+                  height="300px"
+                  width="1300px"
                   alt={content.title}
-                  className="rounded-t-xl md:rounded-l-none md:rounded-r-3xl"
+                  className="rounded-t-xl bannerImage md:rounded-l-none md:rounded-r-3xl"
                 />
               </div>
             </div>
@@ -54,6 +53,10 @@ function HomepageSliderComponent() {
       )}
       <style jsx>
         {`
+          .bannerImage {
+            height: 400px;
+            width: 1300px;
+          }
           .view-collection {
             background-color: var(--mountain-green);
           }
