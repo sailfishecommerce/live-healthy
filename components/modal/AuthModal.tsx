@@ -1,4 +1,4 @@
-import AppModal from "@/components/modal/AppModal";
+// import AppModal from "@/components/modal/AppModal";
 import SignupForm from "../SignupForm";
 import SigninForm from "../SigninForm";
 import { modalType } from "@/types";
@@ -27,9 +27,11 @@ function AuthHeader() {
 
 export default function AuthModal({ show, onHide }: modalType) {
   return (
-    <AppModal show={show} onHide={onHide} header={<AuthHeader />}>
+    <>
+      {/* <AppModal show={show} onHide={onHide} header={<AuthHeader />}> */}
       <SigninForm />
       <SignupForm />
-    </AppModal>
+      {/* </AppModal> */}
+    </>
   );
 }

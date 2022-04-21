@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
 import { ShareProductLink } from "@/components/ProductView";
 import { productType } from "@/types";
@@ -13,9 +13,9 @@ interface Props {
   product: productType;
 }
 
-const DynamicContactModal = dynamic(
-  () => import("../components/ContactForMoreModal")
-);
+// const DynamicContactModal = dynamic(
+//   () => import("../components/ContactForMoreModal")
+// );
 
 export default function ProductDetail({ product }: Props) {
   const [modal, setModal] = useState(false);
@@ -27,11 +27,11 @@ export default function ProductDetail({ product }: Props) {
   return (
     <div className="col-lg-5 pt-4 pt-lg-0">
       <div className="product-details ms-auto pb-3">
-        <DynamicContactModal
+        {/* <DynamicContactModal
           show={modal}
           onHide={toggleModal}
           productName={product.name}
-        />
+        /> */}
         <div className="d-flex justify-content-between align-items-center mb-2">
           <Rating product={product} />
           <button

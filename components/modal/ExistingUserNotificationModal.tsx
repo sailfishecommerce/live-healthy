@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import Image from "@/components/Image";
-import AppModal from "@/components/modal/AppModal";
+// import AppModal from "@/components/modal/AppModal";
 import useModal from "@/hooks/useModal";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { toggleAuthModal } from "@/redux/ui-slice";
@@ -41,7 +41,8 @@ export default function ExistingUserNotificationModal({
   }
 
   return (
-    <AppModal show={show} onHide={onHide} header={<ModalHeader />}>
+    <>
+      {/* <AppModal show={show} onHide={onHide} header={<ModalHeader />}> */}
       <div className="d-flex align-items-center mx-auto justify-content-center mb-1">
         <h6 className="text-center mb-0 me-1">
           Hello, thanks for shopping with us
@@ -77,6 +78,7 @@ export default function ExistingUserNotificationModal({
           Forgot password ?
         </a>
       </p>
-    </AppModal>
+      {/* </AppModal> */}
+    </>
   );
 }
