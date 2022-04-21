@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 import useLiveHealthyProduct from "@/hooks/useLivehealthyProduct";
 import ProductTabCard from "@/components/cards/ProductTabCard";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 export default function ProductTabSlider() {
   const tabs = ["New Products", "Special Products", "Featured Products"];

@@ -1,6 +1,6 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import Product from "@/components/Product";
 
+import Product from "@/components/Product";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 interface RelatedProductSliderProps {
