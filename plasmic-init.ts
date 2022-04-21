@@ -1,12 +1,11 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
+
 import Error404 from "./components/404Error";
 import ProductBanner from "./components/banners/ProductBanner";
 import ShippingBanner from "./components/banners/ShippingBanner";
 import Footer from "./components/footer/";
 import Header from "./components/header";
 import ProductReview from "./components/product/ProductReview";
-import ProductDetail from "./components/ProductDetail";
-import ProductReviews from "./components/reviews/ProductReviews";
 import BestSellerSlider from "./components/slider/BestSellerSlider";
 import HomepageSlider from "./components/slider/HomepageSlider";
 import ProductSlider from "./components/slider/ProductSlider";
@@ -99,12 +98,6 @@ PLASMIC.registerComponent(Values, {
 
 PLASMIC.registerComponent(Error404, {
   name: "Error404",
-  props: {},
-  isDefaultExport: true,
-});
-
-PLASMIC.registerComponent(ProductDetail, {
-  name: "Product Description",
   props: {},
   isDefaultExport: true,
 });
