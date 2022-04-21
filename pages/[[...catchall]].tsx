@@ -1,25 +1,26 @@
-import { PlasmicComponent } from "@plasmicapp/loader-nextjs";
-import { GetStaticPaths, GetStaticProps } from "next";
-
 import {
+  PlasmicComponent,
   ComponentRenderData,
   PlasmicRootProvider,
-} from "@plasmicapp/loader-react";
+} from "@plasmicapp/loader-nextjs";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Error from "next/error";
-import { PLASMIC } from "../plasmic-init";
-import PlasmicLayout from "@/layout/Plasmiclayout";
 
-export default function PlasmicLoaderPage(props: {
+import PlasmicLayout from "@/layout/Plasmiclayout";
+import { PLASMIC } from "../plasmic-init";
+
+export default function CatchallPage(props: {
   plasmicData?: ComponentRenderData;
 }) {
   const { plasmicData } = props;
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
   }
+  const pageMeta = plasmicData.entryCompMetas[0];
   return (
     <PlasmicLayout>
       <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
-        <PlasmicComponent component={plasmicData.entryCompMetas[0].name} />
+        <PlasmicComponent component={pageMeta.name} />
       </PlasmicRootProvider>
     </PlasmicLayout>
   );
@@ -27,6 +28,8 @@ export default function PlasmicLoaderPage(props: {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
+
+  // Convert the catchall param into a path string
   const plasmicPath =
     typeof catchall === "string"
       ? catchall
@@ -38,20 +41,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       props: { plasmicData },
     };
+  } else {
+    // This is some non-Plasmic catch-all page
+    return {
+      props: {},
+    };
   }
-  return {
-    props: {},
-  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pageModules = await PLASMIC.fetchPages();
+  const pages = await PLASMIC.fetchPages();
   return {
-    paths: pageModules.map((mod: any) => ({
-      params: {
-        catchall: mod.path.substring(1).split("/"),
-      },
+    paths: pages.map((page) => ({
+      params: { catchall: page.path.substring(1).split("/") },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
