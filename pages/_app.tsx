@@ -7,14 +7,11 @@ import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
-import Script from "next/script";
 import type { AppProps } from "next/app";
-
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import store from "@/redux/store";
 import "@/styles/globals.css";
-import "@/styles/theme.min.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
