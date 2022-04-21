@@ -30,13 +30,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   return (
     <div>
-      <Script
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js"
-        integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ=="
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-        referrerPolicy="no-referrer"
-      />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PersistGate loading={null} persistor={persistor}>
