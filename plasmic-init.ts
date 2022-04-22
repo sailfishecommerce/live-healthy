@@ -157,5 +157,3 @@ PLASMIC.registerComponent(AccountOverview, {
   isDefaultExport: true,
 });
 
-
-;
