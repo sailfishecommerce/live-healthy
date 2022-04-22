@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import Applayout from "@/layout/Applayout";
 import ContactBanner from "@/components/banners/ContactusBanner";
 import ContactusCard from "@/components/cards/ContactusCard";

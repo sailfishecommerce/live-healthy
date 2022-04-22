@@ -144,7 +144,6 @@ PLASMIC.registerComponent(PartnerOutlet, {
   isDefaultExport: true,
 });
 
-
 PLASMIC.registerComponent(AboutusOverview, {
   name: "Aboutus Overview",
   props: {},
@@ -156,4 +155,3 @@ PLASMIC.registerComponent(AccountOverview, {
   props: {},
   isDefaultExport: true,
 });
-
