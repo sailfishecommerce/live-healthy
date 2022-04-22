@@ -1,10 +1,15 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 
 import Error404 from "./components/404Error";
+import ContactBanner from "./components/banners/ContactusBanner";
 import ProductBanner from "./components/banners/ProductBanner";
 import ShippingBanner from "./components/banners/ShippingBanner";
+import ContactusCard from "./components/cards/ContactusCard";
 import Footer from "./components/footer/";
 import Header from "./components/header";
+import AboutusOverview from "./components/page-view/AboutusOverview";
+import ContactusMapFormView from "./components/page-view/ContactusMapFormView";
+import PartnerOutlet from "./components/page-view/PartnerOutlet";
 import ProductReview from "./components/product/ProductReview";
 import BestSellerSlider from "./components/slider/BestSellerSlider";
 import HomepageSlider from "./components/slider/HomepageSlider";
@@ -113,3 +118,35 @@ PLASMIC.registerComponent(BestSellerSlider, {
   props: {},
   isDefaultExport: true,
 });
+
+PLASMIC.registerComponent(ContactusMapFormView, {
+  name: "Contactus Map Form View",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(ContactBanner, {
+  name: "Contact Banner",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(ContactusCard, {
+  name: "Contact us Card",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(PartnerOutlet, {
+  name: "Partner Outlet",
+  props: {},
+  isDefaultExport: true,
+});
+
+
+PLASMIC.registerComponent(AboutusOverview, {
+  name: "Aboutus Overview",
+  props: {},
+  isDefaultExport: true,
+});
+;
