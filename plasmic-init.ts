@@ -8,6 +8,7 @@ import ContactusCard from "./components/cards/ContactusCard";
 import Footer from "./components/footer/";
 import Header from "./components/header";
 import AboutusOverview from "./components/page-view/AboutusOverview";
+import AccountOverview from "./components/page-view/AccountOverview";
 import ContactusMapFormView from "./components/page-view/ContactusMapFormView";
 import PartnerOutlet from "./components/page-view/PartnerOutlet";
 import ProductReview from "./components/product/ProductReview";
@@ -149,4 +150,12 @@ PLASMIC.registerComponent(AboutusOverview, {
   props: {},
   isDefaultExport: true,
 });
+
+PLASMIC.registerComponent(AccountOverview, {
+  name: "Account Overview",
+  props: {},
+  isDefaultExport: true,
+});
+
+
 ;
