@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,12 +26,11 @@ export default function Aboutus({ content }: contentProps) {
   return (
     <section className="flex flex-col md:flex-row items-center">
       <div className={`w-full md:w-1/2 bg-position-center ${imageOrder}`}>
-        <Image
+        <img
           src={content.image}
           alt="about-us at livehealthy"
           height={100}
           width={200}
-          layout="responsive"
         />
       </div>
       <div className={`w-full md:w-1/2 py-5 px-4 lg:px-24  ${textOrder}`}>
