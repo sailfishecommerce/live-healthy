@@ -2,9 +2,9 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 import Product from "@/components/cards/ProductCard";
 import useLiveHealthyProduct from "@/hooks/useLivehealthyProduct";
-import "@splidejs/splide/dist/css/splide.min.css";
 import selectRandomColor from "@/lib/selectRandomColor";
 import ProductTags from "@/components/tag/ProductTags";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 interface Props {
   title: string;

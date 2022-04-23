@@ -12,7 +12,7 @@ import AboutusOverview from "./components/page-view/AboutusOverview";
 import AccountOverview from "./components/page-view/AccountOverview";
 import ContactusMapFormView from "./components/page-view/ContactusMapFormView";
 import PartnerOutlet from "./components/page-view/PartnerOutlet";
-import ProductReview from "./components/product/ProductReview";
+import UserReviews from "./components/reviews/UserReviews";
 import AccountDetail from "./components/shipping/AccountDetail";
 import BestSellerSlider from "./components/slider/BestSellerSlider";
 import HomepageSlider from "./components/slider/HomepageSlider";
@@ -58,7 +58,7 @@ PLASMIC.registerComponent(ProductSlider, {
     },
     tags: {
       displayName: "Tags",
-      type: "string",
+      type: "object",
     },
     tabColor: {
       displayName: "Tab Color",
@@ -68,20 +68,16 @@ PLASMIC.registerComponent(ProductSlider, {
       displayName: "Product Name",
       type: "string",
     },
-    productClassName: {
-      displayName: "ClassName",
-      type: "string",
-    },
     randomColor: {
       displayName: "Random Color",
-      type: "string",
+      type: "boolean",
     },
   },
   isDefaultExport: true,
 });
 
 PLASMIC.registerComponent(ProductBanner, {
-  name: "Ads Banner",
+  name: "Product Banner",
   props: {},
   isDefaultExport: true,
 });
@@ -92,8 +88,8 @@ PLASMIC.registerComponent(ShippingBanner, {
   isDefaultExport: true,
 });
 
-PLASMIC.registerComponent(ProductReview, {
-  name: "Product Review",
+PLASMIC.registerComponent(UserReviews, {
+  name: "User Reviews",
   props: {},
   isDefaultExport: true,
 });

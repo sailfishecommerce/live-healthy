@@ -6,7 +6,7 @@ import Applayout from "@/layout/Applayout";
 import ProductTabSlider from "@/components/slider/ProductTabSlider";
 import BestSellerSlider from "@/components/slider/BestSellerSlider";
 import ProductBanner from "@/components/banners/ProductBanner";
-import ProductReviews from "@/components/reviews/ProductReviews";
+import ProductReviews from "@/components/reviews/UserReviews";
 
 export default function Home() {
   return (

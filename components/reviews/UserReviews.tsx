@@ -1,7 +1,7 @@
 import Script from "next/script";
 import { memo } from "react";
 
-function ProductReviewsComponent() {
+function UserReviewsComponent() {
   return (
     <div className="container product-reviews mx-auto justify-center items-center my-lg-3 py-5">
       <Script
@@ -15,5 +15,5 @@ function ProductReviewsComponent() {
     </div>
   );
 }
-const ProductReviews = memo(ProductReviewsComponent);
-export default ProductReviews;
+const UserReviews = memo(UserReviewsComponent);
+export default UserReviews;
