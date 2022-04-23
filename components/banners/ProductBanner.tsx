@@ -28,11 +28,12 @@ export default function ProductBanner() {
   return (
     <div className="container mx-auto justify-between px-4 md:px-0 flex flex-col md:flex-row items-start h-1/2">
       <div className="banner w-full md:w-4/5">
-        <img
+        <Image
           src={bannerImage}
           height={bannerDimension.height}
           width={bannerDimension.width}
           alt="skin care"
+          layout="responsive"
         />
       </div>
       <div className="product-group w-full md:w-2/6 ml-0 md:ml-4">
@@ -45,10 +46,10 @@ export default function ProductBanner() {
               <Product
                 key={index}
                 color="#24BFCE"
-                className="items-center h-1/4 justify-between"
+                className="items-center justify-between"
                 product={product}
                 row
-                smallerImage
+                // smallerImage
               />
             ))}
       </div>
