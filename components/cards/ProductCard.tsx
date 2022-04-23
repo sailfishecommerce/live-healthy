@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 
@@ -46,12 +47,11 @@ export default function Product({
           <div
             className={`${productImageClassName} ${imageWidth}  image-wrapper`}
           >
-            <Image
+            <img
               src={product.images[0].file.url}
               alt={product.name}
               height={imageSize.height}
               width={imageSize.width}
-              blurDataURL={product.images[0].file.url}
             />
           </div>
           <div className={`${isRowText} ${imageWidth} text`}>
