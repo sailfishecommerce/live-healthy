@@ -26,7 +26,7 @@ export default function CatchallPage(props: {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context:any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
   const { catchall } = context.params ?? {};
 
   // Convert the catchall param into a path string
@@ -55,6 +55,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: pages.map((page: any) => ({
       params: { catchall: page.path.substring(1).split("/") },
     })),
-    fallback: true,
+    fallback: false,
   };
 };
