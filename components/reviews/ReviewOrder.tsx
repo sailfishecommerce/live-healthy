@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FaTimes } from "react-icons/fa";
 
 import CheckoutCard from "@/components/cards/CheckoutCard";

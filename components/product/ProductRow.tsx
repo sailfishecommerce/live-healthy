@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import type { cartType } from "@/types";

@@ -26,7 +26,7 @@ export default function CatchallPage(props: {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context:any) => {
   const { catchall } = context.params ?? {};
 
   // Convert the catchall param into a path string
@@ -52,9 +52,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await PLASMIC.fetchPages();
   return {
-    paths: pages.map((page) => ({
+    paths: pages.map((page: any) => ({
       params: { catchall: page.path.substring(1).split("/") },
     })),
-    fallback: false,
+    fallback: true,
   };
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Ratings from "@/components/reviews/Ratings";
 
@@ -17,7 +18,7 @@ export default function UserChoiceCard({ choice }: Props) {
       {choice.img && (
         <div className="imagewrapper mb-2 border-b pb-4">
           <img
-            src={choice.img}
+             src={choice.img}
             alt={choice.username}
             height={250}
             width={250}

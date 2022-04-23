@@ -7,11 +7,13 @@ import ShippingBanner from "./components/banners/ShippingBanner";
 import ContactusCard from "./components/cards/ContactusCard";
 import Footer from "./components/footer/";
 import Header from "./components/header";
+import OrderHistory from "./components/order/OrderHistory";
 import AboutusOverview from "./components/page-view/AboutusOverview";
 import AccountOverview from "./components/page-view/AccountOverview";
 import ContactusMapFormView from "./components/page-view/ContactusMapFormView";
 import PartnerOutlet from "./components/page-view/PartnerOutlet";
 import ProductReview from "./components/product/ProductReview";
+import AccountDetail from "./components/shipping/AccountDetail";
 import BestSellerSlider from "./components/slider/BestSellerSlider";
 import HomepageSlider from "./components/slider/HomepageSlider";
 import ProductSlider from "./components/slider/ProductSlider";
@@ -152,6 +154,18 @@ PLASMIC.registerComponent(AboutusOverview, {
 
 PLASMIC.registerComponent(AccountOverview, {
   name: "Account Overview",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(AccountDetail, {
+  name: "Account Details",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(OrderHistory, {
+  name: "Order History",
   props: {},
   isDefaultExport: true,
 });
