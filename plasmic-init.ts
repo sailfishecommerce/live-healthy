@@ -1,6 +1,7 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 
 import Error404 from "./components/404Error";
+import PasswordReset from "./components/account-recovery/PasswordReset";
 import ContactBanner from "./components/banners/ContactusBanner";
 import ProductBanner from "./components/banners/ProductBanner";
 import ShippingBanner from "./components/banners/ShippingBanner";
@@ -134,6 +135,12 @@ PLASMIC.registerComponent(ContactusMapFormView, {
 
 PLASMIC.registerComponent(ContactBanner, {
   name: "Contact Banner",
+  props: {},
+  isDefaultExport: true,
+});
+
+PLASMIC.registerComponent(PasswordReset, {
+  name: "Password Reset",
   props: {},
   isDefaultExport: true,
 });
