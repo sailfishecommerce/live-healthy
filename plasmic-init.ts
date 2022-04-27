@@ -4,6 +4,7 @@ import Error404 from "./components/404Error";
 import ContactBanner from "./components/banners/ContactusBanner";
 import ProductBanner from "./components/banners/ProductBanner";
 import ShippingBanner from "./components/banners/ShippingBanner";
+import BlogOverview from "./components/blog/BlogOverview";
 import ContactusCard from "./components/cards/ContactusCard";
 import Footer from "./components/footer/";
 import Header from "./components/header";
@@ -81,6 +82,13 @@ PLASMIC.registerComponent(ProductBanner, {
   props: {},
   isDefaultExport: true,
 });
+
+PLASMIC.registerComponent(BlogOverview, {
+  name: "Blog Overview ",
+  props: {},
+  isDefaultExport: true,
+});
+
 
 PLASMIC.registerComponent(ShippingBanner, {
   name: "Shipping Banner",
